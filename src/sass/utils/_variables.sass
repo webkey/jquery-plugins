@@ -1,0 +1,121 @@
+@import ../utils/functions
+@import ../utils/placeholders
+
+// medium query
+$breakpoints: ('mob-sm': 320px, 'mob-md': 480px, 'mob-lg': 640px, 'tab-sm': 768px, 'tab-lg': 992px, 'desk-sm': 1200px, 'desk-md': 1366px, 'desk-lg': 1600px, 'desk-hd': 1920px)
+
+// base
+$font-size: 1.8rem !default
+$line-height: round-float(3.0rem/$font-size, 2) !default
+
+$font-size-small: 1.4rem !default
+$line-height-small: 1.43 !default
+$font-size-h1: 3.6rem !default
+$line-height-h1: 1.2 !default
+$font-size-h1--sm: 2.6rem !default
+$line-height-h1--sm: 1.3 !default
+
+$bottom-space: round-float($font-size*$line-height, 1) !default
+$bottom-space-string: round-float($font-size*$line-height*0.5, 1) !default
+$bottom-space-article: round-float($font-size*$line-height*1.5, 1) !default
+$bottom-space-section: round-float($font-size*$line-height*2, 1) !default
+
+// цвет фона страницы
+$bg-color: white !default
+// цвет остовного текста
+$text-color: #262626 !default
+// цвет основных заголовков заголовков
+$title-color: black !default
+// цвет текста светлее основного
+$text-color-light: gray !default
+// цвет для выделения текста
+$text-color-alt: tomato !default
+// цвет ссылки
+$link-color: blue !default
+// цвет линий и границ
+$border-color: lightgray !default
+// цвет специальных элементов
+$mark-color: tomato !default
+
+// user content class
+// class на контейнере, в котором будет использоваться стилизация
+// типографических элементов: списков, таблиц, цытат и т.д.
+$user-content: user-content !default
+
+// layout
+// отступы слева и справа для всего сайта
+$layout-space-horizontal: 20px !default
+// максимальная ширина сайта
+$layout-width: 1920px + $layout-space-horizontal*2 !default
+// минимальные отступы слева и справа у текствого блока
+$layout-text-space-horizontal: 40px !default
+$layout-text-space-horizontal-md: 30px !default
+$layout-text-space-horizontal-sm: 15px !default
+// максимальная ширина текстового блока
+$layout-text-width: 640px + $layout-text-space-horizontal*2 !default
+// минимальные отступы слева и справа у блокоа выходящего за пределы текста
+$layout-flood-space-horizontal: 40px !default
+// максимальная ширина текстового блока выходящего за пределы текста
+$layout-flood-width: 768px + $layout-text-space-horizontal*2 !default
+
+// form
+$color-form-text: $text-color-light !default
+$color-form-placeholder: lightgray !default
+$color-form-bg: white !default
+$color-form-border: lightgray !default
+$color-form-border-focus: darken($color-form-border, 20%) !default
+$color-form-error: red !default
+$color-form-success: green !default
+$space-bottom-form: 3rem !default
+
+// btn
+$color-btn-bg: tomato !default
+$color-btn-bg-hover: darken($color-btn-bg, 20%) !default
+$color-btn-text: white !default
+
+// table color
+$color-table-text: $text-color !default
+$color-table-border: tomato !default
+$color-table-bg: white !default
+$color-table-text-alt: white !default
+$color-table-bg-alt: tomato !default
+
+// animation
+$animation-speed: 0.2s !default
+$animation-speed-mouseleave: 0.35s !default
+
+// fonts style
+$font-norm: 'Roboto', sans-serif !default
+$font-b: 'Roboto', sans-serif !default
+$font-i: 'Roboto', sans-serif !default
+$font-bi: 'Roboto', sans-serif !default
+$font-alt: 'Roboto Slab', serif !default
+
+=font-reset()
+	font:
+		weight: normal
+		style: normal
+=font-normal()
+	font:
+		family: $font-norm
+//+font-reset
+
+=font-bold()
+	font:
+		family: $font-b
+//+font-reset
+
+=font-italic()
+	font:
+		family: $font-i
+//+font-reset
+
+=font-bold-italic()
+	font:
+		family: $font-bi
+//+font-reset
+
+=font-title()
+	font:
+		family: $font-alt
+//+font-reset

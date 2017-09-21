@@ -1,0 +1,59 @@
+/* reset */
+a, input, button,
+a:focus, input:focus, button:focus
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important
+	-webkit-focus-ring-color: rgba(255, 255, 255, 0) !important
+	outline: none !important
+*:focus
+	outline: none
+	-moz-outline: 3px solid white !important
+body
+	-webkit-font-smoothing: antialiased
+body, html
+	height: 100%
+	width: 100%
+select[disabled]
+	cursor: default
+form
+	margin: 0
+	padding: 0
+input
+	vertical-align: middle
+textarea, select, input[type="text"], input[type="email"], input[type="search"], input[type="submit"], input[type="button"], input[type="reset"], button
+	-webkit-appearance: none
+	border-radius: 0
+input[type=radio], input[type=checkbox], select
+	cursor: pointer
+input[type="radio"]:focus
+	-moz-outline-radius: 12px !important
+	-moz-outline-offset: 0 !important
+input[type="checkbox"]:focus
+	-moz-outline-offset: -1px !important
+	-moz-outline: 1px solid #000 !important
+input::-ms-clear
+	display: none
+blockquote, q
+	quotes: none
+blockquote::before, blockquote::after, q::before, q::after
+	content: none
+ins
+	text-decoration: none
+del
+	text-decoration: line-through
+fieldset
+	border: none
+	margin: 0
+	padding: 0
+table
+	border: 0
+	width: 100%
+	padding: 0
+	margin: 0
+ul
+	list-style: none
+	padding: 0
+	margin: 0
+*, *::after, *::before
+	box-sizing: border-box
+
+/* reset end */
