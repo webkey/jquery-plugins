@@ -130,7 +130,7 @@ gulp.task('browserSync', function (done) { // Таск browserSync
 });
 
 gulp.task('watch', ['createCustomModernizr', 'browserSync', 'htmlCompilation', 'sassCompilation', 'mergeCssLibs', 'copyLibsScriptsToJs'], function () {
-	gulp.watch(['src/*.tpl', 'src/__*.html', 'src/includes-json/**/*.json'], ['htmlCompilation']); // Наблюдение за tpl
+	gulp.watch(['src/*.html', 'src/includes-json/**/*.json'], ['htmlCompilation']); // Наблюдение за html
 	// файлами в папке include
 	gulp.watch('src/sass/**/*.+(scss|sass)', ['sassCompilation']); // Наблюдение за sass файлами в папке sass
 });
@@ -164,7 +164,7 @@ gulp.task('build', ['cleanDistFolder', 'htmlCompilation', 'copyImgToDist', 'sass
 	gulp.src('src/fonts/**/*') // Переносим шрифты в продакшен
 		.pipe(gulp.dest('dist/fonts'));
 
-	gulp.src(['src/js/**/*.min.js', 'src/js/common.js']) // Переносим скрипты в продакшен
+	gulp.src(['src/js/**/*.min.js', 'src/js/commo-npoll.js']) // Переносим скрипты в продакшен
 		.pipe(gulp.dest('dist/js'));
 
 	gulp.src(['!src/__*.html', 'src/*.html']) // Переносим HTML в продакшен
