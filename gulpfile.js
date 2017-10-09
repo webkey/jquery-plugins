@@ -8,24 +8,21 @@ var gulp = require('gulp'), // Подключаем Gulp
 	uglify = require('gulp-uglifyjs'), // Подключаем gulp-uglifyjs (для сжатия JS)
 	cssnano = require('gulp-cssnano'), // Подключаем пакет для минификации CSS
 	concatCss = require('gulp-concat-css'),
-	autoprefixer = require('gulp-autoprefixer'), // Подключаем библиотеку для автоматического добавления префиксов
-	csscomb = require('gulp-csscomb'), // Причесываем css
 	rename = require('gulp-rename'), // Подключаем библиотеку для переименования файлов
 	del = require('del'), // Подключаем библиотеку для удаления файлов и папок
 	imagemin = require('gulp-imagemin'), // Подключаем библиотеку для работы с изображениями
 	pngquant = require('imagemin-pngquant'), // Подключаем библиотеку для работы с png
 	cache = require('gulp-cache'), // Подключаем библиотеку кеширования
+	autoprefixer = require('gulp-autoprefixer'), // Подключаем библиотеку для автоматического добавления префиксов
 	sourcemaps = require('gulp-sourcemaps'), // Подключаем Source Map для дебагинга sass-файлов https://github.com/floridoo/gulp-sourcemaps
 	fileinclude = require('gulp-file-include'),
 	markdown = require('markdown'),
-	htmlbeautify = require('gulp-html-beautify'), // Причесываем html
+	htmlbeautify = require('gulp-html-beautify'), // Причесываем
 	fs = require('fs'), // For compiling modernizr.min.js
 	modernizr = require('modernizr'), // For compiling modernizr.min.js
 	config = require('./modernizr-config'), // Path to modernizr-config.json
 	replace = require('gulp-string-replace')
-	// Replace strings in files by using string or regex patterns
-	// @link https://www.npmjs.com/package/gulp-string-replace
-;
+	;
 
 gulp.task('htmlCompilation', function () { // Таск формирования ДОМ страниц
 	return gulp.src(['src/__*.html'])
@@ -38,7 +35,8 @@ gulp.task('htmlCompilation', function () { // Таск формирования 
 			path.basename = path.basename.substr(2);
 		}))
 		.pipe(htmlbeautify({
-			"indent_with_tabs": true
+			"indent_with_tabs": true,
+			"max_preserve_newlines": 0
 		}))
 		.pipe(gulp.dest('./src/'));
 });
@@ -54,23 +52,20 @@ gulp.task('compressNormalizeCss', function () {
 
 gulp.task('sassCompilation', ['compressNormalizeCss'], function () { // Создаем таск для компиляции sass файлов
 	return gulp.src('src/sass/**/*.+(scss|sass)') // Берем источник
-		.pipe(sourcemaps.init({largeFile: true}))
+		.pipe(sourcemaps.init())
 		.pipe(sass({
 			outputStyle: 'expanded', // nested (default), expanded, compact, compressed
 			indentType: 'tab',
-			indentWidth: 1
-			// пока эти параметры заменены на csscomb()
-			// на мой взгляд csscomb() более пластичны
-			// но и тот и другой почему-то неправильно компилирует сложные селекторы,
-			// переносит на другую строку не после комы, а в произвольном месте
+			indentWidth: 1,
+			precision: 3,
+			linefeed: 'lf' // cr, crlf, lf or lfcr
 		}).on('error', sass.logError)) // Преобразуем Sass в CSS посредством gulp-sass
 		.pipe(replace('../../', '../')) /// в css файлах меняем пути к файлам с ../../ на ../
 		.pipe(autoprefixer([
 			'last 5 versions', '> 1%', 'ie >= 9', 'and_chr >= 2.3' //, 'ie 8', 'ie 7'
 		], {
 			cascade: true
-		}))
-		// .pipe(csscomb())
+		})) // Создаем префиксы
 		.pipe(sourcemaps.write())
 		.pipe(gulp.dest('./src/css')) // Выгружаем результата в папку src/css
 		.pipe(browserSync.reload({
@@ -81,7 +76,7 @@ gulp.task('sassCompilation', ['compressNormalizeCss'], function () { // Созд
 gulp.task('mergeCssLibs', function () { // Таск для мержа css библиотек
 	return gulp.src([
 		'src/css/temp/*.css' // see gulpfile-special.js
-		// ,'src/lib/plugin/file.css'
+		// , 'src/lib/plugin/file.css'
 	]) // Выбираем файлы для конкатенации
 		.pipe(concatCss("src/css/libs.css", {
 			rebaseUrls: false
@@ -100,9 +95,14 @@ gulp.task('createCustomModernizr', function (done) { // Таск для форм
 
 gulp.task('copyLibsScriptsToJs', ['copyJqueryToJs'], function () { // Таск для мераж js библиотек
 	return gulp.src([
-		'src/libs/device.js/lib/device.min.js',
-		'src/libs/jquery-smartresize/jquery.debouncedresize.js',
-		'src/libs/jquery-placeholder/jquery.placeholder.min.js'
+		'src/libs/device.js/lib/device.min.js' // определение устройств
+		, 'src/libs/jquery-smartresize/jquery.debouncedresize.js' // "умный" ресайз
+		//, 'src/libs/jquery-placeholder/jquery.placeholder.min.js' // поддержка плейсхолдера в старых браузерах
+		//, 'src/libs/select2/dist/js/select2.full.min.js' // кастомный селект
+		//, 'src/libs/select2/dist/js/i18n/ru.js' // локализация для кастомного селекта
+		//, 'src/js/temp/filer.min.js' // инпут файл
+		//, 'src/libs/slick-carousel/slick/slick.min.js' // slick slider
+		//, 'node_modules/object-fit-images/dist/ofi.min.js' // object-fit fix for a non-support browsers
 	])
 		.pipe(concat('libs.js')) // Собираем их в кучу в новом файле libs.min.js
 		.pipe(gulp.dest('src/js'))
@@ -130,7 +130,7 @@ gulp.task('browserSync', function (done) { // Таск browserSync
 });
 
 gulp.task('watch', ['createCustomModernizr', 'browserSync', 'htmlCompilation', 'sassCompilation', 'mergeCssLibs', 'copyLibsScriptsToJs'], function () {
-	gulp.watch(['src/*.html', 'src/includes-json/**/*.json'], ['htmlCompilation']); // Наблюдение за html
+	gulp.watch(['src/_tpl_*.html', 'src/__*.html', 'src/includes-json/**/*.json'], ['htmlCompilation']); // Наблюдение за tpl
 	// файлами в папке include
 	gulp.watch('src/sass/**/*.+(scss|sass)', ['sassCompilation']); // Наблюдение за sass файлами в папке sass
 });
@@ -155,19 +155,16 @@ gulp.task('copyImgToDist', function () {
 
 gulp.task('build', ['cleanDistFolder', 'htmlCompilation', 'copyImgToDist', 'sassCompilation', 'mergeCssLibs', 'createCustomModernizr', 'copyLibsScriptsToJs'], function () {
 
-	gulp.src([ // Переносим css в продакшен
-		'src/css/main.css',
-		'src/css/libs.min.css'
-	])
-		.pipe(gulp.dest('dist/css'));
+	gulp.src('src/css/*.css')
+	.pipe(gulp.dest('dist/css'));
 
 	gulp.src('src/fonts/**/*') // Переносим шрифты в продакшен
 		.pipe(gulp.dest('dist/fonts'));
 
-	gulp.src(['src/js/**/*.min.js', 'src/js/commo-npoll.js']) // Переносим скрипты в продакшен
+	gulp.src(['!src/js/temp/**/*.js', '!src/js/**/temp-*.js', 'src/js/*.js']) // Переносим скрипты в продакшен
 		.pipe(gulp.dest('dist/js'));
 
-	gulp.src(['!src/__*.html', 'src/*.html']) // Переносим HTML в продакшен
+	gulp.src(['!src/__*.html', '!src/forms.html', '!src/_tpl_*.html', 'src/*.html']) // Переносим HTML в продакшен
 		.pipe(gulp.dest('dist'));
 
 	gulp.src(['src/*.png', 'src/*.ico', 'src/.htaccess']) // Переносим favicon и др. файлы в продакшин

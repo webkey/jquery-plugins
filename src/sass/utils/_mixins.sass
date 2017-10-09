@@ -63,6 +63,23 @@
 	line-height: $line-height
 
 // =============================================================================
+// display inline block + vertical align
+// =============================================================================
+/// Примесь задает пару свойст display: inline-block и vertical-align для
+/// выравнивания инлайн-блок элементов по вертикали
+=display-inline-block-top()
+	display: inline-block
+	vertical-align: top
+
+=display-inline-block-middle()
+	display: inline-block
+	vertical-align: middle
+
+=display-inline-block-bottom()
+	display: inline-block
+	vertical-align: baseline
+
+// =============================================================================
 // pseudo
 // =============================================================================
 /// Примесь добавляет к псевдоэлементу базовые свойства.
@@ -122,7 +139,7 @@
 // Reset for inline-block elements
 // =============================================================================
 /// обнуляет горизонтальные отступы между `inline-block` елементами
-=reset-inline-block-space()
+=clear-spacing()
 	font-size: 0
 	letter-spacing: -4px
 

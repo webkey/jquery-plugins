@@ -1,0 +1,13 @@
+@charset "UTF-8";
+.container-class {
+	width: 600px;
+	height: 200px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.container-class::before {
+	content: "Это контейнер, на котором инициилизирован плагин";
+}
+
+/*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1leGFtcGxlSnFQbHVnaW4uY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLGlCQUFpQjtBQUNqQjtDQUNDLGFBQWE7Q0FDYixjQUFjO0NBQ2QsZUFBZTtDQUNmLG1CQUFtQjtDQUNuQjs7QUFFRDtDQUNDLDREQUE0RDtDQUM1RCIsImZpbGUiOiJwbHVnaW5zL2Nzcy1leGFtcGxlSnFQbHVnaW4uY3NzIiwic291cmNlc0NvbnRlbnQiOlsiQGNoYXJzZXQgXCJVVEYtOFwiO1xuLmNvbnRhaW5lci1jbGFzcyB7XG5cdHdpZHRoOiA2MDBweDtcblx0aGVpZ2h0OiAyMDBweDtcblx0bWFyZ2luOiAwIGF1dG87XG5cdHRleHQtYWxpZ246IGNlbnRlcjtcbn1cblxuLmNvbnRhaW5lci1jbGFzczo6YmVmb3JlIHtcblx0Y29udGVudDogXCLQrdGC0L4g0LrQvtC90YLQtdC50L3QtdGALCDQvdCwINC60L7RgtC+0YDQvtC8INC40L3QuNGG0LjQuNC70LjQt9C40YDQvtCy0LDQvSDQv9C70LDQs9C40L1cIjtcbn1cbiJdfQ== */
