@@ -3,30 +3,34 @@
  */
 
 $(function () {
-	$('.ms-drop__container-js').msDrop({
-		// closeAreOpen: false,
-		afterInit: function (e, el, param) {
-			// console.log('jQuery Plugin Created !!!');
-		}
-	})
-		// test
+	$('.ms-drop__container-js').msDrop({})
+	// тест на правильное срабатывание цепочки методов jquery (для подключения плагина не нужно)
 		.css('border-bottom', '4px solid green').css('box-shadow', '0 4px red');
 
-	$('.ms-drop__container-js--2').msDrop({
+	$('.ms-drop__container-js--01').msDrop({
 		outsideClick: false,
 		afterInit: function (e, el, param) {
 			// console.log('2 jQuery Plugin Created !!!');
 		}
 	})
-		// test
-		.css('border-bottom', '4px solid yellow').css('box-shadow', '0 4px blue');
+	// тест на правильное срабатывание цепочки методов jquery (для подключения плагина не нужно)
+		.css('border-bottom', '4px solid purple').css('box-shadow', '0 4px gray');
 
-	$('.ms-drop__container-js--3').msDrop({
-		outsideClick: false,
+	$('.ms-drop__container-js--02').msDrop({
+		closeAfterSelect: false,
 		afterInit: function (e, el, param) {
 			// console.log('2 jQuery Plugin Created !!!');
 		}
 	})
-		// test
-		.css('border-bottom', '4px solid yellow').css('box-shadow', '0 4px blue');
+	// тест на правильное срабатывание цепочки методов jquery (для подключения плагина не нужно)
+		.css('border-bottom', '4px solid yellow').css('box-shadow', '0 4px black');
+
+	$('.ms-drop__container-js--03').msDrop({
+		preventOption: true,
+		afterInit: function (e, el, param) {
+			// console.log('2 jQuery Plugin Created !!!');
+		}
+	})
+	// тест на правильное срабатывание цепочки методов jquery (для подключения плагина не нужно)
+		.css('border-bottom', '4px solid coral').css('box-shadow', '0 4px navy');
 });

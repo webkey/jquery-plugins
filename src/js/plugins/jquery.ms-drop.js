@@ -4,11 +4,12 @@
 		opener: '.ms-drop__opener-js',
 		openerText: 'span',
 		drop: '.ms-drop__drop-js',
-		dropItem: 'a',
-		dropItemText: 'span',
+		dropOption: '.ms-drop__drop-js a',
+		dropOptionText: 'span',
 		initClass: 'ms-drop--initialized',
-		closeAreOpen: true, // Close those that are open
 		outsideClick: true, // Close all if outside click
+		closeAfterSelect: true, // Close drop after selected option
+		preventOption: false, // Add preventDefault on click to option
 		modifiers: {
 			isOpen: 'is-open',
 			activeItem: 'active-item'
@@ -62,10 +63,7 @@
 				return;
 			}
 
-			if(self.config.closeAreOpen) {
-				self.element.removeClass(self.config.modifiers.isOpen);
-			}
-			curContainer.removeClass(self.config.modifiers.isOpen);
+			self.element.removeClass(self.config.modifiers.isOpen);
 
 			curContainer.addClass(self.config.modifiers.isOpen);
 
@@ -103,11 +101,19 @@
 
 		var self = this;
 
-		self.element.on('click', self.config.dropItem, function (e) {
+		self.element.on('click', self.config.dropOption, function (e) {
 			var cur = $(this);
-			var curContainer = $(this).closest(self.element);
+			var curParent = cur.parent();
 
-			console.log("cur: ", cur);
+			if(curParent.hasClass(self.config.modifiers.activeItem)){
+				e.preventDefault();
+				return;
+			}
+			if(self.config.preventOption){
+				e.preventDefault();
+			}
+
+			var curContainer = cur.closest(self.element);
 			
 			// if data-window-location is true, prevent default
 			// if (curContainer.attr('data-window-location') === 'true') {
@@ -119,16 +125,19 @@
 			// 	return;
 			// }
 
-			curContainer.find(self.config.dropItem).removeClass(self.config.modifiers.activeItem);
+			curContainer.find(self.config.dropOption).parent().removeClass(self.config.modifiers.activeItem);
 
-			cur
+			curParent
 				.addClass(self.config.modifiers.activeItem);
-
-			console.log(".text(): ", curContainer.find(self.config.dropItemText).text());
 
 			curContainer
 				.find(self.config.opener).find(self.config.openerText)
-				.text(cur.find(self.config.dropItemText).text());
+				.text(cur.find(self.config.dropOptionText).text());
+
+			if(self.config.closeAfterSelect) {
+				self.closeDrop();
+			}
+
 		});
 
 	};
@@ -147,5 +156,10 @@
 		return this.each(function(){
 			new MsDrop($(this), options);
 		});
+
+		// new MsDrop(this, options);
+
+		// return this;
+
 	};
 })(jQuery);

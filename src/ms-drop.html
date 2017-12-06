@@ -31,7 +31,7 @@
 	<link rel="apple-touch-icon" href="apple-touch-icon.png">
 	<!--Style-->
 	<!--<link rel="stylesheet" href="css/libs.min.css">-->
-	<link rel="stylesheet" href="css/plugins/css-ms-drop.css">
+	<link rel="stylesheet" href="css/plugins/ms-drop.css">
 	<link rel="stylesheet" href="css/main.css">
 	<!--Modernizr-->
 	<script src="js/modernizr.min.js"></script>
@@ -40,39 +40,69 @@
 <body class="page-ms-drop">
 	<!--[if lt IE 9]> <div class="browserupgrade"><p>You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p></div> <![endif]-->
 	<!-- >>> head.tpl END <<< -->
-	<h2>Выпадение дропа: выбор языков и т.д.</h2>
-	<div class="example-class ms-drop__container-js">
-		<a href="#" class="ms-drop__opener-js">
-		<span>2017</span> <i>г.</i>
-	</a>
-		<ul class="ms-drop__drop-js">
-			<li><a class="active-item" href="#"><span>2017</span></a></li>
-			<li><a href="#"><span>2016</span></a></li>
-			<li><a href="#"><span>2015</span></a></li>
-			<li><a href="#"><span>2014</span></a></li>
-		</ul>
-	</div>
-	<div class="example-class ms-drop__container-js">
-		<a href="#" class="ms-drop__opener-js">
-		<span>2017</span> <i>г.</i>
-	</a>
-		<ul class="ms-drop__drop-js">
-			<li><a class="active-item" href="#"><span>2017</span></a></li>
-			<li><a href="#"><span>2016</span></a></li>
-			<li><a href="#"><span>2015</span></a></li>
-			<li><a href="#"><span>2014</span></a></li>
-		</ul>
-	</div>
-	<div class="example-class ms-drop__container-js--2">
-		<a href="#" class="ms-drop__opener-js">
-		<span>2017</span> <i>г.</i>
-	</a>
-		<ul class="ms-drop__drop-js">
-			<li><a class="active-item" href="#"><span>2017</span></a></li>
-			<li><a href="#"><span>2016</span></a></li>
-			<li><a href="#"><span>2015</span></a></li>
-			<li><a href="#"><span>2014</span></a></li>
-		</ul>
+	<div class="layout-text">
+		<h1>Выпадение дропа: выбор языков и т.д.</h1>
+		<h2>Options</h2>
+		<!--=================xxx======================-->
+		<hr>
+		<h3>1. Все значения установлены по умолчанию</h3>
+		<div class="example-class ms-drop__container-js">
+			<a href="#" class="ms-drop__opener-js">
+			<span>2017</span> <i>г.</i>
+		</a>
+			<ul class="ms-drop__drop-js">
+				<li class="active-item"><a href="#1"><span>2017</span></a></li>
+				<li><a href="#2"><span>2016</span></a></li>
+				<li><a href="#3"><span>2015</span></a></li>
+				<li><a href="#4"><span>2014</span></a></li>
+			</ul>
+		</div>
+		<!--=================xxx======================-->
+		<hr>
+		<h3>2. <b>outsideClick:</b> <i>false</i></h3>
+		<p><b>outsideClick:</b> <i>true</i> (по умолчанию). При клике вне элемента с дропом, закрыть дроп. Если значение <i>false</i>, то НЕ закрывать дроп</p>
+		<div class="example-class ms-drop__container-js--01">
+			<a href="#" class="ms-drop__opener-js">
+			<span>2017</span> <i>г.</i>
+		</a>
+			<ul class="ms-drop__drop-js">
+				<li class="active-item"><a href="#1"><span>2017</span></a></li>
+				<li><a href="##"><span>2016</span></a></li>
+				<li><a href="#3"><span>2015</span></a></li>
+				<li><a href="#4"><span>2014</span></a></li>
+			</ul>
+		</div>
+		<!--=================xxx======================-->
+		<hr>
+		<h3>3. <b>closeAfterSelect:</b> <i>false</i></h3>
+		<p><b>closeAfterSelect:</b> <i>true</i> (по умолчанию). После клика по опшину, подставляется значение опшина в кнопку, и закрывается дроп. Если значение <i>false</i>, то значение подставляется, но дроп НЕ закрывается. Закрыть можно повторным кликом по
+			кнопке, или кликом вне дропа</p>
+		<div class="example-class ms-drop__container-js--02">
+			<a href="#" class="ms-drop__opener-js">
+			<span>2017</span> <i>г.</i>
+		</a>
+			<ul class="ms-drop__drop-js">
+				<li class="active-item"><a href="#1"><span>2017</span></a></li>
+				<li><a href="#2"><span>2016</span></a></li>
+				<li><a href="#3"><span>2015</span></a></li>
+				<li><a href="#4"><span>2014</span></a></li>
+			</ul>
+		</div>
+		<!--=================xxx======================-->
+		<hr>
+		<h3>4. <b>preventOption:</b> <i>true</i></h3>
+		<p><b>preventOption:</b> <i>false</i> (по умолчанию). После клика по опшину, подставляется значение опшина в кнопку, но при этом происходит переход по ссылке. Если значение <i>true</i>, то перехода по ссыле не происходит</p>
+		<div class="example-class ms-drop__container-js--03">
+			<a href="#" class="ms-drop__opener-js">
+			<span>2017</span> <i>г.</i>
+		</a>
+			<ul class="ms-drop__drop-js">
+				<li class="active-item"><a href="#1"><span>2017</span></a></li>
+				<li><a href="#2"><span>2016</span></a></li>
+				<li><a href="#3"><span>2015</span></a></li>
+				<li><a href="#4"><span>2014</span></a></li>
+			</ul>
+		</div>
 	</div>
 	<!-- >>> foot.tpl <<< -->
 	<!--footer-->
