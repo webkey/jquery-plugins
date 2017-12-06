@@ -7,7 +7,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Главная</title>
+	<title>Выпадение дропа: выбор языков и т.д.</title>
 	<!--Mobile optimized-->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.2">
 	<!--Theme color-->
@@ -31,29 +31,56 @@
 	<link rel="apple-touch-icon" href="apple-touch-icon.png">
 	<!--Style-->
 	<!--<link rel="stylesheet" href="css/libs.min.css">-->
-	<link rel="stylesheet" href="@@pathCss">
+	<link rel="stylesheet" href="css/plugins/css-ms-drop.css">
 	<link rel="stylesheet" href="css/main.css">
 	<!--Modernizr-->
 	<script src="js/modernizr.min.js"></script>
 </head>
 
-<body class="home-page">
+<body class="page-ms-drop">
 	<!--[if lt IE 9]> <div class="browserupgrade"><p>You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p></div> <![endif]-->
 	<!-- >>> head.tpl END <<< -->
-	<ol>
-		<li><a href="exampleJqPlugin.html"><span>Пример создания и подключиения jQuery-плагина</span></a></li>
-		<li><a href="nvote.html"><span>Nvote (тренировочная версия функции Npoll)</span></a></li>
-		<li><a href="npoll.html"><span>Npoll</span></a></li>
-		<li><a href="filters-belenergo.html"><span>Фильтры (Белэнерго)</span></a></li>
-		<li><a href="ms-drop.html"><span>Выпадение дропа: выбор языков и т.д.</span></a></li>
-	</ol>
+	<h2>Выпадение дропа: выбор языков и т.д.</h2>
+	<div class="example-class ms-drop__container-js">
+		<a href="#" class="ms-drop__opener-js">
+		<span>2017</span> <i>г.</i>
+	</a>
+		<ul class="ms-drop__drop-js">
+			<li><a class="active-item" href="#"><span>2017</span></a></li>
+			<li><a href="#"><span>2016</span></a></li>
+			<li><a href="#"><span>2015</span></a></li>
+			<li><a href="#"><span>2014</span></a></li>
+		</ul>
+	</div>
+	<div class="example-class ms-drop__container-js">
+		<a href="#" class="ms-drop__opener-js">
+		<span>2017</span> <i>г.</i>
+	</a>
+		<ul class="ms-drop__drop-js">
+			<li><a class="active-item" href="#"><span>2017</span></a></li>
+			<li><a href="#"><span>2016</span></a></li>
+			<li><a href="#"><span>2015</span></a></li>
+			<li><a href="#"><span>2014</span></a></li>
+		</ul>
+	</div>
+	<div class="example-class ms-drop__container-js--2">
+		<a href="#" class="ms-drop__opener-js">
+		<span>2017</span> <i>г.</i>
+	</a>
+		<ul class="ms-drop__drop-js">
+			<li><a class="active-item" href="#"><span>2017</span></a></li>
+			<li><a href="#"><span>2016</span></a></li>
+			<li><a href="#"><span>2015</span></a></li>
+			<li><a href="#"><span>2014</span></a></li>
+		</ul>
+	</div>
 	<!-- >>> foot.tpl <<< -->
 	<!--footer-->
 	<!--footer end-->
 	<script src="js/jquery.min.js"></script>
 	<script src="js/libs.min.js"></script>
-	<script src="js/"></script>
-	<script src="js/@@jsCommonSrc"></script>
+	<script src="js/plugins/jquery.ms-drop.js"></script>
+	<script src="js/common-ms-drop.js"></script>
 </body>
 
 </html>

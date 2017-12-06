@@ -3,8 +3,8 @@
 		key: 'value',
 		containerClass: 'container-class'
 
-		// Создаем калбэк-функции
-		// created: function () {} // Возов вконце функции init()
+		// Callback functions
+		// created: function () {} // Вызов вконце функции init()
 	};
 
 	function ExampleJqPluginConstructor(element, options) {
@@ -35,7 +35,7 @@
 		var self = this;
 		self.element.on('mouseenter', function (e) {
 			e.preventDefault();
-			alert('Сработало событие навидения курсора на область елемента, к которому применен данный плагин!');
+			alert('Сработало событие наведения курсора на область елемента, к которому применен данный плагин!');
 		});
 	};
 
