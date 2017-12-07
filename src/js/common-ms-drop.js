@@ -33,4 +33,14 @@ $(function () {
 	})
 	// тест на правильное срабатывание цепочки методов jquery (для подключения плагина не нужно)
 		.css('border-bottom', '4px solid coral').css('box-shadow', '0 4px navy');
+
+	$('.ms-drop__container-js--04').msDrop({
+		selectValue: false,
+		closeAfterSelect: false, // для наглядности отключаем закрытие дропа по клику на опшин
+		afterInit: function (e, el, param) {
+			// console.log('2 jQuery Plugin Created !!!');
+		}
+	})
+	// тест на правильное срабатывание цепочки методов jquery (для подключения плагина не нужно)
+		.css('border-bottom', '4px solid lightblue').css('box-shadow', '0 4px darkblue');
 });

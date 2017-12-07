@@ -10,6 +10,7 @@
 		outsideClick: true, // Close all if outside click
 		closeAfterSelect: true, // Close drop after selected option
 		preventOption: false, // Add preventDefault on click to option
+		selectValue: true, // Display the selected value in the opener
 		modifiers: {
 			isOpen: 'is-open',
 			activeItem: 'active-item'
@@ -130,9 +131,11 @@
 			curParent
 				.addClass(self.config.modifiers.activeItem);
 
-			curContainer
-				.find(self.config.opener).find(self.config.openerText)
-				.text(cur.find(self.config.dropOptionText).text());
+			if(self.config.selectValue){
+				curContainer
+					.find(self.config.opener).find(self.config.openerText)
+					.text(cur.find(self.config.dropOptionText).text());
+			}
 
 			if(self.config.closeAfterSelect) {
 				self.closeDrop();

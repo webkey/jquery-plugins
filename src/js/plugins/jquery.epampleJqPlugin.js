@@ -50,8 +50,13 @@
 	$.fn.exampleJqPluginName = function (options) {
 		'use strict';
 
-		new ExampleJqPluginConstructor(this, options);
+		// new ExampleJqPluginConstructor(this, options);
+		//
+		// return this;
 
-		return this;
+		return this.each(function(){
+			new ExampleJqPluginConstructor($(this), options);
+		});
+
 	};
 })(jQuery);
