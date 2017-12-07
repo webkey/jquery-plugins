@@ -17,8 +17,8 @@
 		}
 
 		// Callback functions
-		// afterInit: function () {} // Вызов вконце функции init()
-		// afterChange: function () {} // Вызов после добавления или удаления класса открытия дропа
+		// afterInit: function () {} // Fire immediately after initialized
+		// afterChange: function () {} // Fire immediately after added or removed an open-class
 	};
 
 	function MsDrop(element, options) {
