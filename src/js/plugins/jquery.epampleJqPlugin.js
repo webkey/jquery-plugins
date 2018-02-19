@@ -1,7 +1,7 @@
 ;(function($){
 	var defaults = {
 		key: 'value',
-		containerClass: 'container-class'
+		initClass: 'exampleJqPluginName--initialized'
 
 		// Callback functions
 		// created: function () {} // Вызов вконце функции init()
@@ -41,7 +41,7 @@
 
 	ExampleJqPluginConstructor.prototype.init = function () {
 
-		this.element.addClass(this.config.containerClass);
+		this.element.addClass(this.config.initClass);
 
 		this.element.trigger('created.exampleJqPluginName');
 

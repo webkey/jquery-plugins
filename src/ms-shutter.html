@@ -7,7 +7,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Выпадение дропа: выбор языков и т.д.</title>
+	<title>Попап-шторка: клавное меню с бутерброда и т.д.</title>
 	<!--Mobile optimized-->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.2">
 	<!--Theme color-->
@@ -31,31 +31,57 @@
 	<link rel="apple-touch-icon" href="apple-touch-icon.png">
 	<!--Style-->
 	<!--<link rel="stylesheet" href="css/libs.min.css">-->
-	<link rel="stylesheet" href="css/plugins/ms-drop.css">
+	<link rel="stylesheet" href="css/plugins/ms-shutter.css">
 	<link rel="stylesheet" href="css/main.css">
 	<!--Modernizr-->
 	<script src="js/modernizr.min.js"></script>
 </head>
 
-<body class="page-ms-drop">
+<body class="ms-shutter-page">
 	<!--[if lt IE 9]> <div class="browserupgrade"><p>You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p></div> <![endif]-->
 	<!-- >>> head.tpl END <<< -->
 	<div class="layout-text">
-		<h1>Выпадение дропа: выбор языков и т.д.</h1>
+		<h1>Попап-шторка: клавное меню с бутерброда и т.д.</h1>
+		<pre>
+		// css
+		// блокировать скролл
+		.css-scroll-blocked
+			width: 100%!important
+			height: 100%!important
+			max-width: 100%!important
+			max-height: 100%!important
+			margin: 0!important
+			padding: 0!important
+			overflow: hidden!important
+
+		// z-index должен быть выше, чем у футера
+		.before-open .wrapper
+			z-index: 99
+
+		// если попап-шторку необходмо скрыть до определенного разрешения
+		@media only screen and (min-width: [example: 1280px])
+			.shutter{
+				transform: translate(0, 0) matrix(1, 0, 0, 1, 0, 0) !important
+
+			// если нужно обнулить трансформацию для дочерних элементов, например элементов списка навигации
+			.shutter > li
+				transform: translate(0, 0) matrix(1, 0, 0, 1, 0, 0) !important
+				opacity: 1 !important
+				visibility: visible !important
+	</pre>
 		<h2>Options</h2>
 		<!--=================xxx======================-->
 		<hr>
 		<h3>1. Все значения установлены по умолчанию</h3>
-		<div class="example-class ms-drop__container-js--1">
-			<a href="#" class="ms-drop__opener-js">
-			<span>2017</span> <i>г.</i>
+		<div>
+			<a href="#" class="ms-shutter__opener-js">
+			<span>Открыть попап-шторку</span>
 		</a>
-			<ul class="ms-drop__drop-js">
-				<li class="active-item"><a href="#1"><span>2017</span></a></li>
-				<li><a href="#2"><span>2016</span></a></li>
-				<li><a href="#3"><span>2015</span></a></li>
-				<li><a href="#4"><span>2014</span></a></li>
-			</ul>
+		</div>
+		<div>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias exercitationem necessitatibus nesciunt nulla quam quidem sed? Asperiores delectus dolores error expedita fugiat ipsam nesciunt sit suscipit tenetur voluptate! Modi, nesciunt!</p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet asperiores, aut dicta enim est labore odit officiis, sunt totam vero voluptates voluptatibus. Autem commodi dolorum error eveniet non rem, totam.</p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque culpa explicabo facilis magni minus nam nobis numquam officia porro, qui quibusdam quo reiciendis, repellat reprehenderit saepe sapiente tempore ullam, voluptatem!</p>
 		</div>
 	</div>
 	<!-- >>> foot.tpl <<< -->
@@ -63,8 +89,8 @@
 	<!--footer end-->
 	<script src="js/jquery.min.js"></script>
 	<script src="js/libs.min.js"></script>
-	<script src="js/plugins/jquery.ms-drop.js"></script>
-	<script src="js/common-ms-drop.js"></script>
+	<script src="js/plugins/jquery.ms-shutter.js"></script>
+	<script src="js/common-ms-shutter.js"></script>
 </body>
 
 </html>

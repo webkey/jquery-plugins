@@ -1,13 +1,13 @@
 ;(function($){
 	var defaults = {
 		key: 'value',
-		containerClass: 'container-class'
+		initClass: 'ms-drop--initialized'
 
 		// Callback functions
 		// created: function () {} // Вызов вконце функции init()
 	};
 
-	function ExampleJqPluginConstructor(element, options) {
+	function MsShutter(element, options) {
 		var self = this;
 
 		self.config = $.extend(true, {}, defaults, options);
@@ -20,18 +20,18 @@
 	}
 
 	/** track events */
-	ExampleJqPluginConstructor.prototype.callbacks = function () {
+	MsShutter.prototype.callbacks = function () {
 		var self = this;
 		$.each(self.config, function (key, value) {
 			if(typeof value === 'function') {
-				self.element.on(key + '.exampleJqPluginName', function (e, param) {
+				self.element.on(key + '.msShutter', function (e, param) {
 					return value(e, self.element, param);
 				});
 			}
 		});
 	};
 
-	ExampleJqPluginConstructor.prototype.event = function () {
+	MsShutter.prototype.event = function () {
 		var self = this;
 		self.element.on('mouseenter', function (e) {
 			e.preventDefault();
@@ -39,23 +39,19 @@
 		});
 	};
 
-	ExampleJqPluginConstructor.prototype.init = function () {
+	MsShutter.prototype.init = function () {
 
-		this.element.addClass(this.config.containerClass);
+		this.element.addClass(this.config.initClass);
 
-		this.element.trigger('created.exampleJqPluginName');
+		this.element.trigger('created.msShutter');
 
 	};
 
-	$.fn.exampleJqPluginName = function (options) {
+	$.fn.msShutter = function (options) {
 		'use strict';
 
-		// new ExampleJqPluginConstructor(this, options);
-		//
-		// return this;
-
 		return this.each(function(){
-			new ExampleJqPluginConstructor($(this), options);
+			new MsShutter($(this), options);
 		});
 
 	};
