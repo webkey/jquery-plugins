@@ -1,0 +1,31 @@
+@@include('_tpl_layout_head.html', {
+	"title": "Выпадение дропа: выбор языков и т.д.",
+	"pathCss": "css/plugins/ms-drop.css",
+	"pageClass": "page-ms-drop"
+})
+
+<div class="layout-text">
+	<h1>Выпадение дропа: выбор языков и т.д.</h1>
+
+	<h2>Options</h2>
+
+	<!--=================xxx======================-->
+	<hr>
+	<h3>1. Все значения установлены по умолчанию</h3>
+	<div class="example-class ms-drop__container-js--1">
+		<a href="#" class="ms-drop__opener-js">
+			<span>2017</span> <i>г.</i>
+		</a>
+		<ul class="ms-drop__drop-js">
+			<li class="active-item"><a href="#1"><span>2017</span></a></li>
+			<li><a href="#2"><span>2016</span></a></li>
+			<li><a href="#3"><span>2015</span></a></li>
+			<li><a href="#4"><span>2014</span></a></li>
+		</ul>
+	</div>
+</div>
+
+@@include('_tpl_layout_foot.html', {
+	"jsPluginSrc": "plugins/jquery.ms-drop.js",
+	"jsCommonSrc": "common-ms-drop.js"
+})

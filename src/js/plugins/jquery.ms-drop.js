@@ -7,7 +7,8 @@
 		dropOption: '.ms-drop__drop-js a',
 		dropOptionText: 'span',
 		initClass: 'ms-drop--initialized',
-		outsideClick: true, // Close all if outside click
+		closeOutsideClick: true, // Close all if outside click
+		closeEscClick: true, // Close all if click on escape key
 		closeAfterSelect: true, // Close drop after selected option
 		preventOption: false, // Add preventDefault on click to option
 		selectValue: true, // Display the selected value in the opener
@@ -31,8 +32,12 @@
 		self.callbacks();
 		self.event();
 		// close drop if clicked outside active element
-		if (self.config.outsideClick) {
-			self.clickOutside();
+		if (self.config.closeOutsideClick) {
+			self.closeOnClickOutside();
+		}
+		// close drop if clicked escape key
+		if (self.config.closeEscClick) {
+			self.closeOnClickEsc();
 		}
 		self.eventDropItems();
 		self.init();
@@ -57,6 +62,7 @@
 			var curContainer = $(this).closest(self.element);
 
 			if (curContainer.hasClass(self.config.modifiers.isOpen)) {
+
 				curContainer.removeClass(self.config.modifiers.isOpen);
 
 				// callback afterChange
@@ -73,7 +79,7 @@
 		});
 	};
 
-	MsDrop.prototype.clickOutside = function () {
+	MsDrop.prototype.closeOnClickOutside = function () {
 
 		var self = this;
 		$(document).on('click', function(event){
@@ -83,6 +89,17 @@
 
 			self.closeDrop();
 			event.stopPropagation();
+		});
+
+	};
+
+	MsDrop.prototype.closeOnClickEsc = function () {
+
+		var self = this;
+		$(document).keyup(function(e) {
+			if (e.keyCode === 27) {
+				self.closeDrop();
+			}
 		});
 
 	};
@@ -115,16 +132,6 @@
 			}
 
 			var curContainer = cur.closest(self.element);
-			
-			// if data-window-location is true, prevent default
-			// if (curContainer.attr('data-window-location') === 'true') {
-			// 	e.preventDefault();
-			// }
-
-			// if data-select is false, do not replace text
-			// if (curContainer.attr('data-select') === 'false') {
-			// 	return;
-			// }
 
 			curContainer.find(self.config.dropOption).parent().removeClass(self.config.modifiers.activeItem);
 
@@ -159,10 +166,6 @@
 		return this.each(function(){
 			new MsDrop($(this), options);
 		});
-
-		// new MsDrop(this, options);
-
-		// return this;
 
 	};
 })(jQuery);

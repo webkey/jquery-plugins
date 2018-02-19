@@ -7,7 +7,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Главная</title>
+	<title>Выпадение дропа: выбор языков и т.д.</title>
 	<!--Mobile optimized-->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.2">
 	<!--Theme color-->
@@ -31,30 +31,40 @@
 	<link rel="apple-touch-icon" href="apple-touch-icon.png">
 	<!--Style-->
 	<!--<link rel="stylesheet" href="css/libs.min.css">-->
-	<link rel="stylesheet" href="@@pathCss">
+	<link rel="stylesheet" href="css/plugins/ms-drop.css">
 	<link rel="stylesheet" href="css/main.css">
 	<!--Modernizr-->
 	<script src="js/modernizr.min.js"></script>
 </head>
 
-<body class="home-page">
+<body class="page-ms-drop">
 	<!--[if lt IE 9]> <div class="browserupgrade"><p>You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p></div> <![endif]-->
 	<!-- >>> head.tpl END <<< -->
-	<ol>
-		<li><a href="exampleJqPlugin.html"><span>Пример создания и подключиения jQuery-плагина</span></a></li>
-		<li><a href="nvote.html"><span>Nvote (тренировочная версия функции Npoll)</span></a></li>
-		<li><a href="npoll.html"><span>Npoll</span></a></li>
-		<li><a href="filters-belenergo.html"><span>Фильтры (Белэнерго)</span></a></li>
-		<li><a href="ms-drop.html"><span>Выпадение дропа: выбор языков и т.д.</span></a></li>
-		<li><a href="ms-shutter.html"><span>Плагин попапа-шторки. Для открывающихся элементов, например, меню с бутерброда</span></a></li>
-	</ol>
+	<div class="layout-text">
+		<h1>Выпадение дропа: выбор языков и т.д.</h1>
+		<h2>Options</h2>
+		<!--=================xxx======================-->
+		<hr>
+		<h3>1. Все значения установлены по умолчанию</h3>
+		<div class="example-class ms-drop__container-js--1">
+			<a href="#" class="ms-drop__opener-js">
+			<span>2017</span> <i>г.</i>
+		</a>
+			<ul class="ms-drop__drop-js">
+				<li class="active-item"><a href="#1"><span>2017</span></a></li>
+				<li><a href="#2"><span>2016</span></a></li>
+				<li><a href="#3"><span>2015</span></a></li>
+				<li><a href="#4"><span>2014</span></a></li>
+			</ul>
+		</div>
+	</div>
 	<!-- >>> foot.tpl <<< -->
 	<!--footer-->
 	<!--footer end-->
 	<script src="js/jquery.min.js"></script>
 	<script src="js/libs.min.js"></script>
-	<script src="js/"></script>
-	<script src="js/@@jsCommonSrc"></script>
+	<script src="js/plugins/jquery.ms-drop.js"></script>
+	<script src="js/common-ms-drop.js"></script>
 </body>
 
 </html>
