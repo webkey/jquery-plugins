@@ -1,0 +1,92 @@
+@@include('_tpl_layout_head.html', {
+	"title": "Расчет количества и цены товаров при заказе. Наример, в корзине",
+	"pathCss": ["js/jquery-ui/jquery-ui.css", "css/plugins/ms-order-calc.css", "css/plugins/ms-order-calc--theme.css"],
+	"pageClass": "page-example-jq-plugin"
+})
+
+<div class="layout-flood">
+
+	<h1>Расчет количества и цены товаров при заказе. Наример, в корзине</h1>
+	<h2>Пример с проекта Свитанок</h2>
+	<h2>Таблица 1</h2>
+
+	<p><i>* Примечание:</i> для работы спиннера (выбор количества товаров) нужно подключить jquery-ui.js и скопировать скрипт запрещающий ввод нечисловых значений в поле (/** only number input */)</p>
+
+	<p>Цену указывать в data-price атрибуте элемента с ценой, например</p>
+	<pre>&lt;div class="order-calc__price-js" data-price="40"&gt;40 р.&lt;/div&gt;</pre>
+
+	<div class="bottom-space">
+		<div class="order-calc-js">
+			<div class="c-table">
+				<div class="c-thead">
+					<div class="c-tr">
+						@@loop("_tpl_c-thead.html", "includes-json/order-calc__th--cart.json")
+					</div>
+				</div>
+				<div class="c-tbody">
+					@@loop("_tpl_order-calc-items--cart.html", "includes-json/order-calc__items.json")
+				</div>
+			</div>
+			<div class="c-table-result">
+				<div class="c-table-result__total hide-before-calc order-calc__total-results-js">
+					<div class="c-table-result__label">Итого:</div>
+					<span class="c-table-result__count order-calc__counts-total-js">0</span> позиций на&nbsp;<span class="c-table-result__price order-calc__price-total-js">0</span>&nbsp;руб.
+				</div>
+				<button class="btn-default order-calc-btn float-right">Заказать</button>
+			</div>
+		</div>
+	</div>
+
+	<h2>Таблица 2</h2>
+
+	<div class="bottom-space">
+		<div class="order-calc-js">
+			<div class="c-table">
+				<div class="c-thead">
+					<div class="c-tr">
+						@@loop("_tpl_c-thead.html", "includes-json/order-calc__th--cart.json")
+					</div>
+				</div>
+				<div class="c-tbody">
+					@@loop("_tpl_order-calc-items--cart.html", "includes-json/order-calc__items.json")
+				</div>
+			</div>
+			<div class="c-table-result">
+				<div class="c-table-result__total hide-before-calc order-calc__total-results-js">
+					<div class="c-table-result__label">Итого:</div>
+					<span class="c-table-result__count order-calc__counts-total-js">0</span> позиций на&nbsp;<span class="c-table-result__price order-calc__price-total-js">0</span>&nbsp;руб.
+				</div>
+				<button class="btn-default order-calc-btn float-right">Заказать</button>
+			</div>
+		</div>
+	</div>
+
+	<h2>Таблица 3</h2>
+
+	<div class="bottom-space">
+		<div class="order-calc-js">
+			<div class="c-table">
+				<div class="c-thead">
+					<div class="c-tr">
+						@@loop("_tpl_c-thead.html", "includes-json/order-calc__th--cart.json")
+					</div>
+				</div>
+				<div class="c-tbody">
+					@@loop("_tpl_order-calc-items--cart.html", "includes-json/order-calc__items.json")
+				</div>
+			</div>
+			<div class="c-table-result">
+				<div class="c-table-result__total hide-before-calc order-calc__total-results-js">
+					<div class="c-table-result__label">Итого:</div>
+					<span class="c-table-result__count order-calc__counts-total-js">0</span> позиций на&nbsp;<span class="c-table-result__price order-calc__price-total-js">0</span>&nbsp;руб.
+				</div>
+				<button class="btn-default order-calc-btn float-right">Заказать</button>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+@@include('_tpl_layout_foot.html', {
+	"pathJs": ["js/jquery-ui/jquery-ui.min.js", "js/plugins/jquery.ms-order-calc.js", "js/common-ms-order-calc.js"]
+})

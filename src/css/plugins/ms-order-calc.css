@@ -1,0 +1,10 @@
+@charset "UTF-8";
+.ms-order-calc {
+	margin: 0 auto;
+}
+
+.ms-order-calc::before {
+	content: "Это контейнер, на котором инициилизирован плагин";
+}
+
+/*# sourceMappingURL=ms-order-calc.css.map */

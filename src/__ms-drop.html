@@ -1,6 +1,6 @@
 @@include('_tpl_layout_head.html', {
 	"title": "Выпадение дропа: выбор языков и т.д.",
-	"pathCss": "css/plugins/ms-drop.css",
+	"pathCss": ["css/plugins/ms-drop.css"],
 	"pageClass": "page-ms-drop"
 })
 
@@ -136,6 +136,5 @@
 </div>
 
 @@include('_tpl_layout_foot.html', {
-	"jsPluginSrc": "plugins/jquery.ms-drop.js",
-	"jsCommonSrc": "common-ms-drop.js"
+	"pathJs": ["js/plugins/jquery.ms-drop.js", "js/common-ms-drop.js"]
 })

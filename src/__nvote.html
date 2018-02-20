@@ -1,12 +1,11 @@
 @@include('_tpl_layout_head.html', {
 	"title": "nvote (тренировочная версия функции Npoll)",
-	"pathCss": "css/plugins/css-nvote.css",
+	"pathCss": ["css/plugins/css-nvote.css"],
 	"pageClass": "page-nvote"
 })
 
 <div class="nvote-first"></div>
 
 @@include('_tpl_layout_foot.html', {
-	"jsPluginSrc": "plugins/jquery.nvote.js",
-	"jsCommonSrc": "common-nvote.js"
+	"pathJs": ["js/plugins/jquery.nvote.js", "js/common-nvote.js"]
 })

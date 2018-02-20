@@ -1,0 +1,1 @@
+{"version":3,"sources":["ms-order-calc.css"],"names":[],"mappings":"AAAA,iBAAiB;AACjB;CACC,eAAe;CACf;;AAED;CACC,4DAA4D;CAC5D","file":"ms-order-calc.css","sourcesContent":["@charset \"UTF-8\";\n.ms-order-calc {\n\tmargin: 0 auto;\n}\n\n.ms-order-calc::before {\n\tcontent: \"Это контейнер, на котором инициилизирован плагин\";\n}\n"]}

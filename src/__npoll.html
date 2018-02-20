@@ -1,10 +1,9 @@
 @@include('_tpl_layout_head.html', {
 	"title": "npoll",
-	"pathCss": "css/plugins/css-npoll.css",
+	"pathCss": ["css/plugins/css-npoll.css"],
 	"pageClass": "page-npoll"
 })
 <div id="mypoll"></div>
 @@include('_tpl_layout_foot.html', {
-	"jsPluginSrc": "plugins/jquery.npoll.js",
-	"jsCommonSrc": "common-npoll.js"
+	"pathJs": ["js/plugins/jquery.npoll.js", "js/common-npoll.js"]
 })

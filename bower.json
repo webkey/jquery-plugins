@@ -23,7 +23,8 @@
     "jquery-placeholder": "^2.3.1",
     "jquery-smartresize": "*",
     "normalize-css": "normalize.css#^5.0.0",
-    "include-media": "^1.4.9"
+    "include-media": "^1.4.9",
+    "jquery-ui": "^1.12.1"
   },
   "devDependencies": {
     "mathsass": "^0.9.5"

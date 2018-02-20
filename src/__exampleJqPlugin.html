@@ -1,6 +1,6 @@
 @@include('_tpl_layout_head.html', {
 	"title": "jQuery Plugin",
-	"pathCss": "css/plugins/css-exampleJqPlugin.css",
+	"pathCss": ["css/plugins/example-js-plugin.css"],
 	"pageClass": "page-example-jq-plugin"
 })
 
@@ -8,6 +8,5 @@
 <div class="example-js-plugin2"></div>
 
 @@include('_tpl_layout_foot.html', {
-	"jsPluginSrc": "plugins/jquery.epampleJqPlugin.js",
-	"jsCommonSrc": "common-exampleJqPlugin.js"
+	"pathJs": ["js/plugins/jquery.example-js-plugin.js", "js/common-example-js-plugin.js"]
 })

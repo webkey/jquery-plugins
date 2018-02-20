@@ -66,7 +66,7 @@ gulp.task('sassCompilation', ['compressNormalizeCss'], function () { // Созд
 		], {
 			cascade: true
 		})) // Создаем префиксы
-		.pipe(sourcemaps.write())
+		.pipe(sourcemaps.write('./'))
 		.pipe(gulp.dest('./src/css')) // Выгружаем результата в папку src/css
 		.pipe(browserSync.reload({
 			stream: true
@@ -93,16 +93,10 @@ gulp.task('createCustomModernizr', function (done) { // Таск для форм
 	});
 });
 
-gulp.task('copyLibsScriptsToJs', ['copyJqueryToJs'], function () { // Таск для мераж js библиотек
+gulp.task('copyLibsScriptsToJs', ['copyJqueryToJs', 'copyJqueryUiJs', 'copyJqueryUiCss'], function () { // Таск для мераж js библиотек
 	return gulp.src([
 		'src/libs/device.js/lib/device.min.js' // определение устройств
 		, 'src/libs/jquery-smartresize/jquery.debouncedresize.js' // "умный" ресайз
-		//, 'src/libs/jquery-placeholder/jquery.placeholder.min.js' // поддержка плейсхолдера в старых браузерах
-		//, 'src/libs/select2/dist/js/select2.full.min.js' // кастомный селект
-		//, 'src/libs/select2/dist/js/i18n/ru.js' // локализация для кастомного селекта
-		//, 'src/js/temp/filer.min.js' // инпут файл
-		//, 'src/libs/slick-carousel/slick/slick.min.js' // slick slider
-		//, 'node_modules/object-fit-images/dist/ofi.min.js' // object-fit fix for a non-support browsers
 	])
 		.pipe(concat('libs.js')) // Собираем их в кучу в новом файле libs.min.js
 		.pipe(gulp.dest('src/js'))
@@ -117,6 +111,25 @@ gulp.task('copyJqueryToJs', function () { // Таск для копирован�
 	])
 		.pipe(gulp.dest('src/js'));
 });
+
+// Таск для копирования jquery-ui в js папку
+gulp.task('copyJqueryUiJs', function () {
+	return gulp.src([
+		'src/libs/jquery-ui/jquery-ui.min.js'
+	])
+		.pipe(gulp.dest('src/js/jquery-ui'));
+});
+gulp.task('copyJqueryUiCss', function () {
+	return gulp.src([
+		, 'src/libs/jquery-ui/themes/base/base.css'
+		, 'src/libs/jquery-ui/themes/base/spinner.css'
+	])
+		.pipe(concatCss("jquery-ui.css", {
+			rebaseUrls: false
+		}))
+		.pipe(gulp.dest('src/js/jquery-ui'));
+});
+// Таск для копирования jquery-ui в js папку (конец)
 
 gulp.task('browserSync', function (done) { // Таск browserSync
 	browserSync.init({
@@ -156,15 +169,18 @@ gulp.task('copyImgToDist', function () {
 gulp.task('build', ['cleanDistFolder', 'htmlCompilation', 'copyImgToDist', 'sassCompilation', 'mergeCssLibs', 'createCustomModernizr', 'copyLibsScriptsToJs'], function () {
 
 	gulp.src('src/css/*.css')
-	.pipe(gulp.dest('dist/css'));
+		.pipe(gulp.dest('dist/css'));
 
 	gulp.src('src/fonts/**/*') // Переносим шрифты в продакшен
 		.pipe(gulp.dest('dist/fonts'));
 
+	gulp.src('src/assets/**/*') // Переносим дополнительные файлы в продакшен
+		.pipe(gulp.dest('dist/assets'));
+
 	gulp.src(['!src/js/temp/**/*.js', '!src/js/**/temp-*.js', 'src/js/*.js']) // Переносим скрипты в продакшен
 		.pipe(gulp.dest('dist/js'));
 
-	gulp.src(['!src/__*.html', '!src/forms.html', '!src/_tpl_*.html', 'src/*.html']) // Переносим HTML в продакшен
+	gulp.src(['!src/__*.html', '!src/ajax*.html', '!src/temp*.html', 'src/forms.html', '!src/_tpl_*.html', 'src/*.html']) // Переносим HTML в продакшен
 		.pipe(gulp.dest('dist'));
 
 	gulp.src(['src/*.png', 'src/*.ico', 'src/.htaccess']) // Переносим favicon и др. файлы в продакшин

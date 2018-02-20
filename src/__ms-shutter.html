@@ -1,6 +1,6 @@
 @@include('_tpl_layout_head.html', {
 	"title": "Попап-шторка: клавное меню с бутерброда и т.д.",
-	"pathCss": "css/plugins/ms-shutter.css",
+	"pathCss": ["css/plugins/ms-shutter.css"],
 	"pageClass": "ms-shutter-page"
 })
 
@@ -53,6 +53,5 @@
 </div>
 
 @@include('_tpl_layout_foot.html', {
-	"jsPluginSrc": "plugins/jquery.ms-shutter.js",
-	"jsCommonSrc": "common-ms-shutter.js"
+	"pathJs": ["js/plugins/jquery.ms-shutter.js", "js/common-ms-shutter.js"]
 })

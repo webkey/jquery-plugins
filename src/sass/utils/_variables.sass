@@ -2,14 +2,14 @@
 @import ../utils/placeholders
 
 // medium query
-$breakpoints: ('mob-sm': 320px, 'mob-md': 480px, 'mob-lg': 640px, 'tab-sm': 768px, 'tab-lg': 992px, 'desk-sm': 1200px, 'desk-md': 1366px, 'desk-lg': 1600px, 'desk-hd': 1920px)
+$breakpoints: ('desk-hd': 1920px, 'desk-lg': 1600px, 'desk-ml': 1440px, 'desk-md': 1366px, 'desk-sm': 1200px, 'tab-lg': 992px, 'tab-sm': 768px, 'mob-lg': 640px, 'mob-md': 480px, 'mob-sm': 320px)
 
 // base
-$font-size: 1.8rem !default
-$line-height: round-float(3.0rem/$font-size, 2) !default
+$font-size: 1.6rem !default
+$line-height: round-float(24/16, 2) !default
 
 $font-size-small: 1.4rem !default
-$line-height-small: 1.43 !default
+$line-height-small: round-float(18/14, 2) !default
 $font-size-h1: 3.6rem !default
 $line-height-h1: 1.2 !default
 $font-size-h1--sm: 2.6rem !default
@@ -26,6 +26,12 @@ $base-color-alt: green
 $bg-color: white !default
 $bg-color-base: white
 $text-color-base: black
+// цвет фона элементов выделяющихся на страницы
+$bg-color-alt: #f2f2f2 !default
+// цвет фона выделенных элементов
+$bg-color-selected: #f3f3f3 !default
+// цвет фона структурных элементов
+$bg-color-light: #f7f7f7 !default
 // цвет остовного текста
 $text-color: #262626 !default
 // цвет основных заголовков заголовков
@@ -60,8 +66,11 @@ $layout-text-width: 640px + $layout-text-space-horizontal*2 !default
 // минимальные отступы слева и справа у блокоа выходящего за пределы текста
 $layout-flood-space-horizontal: 40px !default
 // максимальная ширина текстового блока выходящего за пределы текста
-$layout-flood-width: 768px + $layout-text-space-horizontal*2 !default
-$grid-space: 20px
+$layout-flood-width: 960px + $layout-text-space-horizontal*2 !default
+// отступы внутри блочных элементов
+$grid-space: 30px !default
+$grid-space--md: 20px !default
+$grid-space--sm: 10px !default
 
 // form
 $color-form-text: $text-color-light !default
@@ -84,6 +93,10 @@ $color-table-border: tomato !default
 $color-table-bg: white !default
 $color-table-text-alt: white !default
 $color-table-bg-alt: tomato !default
+
+// product in table
+$table__img--size: 70, 70 // width, height (in px). В коде высота вычисляется с соотношения ширины к высоте, а размер изображение берется в зависимости от ширины
+$table__del--size: 40px // размер кнопки (с крестиком) для удаления товара с таблицы
 
 // animation
 $animation-speed: 0.2s !default

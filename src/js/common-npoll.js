@@ -24,9 +24,13 @@ $(function () {
 			// e - само событие
 			// el - элемент
 			// resp - ответ от сервера
-			console.log("resp: ", resp); // вывести в консоль ответ об ошибке
+			// console.log("resp: ", resp); // вывести в консоль ответ об ошибке
 			el.remove(); // пример, удаление формы в случае получения ошибки
 			return false; // этим мы запрещаем дальнейшее выполнение кода указанное в плагине в $.ajax.fail
+		},
+		created: function (e, el) {
+			console.log("e: ", e);
+			console.log("el: ", el);
 		}
 	});
 	// }).css('background-color', 'tomato');

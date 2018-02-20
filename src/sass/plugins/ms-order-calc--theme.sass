@@ -1,0 +1,600 @@
+@import ../utils/variables
+@import ../utils/mixins
+@import ../../libs/include-media/dist/include-media
+
+///*=================*/
+/* jquery-ui spinner
+///*=================*/
+
+$spinner-btn-size: 30px // width
+$spinner-input-size: 54px // width
+
+.spinner
+	position: relative
+	+display-inline-block-top
+	text-align: left
+	background-color: transparent
+
+	input
+		margin-bottom: 0
+		border: none
+		box-shadow: none
+		width: 20px
+		height: 20px
+		padding: 0
+
+	&.spinner-js
+		opacity: 0
+		visibility: hidden
+
+		.ui-spinner &
+			opacity: 1
+			visibility: visible
+
+.ui-widget.ui-widget-content
+	border: none
+
+.ui-spinner
+	+padding-horizontal(nth($spinner-btn-size, 1))
+	box-shadow: inset 0 0 0 1px $border-color
+	background-color: #fff
+
+.ui-spinner-input, .ui-spinner-input[type="text"]
+	width: nth($spinner-input-size, 1)
+	border: none
+	background: none
+	color: inherit
+	padding: 5px 5px
+	height: 30px
+	vertical-align: top
+	margin: 0
+	+font-normal
+	+font(16px, 20px)
+	text-align: center
+	box-shadow: none
+
+	&:focus, &:hover
+		box-shadow: none !important
+		border-color: transparent !important
+
+.ui-spinner-button
+	position: absolute
+	top: 0
+	+size(nth($spinner-btn-size, 1), 100%)
+	padding: 0
+	margin: 0
+	cursor: pointer
+
+.ui-spinner a.ui-spinner-button
+	border: 1px solid $border-color
+
+.ui-spinner-up
+	right: 0
+
+.ui-spinner-down
+	left: 0
+
+.ui-button-icon-only .ui-icon
+	$this-icon-lines-size: 10px, 2px // width, height
+	$this-icon-lines-color: $text-color
+
+	+size(nth($this-icon-lines-size, 1), nth($this-icon-lines-size, 2))
+	position: absolute
+	+position(50%)
+	margin-top: -#{round(nth($this-icon-lines-size, 2)/2)}
+	margin-left: -#{round(nth($this-icon-lines-size, 1)/2)}
+	overflow: visible
+
+	&::before, &::after
+		+pseudo()
+		+position(0)
+		+size(nth($this-icon-lines-size, 1), nth($this-icon-lines-size, 2))
+		background-color: $this-icon-lines-color
+
+.ui-spinner-up
+	.ui-button-icon
+
+		&::before
+			transform: rotate(0.25turn)
+
+.ui-spinner-down
+
+	[aria-valuenow="0"] ~ &
+		cursor: default
+
+		.ui-button-icon
+			&::before, &::after
+				background-color: #d0d0d0 !important
+
+// hover
+.ui-spinner-button:hover .ui-button-icon
+	&::before, &::after
+		background-color: $base-color
+
+///*=================*/
+/* btn-del
+///*=================*/
+.btn-del
+	$btn-size: 20px
+	$icon-size: 12px
+	// ============
+	position: relative
+	display: inline-block
+	vertical-align: top
+	+size($btn-size)
+	color: $text-color
+	text-decoration: none
+
+	svg
+		position: absolute
+		+size($icon-size)
+		+position(50%)
+		margin: -#{round($icon-size/2)} 0 0 -#{round($icon-size/2)}
+
+	path
+		fill: currentColor
+
+	& > span
+		display: none
+
+	// hover
+	&:hover
+		color: $link-color
+
+/* btn-del end
+
+/* custom table
+.c-table
+	display: table
+	width: 100%
+
+.c-thead
+	display: table-header-group
+
+.c-tbody
+	display: table-row-group
+
+.c-tfoot
+	display: table-footer-group
+
+.c-tr
+	display: table-row
+	color: inherit
+	text-decoration: none
+
+a.c-tr:hover
+	color: $link-color
+
+.c-th, .c-td
+	display: table-cell
+
+.c-th
+	padding: round($grid-space*0.5) #{$grid-space--md}
+	border: solid $bg-color-base
+	border-width: 0 0 0 2px
+	background-color: $bg-color-alt
+	+font-bold
+	font-size: 13px
+	line-height: round-float(17/13, 2)
+	letter-spacing: 0.1em
+	text-transform: uppercase
+
+	+media('<desk-lg')
+		padding: round($grid-space*0.5) #{$grid-space--md}
+
+	+media('<desk-md')
+		font-size: 1.3rem
+		letter-spacing: normal
+		padding: round($grid-space--sm*1.5) #{$grid-space--sm}
+
+	&:first-child, &.c-th--title
+		border: none
+
+	& > svg
+		+display-inline-block-top
+
+	&.c-th--del
+		width: 82px
+		text-align: center
+		+padding-horizontal(5px)
+
+		& > span
+			+hide-text
+
+.c-td
+	padding: round($grid-space*0.93) $grid-space--md
+	vertical-align: middle
+	border-bottom: 1px solid $border-color
+	border-left: 2px solid white
+	+font(1.6rem, round-float(24/16, 1))
+
+	+media('<desk-lg')
+		font-size: 1.4rem
+		padding: round($grid-space--sm*0.93) #{$grid-space--sm}
+
+	+media('<desk-sm')
+		letter-spacing: normal
+
+	+media('<mob-lg')
+		+padding-vertical(round($grid-space--sm*0.6))
+
+	&:first-child, .order-calc &.c-td--title
+		border-left: none
+
+	.c-tr:first-child &
+		+media('>=tab-lg')
+			border-top: 1px solid $border-color
+
+	a
+		text-decoration: none
+		color: inherit
+
+		.no-touchevents &:hover
+			color: $link-color
+
+	// стили для конкретных ячеек
+	&.c-td--caption
+		+padding-vertical(round($grid-space*0.93 - 18))
+
+	//.order-calc & .img-for-table
+		display: none
+
+	&.c-td--growth
+		min-width: 100px
+
+		+media('<desk-sm')
+			min-width: 80px
+
+	&.c-td--price
+		min-width: 130px
+
+		+media('<desk-sm')
+			min-width: 110px
+
+	&.c-td--del
+		+media('>=tab-lg')
+			padding: 0
+			text-align: center
+
+		.btn-del
+			+size($table__del--size)
+
+//&.c-td--spinner
+	text-align: center
+
+	+media('<tab-lg')
+		text-align: left
+
+// hover
+.c-tr
+	.no-touchevents &:hover
+		.c-td
+			background-color: $bg-color-light
+
+.c-table-result
+	position: relative
+	//margin-top: -1px
+	line-height: 0
+	background-color: $bg-color-alt
+	+clear
+
+.c-table-result__total
+	+display-inline-block-middle
+	+font-d($line-height: 20px)
+	padding: 15px $grid-space--md
+
+	+media('<desk-md')
+		+padding-horizontal($grid-space--sm)
+
+.c-table-result__label
+	+display-inline-block-top
+	margin-right: 10px
+
+	+media('<mob-md')
+		display: block
+		margin-right: 0
+
+.c-table-result__count,
+.c-table-result__price
+	color: $base-color
+
+// for device (after transform)
+.c-table, .c-thead, .c-tbody, .c-tfoot, .c-tr, .c-th, .c-td
+	+media('<tab-lg')
+		display: block
+
+.c-thead, .c-th
+	+media('<tab-lg')
+		display: none
+
+.c-tbody
+	+media('<tab-lg')
+		display: flex
+		flex-wrap: wrap
+		justify-content: space-between
+		align-items: flex-start
+
+.c-tr
+	+media('<tab-lg')
+		width: calc(50% - #{round($grid-space/2)})
+		margin-bottom: $grid-space
+		border: 1px solid $border-color
+
+	+media('<mob-lg')
+		width: 100%
+		margin-bottom: $grid-space--md
+
+	// список заказов в кабинете
+	.history-orders &
+		+media('<tab-lg')
+			width: calc(33.3% - #{round($grid-space/2)})
+
+		+media('<tab-sm')
+			width: calc(50.0% - #{round($grid-space/2)})
+
+		+media('<mob-lg')
+			width: calc(50.0% - #{round($grid-space--md/2)})
+
+		+media('<mob-md')
+			width: 100%
+
+.c-td
+	+media('<tab-lg')
+		display: flex
+		//align-items: flex-start
+		align-items: center
+		border: none
+
+		// список заказов в кабинете
+		.history-orders &:nth-child(even)
+			background-color: $bg-color-light
+
+	&[data-label]::before
+		content: attr(data-label) ':'
+		width: 130px
+		padding-right: 15px
+		+font-bold
+		text-transform: uppercase
+
+		display: none
+
+		+media('<tab-lg')
+			display: block
+			font-size: 12px
+
+		// список заказов в кабинете
+		.history-orders &
+			width: 50%
+			font-size: 11px
+
+	&.c-td--caption
+		+media('<tab-lg')
+			margin: -1px -1px 1rem
+			font-size: 1.6rem
+			line-height: round-float(20/16, 2)
+			border: 1px solid $border-color
+
+		&::before
+			+media('<tab-lg')
+				content: none
+
+	&.c-td--del
+		+media('<tab-lg')
+			border-top: 1px solid $border-color
+			margin-top: 10px
+
+		.btn-del
+			+media('<tab-lg')
+				+size(auto)
+				display: flex
+				align-items: center
+				justify-content: center
+				+push-auto
+				width: 100%
+
+				svg
+					position: relative
+					left: auto
+					top: auto
+					margin: 0 10px 0 0
+
+				& > span
+					display: block
+
+//&.c-td--spinner
+	+media('<tab-lg')
+		padding: 1rem 0 0
+
+	&::before
+		+media('<tab-lg')
+			content: none
+
+	+media('<tab-lg')
+		.ui-spinner
+			display: block
+			margin: 0 -1px -1px
+			+padding-horizontal(30px)
+
+		.ui-spinner-input, .ui-spinner-input[type="text"]
+			width: 100%
+			//height: 40px
+
+		//.ui-spinner-button
+			width: 40px
+
+[data-label] .c-td__val
+	+media('<tab-lg')
+		flex: 1 1
+
+// hover for device
+.c-tr
+	+media('<tab-lg')
+		.no-touchevents &:hover
+			.c-td
+				background-color: transparent
+
+/* custom table end
+
+/* color pic
+.color-pics
+	cursor: default
+
+.color-pic
+	+display-inline-block-top
+	+size(16px)
+	border-radius: 50%
+	+font(0, 0)
+
+	&[style*="#fff"]
+		box-shadow: inset 0 0 0 1px #d9d9d9
+
+	.color-pics &
+		margin-right: 16px
+		margin-top: 10px
+
+/* color pic end
+
+/* order list
+// === title ===
+.caption-for-table
+	display: flex
+	align-items: center
+
+	.order-calc &
+		+media('<desk-sm', '>=tab-lg')
+			display: block
+
+// === img ===
+.img-for-table
+	display: block
+	width: nth($table__img--size, 1)*1px
+	text-decoration: none
+	color: inherit
+	position: relative
+
+	.caption-for-table &
+		margin-right: $grid-space--md
+
+		+media('<desk-sm')
+			margin-right: $grid-space--sm
+
+		.order-calc &
+			+media('<desk-sm', '>=tab-lg')
+				margin-right: 0
+				margin-bottom: $grid-space--sm
+
+	.no-image &
+		background: url(../../img/logo.png) no-repeat center
+		background-size: contain
+
+	&::after
+		content: ""
+		display: block
+		+ratio(nth($table__img--size, 1), nth($table__img--size, 2))
+
+	img
+		+cover-abs
+		display: block
+		max-width: none
+		+object-fit(contain)
+
+// === title ===
+.title-for-table
+	.caption-for-table &
+		flex: 1 1
+
+// === color ===
+.order-list__color
+	white-space: nowrap
+	vertical-align: middle
+	overflow: hidden
+
+	+media('<desk-ml')
+		text-align: center
+
+	+media('<tab-lg')
+		text-align: left
+
+	.color-pic
+		vertical-align: middle
+		margin-right: 5px
+
+		+media('<desk-ml')
+			display: block
+			margin: 0 auto
+
+		+media('<tab-lg')
+			display: inline-block
+
+	.dash
+		+media('<desk-ml')
+			display: none
+
+		+media('<tab-lg')
+			display: inline
+
+	.color-name
+		+media('<desk-md')
+			display: none
+
+		+media('<tab-lg')
+			display: inline
+
+// === results ===
+.c-table-result__total
+	&.hide-before-calc
+		display: none
+
+	&.show
+		display: inline-block
+
+		+media('<tab-sm')
+			display: block
+
+.order-calc-btn
+	float: right
+	min-width: 240px
+
+	+media('<tab-sm')
+		float: none
+		display: block
+		width: auto
+
+	+media('<mob-lg')
+		width: 100%
+
+/* order list end
+
+/* stock tape
+.stock-tape
+	display: block
+	position: relative
+	+size(90px, 10px)
+	//+push-auto
+	background-color: $bg-color-base
+	box-shadow: inset 0 0 0 1px $border-color
+
+	+media('<desk-md')
+		+size(70px, 16px)
+
+	+media('<tab-lg')
+		+size(90px, 10px)
+		margin: 0
+
+//[data-label] &
+	margin: 5px 0 0
+
+.stock-tape-value
+	background-color: gray
+	+cover-abs
+	text-indent: -9999px
+	overflow: hidden
+
+	// from 1% to 50%
+	// from 1% to 50%-td--size
+	+grad-per-value($color: #d70000 #d7d700, $val: 1 50)
+
+	// from 51% to 100%
+	+grad-per-value($color: #d7d700 #009b00, $val: 51 100)
+
+/* stock tape end

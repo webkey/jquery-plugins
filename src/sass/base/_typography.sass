@@ -153,6 +153,14 @@ i, em
 i b, i strong, em b, em strong, b i, b em, strong i, strong em
 	+font-bold-italic
 
+code, pre
+	display: block
+	padding: 8px
+	color: $text-color-light
+	background-color: $bg-color-light
+	font-size: $font-size-small
+	margin: 0 0 $bottom-space
+
 .mark
 	color: $mark-color
 	font-style: inherit
@@ -166,6 +174,9 @@ i b, i strong, em b, em strong, b i, b em, strong i, strong em
 
 .nobr
 	white-space: nowrap
+
+.bottom-space
+	margin-bottom: $bottom-space
 
 .hide
 	font-size: 0
@@ -381,7 +392,8 @@ i b, i strong, em b, em strong, b i, b em, strong i, strong em
 				margin: 0 0 20px 30%
 
 				+media('<mob-lg')
-					+margin($b: 10px, $l: -10px )
+					margin-bottom: 10px
+					margin-left: -10px
 
 			&:after
 				//content: '»'
