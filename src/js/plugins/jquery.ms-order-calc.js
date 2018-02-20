@@ -86,11 +86,9 @@
 	MsOrderCalc.prototype.removeItem = function () {
 		var self = this;
 
-		console.log('===removeItem===');
-
 		self.element.on('click', self.config.btnRemove, function (e) {
 
-			console.log(1);
+			console.log('removeItem: ', self.element);
 
 			$(this).closest(self.config.row).fadeOut(300, function () {
 				$(this).remove();
