@@ -15,6 +15,11 @@ $(function () {
 					initSpinner($('.spinner-js'));
 					$("#orderCalcCreate").find('.order-calc-js').msOrderCalc({
 						row: '.c-tr'
+						, getTotalResults: function (e, el, results) {
+							// console.log("results: ", results);
+
+							$(el).find('.order-calc__total-results-js').toggleClass('show', results.totalCount > 0)
+						}
 					})
 						.css('border', '4px solid blue'); // для проверки jquery цепочки
 				}});
@@ -69,12 +74,48 @@ $(function () {
 		// 	console.log("e: ", e);
 		// 	console.log("el: ", el);
 		// }
-		// , getTotalResults: function (e, el, results) {
-		// 	console.log("results: ", results);
-		// }
+		, getTotalResults: function (e, el, results) {
+			// console.log("results: ", results);
+			// console.log("getTotalResults ");
+			$(el).find('.order-calc__total-results-js').toggleClass('show', results.totalCount > 0);
+			$(el).find('.order-calc-btn').prop('disabled', !results.totalCount > 0);
+		}
 		// , createdObjParams: function (e, el, obj) {
 		// 	console.log("obj: ", obj);
 		// }
+		, showedWarningRemoveItem: function (e, el) {
+			// console.log("showedWarningRemoveItem");
+			$(el).find('.order-calc-btn').prop('disabled', true);
+		}
+		, canceledRemoveItem: function (e, el) {
+			// console.log("canceledRemoveItem ");
+			$(el).find('.order-calc-btn').prop('disabled', false);
+		}
+		, removedItem: function () {
+			// console.log("removedItem ");
+		}
 	})
-		.css('border', '4px solid coral'); // для проверки jquery цепочки
+		.css('border', '4px solid green'); // для проверки jquery цепочки
+
+	$('.order-calc-js--alt').msOrderCalc({
+		row: '.c-tr'
+		, getTotalResults: function (e, el, results) {
+			// console.log("results: ", results);
+			// console.log("getTotalResults ");
+			$(el).find('.order-calc__total-results-js').toggleClass('show', results.totalCount > 0);
+			$(el).find('.order-calc-btn').prop('disabled', !results.totalCount > 0);
+		}
+		, showedWarningRemoveItem: function (e, el) {
+			// console.log("showedWarningRemoveItem");
+			$(el).find('.order-calc-btn').prop('disabled', true);
+		}
+		, canceledRemoveItem: function (e, el) {
+			// console.log("canceledRemoveItem ");
+			$(el).find('.order-calc-btn').prop('disabled', false);
+		}
+		, removedItem: function () {
+			// console.log("removedItem ");
+		}
+	})
+		.css('border', '4px solid black'); // для проверки jquery цепочки
 });

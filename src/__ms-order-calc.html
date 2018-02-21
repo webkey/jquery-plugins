@@ -45,6 +45,14 @@
 		<li><i>obj</i> - объект с id продуктов</li>
 	</ul>
 
+	<h3>showedWarningRemoveItem</h3>
+	<p>После того, как появляется уведомлении об удалении элемента (с возможностью отмены удаления). Событие происходит <b>после</b> пересчета общего результата (<b>после</b> события getTotalResults). Это можно использовать для блокировки кнопки отправки формы, пока "висит" предупреждение. См. в примере на этой странице. Параметр <i><b>warningRemove</b></i> должен иметь значение <i>true</i></p>
+	<pre>showedWarningRemoveItem: function (e, el) {}</pre>
+
+	<h3>canceledRemoveItem</h3>
+	<p>После отмены удаления элемента. Событие происходит <b>до</b> пересчета общего результата (<b>до</b> события getTotalResults). Это можно использовать для блокировки кнопки отправки формы, пока "висит" предупреждение. См. в примере на этой странице. Параметр <i><b>warningRemove</b></i> должен иметь значение <i>true</i></p>
+	<pre>showedWarningRemoveItem: function (e, el) {}</pre>
+
 	<h2>Таблица 1</h2>
 	<div class="bottom-space">
 		<div class="order-calc-js">
@@ -63,7 +71,7 @@
 					<div class="c-table-result__label">Итого:</div>
 					<span class="c-table-result__count order-calc__counts-total-js">0</span> позиций на&nbsp;<span class="c-table-result__price order-calc__price-total-js">0</span>&nbsp;руб.
 				</div>
-				<button class="btn-default order-calc-btn float-right">Заказать</button>
+				<button class="btn-default order-calc-btn float-right" disabled>Заказать</button>
 			</div>
 		</div>
 	</div>
@@ -87,7 +95,7 @@
 					<div class="c-table-result__label">Итого:</div>
 					<span class="c-table-result__count order-calc__counts-total-js">0</span> позиций на&nbsp;<span class="c-table-result__price order-calc__price-total-js">0</span>&nbsp;руб.
 				</div>
-				<button class="btn-default order-calc-btn float-right">Заказать</button>
+				<button class="btn-default order-calc-btn float-right" disabled>Заказать</button>
 			</div>
 		</div>
 	</div>
@@ -96,6 +104,30 @@
 
 	<div class="bottom-space" id="orderCalcCreate">
 		<!--ajax template-->
+	</div>
+
+	<h2>Таблица 4</h2>
+
+	<div class="bottom-space">
+		<div class="order-calc-js--alt">
+			<div class="c-table">
+				<div class="c-thead">
+					<div class="c-tr">
+						@@loop("_tpl_c-thead.html", "includes-json/order-calc__th--cart.json")
+					</div>
+				</div>
+				<div class="c-tbody">
+					@@loop("_tpl_order-calc-items--cart.html", "includes-json/order-calc__items--03.json")
+				</div>
+			</div>
+			<div class="c-table-result">
+				<div class="c-table-result__total hide-before-calc order-calc__total-results-js">
+					<div class="c-table-result__label">Итого:</div>
+					<span class="c-table-result__count order-calc__counts-total-js">0</span> позиций на&nbsp;<span class="c-table-result__price order-calc__price-total-js">0</span>&nbsp;руб.
+				</div>
+				<button class="btn-default order-calc-btn float-right" disabled>Заказать</button>
+			</div>
+		</div>
 	</div>
 
 </div>

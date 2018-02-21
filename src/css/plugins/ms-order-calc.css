@@ -1,10 +1,27 @@
-@charset "UTF-8";
-.ms-order-calc {
-	margin: 0 auto;
+.order-calc__remove-cell-js {
+	display: none !important;
 }
 
-.ms-order-calc::before {
-	content: "Это контейнер, на котором инициилизирован плагин";
+.order-calc__remove-warning-js {
+	position: relative;
+	display: table-row-group !important;
+}
+
+.order-calc__remove-warning-js > div {
+	padding: 2px 8px;
+	color: red;
+}
+
+.order-calc__remove-row-js {
+	box-shadow: inset 0 -1px 0 lightgray;
+}
+
+.order-calc__remove-row-js:first-child {
+	box-shadow: inset 0 -1px 0 lightgray, inset 0 1px 0 lightgray;
+}
+
+.order-calc__cancel-js {
+	cursor: pointer;
 }
 
 /*# sourceMappingURL=ms-order-calc.css.map */

@@ -7,8 +7,10 @@
 		totalResult: '.order-calc__total-results-js',
 		totalCount: '.order-calc__counts-total-js',
 		totalPrice: '.order-calc__price-total-js',
-		row: 'tr',
+		warningRemove: false,
+		warningRemoveDelay: 3000,
 		objParams: {},
+		tplRemoveItem: '<div><div><span>Товар удален</span> <a class="order-calc__cancel-js">Отмена</a></div></div>',
 
 		initClass: 'ms-order-calc--initialized'
 	};
@@ -22,9 +24,16 @@
 
 		self.callbacks();
 
-		self.initialCalc();
+		self.calcAll();
 		self.changeNumber();
-		self.removeItem();
+
+		self.removeTimeout = 0;
+		if(!self.config.warningRemove) {
+			self.immediateRemoveItem();
+		} else {
+			self.showWarningRemoveItem();
+			self.cancelRemoveItem();
+		}
 
 		self.init(); // create DOM structure of the plugins
 	}
@@ -42,16 +51,15 @@
 	};
 
 	// calculation after load DOM
-	MsOrderCalc.prototype.initialCalc = function () {
+	MsOrderCalc.prototype.calcAll = function () {
 		var self = this, counter = 0;
 
-		console.log('===initialCalc===');
+		console.log('===calcAll===');
 
 		var $spinner = self.element.find(self.config.spinner);
 		$.each($spinner, function () {
 			var $curSpinner = $(this);
 			var curSpinnerVal = +$curSpinner.val();
-
 			if(!curSpinnerVal) {
 				return;
 			}
@@ -60,8 +68,9 @@
 			self.createObjParams($curSpinner, curSpinnerVal);
 		});
 
-		// call the function to recalculate the total result, if there is at least one product
-		counter && self.calcTotalResult();
+		// call the function to recalculate the total result, if there is at least one item
+		// counter && self.calcTotalResult();
+		self.calcTotalResult();
 	};
 
 	MsOrderCalc.prototype.changeNumber = function () {
@@ -78,27 +87,105 @@
 		});
 	};
 
-	MsOrderCalc.prototype.recalc = function () {
-		var self = this;
-
-	};
-
-	MsOrderCalc.prototype.removeItem = function () {
+	MsOrderCalc.prototype.immediateRemoveItem = function () {
 		var self = this;
 
 		self.element.on('click', self.config.btnRemove, function (e) {
 
-			console.log('removeItem: ', self.element);
+			var $curRow = $(this).closest(self.config.row);
+			var id = $curRow.find(self.config.spinner).data('id');
 
-			$(this).closest(self.config.row).fadeOut(300, function () {
-				$(this).remove();
+			// remove current item from object
+			delete self.config.objParams[id];
 
-				self.initialCalc();
-			});
+			self.calcTotalResult();
+
+			self.removeItem($curRow);
+
+			e.preventDefault();
+
+		});
+	};
+
+	MsOrderCalc.prototype.showWarningRemoveItem = function () {
+		var self = this;
+
+		self.element.on('click', self.config.btnRemove, function (e) {
+
+			var $curRow = $(this).closest(self.config.row);
+			var $curCells = $curRow.children();
+			var id = $curRow.find(self.config.spinner).data('id');
+
+			// remove item with class ".order-calc__remove-row-js"
+			self.removeItem(self.element.find('.order-calc__remove-row-js'));
+
+			$curRow.addClass('order-calc__remove-row-js');
+			$curCells.addClass('order-calc__remove-cell-js');
+			$curRow.append($(self.config.tplRemoveItem).clone().addClass('order-calc__remove-warning-js'));
+
+			// remove current item from object
+			delete self.config.objParams[id];
+
+			self.calcTotalResult();
+
+			// add callback showedWarningRemoveItem (after calcTotalResult)
+			self.element.trigger('showedWarningRemoveItem.msOrderCalc');
+
+			clearTimeout(self.removeTimeout);
+
+			self.removeTimeout = setTimeout(function () {
+				self.removeItem($curRow);
+			}, self.config.warningRemoveDelay);
 
 			e.preventDefault();
 			
 		});
+	};
+
+	MsOrderCalc.prototype.cancelRemoveItem = function () {
+		var self = this;
+
+		self.element.on('click', '.order-calc__cancel-js', function (e) {
+
+			// clear removeTimeout
+			clearInterval(self.removeTimeout);
+
+			var $curRow = $(this).closest(self.config.row);
+			var $curCells = $curRow.children();
+
+			$curRow.removeClass('order-calc__remove-row-js');
+			$curCells.removeClass('order-calc__remove-cell-js');
+			$curRow.find('.order-calc__remove-warning-js').remove();
+
+			// add callback canceledRemoveItem (before calcAll)
+			self.element.trigger('canceledRemoveItem.msOrderCalc');
+
+			self.calcAll();
+
+			e.preventDefault();
+		});
+	};
+
+	MsOrderCalc.prototype.removeItem = function (row) {
+		console.log('===removeItem===');
+
+		var self = this;
+
+		var id = row.find(self.config.spinner).data('id');
+		row.remove();
+
+		// remove current item from object
+		delete self.config.objParams[id];
+
+		self.calcAll();
+
+		// add callback removedItem
+		self.element.trigger('removedItem.msOrderCalc');
+	};
+
+	MsOrderCalc.prototype.recalc = function () {
+		var self = this;
+
 	};
 
 	MsOrderCalc.prototype.createObjParams = function (spinner, count) {
@@ -109,7 +196,7 @@
 		var priceVal = $curPrice.data('price');
 		var priceValSum = Math.round(priceVal * count * 100) / 100;
 
-		// create the object with id's products
+		// create the object with id's item
 		var id = spinner.data('id');
 		self.config.objParams[id] = {
 			'count': count,
@@ -134,7 +221,7 @@
 		var self = this;
 
 		console.log('===calcTotalResult===');
-		// console.log("self.config.objParams: ", self.config.objParams);
+		console.log("self.config.objParams: ", self.config.objParams);
 
 		var totalCount = self.sumParam(self.config.objParams, 'count');
 		var totalPrice = self.sumParam(self.config.objParams, 'priceSum');
@@ -145,8 +232,6 @@
 		// add total results to DOM
 		self.element.find(self.config.totalCount).text(totalCount);
 		self.element.find(self.config.totalPrice).text(totalPrice);
-
-		self.element.find(self.config.totalResult).toggleClass('show', totalCount > 0);
 	};
 
 	MsOrderCalc.prototype.sumParam = function (obj, param) {
