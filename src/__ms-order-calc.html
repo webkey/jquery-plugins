@@ -53,6 +53,14 @@
 	<p>После отмены удаления элемента. Событие происходит <b>до</b> пересчета общего результата (<b>до</b> события getTotalResults). Это можно использовать для блокировки кнопки отправки формы, пока "висит" предупреждение. См. в примере на этой странице. Параметр <i><b>warningRemove</b></i> должен иметь значение <i>true</i></p>
 	<pre>showedWarningRemoveItem: function (e, el) {}</pre>
 
+	<h3>removedItem</h3>
+	<p>После удаления одного элемента.</p>
+	<pre>removedItem: function (e, el) {}</pre>
+
+	<h3>removedAllItems</h3>
+	<p>После удаления всех элементов</p>
+	<pre>removedAllItems: function (e, el) {}</pre>
+
 	<h2>Таблица 1</h2>
 	<div class="bottom-space">
 		<div class="order-calc-js">
@@ -73,6 +81,7 @@
 				</div>
 				<button class="btn-default order-calc-btn float-right" disabled>Заказать</button>
 			</div>
+			<div class="order-calc__empty">Ваша корзина пуста</div>
 		</div>
 	</div>
 
@@ -97,6 +106,7 @@
 				</div>
 				<button class="btn-default order-calc-btn float-right" disabled>Заказать</button>
 			</div>
+			<div class="order-calc__empty">Ваша корзина пуста</div>
 		</div>
 	</div>
 
@@ -127,6 +137,7 @@
 				</div>
 				<button class="btn-default order-calc-btn float-right" disabled>Заказать</button>
 			</div>
+			<div class="order-calc__empty">Ваша корзина пуста</div>
 		</div>
 	</div>
 

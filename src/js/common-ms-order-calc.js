@@ -13,12 +13,25 @@ $(function () {
 				success: function (html) {
 					$("#orderCalcCreate").append(html);
 					initSpinner($('.spinner-js'));
+
 					$("#orderCalcCreate").find('.order-calc-js').msOrderCalc({
 						row: '.c-tr'
 						, getTotalResults: function (e, el, results) {
 							// console.log("results: ", results);
-
-							$(el).find('.order-calc__total-results-js').toggleClass('show', results.totalCount > 0)
+							// console.log("getTotalResults ");
+							$(el).find('.order-calc__total-results-js').toggleClass('show', results.totalCount > 0);
+							$(el).find('.order-calc-btn').prop('disabled', !results.totalCount > 0);
+						}
+						, showedWarningRemoveItem: function (e, el) {
+							// console.log("showedWarningRemoveItem");
+							$(el).find('.order-calc-btn').prop('disabled', true);
+						}
+						, canceledRemoveItem: function (e, el) {
+							// console.log("canceledRemoveItem ");
+							$(el).find('.order-calc-btn').prop('disabled', false);
+						}
+						, removedItem: function () {
+							// console.log("removedItem ");
 						}
 					})
 						.css('border', '4px solid blue'); // для проверки jquery цепочки
@@ -91,9 +104,12 @@ $(function () {
 			// console.log("canceledRemoveItem ");
 			$(el).find('.order-calc-btn').prop('disabled', false);
 		}
-		, removedItem: function () {
-			// console.log("removedItem ");
-		}
+		// , removedItem: function () {
+		// 	console.log("removedItem ");
+		// }
+		// , removedAllItems: function () {
+		// 	console.log("callback: removedAllItems");
+		// }
 	})
 		.css('border', '4px solid green'); // для проверки jquery цепочки
 
@@ -113,9 +129,12 @@ $(function () {
 			// console.log("canceledRemoveItem ");
 			$(el).find('.order-calc-btn').prop('disabled', false);
 		}
-		, removedItem: function () {
-			// console.log("removedItem ");
-		}
+		// , removedItem: function () {
+		// 	console.log("removedItem ");
+		// }
+		// , removedAllItems: function () {
+		// 	console.log("callback: removedAllItems");
+		// }
 	})
 		.css('border', '4px solid black'); // для проверки jquery цепочки
 });

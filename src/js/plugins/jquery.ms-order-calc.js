@@ -4,6 +4,7 @@
 		price: '.order-calc__price-js',
 		priceSum: '.order-calc__price-sum-js',
 		btnRemove: '.order-calc__remove-js',
+		row: 'tr',
 		totalResult: '.order-calc__total-results-js',
 		totalCount: '.order-calc__counts-total-js',
 		totalPrice: '.order-calc__price-total-js',
@@ -12,7 +13,10 @@
 		objParams: {},
 		tplRemoveItem: '<div><div><span>Товар удален</span> <a class="order-calc__cancel-js">Отмена</a></div></div>',
 
-		initClass: 'ms-order-calc--initialized'
+		classes: {
+			init: 'ms-order-calc--initialized',
+			hasNotItems: 'order-calc__hasnt-items'
+		}
 	};
 
 	function MsOrderCalc(element, options) {
@@ -50,11 +54,9 @@
 		});
 	};
 
-	// calculation after load DOM
 	MsOrderCalc.prototype.calcAll = function () {
+		// console.log('===calcAll===');
 		var self = this, counter = 0;
-
-		console.log('===calcAll===');
 
 		var $spinner = self.element.find(self.config.spinner);
 		$.each($spinner, function () {
@@ -167,11 +169,11 @@
 	};
 
 	MsOrderCalc.prototype.removeItem = function (row) {
-		console.log('===removeItem===');
-
+		// console.log('===removeItem===');
 		var self = this;
 
 		var id = row.find(self.config.spinner).data('id');
+		var curElement = row.closest(self.element);
 		row.remove();
 
 		// remove current item from object
@@ -181,11 +183,15 @@
 
 		// add callback removedItem
 		self.element.trigger('removedItem.msOrderCalc');
-	};
 
-	MsOrderCalc.prototype.recalc = function () {
-		var self = this;
+		// count number of items
+		var rowsLengths = curElement.find(self.config.price).length;
+		if(!rowsLengths){
+			// add callback removedAllItem
+			self.element.trigger('removedAllItems.msOrderCalc');
 
+			curElement.addClass(self.config.classes.hasNotItems);
+		}
 	};
 
 	MsOrderCalc.prototype.createObjParams = function (spinner, count) {
@@ -213,15 +219,11 @@
 
 		// add current item's price sum to DOM
 		$curRow.find(self.config.priceSum).html(priceValSum);
-
-		console.log("self.objParams: ", self.config.objParams);
 	};
 
 	MsOrderCalc.prototype.calcTotalResult = function () {
+		// console.log('===calcTotalResult===');
 		var self = this;
-
-		console.log('===calcTotalResult===');
-		console.log("self.config.objParams: ", self.config.objParams);
 
 		var totalCount = self.sumParam(self.config.objParams, 'count');
 		var totalPrice = self.sumParam(self.config.objParams, 'priceSum');
@@ -249,7 +251,7 @@
 
 	MsOrderCalc.prototype.init = function () {
 
-		this.element.addClass(this.config.initClass);
+		this.element.addClass(this.config.classes.init);
 
 		this.element.trigger('created.msOrderCalc');
 
