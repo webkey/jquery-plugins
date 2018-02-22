@@ -151,6 +151,21 @@ gulp.task('watch', ['createCustomModernizr', 'browserSync', 'htmlCompilation', '
 gulp.task('default', ['watch']); // Назначаем таск watch дефолтным
 
 /************************************************************
+ * Minify js plugins
+ ************************************************************/
+
+gulp.task('minifyJsPlugins', function () {
+	return gulp.src(['src/js/plugins/jquery.ms-order-calc.js'])
+		.pipe(rename({suffix: '.min'}))
+		.pipe(uglify({
+			output: {
+				comments: /^!/
+			}
+		})) // Сжимаем JS файл
+		.pipe(gulp.dest('src/js/plugins.min')); // Выгружаем в папку src/js
+});
+
+/************************************************************
  * Create Distribution folder and move files to it
  ************************************************************/
 

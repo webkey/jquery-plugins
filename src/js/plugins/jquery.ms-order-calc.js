@@ -1,3 +1,9 @@
+/*! jquery.ms-order-calc
+ * Version: 2018.1.0
+ * Author: Serhii Ilchenko
+ * Description: Calculation of quantity and price of goods
+ */
+
 ;(function($){
 	var defaults = {
 		spinner: '.order-calc__number-js',

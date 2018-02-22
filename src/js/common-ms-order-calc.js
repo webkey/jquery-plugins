@@ -3,41 +3,6 @@
  */
 
 $(function () {
-	/** ! добавить таблицу динамически */
-	$(document).ready(function(){
-		setTimeout(function () {
-			$.ajax({
-				url: "ms-order-calc--ajax-temp.html",
-				cache: false,
-				dataType: 'html',
-				success: function (html) {
-					$("#orderCalcCreate").append(html);
-					initSpinner($('.spinner-js'));
-
-					$("#orderCalcCreate").find('.order-calc-js').msOrderCalc({
-						row: '.c-tr'
-						, getTotalResults: function (e, el, results) {
-							// console.log("results: ", results);
-							// console.log("getTotalResults ");
-							$(el).find('.order-calc__total-results-js').toggleClass('show', results.totalCount > 0);
-							$(el).find('.order-calc-btn').prop('disabled', !results.totalCount > 0);
-						}
-						, showedWarningRemoveItem: function (e, el) {
-							// console.log("showedWarningRemoveItem");
-							$(el).find('.order-calc-btn').prop('disabled', true);
-						}
-						, canceledRemoveItem: function (e, el) {
-							// console.log("canceledRemoveItem ");
-							$(el).find('.order-calc-btn').prop('disabled', false);
-						}
-						, removedItem: function () {
-							// console.log("removedItem ");
-						}
-					})
-						.css('border', '4px solid blue'); // для проверки jquery цепочки
-				}});
-		}, 1000)
-	});
 
 	/** ! инициализация спиннера */
 	initSpinner($('.spinner-js'));
@@ -66,9 +31,10 @@ $(function () {
 
 	/** ========================== */
 	/** ========================== */
+
 	/** !инициализация плагина */
 
-	$('.order-calc-js').msOrderCalc({
+	var orderCalcOptions = {
 		row: '.c-tr'
 		//, objParams: {
 		// 	'P209101_155_44': {
@@ -110,8 +76,28 @@ $(function () {
 		// , removedAllItems: function () {
 		// 	console.log("callback: removedAllItems");
 		// }
-	})
+	};
+
+	$('.order-calc-js').msOrderCalc(orderCalcOptions)
 		.css('border', '4px solid green'); // для проверки jquery цепочки
+
+
+	/** ! добавить таблицу динамически */
+	$(document).ready(function(){
+		setTimeout(function () {
+			$.ajax({
+				url: "ms-order-calc--ajax-temp.html",
+				cache: false,
+				dataType: 'html',
+				success: function (html) {
+					$("#orderCalcCreate").append(html);
+					initSpinner($('.spinner-js'));
+
+					$("#orderCalcCreate").find('.order-calc-js').msOrderCalc(orderCalcOptions)
+						.css('border', '4px solid blue'); // для проверки jquery цепочки
+				}});
+		}, 1000)
+	});
 
 	$('.order-calc-js--alt').msOrderCalc({
 		row: '.c-tr'
