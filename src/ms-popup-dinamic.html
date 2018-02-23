@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<!--[if lt IE 9]>      <html class="no-js old-ie" lang="ru"> <![endif]-->
+<!--[if IE 9]>         <html class="no-js ie9" lang="ru"> <![endif]-->
+<!--[if gt IE 9]><!-->
+<html class="no-js" lang="ru">
+<!--<![endif]-->
+
+<head>
+	<meta charset="UTF-8">
+	<title>ms-popup-dinamic</title>
+	<!--Mobile optimized-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.2">
+	<!--Theme color-->
+	<meta name="theme-color" content="#fff">
+	<!--SEO-->
+	<meta name="description" content="описание">
+	<meta name="keywords" content="ключевые слова">
+	<meta name="yandex-verification" content="XXXXXXXXXXXXXX">
+	<meta name="google-site-verification" content="XXXXXXXXXXXXXX">
+	<!--The Open Graph protocol-->
+	<meta property="og:type" content="website">
+	<meta property="og:locale" content="ru_RU">
+	<meta property="og:url" content="http://localhost:3000/index.html">
+	<meta property="og:title" content="Название">
+	<meta property="og:image" content="http://localhost:3000/img/logo.png">
+	<meta property="og:description" content="Описание">
+	<meta property="og:site_name" content="Расширенное название">
+	<!--Favicon-->
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="icon" sizes="16x16 32x32 64x64" href="favicon.ico">
+	<link rel="apple-touch-icon" href="apple-touch-icon.png">
+	<!--Style-->
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/plugins/ms-popup-dinamic.css">
+	<!--Modernizr-->
+	<script src="js/modernizr.min.js"></script>
+</head>
+
+<body class="page-ms-popup-dinamic">
+	<!--[if lt IE 9]> <div class="browserupgrade"><p>You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p></div> <![endif]-->
+	<!-- >>> head.tpl END <<< -->
+	<div class="layout-flood user-content">
+		<h1>Простой попап</h1>
+		<h2>Если необходимо добавлять кнопки открытия динамически</h2>
+		<div class="ms-popup-dinamic ms-popup-d__init-js">
+			<ul>
+				<li>
+					<a href="#example-popup" class="ms-popup-d__opener-js"><span>Открыть попап 1</span></a>
+				</li>
+				<li>
+					<a href="#example-popup" class="ms-popup-d__opener-js"><span>Открыть попап 1</span></a>
+				</li>
+				<li id="add-opener">
+					<div>Динамически добавляем кнопку...</div>
+				</li>
+				<hr>
+				<li>
+					<a href="#example-popup2" class="ms-popup-d__opener-js"><span>Открыть попап 2</span></a>
+				</li>
+				<li id="add-opener2">
+					<div>Динамически добавляем кнопку...</div>
+				</li>
+			</ul>
+		</div>
+		<hr>
+		<hr>
+		<div class="ms-popup-dinamic2 ms-popup-d__init-alt-js">
+			<h3>Свои классы</h3>
+			<ul>
+				<li>
+					<a href="#example-popup3" class="ms-popup-d__opener-alt-js"><span>Открыть попап (новые классы)</span></a>
+				</li>
+				<li id="add-opener3">
+					<div>Динамически добавляем кнопку...</div>
+				</li>
+			</ul>
+		</div>
+		<hr>
+		<hr>
+		<div class="ms-popup-dinamic2 ms-popup-d__init-js">
+			<ul>
+				<li>
+					<a href="#example-popup" class="ms-popup-d__opener-js"><span>Открыть попап 1</span></a>
+				</li>
+			</ul>
+		</div>
+		<!--****popups****-->
+		<div class="popup-default ms-popup-d__popup-js" id="example-popup">
+			<div class="popup-default__holder">
+				<div class="popup-default__cell">
+					<div class="popup-default__layout ms-popup-d__no-close-js">
+						<a href="#" class="popup-default__close ms-popup-d__close-js" title="Закрыть">x close</a>
+						<div>
+							<h2>Попап 1</h2>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusantium aliquid cum cupiditate esse exercitationem explicabo, illum in magnam, magni maiores nam nemo nihil non provident quaerat quod rem sapiente!
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="popup-default ms-popup-d__popup-js" id="example-popup2">
+			<div class="popup-default__holder">
+				<div class="popup-default__cell">
+					<div class="popup-default__layout ms-popup-d__no-close-js">
+						<a href="#" class="popup-default__close ms-popup-d__close-js" title="Закрыть">x close</a>
+						<div>
+							<h2>Попап 2</h2>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusantium aliquid cum cupiditate esse exercitationem explicabo, illum in magnam, magni maiores nam nemo nihil non provident quaerat quod rem sapiente! Lorem ipsum dolor sit amet, consectetur
+							adipisicing elit. Deleniti itaque laborum modi provident repellat. Ab adipisci aliquam corporis dolore labore molestias odit recusandae unde ut vero? Excepturi optio sequi voluptatum?
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--Новые классы-->
+		<div class="popup-default ms-popup-d__popup-alt-js" id="example-popup3">
+			<div class="popup-default__holder">
+				<div class="popup-default__cell">
+					<div class="popup-default__layout ms-popup-d__no-close-alt-js">
+						<a href="#" class="popup-default__close ms-popup-d__close-js" title="Закрыть">x close</a>
+						<div>
+							<h2>Новые классы</h2>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, nemo? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusantium aliquid cum cupiditate esse exercitationem explicabo, illum in magnam, magni maiores nam nemo nihil non provident
+							quaerat quod rem sapiente! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti itaque laborum modi provident repellat. Ab adipisci aliquam corporis dolore labore molestias odit recusandae unde ut vero? Excepturi optio sequi voluptatum?
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- >>> foot.tpl <<< -->
+	<!--footer-->
+	<!--footer end-->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/libs.min.js"></script>
+	<script src="js/plugins/jquery.ms-popup-dinamic.js"></script>
+	<script src="js/common-ms-popup-dinamic.js"></script>
+</body>
+
+</html>

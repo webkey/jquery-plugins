@@ -1,0 +1,107 @@
+@@include('_tpl_layout_head.html', {
+	"title": "ms-popup-dinamic",
+	"pathCss": ["css/plugins/ms-popup-dinamic.css"],
+	"pageClass": "page-ms-popup-dinamic"
+})
+
+<div class="layout-flood user-content">
+	<h1>Простой попап</h1>
+	<h2>Если необходимо добавлять кнопки открытия динамически</h2>
+	<div class="ms-popup-dinamic ms-popup-d__init-js">
+		<ul>
+			<li>
+				<a href="#example-popup" class="ms-popup-d__opener-js"><span>Открыть попап 1</span></a>
+			</li>
+			<li>
+				<a href="#example-popup" class="ms-popup-d__opener-js"><span>Открыть попап 1</span></a>
+			</li>
+			<li id="add-opener">
+				<div>Динамически добавляем кнопку...</div>
+
+			</li>
+			<hr>
+			<li>
+				<a href="#example-popup2" class="ms-popup-d__opener-js"><span>Открыть попап 2</span></a>
+			</li>
+			<li id="add-opener2">
+				<div>Динамически добавляем кнопку...</div>
+
+			</li>
+		</ul>
+	</div>
+	<hr>
+	<hr>
+	<div class="ms-popup-dinamic2 ms-popup-d__init-alt-js">
+		<h3>Свои классы</h3>
+		<ul>
+			<li>
+				<a href="#example-popup3" class="ms-popup-d__opener-alt-js"><span>Открыть попап (новые классы)</span></a>
+			</li>
+			<li id="add-opener3">
+				<div>Динамически добавляем кнопку...</div>
+
+			</li>
+		</ul>
+	</div>
+	<hr>
+	<hr>
+	<div class="ms-popup-dinamic2 ms-popup-d__init-js">
+		<ul>
+			<li>
+				<a href="#example-popup" class="ms-popup-d__opener-js"><span>Открыть попап 1</span></a>
+			</li>
+		</ul>
+	</div>
+
+	<!--****popups****-->
+	<div class="popup-default ms-popup-d__popup-js" id="example-popup">
+		<div class="popup-default__holder">
+			<div class="popup-default__cell">
+				<div class="popup-default__layout ms-popup-d__no-close-js">
+					<a href="#" class="popup-default__close ms-popup-d__close-js" title="Закрыть">x close</a>
+
+					<div>
+						<h2>Попап 1</h2>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusantium aliquid cum cupiditate esse exercitationem explicabo, illum in magnam, magni maiores nam nemo nihil non provident quaerat quod rem sapiente!
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="popup-default ms-popup-d__popup-js" id="example-popup2">
+		<div class="popup-default__holder">
+			<div class="popup-default__cell">
+				<div class="popup-default__layout ms-popup-d__no-close-js">
+
+					<a href="#" class="popup-default__close ms-popup-d__close-js" title="Закрыть">x close</a>
+					<div>
+						<h2>Попап 2</h2>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusantium aliquid cum cupiditate esse exercitationem explicabo, illum in magnam, magni maiores nam nemo nihil non provident quaerat quod rem sapiente!
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti itaque laborum modi provident repellat. Ab adipisci aliquam corporis dolore labore molestias odit recusandae unde ut vero? Excepturi optio sequi voluptatum?
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--Новые классы-->
+	<div class="popup-default ms-popup-d__popup-alt-js" id="example-popup3">
+		<div class="popup-default__holder">
+			<div class="popup-default__cell">
+				<div class="popup-default__layout ms-popup-d__no-close-alt-js">
+
+					<a href="#" class="popup-default__close ms-popup-d__close-js" title="Закрыть">x close</a>
+					<div>
+						<h2>Новые классы</h2>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, nemo?
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusantium aliquid cum cupiditate esse exercitationem explicabo, illum in magnam, magni maiores nam nemo nihil non provident quaerat quod rem sapiente!
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti itaque laborum modi provident repellat. Ab adipisci aliquam corporis dolore labore molestias odit recusandae unde ut vero? Excepturi optio sequi voluptatum?
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+@@include('_tpl_layout_foot.html', {
+	"pathJs": ["js/plugins/jquery.ms-popup-dinamic.js", "js/common-ms-popup-dinamic.js"]
+})
