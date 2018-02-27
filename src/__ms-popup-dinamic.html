@@ -7,6 +7,50 @@
 <div class="layout-flood user-content">
 	<h1>Простой попап</h1>
 	<h2>Если необходимо добавлять кнопки открытия динамически</h2>
+
+	<h2><span class="mark">Callback</span></h2>
+
+	<h3>Options</h3>
+	<ul>
+		<li>
+			<b>opener:</b> <br>
+			<i>Defaults:</i><pre>'.ms-popup-d__opener-js'</pre>
+			<span>Класс элемента, по которому происходит открытие</span>
+		</li>
+		<li>
+			<b>popup:</b> <br>
+			<i>Defaults:</i><pre>'.ms-popup-d__popup-js'</pre>
+			<span>Каласс попапа</span>
+		</li>
+		<li>
+			<b>closeBtn:</b> <br>
+			<i>Defaults:</i><pre>'.ms-popup-d__close-js'</pre>
+			<span>Класс элемента, по которому происходит закрытие</span>
+		</li>
+		<li>
+			<b>outsideClick:</b> <br>
+			<i>Defaults:</i><pre>true</pre>
+			<span>Закрыть все попапы при клике вне попапа</span>
+		</li>
+		<li>
+			<b>escapeClick:</b> <br>
+			<i>Defaults:</i><pre>true</pre>
+			<span>Закрыть все попапы при клике на клавишу escape</span>
+		</li>
+	</ul>
+
+	<h3>afterInit</h3>
+	<p>Вызов вконце функции afterInit()</p>
+	<pre>afterInit: function (e, el) {}</pre>
+
+	<h3>afterOpened</h3>
+	<p>После открытия попапа</p>
+	<pre>afterOpened: function (e, el) {}</pre>
+
+	<h3>afterClosed</h3>
+	<p>После закрытия попапа</p>
+	<pre>afterClosed: function (e, el) {}</pre>
+
 	<div class="ms-popup-dinamic ms-popup-d__init-js">
 		<ul>
 			<li>

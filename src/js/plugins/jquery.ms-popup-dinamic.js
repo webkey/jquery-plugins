@@ -1,20 +1,24 @@
+/*! jquery.ms-popup-dinamic
+ * Version: 2018.1.0
+ * Author: Serhii Ilchenko
+ * Description: Open a simple popup, if an element is added dynamically
+ */
+
 ;(function($){
 	var defaults = {
 		opener: '.ms-popup-d__opener-js',
 		popup: '.ms-popup-d__popup-js',
 		closeBtn: '.ms-popup-d__close-js',
-		addClass: false,
 		outsideClick: true, // Close all if outside click
 		escapeClick: true // Close all if escape key click
 	};
 
-	function SimplePopupDinamic(element, options, index) {
+	function SimplePopupDinamic(element, options) {
 		var self = this;
 
 		self.config = $.extend(true, {}, defaults, options);
 
 		self.element = element;
-		self.index = index;
 		self.stopPropogation = '.ms-popup-d__no-close-js';
 		self.modifiers = {
 			init: 'ms-popup-d--initialized',
@@ -27,6 +31,7 @@
 		if (self.config.outsideClick) {
 			self.clickOutside();
 		}
+		// close popup if clicked escape key
 		if (self.config.escapeClick) {
 			self.clickEscape();
 		}
@@ -52,19 +57,12 @@
 		var self = this;
 
 		self.element.on('click', self.config.opener, function (event) {
-			self.consoleInfo('openerClick','before');
-			
 			var curOpener = $(this);
 			
 			var curId = curOpener.attr('href').substring(1);
 			var curPopup = $('#' + curId);
 
-			var isOpenElement = $('.' + self.modifiers.isOpen);
-			if(isOpenElement.length) {
-
-			}
-
-			if (curPopup.hasClass(self.modifiers.isOpen)) {
+			if (curOpener.hasClass(self.modifiers.isOpen)) {
 				self.closePopup();
 
 				event.preventDefault();
@@ -72,11 +70,16 @@
 				return;
 			}
 
-			self.closePopup();
+			if($('.' + self.modifiers.isOpen).length){
+				self.closePopup();
+			}
 
 			// open current popup
 			curOpener.addClass(self.modifiers.isOpen);
 			curPopup.addClass(self.modifiers.isOpen);
+
+			// callback after opened popup
+			self.element.trigger('afterOpened.simplePopupDinamic');
 
 			event.preventDefault();
 			event.stopPropagation();
@@ -94,17 +97,12 @@
 
 		var self = this;
 		$(document).on('click', function(event){
-			self.consoleInfo('clickOutside','before');
-
 			var isOpenElement = $('.' + self.modifiers.isOpen);
 
 			if(isOpenElement.length && !$(event.target).closest(self.stopPropogation).length) {
 
-				self.consoleInfo('clickOutside','after');
-
 				self.closePopup();
 				event.stopPropagation();
-
 			}
 		});
 
@@ -115,13 +113,9 @@
 		var self = this;
 
 		$(document).keyup(function(e) {
-			self.consoleInfo('clickEscape','before');
-
 			var isOpenElement = $('.' + self.modifiers.isOpen);
 
 			if (isOpenElement.length && e.keyCode === 27) {
-
-				self.consoleInfo('clickEscape','after');
 
 				self.closePopup();
 			}
@@ -136,12 +130,7 @@
 		$('.' + self.modifiers.isOpen).removeClass(self.modifiers.isOpen);
 
 		// callback afterClose
-		self.element.trigger('afterClose.simplePopupDinamic');
-	};
-
-	/**удалить*/
-	SimplePopupDinamic.prototype.consoleInfo = function (key, suffix, param) {
-		console.log('==' + this.index + '-' + key + '-' + suffix + '==', param || '');
+		self.element.trigger('afterClosed.simplePopupDinamic');
 	};
 
 	SimplePopupDinamic.prototype.init = function () {
@@ -155,8 +144,8 @@
 	};
 
 	$.fn.simplePopupDinamic = function (options) {
-		return this.each(function(index){
-			new SimplePopupDinamic($(this), options, index);
+		return this.each(function(){
+			new SimplePopupDinamic($(this), options);
 		});
 
 	};

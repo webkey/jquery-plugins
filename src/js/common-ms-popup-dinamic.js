@@ -6,8 +6,11 @@ $(function () {
 	var $popup = $('.ms-popup-d__init-js');
 	if ($popup.length) {
 		$popup.simplePopupDinamic({
-			afterClose: function (e, el, popup) {
-				console.log('afterClose, el: ', el);
+			afterOpened: function (e, el) {
+				console.log('afterOpened, el: ', el);
+			},
+			afterClosed: function (e, el) {
+				console.log('afterClosed, el: ', el);
 			}
 		})
 
@@ -18,8 +21,11 @@ $(function () {
 			opener: '.ms-popup-d__opener-alt-js',
 			popup: '.ms-popup-d__popup-alt-js',
 			closeBtn: '.ms-popup-d__close-alt-js',
-			afterClose: function (e, el, popup) {
-				console.log('afterClose, el: ', el);
+			afterOpened: function (e, el) {
+				console.log('afterOpened, el: ', el);
+			},
+			afterClosed: function (e, el) {
+				console.log('afterClosed, el: ', el);
 			}
 		})
 

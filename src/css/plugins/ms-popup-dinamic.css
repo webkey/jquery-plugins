@@ -93,7 +93,7 @@
 }
 
 /*not use*/
-.ms-popup-d--is-open.ms-popup-d__opener-js {
+.ms-popup-d--is-open.ms-popup-d__opener-js, .ms-popup-d--is-open.ms-popup-d__opener-alt-js {
 	font-weight: bold;
 }
 

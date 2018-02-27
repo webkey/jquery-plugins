@@ -578,6 +578,11 @@ code, pre {
 	}
 }
 
+ul li pre {
+	display: inline-block;
+	padding: 0 5px;
+}
+
 .user-content p + h2,
 .user-content ul + h2,
 .user-content ol + h2 {
