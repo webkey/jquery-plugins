@@ -1,0 +1,26 @@
+@@include('_tpl_layout_head.html', {
+	"title": "Превью карусель",
+	"pathCss": ["css/plugins/preview-carousel.css"],
+	"pageClass": "preview-carousel-page"
+})
+
+<div class="layout-text">
+	<h1>Превью карусель (на чистом css)</h1>
+	<p>Источник: <a href="https://auto.ru/">https://auto.ru/</a></p>
+
+	<div class="products">
+		<div class="products__list">
+			@@loop("_tpl_preview-carousel__items.html", "includes/json/preview-products__items.json")
+		</div>
+	</div>
+</div>
+
+<!--<script src="js/jquery.min.js"></script>-->
+<!--<script src="js/libs.min.js"></script>-->
+
+<script>
+	// add script
+</script>
+
+</body>
+</html>

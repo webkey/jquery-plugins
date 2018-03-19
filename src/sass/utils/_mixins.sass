@@ -457,11 +457,11 @@
 		left: round($horizontal-space/2)
 		right: round($horizontal-space/2)
 
-	&, &:nth-last-child(n+#{$length-in-row+1})
-		margin-bottom: $bottom-space
+	&:nth-child(n)
+		margin-top: $bottom-space
 
-	&:nth-last-child(-n+#{$length-in-row})
-		margin-bottom: 0
+	&:nth-child(-n+#{$length-in-row})
+		margin-top: 0
 
 /// использовать если нужно только поменять количество колонок
 =grid-item-responsive($length-in-row: 1, $horizontal-space: 20px, $bottom-space: $horizontal-space)
@@ -470,11 +470,11 @@
 		left: round($horizontal-space/2)
 		right: round($horizontal-space/2)
 
-	&, &:nth-last-child(n+#{$length-in-row+1})
-		margin-bottom: $bottom-space
+	&:nth-child(n)
+		margin-top: $bottom-space
 
-	&:nth-last-child(-n+#{$length-in-row})
-		margin-bottom: 0
+	&:nth-child(-n+#{$length-in-row})
+		margin-top: 0
 
 =grid-item-float($length-in-row: 1, $horizontal-space: 20px, $bottom-space: $horizontal-space)
 	float: left
@@ -482,7 +482,33 @@
 	padding:
 		left: round($horizontal-space/2)
 		right: round($horizontal-space/2)
-	margin-bottom: $bottom-space
+
+	&:nth-child(n)
+		margin-top: $bottom-space
+		clear: none
+
+	&:nth-child(-n+#{$length-in-row})
+		margin-top: 0
+
+	&:nth-child(#{$length-in-row}n+1)
+		clear: left
+
+/// использовать если нужно только поменять количество колонок
+=grid-item-float-responsive($length-in-row: 1, $horizontal-space: 0, $bottom-space: $horizontal-space)
+	width: round-float(100%/$length-in-row, 2)
+	padding:
+		left: round($horizontal-space/2)
+		right: round($horizontal-space/2)
+
+	&:nth-child(n)
+		margin-top: $bottom-space
+		clear: none
+
+	&:nth-child(-n+#{$length-in-row})
+		margin-top: 0
+
+	&:nth-child(#{$length-in-row}n+1)
+		clear: left
 
 // =============================================================================
 // Fill parent with absolute or relative position or without position
