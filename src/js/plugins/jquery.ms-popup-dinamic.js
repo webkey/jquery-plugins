@@ -9,8 +9,8 @@
 		opener: '.ms-popup-d__opener-js',
 		popup: '.ms-popup-d__popup-js',
 		closeBtn: '.ms-popup-d__close-js',
-		outsideClick: true, // Close all if outside click
-		escapeClick: true // Close all if escape key click
+		outsideClose: true, // Close all if outside click
+		escapeClose: true // Close all if escape key click
 	};
 
 	function SimplePopupDinamic(element, options) {
@@ -28,12 +28,12 @@
 		self.callbacks();
 
 		// close popup if clicked outside active element
-		if (self.config.outsideClick) {
-			self.clickOutside();
+		self.clickOutside();
+		if (self.config.outsideClose) {
 		}
 		// close popup if clicked escape key
-		if (self.config.escapeClick) {
-			self.clickEscape();
+		self.clickEscape();
+		if (self.config.escapeClose) {
 		}
 		self.eventOnOpener();
 
@@ -98,6 +98,12 @@
 		var self = this;
 		$(document).on('click', function(event){
 			var isOpenElement = $('.' + self.modifiers.isOpen);
+			console.log(self.element);
+			console.log(self.config.outsideClose);
+
+			if(self.config.outsideClose){
+				console.log('outsideClose is true');
+			}
 
 			if(isOpenElement.length && !$(event.target).closest(self.stopPropogation).length) {
 
@@ -147,6 +153,5 @@
 		return this.each(function(){
 			new SimplePopupDinamic($(this), options);
 		});
-
 	};
 })(jQuery);

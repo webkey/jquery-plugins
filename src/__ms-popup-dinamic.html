@@ -28,12 +28,12 @@
 			<span>Класс элемента, по которому происходит закрытие</span>
 		</li>
 		<li>
-			<b>outsideClick:</b> <br>
+			<b>outsideClose:</b> <br>
 			<i>Defaults:</i><pre>true</pre>
 			<span>Закрыть все попапы при клике вне попапа</span>
 		</li>
 		<li>
-			<b>escapeClick:</b> <br>
+			<b>escapeClose:</b> <br>
 			<i>Defaults:</i><pre>true</pre>
 			<span>Закрыть все попапы при клике на клавишу escape</span>
 		</li>
@@ -76,12 +76,26 @@
 	<hr>
 	<hr>
 	<div class="ms-popup-dinamic2 ms-popup-d__init-alt-js">
-		<h3>Свои классы</h3>
+		<h3>Вызов плагина с недефолтными классами кнопки и попапа</h3>
 		<ul>
 			<li>
-				<a href="#example-popup3" class="ms-popup-d__opener-alt-js"><span>Открыть попап (новые классы)</span></a>
+				<a href="#example-popup3" class="ms-popup-d__opener-alt-js"><span>Открыть попап (Новые классы)</span></a>
 			</li>
 			<li id="add-opener3">
+				<div>Динамически добавляем кнопку...</div>
+
+			</li>
+		</ul>
+	</div>
+	<hr>
+	<hr>
+	<div class="ms-popup-dinamic2 ms-popup-d__opener-alt2-js">
+		<h3>Вызов плагина с недефолтными классами только кнопки</h3>
+		<ul>
+			<li>
+				<a href="#example-popup" class="ms-popup-d__opener-alt-js"><span>Открыть попап 1</span></a>
+			</li>
+			<li id="add-opener4">
 				<div>Динамически добавляем кнопку...</div>
 
 			</li>
@@ -104,9 +118,14 @@
 				<div class="popup-default__layout ms-popup-d__no-close-js">
 					<a href="#" class="popup-default__close ms-popup-d__close-js" title="Закрыть">x close</a>
 
-					<div>
+					<div class="ms-popup-d__init-js">
 						<h2>Попап 1</h2>
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusantium aliquid cum cupiditate esse exercitationem explicabo, illum in magnam, magni maiores nam nemo nihil non provident quaerat quod rem sapiente!
+						Lorem sit amet, consectetur adipisicing elit. Ab accusantium aliquid cum cupiditate esse exercitationem explicabo, illum in magnam, magni maiores nam nemo nihil non provident quaerat quod rem sapiente!
+						<br>
+						<br>
+						<a href="#example-popup2" class="ms-popup-d__opener-js"><span>Открыть попап 2</span></a>
+						<br>
+						<a href="#example-popup3" class="ms-popup-d__opener-alt-js"><span>Открыть попап (новые классы)</span></a>
 					</div>
 				</div>
 			</div>
@@ -118,10 +137,13 @@
 				<div class="popup-default__layout ms-popup-d__no-close-js">
 
 					<a href="#" class="popup-default__close ms-popup-d__close-js" title="Закрыть">x close</a>
-					<div>
+					<div class="ms-popup-d__init-js">
 						<h2>Попап 2</h2>
 						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusantium aliquid cum cupiditate esse exercitationem explicabo, illum in magnam, magni maiores nam nemo nihil non provident quaerat quod rem sapiente!
 						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti itaque laborum modi provident repellat. Ab adipisci aliquam corporis dolore labore molestias odit recusandae unde ut vero? Excepturi optio sequi voluptatum?
+						<br>
+						<br>
+						<a href="#example-popup" class="ms-popup-d__opener-js"><span>Открыть попап 1</span></a>
 					</div>
 				</div>
 			</div>

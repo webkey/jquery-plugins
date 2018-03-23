@@ -6,12 +6,14 @@ $(function () {
 	var $popup = $('.ms-popup-d__init-js');
 	if ($popup.length) {
 		$popup.simplePopupDinamic({
-			afterOpened: function (e, el) {
-				console.log('afterOpened, el: ', el);
-			},
-			afterClosed: function (e, el) {
-				console.log('afterClosed, el: ', el);
-			}
+			outsideClose: false,
+			escapeClose: false
+			// , afterOpened: function (e, el) {
+			// 	console.log('afterOpened ($popup), el: ', el);
+			// },
+			// afterClosed: function (e, el) {
+			// 	console.log('afterClosed ($popup), el: ', el);
+			// }
 		})
 
 	}
@@ -20,20 +22,32 @@ $(function () {
 		$popupAlt.simplePopupDinamic({
 			opener: '.ms-popup-d__opener-alt-js',
 			popup: '.ms-popup-d__popup-alt-js',
-			closeBtn: '.ms-popup-d__close-alt-js',
-			afterOpened: function (e, el) {
-				console.log('afterOpened, el: ', el);
-			},
-			afterClosed: function (e, el) {
-				console.log('afterClosed, el: ', el);
-			}
+			closeBtn: '.ms-popup-d__close-alt-js'
+			// , afterOpened: function (e, el) {
+			// 	console.log('afterOpened ($popupAlt), el: ', el);
+			// },
+			// afterClosed: function (e, el) {
+			// 	console.log('afterClosed ($popupAlt), el: ', el);
+			// }
 		})
-
+	}
+	var $popupAlt2 = $('.ms-popup-d__opener-alt2-js');
+	if ($popupAlt2.length) {
+		$popupAlt2.simplePopupDinamic({
+			opener: '.ms-popup-d__opener-alt-js'
+			// , afterOpened: function (e, el) {
+			// 	console.log('afterOpened ($popupAlt2), el: ', el);
+			// },
+			// afterClosed: function (e, el) {
+			// 	console.log('afterClosed ($popupAlt2), el: ', el);
+			// }
+		})
 	}
 
 	setTimeout(function () {
 		$('#add-opener').html('<a href="#example-popup" class="ms-popup-d__opener-js"><span>Открыть попап 1</span></a>');
 		$('#add-opener2').html('<a href="#example-popup2" class="ms-popup-d__opener-js"><span>Открыть попап 2</span></a>');
 		$('#add-opener3').html('<a href="#example-popup3" class="ms-popup-d__opener-alt-js"><span>Открыть попап (Новые классы)</span></a>');
+		$('#add-opener4').html('<a href="#example-popup2" class="ms-popup-d__opener-alt-js"><span>Открыть попап 2</span></a>');
 	}, 1500)
 });
