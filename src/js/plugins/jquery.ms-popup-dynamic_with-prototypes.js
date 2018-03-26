@@ -1,4 +1,4 @@
-/*! jquery.ms-popup-dinamic
+/*! jquery.ms-popup-dynamic
  * Version: 2018.1.0
  * Author: Serhii Ilchenko
  * Description: Open a simple popup, if an element is added dynamically
@@ -13,7 +13,7 @@
 		escapeClose: true // Close all if escape key click
 	};
 
-	function SimplePopupDinamic(element, options) {
+	function SimplePopupDynamic(element, options) {
 		var self = this;
 
 		self.config = $.extend(true, {}, defaults, options);
@@ -41,19 +41,19 @@
 	}
 
 	/** track events */
-	SimplePopupDinamic.prototype.callbacks = function () {
+	SimplePopupDynamic.prototype.callbacks = function () {
 		var self = this;
 
 		$.each(self.config, function (key, value) {
 			if(typeof value === 'function') {
-				self.element.on(key + '.simplePopupDinamic', function (e, param) {
+				self.element.on(key + '.simplePopupDynamic', function (e, param) {
 					return value(e, self.element, param);
 				});
 			}
 		});
 	};
 
-	SimplePopupDinamic.prototype.eventOnOpener = function () {
+	SimplePopupDynamic.prototype.eventOnOpener = function () {
 		var self = this;
 
 		self.element.on('click', self.config.opener, function (event) {
@@ -79,7 +79,7 @@
 			curPopup.addClass(self.modifiers.isOpen);
 
 			// callback after opened popup
-			self.element.trigger('afterOpened.simplePopupDinamic');
+			self.element.trigger('afterOpened.simplePopupDynamic');
 
 			event.preventDefault();
 			event.stopPropagation();
@@ -93,7 +93,7 @@
 		});
 	};
 
-	SimplePopupDinamic.prototype.clickOutside = function () {
+	SimplePopupDynamic.prototype.clickOutside = function () {
 
 		var self = this;
 		$(document).on('click', function(event){
@@ -114,7 +114,7 @@
 
 	};
 
-	SimplePopupDinamic.prototype.clickEscape = function () {
+	SimplePopupDynamic.prototype.clickEscape = function () {
 
 		var self = this;
 
@@ -129,29 +129,32 @@
 
 	};
 
-	SimplePopupDinamic.prototype.closePopup = function () {
+	SimplePopupDynamic.prototype.closePopup = function () {
 
 		var self = this;
 
 		$('.' + self.modifiers.isOpen).removeClass(self.modifiers.isOpen);
 
 		// callback afterClose
-		self.element.trigger('afterClosed.simplePopupDinamic');
+		self.element.trigger('afterClosed.simplePopupDynamic');
 	};
 
-	SimplePopupDinamic.prototype.init = function () {
+	SimplePopupDynamic.prototype.init = function () {
 
 		var self = this;
 
 		this.element.addClass(self.modifiers.init);
 
-		this.element.trigger('afterInit.simplePopupDinamic');
+		this.element.trigger('afterInit.simplePopupDynamic');
 
 	};
 
-	$.fn.simplePopupDinamic = function (options) {
+	$.fn.simplePopupDynamic = function (options) {
 		return this.each(function(){
-			new SimplePopupDinamic($(this), options);
+			// check for re-initialization
+			if(!$(this).data('simplePopupDynamic')) {
+				$(this).data('simplePopupDynamic', new SimplePopupDynamic($(this), options));
+			}
 		});
 	};
 })(jQuery);

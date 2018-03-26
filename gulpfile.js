@@ -157,7 +157,7 @@ gulp.task('default', ['watch']); // Назначаем таск watch дефол
 gulp.task('minifyJsPlugins', function () {
 	return gulp.src([
 		'src/js/plugins/jquery.ms-order-calc.js'
-		, 'src/js/plugins/jquery.ms-popup-dinamic.js'
+		, 'src/js/plugins/jquery.ms-popup-dynamic.js'
 	])
 		// .pipe(rename({suffix: '.min'}))
 		.pipe(uglify({

@@ -3,9 +3,12 @@
  */
 
 $(function () {
+	// $.fn.simplePopupDynamic.defaultOptions.outsideClose = false;
+	// $.fn.simplePopupDynamic.defaultOptions.escapeClose = false;
+
 	var $popup = $('.ms-popup-d__init-js');
 	if ($popup.length) {
-		$popup.simplePopupDinamic({
+		$popup.simplePopupDynamic({
 			outsideClose: false,
 			escapeClose: false
 			// , afterOpened: function (e, el) {
@@ -19,7 +22,7 @@ $(function () {
 	}
 	var $popupAlt = $('.ms-popup-d__init-alt-js');
 	if ($popupAlt.length) {
-		$popupAlt.simplePopupDinamic({
+		$popupAlt.simplePopupDynamic({
 			opener: '.ms-popup-d__opener-alt-js',
 			popup: '.ms-popup-d__popup-alt-js',
 			closeBtn: '.ms-popup-d__close-alt-js'
@@ -33,7 +36,7 @@ $(function () {
 	}
 	var $popupAlt2 = $('.ms-popup-d__opener-alt2-js');
 	if ($popupAlt2.length) {
-		$popupAlt2.simplePopupDinamic({
+		$popupAlt2.simplePopupDynamic({
 			opener: '.ms-popup-d__opener-alt-js'
 			// , afterOpened: function (e, el) {
 			// 	console.log('afterOpened ($popupAlt2), el: ', el);
@@ -45,9 +48,14 @@ $(function () {
 	}
 
 	setTimeout(function () {
+		// проверка на повторную инициализацию
+		$popup.simplePopupDynamic({});
+
+
 		$('#add-opener').html('<a href="#example-popup" class="ms-popup-d__opener-js"><span>Открыть попап 1</span></a>');
 		$('#add-opener2').html('<a href="#example-popup2" class="ms-popup-d__opener-js"><span>Открыть попап 2</span></a>');
 		$('#add-opener3').html('<a href="#example-popup3" class="ms-popup-d__opener-alt-js"><span>Открыть попап (Новые классы)</span></a>');
 		$('#add-opener4').html('<a href="#example-popup2" class="ms-popup-d__opener-alt-js"><span>Открыть попап 2</span></a>');
-	}, 1500)
+	}, 1500);
+
 });

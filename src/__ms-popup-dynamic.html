@@ -1,7 +1,7 @@
 @@include('_tpl_layout_head.html', {
-	"title": "ms-popup-dinamic",
-	"pathCss": ["css/plugins/ms-popup-dinamic.css"],
-	"pageClass": "page-ms-popup-dinamic"
+	"title": "ms-popup-dynamic",
+	"pathCss": ["css/plugins/ms-popup-dynamic.css"],
+	"pageClass": "page-ms-popup-dynamic"
 })
 
 <div class="layout-flood user-content">
@@ -33,25 +33,38 @@
 			<span>Закрыть все попапы при клике вне попапа</span>
 		</li>
 		<li>
-			<b>escapeClose:</b> <br>
+			<b>escapeClose:</b>
 			<i>Defaults:</i><pre>true</pre>
 			<span>Закрыть все попапы при клике на клавишу escape</span>
 		</li>
 	</ul>
 
-	<h3>afterInit</h3>
-	<p>Вызов вконце функции afterInit()</p>
-	<pre>afterInit: function (e, el) {}</pre>
+	<h3>События</h3>
+	<ul>
+		<li>
+			<b>afterInit</b> <br>
+			<p>Вызов вконце функции afterInit()</p>
+			<pre>afterInit: function (e, el) {}</pre>
+		</li>
+		<li>
+			<b>afterOpened</b> <br>
+			<p>После открытия попапа</p>
+			<pre>afterOpened: function (e, el) {}</pre>
+		</li>
+		<li>
+			<b>afterClosed</b> <br>
+			<p>После закрытия попапа</p>
+			<pre>afterClosed: function (e, el) {}</pre>
+		</li>
+	</ul>
 
-	<h3>afterOpened</h3>
-	<p>После открытия попапа</p>
-	<pre>afterOpened: function (e, el) {}</pre>
+	<h3>Глобальные настройки</h3>
+	<p>Поменять настройки плагина глобально можно через</p>
+	<pre>$.fn.simplePopupDynamic.defaultOptions</pre>
+	<p>Например:</p>
+	<pre>$.fn.simplePopupDynamic.defaultOptions.escapeClose = false;</pre>
 
-	<h3>afterClosed</h3>
-	<p>После закрытия попапа</p>
-	<pre>afterClosed: function (e, el) {}</pre>
-
-	<div class="ms-popup-dinamic ms-popup-d__init-js">
+	<div class="ms-popup-dynamic ms-popup-d__init-js">
 		<ul>
 			<li>
 				<a href="#example-popup" class="ms-popup-d__opener-js"><span>Открыть попап 1</span></a>
@@ -75,7 +88,7 @@
 	</div>
 	<hr>
 	<hr>
-	<div class="ms-popup-dinamic2 ms-popup-d__init-alt-js">
+	<div class="ms-popup-dynamic2 ms-popup-d__init-alt-js">
 		<h3>Вызов плагина с недефолтными классами кнопки и попапа</h3>
 		<ul>
 			<li>
@@ -89,7 +102,7 @@
 	</div>
 	<hr>
 	<hr>
-	<div class="ms-popup-dinamic2 ms-popup-d__opener-alt2-js">
+	<div class="ms-popup-dynamic2 ms-popup-d__opener-alt2-js">
 		<h3>Вызов плагина с недефолтными классами только кнопки</h3>
 		<ul>
 			<li>
@@ -103,7 +116,7 @@
 	</div>
 	<hr>
 	<hr>
-	<div class="ms-popup-dinamic2 ms-popup-d__init-js">
+	<div class="ms-popup-dynamic2 ms-popup-d__init-js">
 		<ul>
 			<li>
 				<a href="#example-popup" class="ms-popup-d__opener-js"><span>Открыть попап 1</span></a>
@@ -169,5 +182,5 @@
 </div>
 
 @@include('_tpl_layout_foot.html', {
-	"pathJs": ["js/plugins/jquery.ms-popup-dinamic.js", "js/common-ms-popup-dinamic.js"]
+	"pathJs": ["js/plugins/jquery.ms-popup-dynamic.js", "js/common-ms-popup-dynamic.js"]
 })

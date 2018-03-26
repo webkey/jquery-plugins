@@ -7,7 +7,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>ms-popup-dinamic</title>
+	<title>ms-popup-dynamic</title>
 	<!--Mobile optimized-->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.2">
 	<!--Theme color-->
@@ -31,12 +31,12 @@
 	<link rel="apple-touch-icon" href="apple-touch-icon.png">
 	<!--Style-->
 	<link rel="stylesheet" href="css/main.css">
-	<link rel="stylesheet" href="css/plugins/ms-popup-dinamic.css">
+	<link rel="stylesheet" href="css/plugins/ms-popup-dynamic.css">
 	<!--Modernizr-->
 	<script src="js/modernizr.min.js"></script>
 </head>
 
-<body class="page-ms-popup-dinamic">
+<body class="page-ms-popup-dynamic">
 	<!--[if lt IE 9]> <div class="browserupgrade"><p>You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p></div> <![endif]-->
 	<!-- >>> head.tpl END <<< -->
 	<div class="layout-flood user-content">
@@ -70,22 +70,36 @@
 				<span>Закрыть все попапы при клике вне попапа</span>
 			</li>
 			<li>
-				<b>escapeClose:</b> <br>
+				<b>escapeClose:</b>
 				<i>Defaults:</i>
 				<pre>true</pre>
 				<span>Закрыть все попапы при клике на клавишу escape</span>
 			</li>
 		</ul>
-		<h3>afterInit</h3>
-		<p>Вызов вконце функции afterInit()</p>
-		<pre>afterInit: function (e, el) {}</pre>
-		<h3>afterOpened</h3>
-		<p>После открытия попапа</p>
-		<pre>afterOpened: function (e, el) {}</pre>
-		<h3>afterClosed</h3>
-		<p>После закрытия попапа</p>
-		<pre>afterClosed: function (e, el) {}</pre>
-		<div class="ms-popup-dinamic ms-popup-d__init-js">
+		<h3>События</h3>
+		<ul>
+			<li>
+				<b>afterInit</b> <br>
+				<p>Вызов вконце функции afterInit()</p>
+				<pre>afterInit: function (e, el) {}</pre>
+			</li>
+			<li>
+				<b>afterOpened</b> <br>
+				<p>После открытия попапа</p>
+				<pre>afterOpened: function (e, el) {}</pre>
+			</li>
+			<li>
+				<b>afterClosed</b> <br>
+				<p>После закрытия попапа</p>
+				<pre>afterClosed: function (e, el) {}</pre>
+			</li>
+		</ul>
+		<h3>Глобальные настройки</h3>
+		<p>Поменять настройки плагина глобально можно через</p>
+		<pre>$.fn.simplePopupDynamic.defaultOptions</pre>
+		<p>Например:</p>
+		<pre>$.fn.simplePopupDynamic.defaultOptions.escapeClose = false;</pre>
+		<div class="ms-popup-dynamic ms-popup-d__init-js">
 			<ul>
 				<li>
 					<a href="#example-popup" class="ms-popup-d__opener-js"><span>Открыть попап 1</span></a>
@@ -107,7 +121,7 @@
 		</div>
 		<hr>
 		<hr>
-		<div class="ms-popup-dinamic2 ms-popup-d__init-alt-js">
+		<div class="ms-popup-dynamic2 ms-popup-d__init-alt-js">
 			<h3>Вызов плагина с недефолтными классами кнопки и попапа</h3>
 			<ul>
 				<li>
@@ -120,7 +134,7 @@
 		</div>
 		<hr>
 		<hr>
-		<div class="ms-popup-dinamic2 ms-popup-d__opener-alt2-js">
+		<div class="ms-popup-dynamic2 ms-popup-d__opener-alt2-js">
 			<h3>Вызов плагина с недефолтными классами только кнопки</h3>
 			<ul>
 				<li>
@@ -133,7 +147,7 @@
 		</div>
 		<hr>
 		<hr>
-		<div class="ms-popup-dinamic2 ms-popup-d__init-js">
+		<div class="ms-popup-dynamic2 ms-popup-d__init-js">
 			<ul>
 				<li>
 					<a href="#example-popup" class="ms-popup-d__opener-js"><span>Открыть попап 1</span></a>
@@ -197,8 +211,8 @@
 	<!--footer end-->
 	<script src="js/jquery.min.js"></script>
 	<script src="js/libs.min.js"></script>
-	<script src="js/plugins/jquery.ms-popup-dinamic.js"></script>
-	<script src="js/common-ms-popup-dinamic.js"></script>
+	<script src="js/plugins/jquery.ms-popup-dynamic.js"></script>
+	<script src="js/common-ms-popup-dynamic.js"></script>
 </body>
 
 </html>
