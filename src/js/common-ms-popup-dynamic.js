@@ -9,13 +9,17 @@ $(function () {
 	var $popup = $('.ms-popup-d__init-js');
 	if ($popup.length) {
 		$popup.simplePopupDynamic({
-			outsideClose: false,
-			escapeClose: false
+			dataClickOutside: false,
+			dataClickEsc: false
 			// , afterOpened: function (e, el) {
 			// 	console.log('afterOpened ($popup), el: ', el);
 			// },
 			// afterClosed: function (e, el) {
 			// 	console.log('afterClosed ($popup), el: ', el);
+			// }
+			// , afterInit: function (e, el) {
+			// 	console.log('afterInit, e: ', e);
+			// 	console.log('afterInit, el: ', el);
 			// }
 		})
 
