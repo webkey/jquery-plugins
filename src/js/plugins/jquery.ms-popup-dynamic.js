@@ -84,7 +84,7 @@
 					console.log("$(event.target).closest(noCloseWrap): ", $(event.target).closest(noCloseWrap));
 
 					if(activeElement.length && activeElement.data(data.dataClickOutside) && !$(event.target).closest(noCloseWrap).length) {
-						// close();
+						close();
 						event.stopPropagation();
 					}
 				});

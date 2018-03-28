@@ -9,8 +9,8 @@ $(function () {
 	var $popup = $('.ms-popup-d__init-js');
 	if ($popup.length) {
 		$popup.simplePopupDynamic({
-			dataClickOutside: false,
-			dataClickEsc: false
+			// dataClickOutside: false,
+			// dataClickEsc: false
 			// , afterOpened: function (e, el) {
 			// 	console.log('afterOpened ($popup), el: ', el);
 			// },
