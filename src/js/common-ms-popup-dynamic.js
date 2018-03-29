@@ -22,7 +22,6 @@ $(function () {
 			// 	console.log('afterInit, el: ', el);
 			// }
 		})
-
 	}
 	var $popupAlt = $('.ms-popup-d__init-alt-js');
 	if ($popupAlt.length) {
@@ -30,24 +29,12 @@ $(function () {
 			opener: '.ms-popup-d__opener-alt-js',
 			popup: '.ms-popup-d__popup-alt-js',
 			closeBtn: '.ms-popup-d__close-alt-js'
-			// , afterOpened: function (e, el) {
-			// 	console.log('afterOpened ($popupAlt), el: ', el);
-			// },
-			// afterClosed: function (e, el) {
-			// 	console.log('afterClosed ($popupAlt), el: ', el);
-			// }
 		})
 	}
-	var $popupAlt2 = $('.ms-popup-d__opener-alt2-js');
+	var $popupAlt2 = $('.ms-popup-d__init-alt2-js');
 	if ($popupAlt2.length) {
 		$popupAlt2.simplePopupDynamic({
-			opener: '.ms-popup-d__opener-alt-js'
-			// , afterOpened: function (e, el) {
-			// 	console.log('afterOpened ($popupAlt2), el: ', el);
-			// },
-			// afterClosed: function (e, el) {
-			// 	console.log('afterClosed ($popupAlt2), el: ', el);
-			// }
+			opener: '.ms-popup-d__opener-alt2-js'
 		})
 	}
 
@@ -56,10 +43,10 @@ $(function () {
 		$popup.simplePopupDynamic({});
 
 
-		$('#add-opener').html('<a href="#example-popup" class="ms-popup-d__opener-js"><span>Открыть попап 1</span></a>');
+		$('#add-opener').html('<a href="#example-popup1" class="ms-popup-d__opener-js"><span>Открыть попап 1</span></a>');
 		$('#add-opener2').html('<a href="#example-popup2" class="ms-popup-d__opener-js"><span>Открыть попап 2</span></a>');
-		$('#add-opener3').html('<a href="#example-popup3" class="ms-popup-d__opener-alt-js"><span>Открыть попап (Новые классы)</span></a>');
-		$('#add-opener4').html('<a href="#example-popup2" class="ms-popup-d__opener-alt-js"><span>Открыть попап 2</span></a>');
+		$('#add-opener3').html('<a href="#example-popup3" class="ms-popup-d__opener-alt-js"><span>Открыть попап 3 (Новые классы)</span></a>');
+		$('#add-opener4').html('<a href="#example-popup1" class="ms-popup-d__opener-alt2-js"><span>Открыть попап 1 (Но кнопка открытия инициализируется с недефолтным классом)</span></a>');
 	}, 1500);
 
 });

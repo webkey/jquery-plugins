@@ -93,8 +93,13 @@
 }
 
 /*not use*/
-.ms-popup-d--is-open.ms-popup-d__opener-js, .ms-popup-d--is-open.ms-popup-d__opener-alt-js {
+.ms-popup-d--is-open.ms-popup-d__opener-js, .ms-popup-d--is-open.ms-popup-d__opener-alt-js, .ms-popup-d--is-open.ms-popup-d__opener-alt2-js {
 	font-weight: bold;
+}
+
+.page-ms-popup-dynamic .layout-flood {
+	margin-right: 0;
+	margin-left: 0;
 }
 
 /*# sourceMappingURL=ms-popup-dynamic.css.map */

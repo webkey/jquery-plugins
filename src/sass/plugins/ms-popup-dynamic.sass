@@ -1,3 +1,5 @@
+@import "../utils/mixins"
+
 .popup-default
 	display: none
 	position: fixed
@@ -81,5 +83,9 @@
 /*not use*/
 ///*=================*/
 .ms-popup-d--is-open
-	&.ms-popup-d__opener-js, &.ms-popup-d__opener-alt-js
+	&.ms-popup-d__opener-js, &.ms-popup-d__opener-alt-js, &.ms-popup-d__opener-alt2-js
 		font-weight: bold
+
+.page-ms-popup-dynamic
+	.layout-flood
+		+margin-horizontal(0)

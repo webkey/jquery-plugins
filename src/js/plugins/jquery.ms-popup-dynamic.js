@@ -43,7 +43,6 @@
 						$currentPopup = $('#' + $curOpener.attr('href').substring(1));
 
 					if ($curOpener.hasClass(modifiers.isOpen)) {
-						// self.closePopup();
 						close();
 
 						event.preventDefault();
@@ -80,8 +79,6 @@
 			closeByClickOutside = function () {
 				$doc.on('click', function(event){
 					var activeElement = $('.' + modifiers.isOpen);
-
-					console.log("$(event.target).closest(noCloseWrap): ", $(event.target).closest(noCloseWrap));
 
 					if(activeElement.length && activeElement.data(data.dataClickOutside) && !$(event.target).closest(noCloseWrap).length) {
 						close();
