@@ -1,3 +1,11 @@
+@import "../utils/mixins"
+
+// =====================
+// Не копировать
+.ms-shutter-page
+	//.layout-text
+		+margin-horizontal(0)
+
 // =============================================================
 // ========== стили необходимые для работы плагина =============
 // =============================================================
@@ -7,11 +15,6 @@
 	visibility: hidden
 
 	.is-open &
-		opacity: 1
-		visibility: visible
-
-	// для тестирования (не копировать)
-	.is-open-class-var-1 &, .is-open-class-var-2 &
 		opacity: 1
 		visibility: visible
 

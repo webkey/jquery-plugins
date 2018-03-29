@@ -1,58 +1,63 @@
-;(function($){
-	var defaults = {
-		key: 'value',
-		initClass: 'ms-drop--initialized'
+/*! jquery.ms-msShutter.js
+ * Version: 2018.1.0
+ * Author: Serhii Ilchenko
+ * Description: popup-msShutter
+ */
 
-		// Callback functions
-		// created: function () {} // Вызов вконце функции init()
+;(function($){
+	'use strict';
+
+	var Shutter = function(element, config){
+		var self,
+			$element = $(element),
+			modifiers = {
+				init: 'ms-shutter--initialized'
+			};
+
+		var callbacks = function() {
+				/** track events */
+				$.each(config, function (key, value) {
+					if(typeof value === 'function') {
+						$element.on(key + '.msShutter', function (e, param) {
+							return value(e, $element, param);
+						});
+					}
+				});
+			},
+			init = function () {
+				$element.addClass(modifiers.init);
+				$element.trigger('afterInit.msShutter');
+			};
+
+		self = {
+			callbacks: callbacks,
+			init: init
+		};
+
+		return self;
 	};
 
-	function MsShutter(element, options) {
-		var self = this;
+	$.fn.msShutter = function (options) {
+		return this.each(function(){
+			var msShutter;
+			// check for re-initialization
+			if(!$(this).data('msShutter')) {
+				msShutter = new Shutter(this, $.extend(true, {}, $.fn.msShutter.defaultOptions, options));
+				msShutter.callbacks();
+				msShutter.init();
 
-		self.config = $.extend(true, {}, defaults, options);
-
-		self.element = element;
-
-		self.callbacks();
-		self.event(); // example event
-		self.init(); // create DOM structure of the plugins
-	}
-
-	/** track events */
-	MsShutter.prototype.callbacks = function () {
-		var self = this;
-		$.each(self.config, function (key, value) {
-			if(typeof value === 'function') {
-				self.element.on(key + '.msShutter', function (e, param) {
-					return value(e, self.element, param);
-				});
+				// set data for check re-initialization
+				$(this).data('msShutter', msShutter);
 			}
 		});
 	};
 
-	MsShutter.prototype.event = function () {
-		var self = this;
-		self.element.on('mouseenter', function (e) {
-			e.preventDefault();
-			alert('Сработало событие наведения курсора на область елемента, к которому применен данный плагин!');
-		});
-	};
+	$.fn.msShutter.defaultOptions = {
+		opener: '.ms-popup-d__opener-js',
+		popup: '.ms-popup-d__popup-js',
+		closeBtn: '.ms-popup-d__close-js',
+		dataClickOutside: true, // Close all if outside click
+		dataClickEsc: true // Close all if escape key click
+	}
 
-	MsShutter.prototype.init = function () {
-
-		this.element.addClass(this.config.initClass);
-
-		this.element.trigger('created.msShutter');
-
-	};
-
-	$.fn.msShutter = function (options) {
-		'use strict';
-
-		return this.each(function(){
-			new MsShutter($(this), options);
-		});
-
-	};
 })(jQuery);

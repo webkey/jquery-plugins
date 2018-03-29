@@ -8,11 +8,6 @@
 	visibility: visible;
 }
 
-.is-open-class-var-1 .ms-drop__drop-js, .is-open-class-var-2 .ms-drop__drop-js {
-	opacity: 1;
-	visibility: visible;
-}
-
 .example-class {
 	position: relative;
 	width: 100px;

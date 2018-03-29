@@ -40,34 +40,32 @@
 	<!--[if lt IE 9]> <div class="browserupgrade"><p>You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p></div> <![endif]-->
 	<!-- >>> head.tpl END <<< -->
 	<div class="layout-text">
-		<h1>Попап-шторка: клавное меню с бутерброда и т.д.</h1>
-		<pre>
-		// css
-		// блокировать скролл
-		.css-scroll-blocked
-			width: 100% !important
-			height: 100% !important
-			max-width: 100% !important
-			max-height: 100% !important
-			margin: 0 !important
-			padding: 0 !important
-			overflow: hidden !important
+		<h1>Попап-шторка: главное меню с бутерброда и т.д.</h1>
+		<pre>// css
+// блокировать скролл
+.css-scroll-blocked
+	width: 100% !important
+	height: 100% !important
+	max-width: 100% !important
+	max-height: 100% !important
+	margin: 0 !important
+	padding: 0 !important
+	overflow: hidden !important
 
-		// z-index должен быть выше, чем у футера
-		.before-open .wrapper
-			z-index: 99
+// z-index должен быть выше, чем у футера
+.before-open .wrapper
+	z-index: 99
 
-		// если попап-шторку необходмо скрыть до определенного разрешения
-		@media only screen and (min-width: [example: 1280px])
-			.shutter{
-				transform: translate(0, 0) matrix(1, 0, 0, 1, 0, 0) !important
+// если попап-шторку необходмо скрыть до определенного разрешения
+@media only screen and (min-width: [example: 1280px])
+	.shutter{
+		transform: translate(0, 0) matrix(1, 0, 0, 1, 0, 0) !important
 
-			// если нужно обнулить трансформацию для дочерних элементов, например элементов списка навигации
-			.shutter > li
-				transform: translate(0, 0) matrix(1, 0, 0, 1, 0, 0) !important
-				opacity: 1 !important
-				visibility: visible !important
-	</pre>
+	// если нужно обнулить трансформацию для дочерних элементов, например элементов списка навигации
+	.shutter > li
+		transform: translate(0, 0) matrix(1, 0, 0, 1, 0, 0) !important
+		opacity: 1 !important
+		visibility: visible !important</pre>
 		<h2>Options</h2>
 		<!--=================xxx======================-->
 		<hr>
