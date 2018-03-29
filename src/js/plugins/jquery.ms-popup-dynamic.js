@@ -7,17 +7,16 @@
 ;(function($){
 	'use strict';
 
-	var isOpen = false;
+	var $doc = $(document);
 
 	var SimplePopupDynamic = function(element, config){
 		var self,
 			$element = $(element),
-			$doc = $(document),
 			noCloseWrap = '.ms-popup-d__no-close-js',
-			data = {
+			dataAttr = {
 				dataClickOutside: 'msPopupClickOutside',
 				dataClickEsc: 'msPopupClickEsc',
-				dataIsOpen: 'msPopupIsOpen'
+				dataIsOpenClass: 'msPopupIsOpen'
 			};
 
 		var callbacks = function() {
@@ -31,11 +30,8 @@
 				});
 			},
 			close = function () {
-				console.log("close: ", $doc.data(data.dataIsOpen));
-				// $('.' + config.modifiers.isOpen).removeClass(config.modifiers.isOpen);
-				$('.' + $doc.data(data.dataIsOpen)).removeClass($doc.data(data.dataIsOpen));
-				// isOpen = false;
-				$doc.data(data.dataIsOpen, false);
+				$('.' + $.data($doc, dataAttr.dataIsOpenClass)).removeClass($.data($doc, dataAttr.dataIsOpenClass));
+				$.data($doc, dataAttr.dataIsOpenClass, false);
 
 				// callback afterClose
 				$element.trigger('afterClosed.simplePopupDynamic');
@@ -48,7 +44,10 @@
 
 					console.log("config.modifiers.isOpen: ", config.modifiers.isOpen);
 
-					var $curOpener = $(this), $curPopup = $('#' + $curOpener.attr('href').substring(1));
+					var $curOpener = $(this),
+						$curPopup = $('#' + $curOpener.attr('href').substring(1));
+
+					console.log("$.data($doc): ", $.data($doc));
 
 					if ($curOpener.hasClass(config.modifiers.isOpen)) {
 						close();
@@ -58,47 +57,27 @@
 						return;
 					}
 
-					/*
-										if($('.' + config.modifiers.isOpen).length){
-											close();
-										}
-					*/
-					console.log("isOpen?", !!$doc.data(data.dataIsOpen));
-					if ($doc.data(data.dataIsOpen)) {
+					if ($.data($doc, dataAttr.dataIsOpenClass)) {
 						close();
 					}
 
-					var arr = [$curOpener, $curPopup];
+					// open current popup and add data-attributes attributes
+					// $doc
+					// 	.data(dataAttr.dataClickOutside, config.dataClickOutside)
+					// 	.data(dataAttr.dataClickEsc, dataAttr.dataClickEsc);
+					$.data($doc, dataAttr.dataClickOutside, config.dataClickOutside);
+					$.data($doc, dataAttr.dataClickEsc, config.dataClickEsc);
 
+					var arr = [$curOpener, $curPopup];
 					$.each(arr, function () {
 						// console.log("$(this): ", $(this));
 						$(this).addClass(config.modifiers.isOpen);
 					});
 
-					$doc
-						.data(data.dataClickOutside, config.dataClickOutside)
-						.data(data.dataClickEsc, config.dataClickEsc);
-
-					// open current popup and add data attributes
-					// $curOpener.addClass(config.modifiers.isOpen)
-					// 	.data(data.dataClickOutside, config.dataClickOutside)
-					// 	.data(data.dataClickEsc, config.dataClickEsc);
-					// $curPopup.addClass(config.modifiers.isOpen)
-					// 	.data(data.dataClickOutside, config.dataClickOutside)
-					// 	.data(data.dataClickEsc, config.dataClickEsc);
+					$.data($doc, dataAttr.dataIsOpenClass, config.modifiers.isOpen);
 
 					// callback after opened popup
 					$element.trigger('afterOpened.simplePopupDynamic');
-
-					// isOpen = true;
-					console.log("$.data($doc): ", $.data($doc));
-					console.log("$doc.data(): ", $doc.data());
-					console.log("$doc.data(data.dataIsOpen) before: ", $doc.data(data.dataIsOpen));
-					// console.log("$.data($doc, data.dataIsOpen) before: ", $.data($doc, data.dataIsOpen));
-					$doc.data(data.dataIsOpen, config.modifiers.isOpen);
-					// console.log("$.hasData($doc) after: ", $.hasData($doc, data.dataIsOpen));
-					// console.log("$.data($doc, data.dataIsOpen) after: ", $.data($doc, data.dataIsOpen));
-					console.log("$doc.data(data.dataIsOpen) after: ", $doc.data(data.dataIsOpen));
 
 					event.preventDefault();
 					event.stopPropagation();
@@ -115,9 +94,7 @@
 				$doc.on('click', function(event){
 					var activeElement = $('.' + config.modifiers.isOpen);
 
-					// console.log("dataClickOutside: ", $doc.data());
-
-					if(activeElement.length && $doc.data(data.dataClickOutside) && !$(event.target).closest(noCloseWrap).length) {
+					if(activeElement.length && $.data($doc, dataAttr.dataClickOutside) && !$(event.target).closest(noCloseWrap).length) {
 						close();
 						event.stopPropagation();
 					}
@@ -127,9 +104,7 @@
 				$doc.keyup(function(event) {
 					var activeElement = $('.' + config.modifiers.isOpen);
 
-					// console.log("dataClickEsc: ", $doc.data());
-
-					if (activeElement.length && $doc.data(data.dataClickEsc) && event.keyCode === 27) {
+					if (activeElement.length && $.data($doc, dataAttr.dataClickEsc) && event.keyCode === 27) {
 						close();
 					}
 				});

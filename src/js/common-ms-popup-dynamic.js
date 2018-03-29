@@ -10,6 +10,12 @@ $(function () {
 	if ($popupStatic.length) {
 		$popupStatic.simplePopupDynamic({
 			/*options*/
+			afterClosed: function () {
+				console.log('callback: afterClosed');
+			}
+			, afterOpened: function () {
+				console.log('callback: afterOpened');
+			}
 		})
 	}
 	var $popup = $('.ms-popup-d__init-js');
@@ -21,9 +27,12 @@ $(function () {
 			// , afterOpened: function (e, el) {
 			// 	console.log('afterOpened ($popup), el: ', el);
 			// }
-			// , afterClosed: function (e, el) {
-			// 	console.log('afterClosed ($popup), el: ', el);
-			// }
+			, afterClosed: function (e, el) {
+				console.log('callback: afterClosed');
+			}
+			, afterOpened: function () {
+				console.log('callback: afterOpened');
+			}
 			// , afterInit: function (e, el) {
 			// 	console.log('afterInit, e: ', e);
 			// 	console.log('afterInit, el: ', el);
@@ -33,7 +42,7 @@ $(function () {
 	var $popupAlt = $('.ms-popup-d__init-alt-js');
 	if ($popupAlt.length) {
 		$popupAlt.simplePopupDynamic({
-			dataClickOutside: true,
+			dataClickOutside: false,
 			dataClickEsc: false,
 
 			opener: '.ms-popup-d__opener-alt-js',
@@ -42,15 +51,24 @@ $(function () {
 			modifiers: {
 				isOpen: 'ms-popup-d--active'
 			}
-			// , afterOpened: function (e, el) {
-			// 	console.log('afterOpened ($popup), el: ', el);
-			// }
+			, afterClosed: function (e, el) {
+				console.log('callback: afterClosed');
+			}
+			, afterOpened: function () {
+				console.log('callback: afterOpened');
+			}
 		})
 	}
 	var $popupAlt2 = $('.ms-popup-d__init-alt2-js');
 	if ($popupAlt2.length) {
 		$popupAlt2.simplePopupDynamic({
 			opener: '.ms-popup-d__opener-alt2-js'
+			, afterClosed: function (e, el) {
+				console.log('callback: afterClosed');
+			}
+			, afterOpened: function () {
+				console.log('callback: afterOpened');
+			}
 		})
 	}
 
