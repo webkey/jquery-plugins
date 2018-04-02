@@ -1,16 +1,27 @@
+.css-scroll-fixed {
+	width: 100% !important;
+	height: 100% !important;
+	max-width: 100% !important;
+	max-height: 100% !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	overflow: hidden !important;
+}
+
 .popup-default {
 	display: none;
 	position: fixed;
-	width: 100%;
+	width: 40%;
 	height: 100%;
-	left: 0;
+	right: 0;
 	top: 0;
 	z-index: 9999;
 	overflow-x: hidden;
 	overflow-y: auto;
 	padding: 20px 0;
 	background-color: rgba(0, 0, 0, 0.31);
-	box-sizing: border-box;
+	border: 2px solid #000;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
 }
 
 @media only screen and (max-width: 479px) {
@@ -20,7 +31,7 @@
 	}
 }
 
-.popup-default.spl-popup--is-open {
+.popup-default.ms-popup-d--is-open {
 	display: block;
 }
 
@@ -89,6 +100,26 @@
 	.popup-default__close {
 		position: fixed;
 	}
+}
+
+/*not use*/
+.ms-popup-d--is-open.ms-popup-d__opener-js, .ms-popup-d--is-open.ms-popup-d__opener-alt-js, .ms-popup-d--is-open.ms-popup-d__opener--static-js, .ms-popup-d--is-open.ms-popup-d__opener-alt2-js, .ms-popup-d--active.ms-popup-d__opener-js, .ms-popup-d--active.ms-popup-d__opener-alt-js, .ms-popup-d--active.ms-popup-d__opener--static-js, .ms-popup-d--active.ms-popup-d__opener-alt2-js, .ms-popup-d--static--active.ms-popup-d__opener-js, .ms-popup-d--static--active.ms-popup-d__opener-alt-js, .ms-popup-d--static--active.ms-popup-d__opener--static-js, .ms-popup-d--static--active.ms-popup-d__opener-alt2-js {
+	font-weight: bold;
+}
+
+.page-ms-popup-dynamic .layout-flood {
+	margin-right: 0;
+	margin-left: 0;
+}
+
+.ms-popup-d--active.popup-default {
+	display: block;
+	box-shadow: 0 0 20px rgba(0, 75, 255, 0.5);
+}
+
+.ms-popup-d--static--active.popup-default {
+	display: block;
+	box-shadow: 0 0 20px rgba(255, 77, 23, 0.5);
 }
 
 /*# sourceMappingURL=ms-popup.css.map */

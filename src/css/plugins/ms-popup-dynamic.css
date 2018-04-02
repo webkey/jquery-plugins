@@ -1,3 +1,13 @@
+.css-scroll-fixed {
+	width: 100% !important;
+	height: 100% !important;
+	max-width: 100% !important;
+	max-height: 100% !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	overflow: hidden !important;
+}
+
 .popup-default {
 	display: none;
 	position: fixed;
@@ -93,7 +103,7 @@
 }
 
 /*not use*/
-.ms-popup-d--is-open.ms-popup-d__opener-js, .ms-popup-d--is-open.ms-popup-d__opener-alt-js, .ms-popup-d--is-open.ms-popup-d__opener--static-js, .ms-popup-d--is-open.ms-popup-d__opener-alt2-js, .ms-popup-d--active.ms-popup-d__opener-js, .ms-popup-d--active.ms-popup-d__opener-alt-js, .ms-popup-d--active.ms-popup-d__opener--static-js, .ms-popup-d--active.ms-popup-d__opener-alt2-js {
+.ms-popup-d--is-open.ms-popup-d__opener-js, .ms-popup-d--is-open.ms-popup-d__opener-alt-js, .ms-popup-d--is-open.ms-popup-d__opener--static-js, .ms-popup-d--is-open.ms-popup-d__opener-alt2-js, .ms-popup-d--active.ms-popup-d__opener-js, .ms-popup-d--active.ms-popup-d__opener-alt-js, .ms-popup-d--active.ms-popup-d__opener--static-js, .ms-popup-d--active.ms-popup-d__opener-alt2-js, .ms-popup-d--static--active.ms-popup-d__opener-js, .ms-popup-d--static--active.ms-popup-d__opener-alt-js, .ms-popup-d--static--active.ms-popup-d__opener--static-js, .ms-popup-d--static--active.ms-popup-d__opener-alt2-js {
 	font-weight: bold;
 }
 
@@ -104,7 +114,12 @@
 
 .ms-popup-d--active.popup-default {
 	display: block;
-	box-shadow: 0 0 20px rgba(0, 75, 255, 0.2);
+	box-shadow: 0 0 20px rgba(0, 75, 255, 0.5);
+}
+
+.ms-popup-d--static--active.popup-default {
+	display: block;
+	box-shadow: 0 0 20px rgba(255, 77, 23, 0.5);
 }
 
 /*# sourceMappingURL=ms-popup-dynamic.css.map */

@@ -1,157 +1,188 @@
+/*! jquery.ms-popup-dynamic
+ * Version: 2018.1.0
+ * Author: Serhii Ilchenko
+ * Description: Open a simple popup, if an element is added dynamically
+ */
+
 ;(function($){
-	var defaults = {
-		popup: '.spl-popup__popup-js',
-		closeBtn: '.spl-popup__close-js',
-		noCloseWrap: '.spl-popup__no-close-js',
-		addClass: 'spl-popup--initialized',
-		outsideClick: true, // Close all if outside click
-		escapeClick: true // Close all if escape key click
+	'use strict';
 
-		// Callback functions
-		// afterInit: function () {} // Fire immediately after initialized
-		// afterChange: function () {} // Fire immediately after added or removed an open-class
-	};
+	var $doc = $(document);
+	var $html = $('html');
 
-	function SimplePopup(element, options) {
-		var self = this;
+	var SimplePopupDynamic = function(element, config){
+		var self,
+			$element = $(element),
+			noCloseWrap = '.ms-popup-d__no-close-js',
+			dataAttr = {
+				dataClickOutside: 'msPopupClickOutside',
+				dataClickEsc: 'msPopupClickEsc',
+				dataIsOpenClass: 'msPopupIsOpenClass'
+			};
 
-		self.config = $.extend(true, {}, defaults, options);
-
-		self.element = element;
-		self.initClass = 'spl-popup--initialized';
-		self.classes = {
-			popup: 'sp-Popup',
-			opener: 'sp-PopupOpener',
-			closeBtn: 'sp-PopupClose',
-			noClose: 'sp-disableCloseOnClick'
-		};
-		self.modifiers = {
-			isOpen: 'spl-popup--is-open'
-		};
-
-		self.callbacks();
-		self.event();
-		// close popup if clicked outside active element
-		if (self.config.outsideClick) {
-			self.clickOutside();
-		}
-		if (self.config.escapeClick) {
-			self.clickEscape();
-		}
-		self.init();
-	}
-
-	/** track events */
-	SimplePopup.prototype.callbacks = function () {
-		var self = this;
-
-		$.each(self.config, function (key, value) {
-			if(typeof value === 'function') {
-				self.element.on(key + '.SimplePopup', function (e, param) {
-					console.log('callback!');
-					return value(e, self.element, param);
+		var callbacks = function() {
+				/** track events */
+				$.each(config, function (key, value) {
+					if(typeof value === 'function') {
+						$element.on(key + '.simplePopupDynamic', function (e, param) {
+							return value(e, $element, param);
+						});
+					}
 				});
-			}
-		});
-	};
+			},
+			open = function (event, $curOpener, $curPopup) {
+				// console.log("$element: ", $element);
+				// console.log("$curOpener: ", $curOpener);
+				// console.log("$.data($doc): ", $.data($doc));
 
-	SimplePopup.prototype.event = function () {
-		var self = this;
+				/** если кнопка, на которую применяется событие,
+				 * является активной, то закрываем попап,
+				 * останавливаем дальнейшее выполнение скрипта*/
+				if ($curOpener.hasClass(config.modifiers.isOpen)) {
+					close();
 
-		$(document).on('click', '.btn-qr-code-js', function (event) {
-			var curOpener = $(this);
+					event.preventDefault();
+					return false;
+				}
 
-			var id = curOpener.attr('href').substring(1);
-			var curPopup = $('#' + id);
+				/** если попап открыт (любой попап, открытый плагином),
+				 * зфкрыаем его*/
+				if ($.data($doc, dataAttr.dataIsOpenClass)) {
+					close();
+				}
 
-			if (curPopup.hasClass(self.modifiers.isOpen)) {
-				self.closePopup();
+				/** на документ устанавливаем data-атрибуты
+				 * со значением параметров,
+				 * нужно ли закрывать текущий попап
+				 * по клику вне попапа,
+				 * и по клику на Esc*/
+				$.data($doc, dataAttr.dataClickOutside, config.dataClickOutside);
+				$.data($doc, dataAttr.dataClickEsc, config.dataClickEsc);
 
-				self.element.trigger('afterClose.SimplePopup', curPopup);
+				/** на кнопку открытия и попап
+				 * добавляем классы активности*/
+				var arr = [$curOpener, $curPopup];
+				$.each(arr, function () {
+					$(this).addClass(config.modifiers.isOpen);
+				});
+
+				/** Добавляем на тег html
+				 * класс блокирования прокрутки*/
+				$html.addClass(config.modifiers.cssScrollFixed);
+
+				/** на документ устанавливаем атрибут
+				 * с классом активности текущего попапа*/
+				$.data($doc, dataAttr.dataIsOpenClass, config.modifiers.isOpen);
+
+				// callback after opened popup
+				$element.trigger('afterOpen.simplePopupDynamic');
 
 				event.preventDefault();
 				event.stopPropagation();
-				return;
-			}
+			},
+			close = function () {
+				$('.' + $.data($doc, dataAttr.dataIsOpenClass)).removeClass($.data($doc, dataAttr.dataIsOpenClass));
+				$.data($doc, dataAttr.dataIsOpenClass, false);
 
-			// close same popup
-			self.closePopup();
+				/** Удаляем с тега html
+				 * класс блокирования прокрутки*/
+				$html.removeClass(config.modifiers.cssScrollFixed);
 
-			// open current popup
-			$('html').addClass(self.modifiers.isOpen);
-			curOpener.addClass(self.modifiers.isOpen);
-			curPopup.addClass(self.modifiers.isOpen);
+				// callback afterClose
+				$element.trigger('afterClose.simplePopupDynamic');
+			},
+			toggle = function () {
+				if(config.opener){
+					$element.on('click close', config.opener, function (event) {
+						var $curOpener = $(this),
+							$curPopup = $('#' + $curOpener.attr('href').substring(1));
 
-			event.preventDefault();
-			event.stopPropagation();
+						open(event, $curOpener, $curPopup);
+					});
+				} else {
+					$element.on('click close', function (event) {
+						var $curOpener = $(this),
+							$curPopup = $('#' + $curOpener.attr('href').substring(1));
 
+						open(event, $curOpener, $curPopup);
+					});
+				}
 
-		});
+			},
+			closeByClickBtnClose = function () {
+				$doc.on('click', config.closeBtn, function (event) {
+					close();
 
-		$(self.config.closeBtn).on('click', function (event) {
-			self.closePopup();
-			var curPopup = $(this).closest(self.config.popup);
+					event.preventDefault();
+				});
+			},
+			closeByClickOutside = function () {
+				$doc.on('click', function(event){
+					var activeElement = $('.' + $.data($doc, dataAttr.dataIsOpenClass));
 
-			event.preventDefault();
+					if(activeElement.length && $.data($doc, dataAttr.dataClickOutside) && !$(event.target).closest(noCloseWrap).length) {
+						close();
+						event.stopPropagation();
+					}
+				});
+			},
+			closeByClickEsc = function () {
+				$doc.keyup(function(event) {
+					var activeElement = $('.' + $.data($doc, dataAttr.dataIsOpenClass));
 
-			// callback afterChange
-			self.element.trigger('afterClose.SimplePopup', curPopup);
-		});
+					if (activeElement.length && $.data($doc, dataAttr.dataClickEsc) && event.keyCode === 27) {
+						close();
+					}
+				});
+			},
+			init = function () {
+				$element.addClass(config.modifiers.init);
+				$element.trigger('afterInit.simplePopupDynamic');
+			};
+
+		self = {
+			callbacks: callbacks,
+			close: close,
+			toggle: toggle,
+			closeByClickBtnClose: closeByClickBtnClose,
+			closeByClickOutside: closeByClickOutside,
+			closeByClickEsc: closeByClickEsc,
+			init: init
+		};
+
+		return self;
 	};
 
-	SimplePopup.prototype.clickOutside = function () {
-
-		var self = this;
-		$(document).on('click', function(event){
-			if( $(event.target).closest('.' + self.classes.noClose).length ) {
-				return;
-			}
-
-			self.closePopup();
-			event.stopPropagation();
-		});
-
-	};
-
-	SimplePopup.prototype.clickEscape = function () {
-
-		var self = this;
-		$(document).keyup(function(e) {
-			if (e.keyCode === 27) {
-				self.closePopup();
-			}
-		});
-
-	};
-
-	SimplePopup.prototype.closePopup = function () {
-
-		var self = this;
-
-		$('.' + self.initClass).removeClass(self.modifiers.isOpen);
-		$('html').removeClass(self.modifiers.isOpen);
-
-	};
-
-	SimplePopup.prototype.init = function () {
-
-		var self = this;
-
-		this.element.addClass(self.initClass).addClass(self.classes.opener);
-		$(self.config.closeBtn).addClass(self.initClass).addClass(self.classes.closeBtn);
-		$(self.config.popup).addClass(self.initClass).addClass(self.classes.popup);
-		$(self.config.noCloseWrap).addClass(self.classes.noClose);
-
-		this.element.trigger('afterInit.SimplePopup');
-
-	};
-
-	$.fn.SimplePopup = function (options) {
-		'use strict';
-
+	$.fn.simplePopupDynamic = function (options) {
 		return this.each(function(){
-			new SimplePopup($(this), options);
-		});
+			var simplePopupDynamic;
+			// check for re-initialization
+			if(!$(this).data('simplePopupDynamic')) {
+				simplePopupDynamic = new SimplePopupDynamic(this, $.extend(true, {}, $.fn.simplePopupDynamic.defaultOptions, options));
+				simplePopupDynamic.callbacks();
+				simplePopupDynamic.toggle();
+				simplePopupDynamic.closeByClickBtnClose();
+				simplePopupDynamic.closeByClickOutside();
+				simplePopupDynamic.closeByClickEsc();
+				simplePopupDynamic.init();
 
+				// set data for check re-initialization
+				$(this).data('simplePopupDynamic', simplePopupDynamic);
+			}
+		});
 	};
+
+	$.fn.simplePopupDynamic.defaultOptions = {
+		opener: null,
+		popup: '.ms-popup-d__popup-js',
+		closeBtn: '.ms-popup-d__close-js',
+		dataClickOutside: true, // Close all if Outside click
+		dataClickEsc: true, // Close all if Escape key click
+		modifiers: {
+			init: 'ms-popup-d--initialized',
+			isOpen: 'ms-popup-d--is-open',
+			cssScrollFixed: 'css-scroll-fixed'
+		}
+	}
+
 })(jQuery);
