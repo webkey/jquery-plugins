@@ -1,7 +1,7 @@
-/*! jquery.ms-popup-dynamic
+/*! jquery.ms-popup.js
  * Version: 2018.1.0
  * Author: Serhii Ilchenko
- * Description: Open a simple popup, if an element is added dynamically
+ * Description: Toggle a simple popup
  */
 
 ;(function($){

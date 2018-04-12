@@ -1,3 +1,9 @@
+/*! jquery.ms-drop.js
+ * Version: 2018.1.0
+ * Author: Serhii Ilchenko
+ * Description: Toggle a drop menu
+ */
+
 ;(function($){
 	var defaults = {
 		// container: '.ms-drop__container-js', // is element
@@ -141,7 +147,7 @@
 			if(self.config.selectValue){
 				curContainer
 					.find(self.config.opener).find(self.config.openerText)
-					.text(cur.find(self.config.dropOptionText).text());
+					.html(cur.find(self.config.dropOptionText).html());
 			}
 
 			if(self.config.closeAfterSelect) {
