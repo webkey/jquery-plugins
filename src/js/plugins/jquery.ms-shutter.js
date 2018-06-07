@@ -1,6 +1,6 @@
 /*! jquery.ms-msShutter.js
  * Version: 2018.1.0
- * Author: Serhii Ilchenko
+ * Author: Astronim*
  * Description: popup-msShutter
  */
 

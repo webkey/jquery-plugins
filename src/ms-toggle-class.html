@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<!--[if lt IE 9]>      <html class="no-js old-ie" lang="ru"> <![endif]-->
+<!--[if IE 9]>         <html class="no-js ie9" lang="ru"> <![endif]-->
+<!--[if gt IE 9]><!-->
+<html class="no-js" lang="ru">
+<!--<![endif]-->
+
+<head>
+	<meta charset="UTF-8">
+	<title>ms-toggle-class</title>
+	<!--Mobile optimized-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.2">
+	<!--Theme color-->
+	<meta name="theme-color" content="#fff">
+	<!--SEO-->
+	<meta name="description" content="описание">
+	<meta name="keywords" content="ключевые слова">
+	<meta name="yandex-verification" content="XXXXXXXXXXXXXX">
+	<meta name="google-site-verification" content="XXXXXXXXXXXXXX">
+	<!--The Open Graph protocol-->
+	<meta property="og:type" content="website">
+	<meta property="og:locale" content="ru_RU">
+	<meta property="og:url" content="http://localhost:3000/index.html">
+	<meta property="og:title" content="Название">
+	<meta property="og:image" content="http://localhost:3000/img/logo.png">
+	<meta property="og:description" content="Описание">
+	<meta property="og:site_name" content="Расширенное название">
+	<!--Favicon-->
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="icon" sizes="16x16 32x32 64x64" href="favicon.ico">
+	<link rel="apple-touch-icon" href="apple-touch-icon.png">
+	<!--Style-->
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/plugins/ms-toggle-class.css">
+	<!--Modernizr-->
+	<script src="js/modernizr.min.js"></script>
+</head>
+
+<body class="page-ms-toggle-class">
+	<!--[if lt IE 9]> <div class="browserupgrade"><p>You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p></div> <![endif]-->
+	<!-- >>> head.tpl END <<< -->
+	<div class="layout-flood user-content">
+		<h1>Добавление класса на клик, или ховер</h1>
+		<h2>Примеры использования</h2>
+		<ul>
+			<li>
+				<a class="tc__switcher-01-js"><span>Открыть попап 1</span></a>
+			</li>
+			<div>=============================</div>
+			<li id="add-opener">
+				Добавляем кнопку динамически...
+			</li>
+			<div>=============================</div>
+			<li>
+				<a class="tc__switcher-02-js"><span>Открыть попап 2</span></a>
+			</li>
+		</ul>
+		<h2>Документация</h2>
+		<p>В плагине используются js-классы с префиксом <code class="l">tc__</code>. Сокращение от <code class="l">toggle-class</code>.</p>
+		<p>Например, <code class="l">.tc__switcher-js</code>, <code class="l"></code></p>
+		<h3>Options</h3>
+		<ul>
+			<li>
+				<div><b>switcher:</b></div>
+				<div><i class="o">Defaults:</i> <code class="d">null</code></div>
+				<div>Класс элемента, по которому происходит переключение класса</div>
+				<div>Этот параметр необходимо указать, если свитчер добавляется <b>динамически</b>.</div>
+				<div>Тогда плагин запускаем на статичной обертке, а в параметрах указываем <b>switcher:</b> (например) <code class="d">.tc__switcher-js</code></div>
+			</li>
+			<li>
+				<div><b>removeElements:</b></div>
+				<div><i class="o">Defaults:</i> <code class="d">'.tc__close-js'</code></div>
+				<div>Класс элементов, по которым происходит удаление класса</div>
+			</li>
+			<li>
+				<div><b>removeOutsideClick:</b></div>
+				<div><i class="o">Defaults:</i> <code class="d">'.tc__outside-js'</code></div>
+				<div>Удалить класс при клики вне этого элемента</div>
+				<div><b class="d">Примечания:</b></div>
+				<!--<div><b>1.</b> </div>-->
+				<div><b>1.</b> Если значение этого параметра равно true, то при клике в ЛЮБОМ месте страницы все установленные ранее классы удаляются.</div>
+				<div>Если же при клике на определенный элемент удаление не желательно, то на этот элемент необходимо добавить атрибут <i class="d">data-tc-stop</i> (без значения).</div>
+			</li>
+			<li>
+				<b>modifiers:</b>
+				<i>Defaults:</i> <br>
+				<pre class="d">{
+	init: 'tc--initialized',
+	currentClass: 'tc--active',
+	cssScrollFixed: 'css-scroll-fixed'
+}</pre>
+			</li>
+		</ul>
+		<h3>События</h3>
+		<ul>
+			<li>
+				<b>afterInit</b> <br>
+				<p>Вызов вконце функции afterInit()</p>
+				<pre>afterInit: function (e, el) {}</pre>
+			</li>
+		</ul>
+		<h3>Глобальные настройки</h3>
+		<p>Поменять настройки плагина глобально можно через</p>
+		<pre>$.fn.tClass.defaultOptions</pre>
+		<p class="o">Например:</p>
+		<pre>$.fn.tClass.defaultOptions.removeOnEsc = false;</pre>
+		<!--****popups****-->
+		<!--example-popup1-->
+		<div class="popup-default popup-01-js">
+			<div class="popup-default__holder">
+				<div class="popup-default__cell">
+					<div class="popup-default__layout" data-tc-stop>
+						<a href="#" class="popup-default__close close-popup-01-js" title="Закрыть">x close</a>
+						<div class="ms-popup-d__init-js ms-popup-d__init-alt-js">
+							<h2>Попап 1</h2>
+							Lorem sit amet, <a href="#?">consectetur</a> adipisicing elit. Ab accusantium aliquid cum cupiditate esse exercitationem explicabo, illum in magnam, magni maiores nam nemo nihil non provident quaerat quod rem sapiente!
+							<br>
+							<br>
+							<a class="tc__switcher-02-js"><span>Открыть попап 2</span></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--example-popup2-->
+		<div class="popup-default popup-02-js">
+			<div class="popup-default__holder">
+				<div class="popup-default__cell">
+					<div class="popup-default__layout" data-tc-stop>
+						<a href="#" class="popup-default__close close-popup-02-js" title="Закрыть">x close</a>
+						<div class="ms-popup-d__init-js">
+							<h2>Попап 2</h2>
+							Lorem ipsum dolor sit amet, <a href="#?">consectetur</a> adipisicing elit. Ab accusantium aliquid cum cupiditate esse exercitationem explicabo, illum in magnam, magni maiores nam nemo nihil non provident quaerat quod rem sapiente! Lorem ipsum dolor
+							sit amet, consectetur adipisicing elit. Deleniti itaque laborum modi provident repellat. Ab adipisci aliquam corporis dolore labore molestias odit recusandae unde ut vero? Excepturi optio sequi voluptatum?
+							<br>
+							<br>
+							<a class="tc__switcher-01-js"><span>Открыть попап 1</span></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- >>> foot.tpl <<< -->
+	<!--footer-->
+	<!--footer end-->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/libs.min.js"></script>
+	<script src="js/plugins/jquery.ms-toggle-class.js"></script>
+	<script src="js/common-ms-toggle-class.js"></script>
+</body>
+
+</html>

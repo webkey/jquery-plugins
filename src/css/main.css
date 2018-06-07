@@ -584,6 +584,24 @@ ul li pre {
 	padding: 0 5px;
 }
 
+code.l, code.d {
+	display: inline;
+	padding: 0 2px;
+	margin: 0;
+}
+
+.l {
+	color: lightseagreen;
+}
+
+.d {
+	color: lightcoral;
+}
+
+.o {
+	color: #999;
+}
+
 .user-content p + h2,
 .user-content ul + h2,
 .user-content ol + h2 {
@@ -649,7 +667,7 @@ ul li pre {
 }
 
 .user-content ul li, .user-content ol li, .extra-popup ul li, .extra-popup ol li {
-	padding-left: 30px;
+	padding-left: 20px;
 	margin: 1.2rem 0;
 	position: relative;
 }
@@ -658,12 +676,11 @@ ul li pre {
 	content: '';
 	position: absolute;
 	left: 0;
-	top: 0.6em;
+	top: 0.5em;
 	height: 0;
 	width: 0;
-	border: solid transparent;
-	border-width: 5px 9px;
-	border-left-color: tomato;
+	border-radius: 3px;
+	border: 3px solid #999;
 	box-sizing: border-box;
 }
 

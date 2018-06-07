@@ -199,6 +199,20 @@ ul li pre
 	vertical-align: top
 	padding: 0 5px
 
+code.l, code.d
+	display: inline
+	padding: 0 2px
+	margin: 0
+
+.l
+	color: lightseagreen
+
+.d
+	color: lightcoral
+
+.o
+	color: #999
+
 .#{$user-content}
 	@each $tags in h2, h3, h4, h5
 		p + #{$tags},
@@ -221,7 +235,7 @@ ul li pre
 
 	ul li, ol li
 		//padding: $space-bottom/2 0 0 30px
-		padding-left: 30px
+		padding-left: 20px
 		margin: #{$bottom-space-string} 0
 		position: relative
 
@@ -234,12 +248,11 @@ ul li pre
 		content: ''
 		position: absolute
 		left: 0
-		top: 0.6em
+		top: 0.5em
 		height: 0
 		width: 0
-		border: solid transparent
-		border-width: 5px 9px
-		border-left-color: $mark-color
+		border-radius: 3px
+		border: 3px solid #999
 		box-sizing: border-box
 
 	//ul > li:first-child:before

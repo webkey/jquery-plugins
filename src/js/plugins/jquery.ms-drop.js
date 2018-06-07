@@ -1,6 +1,6 @@
 /*! jquery.ms-drop.js
  * Version: 2018.1.0
- * Author: Serhii Ilchenko
+ * Author: Astronim*
  * Description: Toggle a drop menu
  */
 

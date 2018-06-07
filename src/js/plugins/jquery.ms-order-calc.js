@@ -1,6 +1,6 @@
 /*! jquery.ms-order-calc
  * Version: 2018.1.0
- * Author: Serhii Ilchenko
+ * Author: Astronim*
  * Description: Calculation of quantity and price of goods
  */
 
