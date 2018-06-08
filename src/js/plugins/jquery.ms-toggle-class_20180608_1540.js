@@ -16,7 +16,7 @@
 			dataStopRemove = '[data-tc-stop]',
 			dataAttr = {
 				dataRemoveOutsideClick: 'toggleClassRemoveOutsideClick',
-				dataClassAdded: 'toggleClassIsAdded'
+				dataActiveClass: 'toggleClassActiveClass'
 			};
 
 		var callbacks = function() {
@@ -39,13 +39,7 @@
 				// является активной, то удаляем классы.
 				// Останавливаем дальнейшее выполнение скрипта.
 				if ($curOpener.hasClass(config.modifiers.currentClass)) {
-				// if ($.data($doc, dataAttr.dataClassAdded)) {
-					console.log('initial remove...');
-
-					// remove();
-					$element.trigger('tClass.remove');
-
-					$.data($doc, dataAttr.dataClassAdded, false);
+					remove();
 
 					event.preventDefault();
 					return false;
@@ -54,10 +48,9 @@
 				// Если классы добавлены
 				// (любым экземпляром плагина),
 				// удаляем их.
-				// if ($.data($doc, dataAttr.dataActiveClass)) {
-				// 	// remove();
-				// 	$element.trigger('tClass.remove');
-				// }
+				if ($.data($doc, dataAttr.dataActiveClass)) {
+					remove();
+				}
 
 				// На документ устанавливаем data-атрибуты
 				// со значением параметров
@@ -66,11 +59,9 @@
 
 				// На документ устанавливаем атрибут (toggleClassActiveClass),
 				// значение которого - текущий класс (config.modifiers.currentClass).
-				// $.data($doc, dataAttr.dataActiveClass, config.modifiers.currentClass);
-				$.data($doc, dataAttr.dataClassAdded, true);
+				$.data($doc, dataAttr.dataActiveClass, config.modifiers.currentClass);
 
-				// console.log("active class (current): ", $.data($doc, dataAttr.dataClassAdded));
-				console.log("класс добавлен (сейчас): ", $.data($doc, dataAttr.dataClassAdded));
+				console.log("active class (current): ", $.data($doc, dataAttr.dataActiveClass));
 
 				// На html, switcher и все указанные элементы
 				// добавляем класс.
@@ -106,31 +97,23 @@
 				event.stopPropagation();
 			},
 			remove = function () {
-				// var curClass = $.data($doc, dataAttr.dataActiveClass);
+				var curClass = $.data($doc, dataAttr.dataActiveClass);
 
-				// console.log("active class (prev): ", $.data($doc, dataAttr.dataActiveClass));
-				console.log("класс добавлен (до удаления): ", $.data($doc, dataAttr.dataClassAdded));
-
-				console.log('start remove');
+				console.log("active class (prev): ", $.data($doc, dataAttr.dataActiveClass));
 
 				// Со всех элементов с активным классом удаляем этот класс
-				// $('.' + curClass).removeClass(curClass);
-				$('.' + config.modifiers.currentClass).removeClass(config.modifiers.currentClass);
+				$('.' + curClass).removeClass(curClass);
 
 				// На документ устанавливаем атрибут (toggleClassActiveClass),
 				// со значение false.
-				// $.data($doc, dataAttr.dataActiveClass, false);
-				$.data($doc, dataAttr.dataClassAdded, false);
+				$.data($doc, dataAttr.dataActiveClass, false);
 
-				// console.log("active class (after remove): ", $.data($doc, dataAttr.dataActiveClass));
-				console.log("класс добавлен (после удаления): ", $.data($doc, dataAttr.dataClassAdded));
+				console.log("active class (after remove): ", $.data($doc, dataAttr.dataActiveClass));
 
 				toggleScroll();
 
 				// callback afterRemoved
 				$element.trigger('afterRemoved.tClass');
-
-				console.log('finish remove');
 			},
 			toggle = function () {
 				if(config.switcher){
@@ -148,15 +131,8 @@
 				}
 
 			},
-			removeMethod = function () {
-				$element.on('tClass.remove', function () {
-					// console.log(111);
-					remove();
-				})
-			},
 			toggleScroll = function () {
-				// if ($.data($doc, dataAttr.dataActiveClass)) {
-				if ($.data($doc, dataAttr.dataClassAdded)) {
+				if ($.data($doc, dataAttr.dataActiveClass)) {
 					// console.log('blocked');
 					// Добавляем на тег html
 					// класс блокирования прокрутки.
@@ -178,7 +154,7 @@
 			closeByClickOutside = function () {
 				$doc.on('click', function(event){
 
-					if($.data($doc, dataAttr.dataClassAdded) && $.data($doc, dataAttr.dataRemoveOutsideClick) && !$(event.target).closest(dataStopRemove).length) {
+					if($.data($doc, dataAttr.dataActiveClass) && $.data($doc, dataAttr.dataRemoveOutsideClick) && !$(event.target).closest(dataStopRemove).length) {
 						remove();
 						// event.stopPropagation();
 					}
@@ -186,7 +162,7 @@
 			},
 			closeByClickEsc = function () {
 				$doc.keyup(function(event) {
-					if ($.data($doc, dataAttr.dataClassAdded) && event.keyCode === 27) {
+					if ($.data($doc, dataAttr.dataActiveClass) && event.keyCode === 27) {
 						remove();
 					}
 				});
@@ -200,7 +176,6 @@
 			callbacks: callbacks,
 			remove: remove,
 			toggle: toggle,
-			removeMethod: removeMethod,
 			toggleScroll: toggleScroll,
 			closeByClickBtnClose: closeByClickBtnClose,
 			closeByClickOutside: closeByClickOutside,
@@ -211,45 +186,24 @@
 		return self;
 	};
 
-	// $.fn.tClass = function (options, params) {
-	$.fn.tClass = function () {
-		var self = this,
-			opt = arguments[0],
-			args = Array.prototype.slice.call(arguments, 1),
-			l = self.length,
-			i,
-			ret;
-		for (i = 0; i < l; i++) {
-			if (typeof opt === 'object' || typeof opt === 'undefined')
-				self[i].tClass = new TClass(self[i], $.extend(true, {}, $.fn.tClass.defaultOptions, opt));
-			else
-				ret = self[i].tClass[opt].apply(self[i].slick, args);
-			if (typeof ret !== 'undefined')
-				return ret;
-		}
-		return self;
+	$.fn.tClass = function (options) {
+		return this.each(function(){
+			var tClass;
+			//
+			if(!$(this).data('tClass')) {
+				tClass = new TClass(this, $.extend(true, {}, $.fn.tClass.defaultOptions, options));
+				tClass.callbacks();
+				tClass.toggle();
+				tClass.closeByClickBtnClose();
+				tClass.closeByClickOutside();
+				tClass.closeByClickEsc();
+				tClass.toggleScroll();
+				tClass.init();
 
-
-		// return this.each(function(){
-		// 	var tClass;
-		// 	//
-		// 	if(!$(this).data('tClass')) {
-		// 		tClass = new TClass(this, $.extend(true, {}, $.fn.tClass.defaultOptions, options));
-		// 		tClass.callbacks();
-		// 		tClass.toggle();
-		// 		tClass.removeMethod();
-		// 		tClass.toggleScroll();
-		// 		tClass.closeByClickBtnClose();
-		// 		tClass.closeByClickOutside();
-		// 		tClass.closeByClickEsc();
-		// 		tClass.init();
-		//
-		// 		tClass[methods].apply(tClass);
-		//
-		// 		// set data for check re-initialization
-		// 		$(this).data('tClass', tClass);
-		// 	}
-		// });
+				// set data for check re-initialization
+				$(this).data('tClass', tClass);
+			}
+		});
 	};
 
 	$.fn.tClass.defaultOptions = {
@@ -262,6 +216,6 @@
 			currentClass: 'tc--active',
 			cssScrollFixed: 'css-scroll-fixed'
 		}
-	};
+	}
 
 })(jQuery);

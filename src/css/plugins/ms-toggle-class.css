@@ -104,7 +104,7 @@
 }
 
 /*not use*/
-.tc--active.tc__switcher-01-js, .tc--active.tc__switcher-02-js, .tc--open.tc__switcher-01-js, .tc--open.tc__switcher-02-js {
+.tc--active.tc__switcher-1-js, .tc--active.tc__switcher-2-js, .tc--open.tc__switcher-1-js, .tc--open.tc__switcher-2-js {
 	font-weight: bold;
 }
 
