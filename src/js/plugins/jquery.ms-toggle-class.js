@@ -213,22 +213,30 @@
 
 	// $.fn.tClass = function (options, params) {
 	$.fn.tClass = function () {
-		var self = this,
+		var _ = this,
 			opt = arguments[0],
 			args = Array.prototype.slice.call(arguments, 1),
-			l = self.length,
+			l = _.length,
 			i,
 			ret;
 		for (i = 0; i < l; i++) {
-			if (typeof opt === 'object' || typeof opt === 'undefined')
-				self[i].tClass = new TClass(self[i], $.extend(true, {}, $.fn.tClass.defaultOptions, opt));
+			if (typeof opt === 'object' || typeof opt === 'undefined') {
+				_[i].tClass = new TClass(_[i], $.extend(true, {}, $.fn.tClass.defaultOptions, opt));
+				_[i].tClass.callbacks();
+				_[i].tClass.toggle();
+				_[i].tClass.removeMethod();
+				_[i].tClass.toggleScroll();
+				_[i].tClass.closeByClickBtnClose();
+				_[i].tClass.closeByClickOutside();
+				_[i].tClass.closeByClickEsc();
+				_[i].tClass.init();
+			}
 			else
-				ret = self[i].tClass[opt].apply(self[i].slick, args);
+				ret = _[i].tClass[opt].apply(_[i].slick, args);
 			if (typeof ret !== 'undefined')
 				return ret;
 		}
-		return self;
-
+		return _;
 
 		// return this.each(function(){
 		// 	var tClass;
