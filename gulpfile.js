@@ -21,7 +21,9 @@ var gulp = require('gulp'), // Подключаем Gulp
 	fs = require('fs'), // For compiling modernizr.min.js
 	modernizr = require('modernizr'), // For compiling modernizr.min.js
 	config = require('./modernizr-config'), // Path to modernizr-config.json
-	replace = require('gulp-string-replace')
+	replace = require('gulp-string-replace'),
+	stripCssComments = require('gulp-strip-css-comments') // Удалить комментарии (css)
+
 	;
 
 gulp.task('htmlCompilation', function () { // Таск формирования ДОМ страниц
@@ -87,10 +89,12 @@ gulp.task('mergeCssLibs', function () { // Таск для мержа css биб
 		.pipe(gulp.dest('./')); // Выгружаем в папку src/css сжатую версию
 });
 
-gulp.task('createCustomModernizr', function (done) { // Таск для формирования кастомного modernizr
-	modernizr.build(config, function (code) {
-		fs.writeFile('src/js/modernizr.min.js', code, done);
-	});
+/// Таск для переноса normalize
+gulp.task('normalize', function () {
+	return gulp.src('src/libs/normalize-scss/sass/**/*.+(scss|sass)')
+		.pipe(stripCssComments())
+		// .pipe(removeEmptyLines())
+		.pipe(gulp.dest('src/_temp/'));
 });
 
 gulp.task('copyLibsScriptsToJs', ['copyJqueryToJs', 'copyJqueryUiJs', 'copyJqueryUiCss'], function () { // Таск для мераж js библиотек
@@ -142,7 +146,7 @@ gulp.task('browserSync', function (done) { // Таск browserSync
 	done();
 });
 
-gulp.task('watch', ['createCustomModernizr', 'browserSync', 'htmlCompilation', 'sassCompilation', 'mergeCssLibs', 'copyLibsScriptsToJs'], function () {
+gulp.task('watch', ['normalize', 'browserSync', 'htmlCompilation', 'sassCompilation', 'mergeCssLibs', 'copyLibsScriptsToJs'], function () {
 	gulp.watch(['src/_tpl_*.html', 'src/__*.html', 'src/includes/**/*.json'], ['htmlCompilation']); // Наблюдение за tpl
 	// файлами в папке include
 	gulp.watch('src/sass/**/*.+(scss|sass)', ['sassCompilation']); // Наблюдение за sass файлами в папке sass
@@ -181,7 +185,7 @@ gulp.task('copyImgToDist', function () {
 		.pipe(gulp.dest('dist/img')); // Выгружаем на продакшен
 });
 
-gulp.task('build', ['cleanDistFolder', 'htmlCompilation', 'copyImgToDist', 'sassCompilation', 'mergeCssLibs', 'createCustomModernizr', 'copyLibsScriptsToJs'], function () {
+gulp.task('build', ['cleanDistFolder', 'htmlCompilation', 'copyImgToDist', 'sassCompilation', 'mergeCssLibs', 'normalize', 'copyLibsScriptsToJs'], function () {
 
 	gulp.src('src/css/*.css')
 		.pipe(gulp.dest('dist/css'));

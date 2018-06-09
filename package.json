@@ -27,6 +27,7 @@
     "gulp-sass-variables": "^1.1.1",
     "gulp-sourcemaps": "^2.4.0",
     "gulp-string-replace": "^0.4.0",
+    "gulp-strip-css-comments": "^2.0.0",
     "gulp-uglifyjs": "^0.6.2",
     "imagemin-pngquant": "^5.0.0",
     "markdown": "^0.5.0",
