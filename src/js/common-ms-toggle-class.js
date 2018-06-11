@@ -9,77 +9,79 @@ $(function () {
 	// $.fn.simplePopupDynamic.defaultOptions.escapeClose = false;
 
 	// Первый свитчер
-	var $switcher1 = $('.tc__switcher-1-js');
+	var $switcher1 = $('.tc-js');
 	if ($switcher1.length) {
 		$switcher1.tClass({
-			/*options*/
-			switcher: $switcher1
-			, elements: ['.popup-1-js', '.tc__switcher-1-js']
-			, removeOutsideClick: false
+			// /*options*/
+			switchBtn: '.tc__switcher-js'
+			, removeBtn: '.tc__remove-js'
+			, addBtn: '.tc__add-js'
+			, other: ['.tc__popup-js']
+			, cssScrollFixed: true
+			, removeOutsideClick: true
 			, afterInit: function () {
 				// console.log('afterInit');
 			}
 			, afterRemoved: function () {
-				// console.log('afterRemoved 01');
-				// $('html').removeClass('afterOpen-001');
+				// console.log('afterRemoved 1');
 			}
 			, afterAdded: function () {
-				// console.log('afterAdded 01');
-				// $('html').addClass('afterOpen-001');
+				// console.log('afterAdded 1');
 			}
 		});
-
-		// $switcher1.tClass('remove', ['df', 'df']);
 	}
 
-	// $(document).on('click', '.popup-1-js a', function () {
-	// 	console.log(1);
-	// });
-
 	setTimeout(function () {
-		// проверка на повторную инициализацию
-		// $popup.simplePopupDynamic({});
-
 		// Добавить кнопку(и) динамически
-		$('#add-opener').html('<a class="tc__switcher-1-js"><span>Открыть попап 1 (loaded)</span></a>');
+		$('#add-switcher').html('<a href="#" class="tc__switcher-js"><span>Открыть попап 1 (switcher) (loaded)</span></a>');
 	}, 1500);
 
 	// Второй свитчер
-	var $switcher2 = $('.tc__switcher-2-js');
+	var $switcher2 = $('.tc-2-js'), tc2;
 	if ($switcher2.length) {
-		$switcher2.tClass({
-			/*options*/
-			elements: ['.popup-2-js', '.tc__switcher-2-js']
+		tc2 = $switcher2.tClass({
+			switchBtn: '.tc-2__switcher-js'
+			, removeBtn: '.tc-2__remove-js'
+			, addBtn: '.tc-2__add-js'
+			, other: ['.tc-2__popup-js']
 			, modifiers: {
 				currentClass: 'tc--open'
 			}
-			, afterRemoved: function () {
-				// console.log('afterRemoved 02');
-				// $('html').removeClass('afterOpen-001');
+			, cssScrollFixed: true
+			, beforeAdded: function () {
+				// console.log('beforeAdded 2');
 			}
-			, afterAdded: function () {
-				// console.log('afterAdded 02');
-				// $('html').addClass('afterOpen-001');
+			, afterRemoved: function () {
+				// console.log('afterRemoved 2');
 			}
 		});
 	}
 
-	// Динамически добавленный свитчер
-	var $switcherLoad1 = $('.tc__switcher-load-1-js');
-	if ($switcherLoad1.length) {
-		$switcherLoad1.tClass({
-			/*options*/
-			switcher: '.tc__switcher-1-js',
-			elements: ['.popup-1-js', '.tc__switcher-1-js']
-			, afterRemoved: function () {
-				// console.log('afterRemoved 02');
-				// $('html').removeClass('afterOpen-001');
+	setTimeout(function () {
+		$('#add-switcher-02').html('<a href="#" class="tc-3-js"><span>Открыть попап 3 (loaded)</span></a>');
+
+		// Трений свитчер. Добавляется на страницу динамически
+		var $switcher3 = $('.tc-3-js');
+		var tc3 = $switcher3.tClass({
+			switchBtn: '.tc-3__switcher-js'
+			, removeBtn: '.tc-3__remove-js'
+			, other: ['.tc-3__popup-js']
+			, modifiers: {
+				currentClass: 'tc--active'
 			}
-			, afterAdded: function () {
-				// console.log('afterAdded 02');
-				// $('html').addClass('afterOpen-001');
+			, cssScrollFixed: true
+			, beforeAdded: function () {
+				// console.log('beforeAdded 3');
+				// Если нужно удалять уже добавленные классы одного экземпляра плагина, при добавлении другого
+				tc2.tClass('remove');
+			}
+			, afterRemoved: function () {
+				// console.log('afterRemoved 3');
 			}
 		});
-	}
 
+		tc2.on('tClass.beforeAdded', function () {
+			tc3.tClass('remove');
+		});
+	}, 1500);
 });

@@ -9,7 +9,7 @@
 
 	var $doc = $(document),
 		$html = $('html'),
-		count = 0;
+		countFixedScroll = 0;
 
 	var TClass = function(element, config){
 		var self,
@@ -22,14 +22,28 @@
 				/** track events */
 				$.each(config, function (key, value) {
 					if(typeof value === 'function') {
-						$element.on(key + '.tClass', function (e, param) {
+						$element.on('tClass.' + key, function (e, param) {
 							return value(e, $element, param);
 						});
 					}
 				});
 			},
-			add = function ($curOpener) {
-				var arr = [$html, $curOpener, config.elements];
+			add = function () {
+				if (classIsAdded) return;
+
+				// Массив элементов проверять при каждом событии
+				// на случай, если элемент добавлен ПОСЛЕ иничиализации плагина
+				var arr = [
+					$html,
+					$element,
+					$(config.switchBtn),
+					$(config.addBtn),
+					$(config.removeBtn),
+					config.other
+				];
+
+				// callback before added class
+				$element.trigger('tClass.beforeAdded');
 
 				$.each(arr, function () {
 					var curElem = this;
@@ -50,90 +64,128 @@
 					}
 				});
 
-				count = ++count;
-				console.log("++count: ", count);
+				if (config.cssScrollFixed) {
+					countFixedScroll = ++countFixedScroll;
+				}
 
 				classIsAdded = true;
 
 				toggleScroll();
 
 				// callback after added class
-				$element.trigger('afterAdded.tClass');
+				$element.trigger('tClass.afterAdded');
 			},
 			remove = function () {
+				if (!classIsAdded) return;
 
-				$('.' + config.modifiers.currentClass).removeClass(config.modifiers.currentClass);
+				// Массив элементов проверять при каждом событии
+				// на случай, если элемент добавлен ПОСЛЕ иничиализации плагина
+				var arr = [
+					$html,
+					$element,
+					$(config.switchBtn),
+					$(config.addBtn),
+					$(config.removeBtn),
+					config.other
+				];
+
+				// callback beforeRemoved
+				$element.trigger('tClass.beforeRemoved');
+
+				$.each(arr, function () {
+					var curElem = this;
+					// если массив, то удаляем класс с каждого элемент этого массива
+					if ($.isArray(curElem)) {
+						$.each(curElem, function () {
+							var $curElem = $(this);
+							if ($curElem.length) {
+								$curElem.removeClass(config.modifiers.currentClass);
+							} else {
+								// В консоль вывести предуприждение,
+								// если указанного элемента не существует.
+								console.warn('Element "' + this + '" does not exist!')
+							}
+						});
+					} else {
+						$(this).removeClass(config.modifiers.currentClass);
+					}
+				});
 
 				classIsAdded = false;
 
-				count = --count;
-				console.log("count: ", count);
+				if (config.cssScrollFixed) {
+					countFixedScroll = --countFixedScroll;
+				}
 				toggleScroll();
 
 				// callback afterRemoved
-				$element.trigger('afterRemoved.tClass');
+				$element.trigger('tClass.afterRemoved');
 			},
-			toggle = function () {
-				if(config.switcher){
-					$element.on('click', config.switcher, function (event) {
-						var $curOpener = $(this);
+			events = function () {
+				$element.on('click', function (event) {
+					if (classIsAdded) {
+						remove();
 
+						event.preventDefault();
+						return false;
+					}
+
+					add();
+
+					event.preventDefault();
+					event.stopPropagation();
+				});
+
+				if (config.switchBtn) {
+					$html.on('click', config.switchBtn, function (event) {
 						if (classIsAdded) {
-
 							remove();
-
-							// $.data($doc, dataAttr.dataClassAdded, false);
-							classIsAdded = false;
 
 							event.preventDefault();
 							return false;
 						}
 
-						add($curOpener);
+						add();
 
 						event.preventDefault();
 						event.stopPropagation();
-					});
-				} else {
-					$element.on('click', function (event) {
-						var $curOpener = $(this);
-
-						if (classIsAdded) {
-							console.log('initial remove...');
-
-							remove();
-
-							// $.data($doc, dataAttr.dataClassAdded, false);
-							classIsAdded = false;
-
-							event.preventDefault();
-							return false;
-						}
-
-						add($curOpener);
-
-						event.preventDefault();
-						event.stopPropagation();
-					});
+					})
 				}
 
+				if (config.addBtn) {
+					$html.on('click', config.addBtn, function (event) {
+						add();
+
+						event.preventDefault();
+						event.stopPropagation();
+					})
+				}
+
+				if (config.removeBtn) {
+					$html.on('click', config.removeBtn, function (event) {
+						remove();
+
+						event.preventDefault();
+						event.stopPropagation();
+					})
+				}
 			},
 			toggleScroll = function () {
-				console.log("classIsAdded: ", classIsAdded);
-				console.log("count: ", count);
-				if (!count) {
-					// Удаляем с тега html
-					// класс блокирования прокрутки
-					$html.removeClass(config.modifiers.cssScrollFixed);
-				} else {
-					// Добавляем на тег html
-					// класс блокирования прокрутки.
-					$html.addClass(config.modifiers.cssScrollFixed);
+				if (config.cssScrollFixed) {
+					var mod = (config.cssScrollFixed === true) ? 'css-scroll-fixed' : config.cssScrollFixed;
+					if (!countFixedScroll) {
+						// Удаляем с тега html
+						// класс блокирования прокрутки
+						$html.removeClass(mod);
+					} else {
+						// Добавляем на тег html
+						// класс блокирования прокрутки.
+						$html.addClass(mod);
+					}
 				}
 			},
 			closeByClickOutside = function () {
 				$doc.on('click', function(event){
-
 					if(classIsAdded && config.removeOutsideClick && !$(event.target).closest(dataStopRemove).length) {
 						remove();
 						// event.stopPropagation();
@@ -149,13 +201,13 @@
 			},
 			init = function () {
 				$element.addClass(config.modifiers.init);
-				$element.trigger('afterInit.tClass');
+				$element.trigger('tClass.afterInit');
 			};
 
 		self = {
 			callbacks: callbacks,
 			remove: remove,
-			toggle: toggle,
+			events: events,
 			closeByClickOutside: closeByClickOutside,
 			closeByClickEsc: closeByClickEsc,
 			init: init
@@ -176,14 +228,12 @@
 			if (typeof opt === 'object' || typeof opt === 'undefined') {
 				_[i].tClass = new TClass(_[i], $.extend(true, {}, $.fn.tClass.defaultOptions, opt));
 				_[i].tClass.callbacks();
-				_[i].tClass.toggle();
+				_[i].tClass.events();
 				_[i].tClass.closeByClickOutside();
 				_[i].tClass.closeByClickEsc();
 				_[i].tClass.init();
 			}
 			else {
-				console.log("opt: ", opt);
-				console.log("args: ", args);
 				ret = _[i].tClass[opt].apply(_[i].slick, args);
 			}
 			if (typeof ret !== 'undefined') {
@@ -194,13 +244,15 @@
 	};
 
 	$.fn.tClass.defaultOptions = {
-		switcher: null,
-		elements: null,
+		switchBtn: null,
+		addBtn: null,
+		removeBtn: null,
+		other: null,
 		removeOutsideClick: true,
+		cssScrollFixed: false,
 		modifiers: {
 			init: 'tc--initialized',
-			currentClass: 'tc--active',
-			cssScrollFixed: 'css-scroll-fixed'
+			currentClass: 'tc--active'
 		}
 	};
 

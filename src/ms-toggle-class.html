@@ -44,105 +44,175 @@
 		<h2>Примеры использования</h2>
 		<ul>
 			<li>
-				<a class="tc__switcher-1-js"><span>Открыть попап 1 (1)</span></a>
+				<a href="#" class="tc-js"><span>Открыть попап 1</span></a>
 			</li>
 			<li>
-				<a class="tc__switcher-1-js"><span>Открыть попап 1 (2)</span></a>
+				<a href="#" class="tc__switcher-js"><span>Открыть попап 1 (switcher)</span></a>
 			</li>
-			<div>=============================</div>
-			<li id="add-opener" class="tc__switcher-load-1-js">
+			<li id="add-switcher">
 				Добавляем кнопку динамически...
 			</li>
 			<div>=============================</div>
 			<li>
-				<a class="tc__switcher-2-js"><span>Открыть попап 2</span></a>
+				<a href="#" class="tc-2-js"><span>Открыть попап 2</span></a>
+			</li>
+			<div>=============================</div>
+			<li id="add-switcher-02">
+				Добавляем кнопку динамически...
 			</li>
 		</ul>
-		<h2>Документация</h2>
-		<p>В плагине используются js-классы с префиксом <code class="l">tc__</code>. Сокращение от <code class="l">toggle-class</code>.</p>
-		<p>Например, <code class="l">.tc__switcher-js</code>, <code class="l"></code></p>
-		<h3>Options</h3>
-		<ul>
-			<li>
-				<div><b>switcher:</b></div>
-				<div><i class="o">Defaults:</i> <code class="d">null</code></div>
-				<div>Класс элемента, по которому происходит переключение класса</div>
-				<div>Этот параметр необходимо указать, если свитчер добавляется <b>динамически</b>.</div>
-				<div>Тогда плагин запускаем на статичной обертке, а в параметрах указываем <b>switcher:</b> (например) <code class="d">.tc__switcher-js</code></div>
-			</li>
-			<li>
-				<div><b>removeElements:</b></div>
-				<div><i class="o">Defaults:</i> <code class="d">'.tc__close-js'</code></div>
-				<div>Класс элементов, по которым происходит удаление класса</div>
-			</li>
-			<li>
-				<div><b>removeOutsideClick:</b></div>
-				<div><i class="o">Defaults:</i> <code class="d">'.tc__outside-js'</code></div>
-				<div>Удалить класс при клики вне этого элемента</div>
-				<div><b class="d">Примечания:</b></div>
-				<!--<div><b>1.</b> </div>-->
-				<div><b>1.</b> Если значение этого параметра равно true, то при клике в ЛЮБОМ месте страницы все установленные ранее классы удаляются.</div>
-				<div>Если же при клике на определенный элемент удаление не желательно, то на этот элемент необходимо добавить атрибут <i class="d">data-tc-stop</i> (без значения).</div>
-			</li>
-			<li>
-				<b>modifiers:</b>
-				<i>Defaults:</i> <br>
-				<pre class="d">{
-	init: 'tc--initialized',
-	currentClass: 'tc--active',
-	cssScrollFixed: 'css-scroll-fixed'
-}</pre>
-			</li>
-		</ul>
-		<h3>События</h3>
-		<ul>
-			<li>
-				<b>afterInit</b> <br>
-				<p>Вызов вконце функции afterInit()</p>
-				<pre>afterInit: function (e, el) {}</pre>
-			</li>
-		</ul>
-		<h3>Глобальные настройки</h3>
-		<p>Поменять настройки плагина глобально можно через</p>
-		<pre>$.fn.tClass.defaultOptions</pre>
-		<p class="o">Например:</p>
-		<pre>$.fn.tClass.defaultOptions.removeOnEsc = false;</pre>
+
 		<!--****popups****-->
 		<!--example-popup1-->
-		<div class="popup-default popup-1-js">
+		<div class="popup-default tc__popup-js">
 			<div class="popup-default__holder">
 				<div class="popup-default__cell">
 					<div class="popup-default__layout" data-tc-stop>
-						<a href="#" class="popup-default__close tc__switcher-1-js" title="Закрыть">x close</a>
-						<div class="ms-popup-d__init-js ms-popup-d__init-alt-js">
+						<a href="#" class="popup-default__close tc__remove-js" title="Закрыть">x close</a>
+						<div class="ms-popup-d__init-js" data-tc-stop>
 							<h2>Попап 1</h2>
 							Lorem sit amet, <a href="#?">consectetur</a> adipisicing elit. Ab accusantium aliquid cum cupiditate esse exercitationem explicabo, illum in magnam, magni maiores nam nemo nihil non provident quaerat quod rem sapiente!
 							<br>
 							<br>
-							<a class="tc__switcher-2-js"><span>Открыть попап 2</span></a>
+							<a class="tc-2__add-js"><span>Открыть попап 2</span></a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<!--example-popup2-->
-		<div class="popup-default popup-2-js">
+		<div class="popup-default tc-2__popup-js">
 			<div class="popup-default__holder">
 				<div class="popup-default__cell">
 					<div class="popup-default__layout" data-tc-stop>
-						<a href="#" class="popup-default__close tc__switcher-2-js" title="Закрыть">x close</a>
+						<a href="#" class="popup-default__close tc-2__remove-js" title="Закрыть">x close</a>
 						<div class="ms-popup-d__init-js">
 							<h2>Попап 2</h2>
 							Lorem ipsum dolor sit amet, <a href="#?">consectetur</a> adipisicing elit. Ab accusantium aliquid cum cupiditate esse exercitationem explicabo, illum in magnam, magni maiores nam nemo nihil non provident quaerat quod rem sapiente! Lorem ipsum dolor
 							sit amet, consectetur adipisicing elit. Deleniti itaque laborum modi provident repellat. Ab adipisci aliquam corporis dolore labore molestias odit recusandae unde ut vero? Excepturi optio sequi voluptatum?
 							<br>
 							<br>
-							<a class="tc__switcher-1-js"><span>Открыть попап 1</span></a>
+							<a class="tc__add-js"><span>Открыть попап 1</span></a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		<!--example-popup3-->
+		<div class="popup-default tc-3__popup-js">
+			<div class="popup-default__holder">
+				<div class="popup-default__cell">
+					<div class="popup-default__layout" data-tc-stop>
+						<a href="#" class="popup-default__close tc-3__remove-js" title="Закрыть">x close</a>
+						<div class="ms-popup-d__init-js">
+							<h2>Попап 3</h2>
+							Lorem ipsum dolor sit amet, <a href="#?">consectetur</a> adipisicing elit. Ab accusantium aliquid cum cupiditate esse exercitationem explicabo, illum in magnam, magni maiores nam nemo nihil non provident quaerat quod rem sapiente!
+							<br> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti itaque laborum modi provident repellat. Ab adipisci aliquam corporis dolore labore molestias odit recusandae unde ut vero? Excepturi optio sequi voluptatum?
+							<br> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti itaque laborum modi provident repellat. Ab adipisci aliquam corporis dolore labore molestias odit recusandae unde ut vero? Excepturi optio sequi voluptatum?
+							<br> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti itaque laborum modi provident repellat. Ab adipisci aliquam corporis dolore labore molestias odit recusandae unde ut vero? Excepturi optio sequi voluptatum?
+							<br>
+							<br>
+							<a class="tc__add-js"><span>Открыть попап 1</span></a>
+							<br>
+							<a class="tc-2__add-js"><span>Открыть попап 2</span></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+		<h2>Документация</h2>
+		<p>В плагине используются js-классы с префиксом <code class="l">tc</code>. Сокращение от <code class="l">toggle-class</code>.</p>
+		<p>Например, <code class="l">.tc__switcher-js</code>, <code class="l"></code></p>
+		<h3>Options</h3>
+		<ul>
+			<li>
+				<div><b>switchBtn:</b></div>
+				<div><i class="o">Defaults:</i> <code class="d">null</code></div>
+				<div><i class="o">Type:</i> <code class="d">String</code></div>
+				<div><i class="o">Example:</i> <code class="d">'.some-class'</code></div>
+				<div>Элемент, которым можно <b>переключать класс</b>. Использовать, когда нужно продублировать switcher, например, для мобилной версии</div>
+			</li>
+			<li>
+				<div><b>addBtn:</b></div>
+				<div><i class="o">Defaults:</i> <code class="d">null</code></div>
+				<div><i class="o">Type:</i> <code class="d">String</code></div>
+				<div><i class="o">Example:</i> <code class="d">'.some-class'</code></div>
+				<div>Элемент, которым можно <b>только добавить</b> класс</div>
+			</li>
+			<li>
+				<div><b>removeBtn:</b></div>
+				<div><i class="o">Defaults:</i> <code class="d">null</code></div>
+				<div><i class="o">Type:</i> <code class="d">String</code></div>
+				<div><i class="o">Example:</i> <code class="d">'.some-class'</code></div>
+				<div>Элемент, которым можно <b>только удалить</b> класс</div>
+			</li>
+			<li>
+				<div><b>other:</b></div>
+				<div><i class="o">Defaults:</i> <code class="d">null</code></div>
+				<div><i class="o">Type:</i> <code class="d">String, arr</code></div>
+				<div><i class="o">Example:</i> <code class="d">'.some-class'</code>, or <code class="d">['.some-class-1', '.some-class-2']</code></div>
+				<div>Все остальные элементы, на которые будет добавлен класс</div>
+			</li>
+			<li>
+				<div><b>removeOutsideClick:</b></div>
+				<div><i class="o">Defaults:</i> <code class="d">true</code></div>
+				<div><i class="o">Type:</i> <code class="d">Boolean</code></div>
+				<div>Удалить класс при клики вне этого элемента</div>
+				<div><b class="d">Примечания:</b></div>
+				<div>Если значение этого параметра равно true, то при клике в ЛЮБОМ месте страницы все установленные ранее классы удаляются.</div>
+				<div>В случае, если при клике на определенный элемент удаление не желательно, то на этот элемент необходимо добавить атрибут <i class="d">data-tc-stop</i> (без значения).</div>
+			</li>
+			<li>
+				<div><b>cssScrollFixed:</b></div>
+				<div><i class="o">Defaults:</i> <code class="d">false</code></div>
+				<div><i class="o">Type:</i> <code class="d">Boolean or string (.class)</code></div>
+				<div><i class="o">Example:</i> <code class="d">true</code>, or <code class="d">'some-class'</code></div>
+				<div>Блокировка скролла после добавления класса</div>
+				<div>Если указать значение true, то на <code class="d">html</code> будет добавляться дополнительный класс <code class="d">css-scroll-fixed</code></div>
+				<div>Также в значение параметра можно передать любой другой класс (!!!без точки).</div>
+			</li>
+			<li>
+				<b>modifiers:</b>
+				<i>Defaults:</i> <br>
+				<pre class="d">{
+	init: 'tc--initialized',
+	currentClass: 'tc--active'
+}</pre>
+			</li>
+		</ul>
+
+		<h3>События</h3>
+		<ul>
+			<li>
+				<div><b>afterInit</b></div>
+				<div><code class="d">afterInit: function (e, el) {}</code></div>
+			</li>
+			<li>
+				<div><b>beforeAdded</b></div>
+				<div><code class="d">beforeAdded: function (e, el) {}</code></div>
+			</li>
+			<li>
+				<div><b>afterAdded</b></div>
+				<div><code class="d">afterAdded: function (e, el) {}</code></div>
+			</li>
+			<li>
+				<div><b>beforeRemoved</b></div>
+				<div><code class="d">beforeRemoved: function (e, el) {}</code></div>
+			</li>
+			<li>
+				<div><b>afterRemoved</b></div>
+				<div><code class="d">afterRemoved: function (e, el) {}</code></div>
+			</li>
+		</ul>
+
+		<h3>Глобальные настройки</h3>
+		<div>Поменять настройки плагина глобально можно через</div>
+		<div><code class="d">$.fn.tClass.defaultOptions</code></div>
+		<div><b>Например:</b></div>
+		<div><code class="d">$.fn.tClass.defaultOptions.removeOutsideClick = false;</code></div>
 	</div>
 	<!-- >>> foot.tpl <<< -->
 	<!--footer-->

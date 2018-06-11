@@ -10,18 +10,21 @@
 	<h2>Примеры использования</h2>
 	<ul>
 		<li>
-			<a class="tc__switcher-1-js"><span>Открыть попап 1 (1)</span></a>
+			<a href="#" class="tc-js"><span>Открыть попап 1</span></a>
 		</li>
 		<li>
-			<a class="tc__switcher-1-js"><span>Открыть попап 1 (2)</span></a>
+			<a href="#" class="tc__switcher-js"><span>Открыть попап 1 (switcher)</span></a>
 		</li>
-		<div>=============================</div>
-		<li id="add-opener" class="tc__switcher-load-1-js">
+		<li id="add-switcher">
 			Добавляем кнопку динамически...
 		</li>
 		<div>=============================</div>
 		<li>
-			<a class="tc__switcher-2-js"><span>Открыть попап 2</span></a>
+			<a href="#" class="tc-2-js"><span>Открыть попап 2</span></a>
+		</li>
+		<div>=============================</div>
+		<li id="add-switcher-02">
+			Добавляем кнопку динамически...
 		</li>
 	</ul>
 
@@ -81,36 +84,61 @@
 
 	<!--****popups****-->
 	<!--example-popup1-->
-	<div class="popup-default popup-1-js">
+	<div class="popup-default tc__popup-js">
 		<div class="popup-default__holder">
 			<div class="popup-default__cell">
 				<div class="popup-default__layout" data-tc-stop>
-					<a href="#" class="popup-default__close tc__switcher-1-js" title="Закрыть">x close</a>
+					<a href="#" class="popup-default__close tc__remove-js" title="Закрыть">x close</a>
 
-					<div class="ms-popup-d__init-js ms-popup-d__init-alt-js">
+					<div class="ms-popup-d__init-js" data-tc-stop>
 						<h2>Попап 1</h2>
 						Lorem sit amet, <a href="#?">consectetur</a> adipisicing elit. Ab accusantium aliquid cum cupiditate esse exercitationem explicabo, illum in magnam, magni maiores nam nemo nihil non provident quaerat quod rem sapiente!
 						<br>
 						<br>
-						<a class="tc__switcher-2-js"><span>Открыть попап 2</span></a>
+						<a class="tc-2__add-js"><span>Открыть попап 2</span></a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!--example-popup2-->
-	<div class="popup-default popup-2-js">
+	<div class="popup-default tc-2__popup-js">
 		<div class="popup-default__holder">
 			<div class="popup-default__cell">
 				<div class="popup-default__layout" data-tc-stop>
-					<a href="#" class="popup-default__close tc__switcher-2-js" title="Закрыть">x close</a>
+					<a href="#" class="popup-default__close tc-2__remove-js" title="Закрыть">x close</a>
 					<div class="ms-popup-d__init-js">
 						<h2>Попап 2</h2>
 						Lorem ipsum dolor sit amet, <a href="#?">consectetur</a> adipisicing elit. Ab accusantium aliquid cum cupiditate esse exercitationem explicabo, illum in magnam, magni maiores nam nemo nihil non provident quaerat quod rem sapiente!
 						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti itaque laborum modi provident repellat. Ab adipisci aliquam corporis dolore labore molestias odit recusandae unde ut vero? Excepturi optio sequi voluptatum?
 						<br>
 						<br>
-						<a class="tc__switcher-1-js"><span>Открыть попап 1</span></a>
+						<a class="tc__add-js"><span>Открыть попап 1</span></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--example-popup3-->
+	<div class="popup-default tc-3__popup-js">
+		<div class="popup-default__holder">
+			<div class="popup-default__cell">
+				<div class="popup-default__layout" data-tc-stop>
+					<a href="#" class="popup-default__close tc-3__remove-js" title="Закрыть">x close</a>
+					<div class="ms-popup-d__init-js">
+						<h2>Попап 3</h2>
+						Lorem ipsum dolor sit amet, <a href="#?">consectetur</a> adipisicing elit. Ab accusantium aliquid cum cupiditate esse exercitationem explicabo, illum in magnam, magni maiores nam nemo nihil non provident quaerat quod rem sapiente!
+						<br>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti itaque laborum modi provident repellat. Ab adipisci aliquam corporis dolore labore molestias odit recusandae unde ut vero? Excepturi optio sequi voluptatum?
+						<br>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti itaque laborum modi provident repellat. Ab adipisci aliquam corporis dolore labore molestias odit recusandae unde ut vero? Excepturi optio sequi voluptatum?
+						<br>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti itaque laborum modi provident repellat. Ab adipisci aliquam corporis dolore labore molestias odit recusandae unde ut vero? Excepturi optio sequi voluptatum?
+						<br>
+						<br>
+						<a class="tc__add-js"><span>Открыть попап 1</span></a>
+						<br>
+						<a class="tc-2__add-js"><span>Открыть попап 2</span></a>
 					</div>
 				</div>
 			</div>

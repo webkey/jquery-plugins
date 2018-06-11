@@ -82,13 +82,15 @@
 }
 
 .popup-default__close:before {
-	-ms-transform: rotate(45deg);
-	    transform: rotate(45deg);
+	-webkit-transform: rotate(45deg);
+	    -ms-transform: rotate(45deg);
+	        transform: rotate(45deg);
 }
 
 .popup-default__close:after {
-	-ms-transform: rotate(-45deg);
-	    transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+	    -ms-transform: rotate(-45deg);
+	        transform: rotate(-45deg);
 }
 
 .popup-default__close:hover {
@@ -102,8 +104,34 @@
 }
 
 /*not use*/
-.tc--active.tc__switcher-1-js, .tc--active.tc__switcher-2-js, .tc--open.tc__switcher-1-js, .tc--open.tc__switcher-2-js {
+a[class*="tc-"],
+a[class*="tc__"] {
+	display: inline-block;
+	vertical-align: top;
+	border: 2px solid black;
+	border-right-color: gray;
+	border-bottom-color: lightgrey;
+	text-decoration: none;
+	padding: 0 6px;
+	border-radius: 2px;
+	color: inherit;
+	background-color: lightcyan;
+}
+
+a[class*="tc-"]:hover,
+a[class*="tc__"]:hover {
+	color: blue;
+}
+
+.tc--active.tc-js, .tc--active.tc-1-js, .tc--active.tc-2-js, .tc--active.tc-3-js, .tc--active.tc__switcher-js, .tc--active.tc-1__switcher-js, .tc--active.tc-2__switcher-js, .tc--active.tc-3__switcher-js, .tc--active.tc__add-js, .tc--active.tc-2__add-js, .tc--open.tc-js, .tc--open.tc-1-js, .tc--open.tc-2-js, .tc--open.tc-3-js, .tc--open.tc__switcher-js, .tc--open.tc-1__switcher-js, .tc--open.tc-2__switcher-js, .tc--open.tc-3__switcher-js, .tc--open.tc__add-js, .tc--open.tc-2__add-js {
 	font-weight: bold;
+	color: white;
+	background-color: black;
+}
+
+.tc--active.tc-js:hover, .tc--active.tc-1-js:hover, .tc--active.tc-2-js:hover, .tc--active.tc-3-js:hover, .tc--active.tc__switcher-js:hover, .tc--active.tc-1__switcher-js:hover, .tc--active.tc-2__switcher-js:hover, .tc--active.tc-3__switcher-js:hover, .tc--active.tc__add-js:hover, .tc--active.tc-2__add-js:hover, .tc--open.tc-js:hover, .tc--open.tc-1-js:hover, .tc--open.tc-2-js:hover, .tc--open.tc-3-js:hover, .tc--open.tc__switcher-js:hover, .tc--open.tc-1__switcher-js:hover, .tc--open.tc-2__switcher-js:hover, .tc--open.tc-3__switcher-js:hover, .tc--open.tc__add-js:hover, .tc--open.tc-2__add-js:hover {
+	color: white;
+	background-color: blue;
 }
 
 .page-ms-popup-dynamic .layout-flood {

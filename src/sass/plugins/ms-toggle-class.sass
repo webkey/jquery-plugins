@@ -87,10 +87,40 @@
 ///*=================*/
 /*not use*/
 ///*=================*/
+a[class*="tc-"],
+a[class*="tc__"]
+	display: inline-block
+	vertical-align: top
+	border: 2px solid black
+	border-right-color: gray
+	border-bottom-color: lightgrey
+	text-decoration: none
+	padding: 0 6px
+	border-radius: 2px
+	color: inherit
+	background-color: lightcyan
+
+	&:hover
+		color: blue
+
 .tc--active, .tc--open
-	&.tc__switcher-1-js,
-	&.tc__switcher-2-js
+	&.tc-js,
+	&.tc-1-js,
+	&.tc-2-js,
+	&.tc-3-js,
+	&.tc__switcher-js,
+	&.tc-1__switcher-js,
+	&.tc-2__switcher-js,
+	&.tc-3__switcher-js,
+	&.tc__add-js,
+	&.tc-2__add-js
 		font-weight: bold
+		color: white
+		background-color: black
+
+		&:hover
+			color: white
+			background-color: blue
 
 .page-ms-popup-dynamic
 	.layout-flood

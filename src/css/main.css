@@ -879,8 +879,9 @@ code.l, code.d {
 .user-content blockquote q:after {
 	content: '';
 	margin: 20px 30% 0 auto;
-	-ms-transform: rotate(180deg);
-	    transform: rotate(180deg);
+	-webkit-transform: rotate(180deg);
+	    -ms-transform: rotate(180deg);
+	        transform: rotate(180deg);
 }
 
 @media (max-width: 639px) {
@@ -955,8 +956,9 @@ code.l, code.d {
 }
 
 .view-print:active {
-	-ms-transform: scale(0.98);
-	    transform: scale(0.98);
+	-webkit-transform: scale(0.98);
+	    -ms-transform: scale(0.98);
+	        transform: scale(0.98);
 }
 
 .view-print svg {
@@ -1045,6 +1047,10 @@ input[type="radio"], input[type="checkbox"] {
 	content: '';
 	display: table;
 	clear: both;
+}
+
+.user-content {
+	padding: 60px 0;
 }
 
 .content-wrap {
@@ -1400,9 +1406,9 @@ li:hover > .nav__drop {
 	top: 0;
 	width: 149px;
 	height: 16px;
-	transition-property: opacity, transform, -webkit-filter;
+	transition-property: opacity, -webkit-transform, -webkit-filter;
 	transition-property: opacity, transform, filter;
-	transition-property: opacity, transform, filter, -webkit-filter;
+	transition-property: opacity, transform, filter, -webkit-transform, -webkit-filter;
 	transition-duration: 0.2s;
 }
 
@@ -1416,8 +1422,9 @@ li:hover > .nav__drop {
 }
 
 .no-touchevents a:hover .developer__logo::before {
-	-ms-transform: translate(0, 1px);
-	    transform: translate(0, 1px);
+	-webkit-transform: translate(0, 1px);
+	    -ms-transform: translate(0, 1px);
+	        transform: translate(0, 1px);
 	-webkit-filter: blur(2px);
 	        filter: blur(2px);
 	opacity: 0.6;
@@ -1431,8 +1438,9 @@ li:hover > .nav__drop {
 }
 
 .no-touchevents a:hover .developer__logo::after {
-	-ms-transform: translate(0, -1px);
-	    transform: translate(0, -1px);
+	-webkit-transform: translate(0, -1px);
+	    -ms-transform: translate(0, -1px);
+	        transform: translate(0, -1px);
 }
 
 /*developer end*/
@@ -1857,8 +1865,9 @@ li:hover > .nav__drop {
 		bottom: auto !important;
 		padding: 0 !important;
 		margin: 0 !important;
-		-ms-transform: none !important;
-		    transform: none !important;
+		-webkit-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
 		text-align: left !important;
 		border: none !important;
 		box-shadow: none !important;
