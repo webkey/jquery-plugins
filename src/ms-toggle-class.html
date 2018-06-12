@@ -61,20 +61,53 @@
 				Добавляем кнопку динамически...
 			</li>
 		</ul>
-
+		<!--nav-->
+		<div><b>Пример для адаптива</b></div>
+		<div>1. Сожмите браузер до 960px.</div>
+		<div>2. После того, как появится кнопка, кликните по ней. Откроется навигация.</div>
+		<div>3. При сжимании и растягивании браузера навигация будет появляться и пропадать</div>
+		<br>
+		<div><a href="#" class="nav-opener-js"><span>Навигация</span></a></div>
+		<!--navigation-->
+		<div class="nav-wrap shutter--nav-js">
+			<nav class="nav">
+				<ul class="nav__list nav-js">
+					<li class="">
+						<a href="http://www.kommunarka.by/about/istorija-fabriki/"><span>О компании</span></a>
+					</li>
+					<li class="">
+						<a href="index.html"><span>Продукция</span></a>
+					</li>
+					<li class="">
+						<a href="http://www.kommunarka.by/o-shokolade/"><span>О шоколаде</span></a>
+					</li>
+					<li class="">
+						<a href="http://www.kommunarka.by/news/"><span>Новости</span></a>
+					</li>
+					<li class="">
+						<a href="http://www.kommunarka.by/pokupateljam/special/"><span>Закупки</span></a>
+					</li>
+					<li class="">
+						<a href="http://www.kommunarka.by/contacts/nashi-kontakty/"><span>Контакты</span></a>
+					</li>
+				</ul>
+			</nav>
+			<div class="nav-footer"></div>
+		</div>
+		<!--navigation end-->
 		<!--****popups****-->
 		<!--example-popup1-->
 		<div class="popup-default tc__popup-js">
 			<div class="popup-default__holder">
 				<div class="popup-default__cell">
 					<div class="popup-default__layout" data-tc-stop>
-						<a href="#" class="popup-default__close tc__remove-js" title="Закрыть">x close</a>
+						<a href="#" class="popup-default__close tc__switcher-js" title="Закрыть" data-tc-only-remove>x close</a>
 						<div class="ms-popup-d__init-js" data-tc-stop>
 							<h2>Попап 1</h2>
 							Lorem sit amet, <a href="#?">consectetur</a> adipisicing elit. Ab accusantium aliquid cum cupiditate esse exercitationem explicabo, illum in magnam, magni maiores nam nemo nihil non provident quaerat quod rem sapiente!
 							<br>
 							<br>
-							<a class="tc-2__add-js"><span>Открыть попап 2</span></a>
+							<a class="tc-2__switcher-js" data-tc-only-add=""><span>Открыть попап 2</span></a>
 						</div>
 					</div>
 				</div>
@@ -85,14 +118,14 @@
 			<div class="popup-default__holder">
 				<div class="popup-default__cell">
 					<div class="popup-default__layout" data-tc-stop>
-						<a href="#" class="popup-default__close tc-2__remove-js" title="Закрыть">x close</a>
+						<a href="#" class="popup-default__close tc-2__switcher-js" title="Закрыть" data-tc-only-remove="">x close</a>
 						<div class="ms-popup-d__init-js">
 							<h2>Попап 2</h2>
 							Lorem ipsum dolor sit amet, <a href="#?">consectetur</a> adipisicing elit. Ab accusantium aliquid cum cupiditate esse exercitationem explicabo, illum in magnam, magni maiores nam nemo nihil non provident quaerat quod rem sapiente! Lorem ipsum dolor
 							sit amet, consectetur adipisicing elit. Deleniti itaque laborum modi provident repellat. Ab adipisci aliquam corporis dolore labore molestias odit recusandae unde ut vero? Excepturi optio sequi voluptatum?
 							<br>
 							<br>
-							<a class="tc__add-js"><span>Открыть попап 1</span></a>
+							<a class="tc__switcher-js" data-tc-only-add><span>Открыть попап 1</span></a>
 						</div>
 					</div>
 				</div>
@@ -103,7 +136,7 @@
 			<div class="popup-default__holder">
 				<div class="popup-default__cell">
 					<div class="popup-default__layout" data-tc-stop>
-						<a href="#" class="popup-default__close tc-3__remove-js" title="Закрыть">x close</a>
+						<a href="#" class="popup-default__close tc-3__switcher-js" title="Закрыть" data-tc-only-remove="">x close</a>
 						<div class="ms-popup-d__init-js">
 							<h2>Попап 3</h2>
 							Lorem ipsum dolor sit amet, <a href="#?">consectetur</a> adipisicing elit. Ab accusantium aliquid cum cupiditate esse exercitationem explicabo, illum in magnam, magni maiores nam nemo nihil non provident quaerat quod rem sapiente!
@@ -112,20 +145,26 @@
 							<br> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti itaque laborum modi provident repellat. Ab adipisci aliquam corporis dolore labore molestias odit recusandae unde ut vero? Excepturi optio sequi voluptatum?
 							<br>
 							<br>
-							<a class="tc__add-js"><span>Открыть попап 1</span></a>
+							<a class="tc__switcher-js" data-tc-only-add><span>Открыть попап 1</span></a>
 							<br>
-							<a class="tc-2__add-js"><span>Открыть попап 2</span></a>
+							<a class="tc-2__switcher-js" data-tc-only-add><span>Открыть попап 2</span></a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-
-
-
+		<div class="popup-overlay tc__overlay-js">&nbsp;</div>
+		<p>Чтобы при добавлении классов одним экземпляром плагина, удалялись классы добавленные другим экземпляром, нужно использовать <b>Events (События)</b>. См. пример в <i class="code">common-ms-toggle-class.js</i></p>
 		<h2>Документация</h2>
 		<p>В плагине используются js-классы с префиксом <code class="l">tc</code>. Сокращение от <code class="l">toggle-class</code>.</p>
 		<p>Например, <code class="l">.tc__switcher-js</code>, <code class="l"></code></p>
+		<h3>Files</h3>
+		<ul>
+			<li>__ms-toggle-class.html</li>
+			<li>jquery.ms-toggle-class.js</li>
+			<li>common-ms-toggle-class.js</li>
+			<li>ms-toggle-class.sass</li>
+		</ul>
 		<h3>Options</h3>
 		<ul>
 			<li>
@@ -134,23 +173,29 @@
 				<div><i class="o">Type:</i> <code class="d">String</code></div>
 				<div><i class="o">Example:</i> <code class="d">'.some-class'</code></div>
 				<div>Элемент, которым можно <b>переключать класс</b>. Использовать, когда нужно продублировать switcher, например, для мобилной версии</div>
+				<br>
+				<h4>Допольнительные data-атрибуты:</h4>
+				<ul>
+					<li>
+						<div><code class="d">'data-tc-only-add'</code></div>
+						<div>
+							<i class="o">Example:</i>
+							<code class="code">&lt;div class=&quot;some-class&quot; data-tc-only-add&gt;...&lt;/div&gt;</code>
+						</div>
+						<div>Если при клике нужно <b>только добавлять класс</b></div>
+					</li>
+					<li>
+						<div><code class="d">'data-tc-only-remove'</code></div>
+						<div>
+							<i class="o">Example:</i>
+							<code class="code">&lt;div class=&quot;some-class&quot; data-tc-only-remove&gt;...&lt;/div&gt;</code>
+						</div>
+						<div>Если при клике нужно <b>только удалять класс</b></div>
+					</li>
+				</ul>
 			</li>
 			<li>
-				<div><b>addBtn:</b></div>
-				<div><i class="o">Defaults:</i> <code class="d">null</code></div>
-				<div><i class="o">Type:</i> <code class="d">String</code></div>
-				<div><i class="o">Example:</i> <code class="d">'.some-class'</code></div>
-				<div>Элемент, которым можно <b>только добавить</b> класс</div>
-			</li>
-			<li>
-				<div><b>removeBtn:</b></div>
-				<div><i class="o">Defaults:</i> <code class="d">null</code></div>
-				<div><i class="o">Type:</i> <code class="d">String</code></div>
-				<div><i class="o">Example:</i> <code class="d">'.some-class'</code></div>
-				<div>Элемент, которым можно <b>только удалить</b> класс</div>
-			</li>
-			<li>
-				<div><b>other:</b></div>
+				<div><b>toggleClassTo:</b></div>
 				<div><i class="o">Defaults:</i> <code class="d">null</code></div>
 				<div><i class="o">Type:</i> <code class="d">String, arr</code></div>
 				<div><i class="o">Example:</i> <code class="d">'.some-class'</code>, or <code class="d">['.some-class-1', '.some-class-2']</code></div>
@@ -160,30 +205,32 @@
 				<div><b>removeOutsideClick:</b></div>
 				<div><i class="o">Defaults:</i> <code class="d">true</code></div>
 				<div><i class="o">Type:</i> <code class="d">Boolean</code></div>
-				<div>Удалить класс при клики вне этого элемента</div>
-				<div><b class="d">Примечания:</b></div>
-				<div>Если значение этого параметра равно true, то при клике в ЛЮБОМ месте страницы все установленные ранее классы удаляются.</div>
-				<div>В случае, если при клике на определенный элемент удаление не желательно, то на этот элемент необходимо добавить атрибут <i class="d">data-tc-stop</i> (без значения).</div>
+				<div>Удалить класс при клики вне этого элемента.</div>
+				<div><b>Примечания:</b></div>
+				<div>Если значение этого параметра равно <code class="code">true</code>, то при клике в ЛЮБОМ месте страницы все установленные ранее классы удаляются.</div>
+				<div>В случае, если при клике на определенный элемент удаление не желательно, то на этот элемент необходимо добавить атрибут <code class="d">data-tc-stop</code> (без значения).</div>
 			</li>
 			<li>
 				<div><b>cssScrollFixed:</b></div>
 				<div><i class="o">Defaults:</i> <code class="d">false</code></div>
 				<div><i class="o">Type:</i> <code class="d">Boolean or string (.class)</code></div>
 				<div><i class="o">Example:</i> <code class="d">true</code>, or <code class="d">'some-class'</code></div>
-				<div>Блокировка скролла после добавления класса</div>
-				<div>Если указать значение true, то на <code class="d">html</code> будет добавляться дополнительный класс <code class="d">css-scroll-fixed</code></div>
-				<div>Также в значение параметра можно передать любой другой класс (!!!без точки).</div>
+				<div>Блокировка скролла после добавления класса.</div>
+				<div><b>Примечания:</b></div>
+				<div>Если указать значение <code class="code">true</code>, то на <code class="code">html</code> будет добавляться дополнительный класс <code class="d">css-scroll-fixed</code></div>
+				<div>Вместо <code class="code">true</code> в значение параметра можно передать любой другой класс (!!!без точки).</div>
 			</li>
 			<li>
 				<b>modifiers:</b>
 				<i>Defaults:</i> <br>
-				<pre class="d">{
-	init: 'tc--initialized',
-	currentClass: 'tc--active'
-}</pre>
+				<div>
+					<code class="d" style="display: block;">{ <br>
+					&nbsp;&nbsp; init: 'tc--initialized', <br>
+					&nbsp;&nbsp; currentClass: 'tc--active' <br>
+				{</code>
+				</div>
 			</li>
 		</ul>
-
 		<h3>События</h3>
 		<ul>
 			<li>
@@ -207,7 +254,6 @@
 				<div><code class="d">afterRemoved: function (e, el) {}</code></div>
 			</li>
 		</ul>
-
 		<h3>Глобальные настройки</h3>
 		<div>Поменять настройки плагина глобально можно через</div>
 		<div><code class="d">$.fn.tClass.defaultOptions</code></div>

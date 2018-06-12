@@ -14,9 +14,8 @@
 	var TClass = function(element, config){
 		var self,
 			$element = $(element),
-			dataStopRemove = '[data-tc-stop]';
-
-		var classIsAdded = false;
+			dataStopRemove = '[data-tc-stop]',
+			classIsAdded = false;
 
 		var callbacks = function() {
 				/** track events */
@@ -31,19 +30,14 @@
 			add = function () {
 				if (classIsAdded) return;
 
-				// Массив элементов проверять при каждом событии
-				// на случай, если элемент добавлен ПОСЛЕ иничиализации плагина
-				var arr = [
-					$html,
-					$element,
-					$(config.switchBtn),
-					$(config.addBtn),
-					$(config.removeBtn),
-					config.other
-				];
-
 				// callback before added class
 				$element.trigger('tClass.beforeAdded');
+
+				var arr = [
+					$element,
+					$(config.switchBtn),
+					config.toggleClassTo
+				];
 
 				$.each(arr, function () {
 					var curElem = this;
@@ -78,19 +72,14 @@
 			remove = function () {
 				if (!classIsAdded) return;
 
-				// Массив элементов проверять при каждом событии
-				// на случай, если элемент добавлен ПОСЛЕ иничиализации плагина
-				var arr = [
-					$html,
-					$element,
-					$(config.switchBtn),
-					$(config.addBtn),
-					$(config.removeBtn),
-					config.other
-				];
-
 				// callback beforeRemoved
 				$element.trigger('tClass.beforeRemoved');
+
+				var arr = [
+					$element,
+					$(config.switchBtn),
+					config.toggleClassTo
+				];
 
 				$.each(arr, function () {
 					var curElem = this;
@@ -138,34 +127,30 @@
 
 				if (config.switchBtn) {
 					$html.on('click', config.switchBtn, function (event) {
+						var $this = $(this);
+
+						event.preventDefault();
+
+						if ($this.attr('data-tc-only-add') !== undefined) {
+							add();
+
+							return false;
+						}
+
+						if ($this.attr('data-tc-only-remove') !== undefined) {
+							remove();
+
+							return false;
+						}
+
 						if (classIsAdded) {
 							remove();
 
-							event.preventDefault();
 							return false;
 						}
 
 						add();
 
-						event.preventDefault();
-						event.stopPropagation();
-					})
-				}
-
-				if (config.addBtn) {
-					$html.on('click', config.addBtn, function (event) {
-						add();
-
-						event.preventDefault();
-						event.stopPropagation();
-					})
-				}
-
-				if (config.removeBtn) {
-					$html.on('click', config.removeBtn, function (event) {
-						remove();
-
-						event.preventDefault();
 						event.stopPropagation();
 					})
 				}
@@ -245,9 +230,7 @@
 
 	$.fn.tClass.defaultOptions = {
 		switchBtn: null,
-		addBtn: null,
-		removeBtn: null,
-		other: null,
+		toggleClassTo: null,
 		removeOutsideClick: true,
 		cssScrollFixed: false,
 		modifiers: {

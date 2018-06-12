@@ -5,29 +5,34 @@
 'use strict';
 
 $(function () {
-	// $.fn.simplePopupDynamic.defaultOptions.outsideClose = false;
-	// $.fn.simplePopupDynamic.defaultOptions.escapeClose = false;
-
 	// Первый свитчер
-	var $switcher1 = $('.tc-js');
-	if ($switcher1.length) {
-		$switcher1.tClass({
-			// /*options*/
-			switchBtn: '.tc__switcher-js'
-			, removeBtn: '.tc__remove-js'
-			, addBtn: '.tc__add-js'
-			, other: ['.tc__popup-js']
+	var $nav = $('.nav-opener-js'),
+		nav;
+	if ($nav.length) {
+		nav = $nav.tClass({
+			switchBtn: '.shutter--nav-js'
+			, toggleClassTo: ['html', '.shutter--nav-js', '.tc__overlay-js']
+			, modifiers: {
+				currentClass: 'nav-is-open open-only-mob'
+			}
 			, cssScrollFixed: true
 			, removeOutsideClick: true
-			, afterInit: function () {
-				// console.log('afterInit');
+		});
+	}
+
+	// Первый свитчер
+	var $switcher1 = $('.tc-js'),
+		tc1;
+	if ($switcher1.length) {
+		tc1 = $switcher1.tClass({
+			// /*options*/
+			switchBtn: '.tc__switcher-js'
+			, toggleClassTo: ['html', '.tc__popup-js', '.tc__overlay-js']
+			, modifiers: {
+				currentClass: 'tc--active'
 			}
-			, afterRemoved: function () {
-				// console.log('afterRemoved 1');
-			}
-			, afterAdded: function () {
-				// console.log('afterAdded 1');
-			}
+			, cssScrollFixed: true
+			, removeOutsideClick: true
 		});
 	}
 
@@ -37,13 +42,12 @@ $(function () {
 	}, 1500);
 
 	// Второй свитчер
-	var $switcher2 = $('.tc-2-js'), tc2;
+	var $switcher2 = $('.tc-2-js'),
+		tc2;
 	if ($switcher2.length) {
 		tc2 = $switcher2.tClass({
 			switchBtn: '.tc-2__switcher-js'
-			, removeBtn: '.tc-2__remove-js'
-			, addBtn: '.tc-2__add-js'
-			, other: ['.tc-2__popup-js']
+			, toggleClassTo: ['html', '.tc-2__popup-js', '.tc__overlay-js']
 			, modifiers: {
 				currentClass: 'tc--open'
 			}
@@ -64,8 +68,7 @@ $(function () {
 		var $switcher3 = $('.tc-3-js');
 		var tc3 = $switcher3.tClass({
 			switchBtn: '.tc-3__switcher-js'
-			, removeBtn: '.tc-3__remove-js'
-			, other: ['.tc-3__popup-js']
+			, toggleClassTo: ['html', '.tc-3__popup-js', '.tc__overlay-js']
 			, modifiers: {
 				currentClass: 'tc--active'
 			}
@@ -73,6 +76,7 @@ $(function () {
 			, beforeAdded: function () {
 				// console.log('beforeAdded 3');
 				// Если нужно удалять уже добавленные классы одного экземпляра плагина, при добавлении другого
+				tc1.tClass('remove');
 				tc2.tClass('remove');
 			}
 			, afterRemoved: function () {
@@ -81,6 +85,18 @@ $(function () {
 		});
 
 		tc2.on('tClass.beforeAdded', function () {
+			tc1.tClass('remove');
+			tc3.tClass('remove');
+			nav.tClass('remove');
+		});
+		tc1.on('tClass.beforeAdded', function () {
+			tc2.tClass('remove');
+			tc3.tClass('remove');
+			nav.tClass('remove');
+		});
+		nav.on('tClass.beforeAdded', function () {
+			tc1.tClass('remove');
+			tc2.tClass('remove');
 			tc3.tClass('remove');
 		});
 	}, 1500);

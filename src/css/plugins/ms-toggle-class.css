@@ -9,19 +9,25 @@
 }
 
 .popup-default {
-	display: none;
 	position: fixed;
-	width: 40%;
+	width: 100%;
 	height: 100%;
-	right: 0;
+	left: 0;
 	top: 0;
 	z-index: 9999;
 	overflow-x: hidden;
 	overflow-y: auto;
 	padding: 20px 0;
-	background-color: rgba(0, 0, 0, 0.31);
-	border: 2px solid #000;
-	box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+	opacity: 0;
+	visibility: hidden;
+	will-change: opacity, visibility;
+	transition-property: opacity, visibility;
+	transition-duration: 0.2s;
+}
+
+.popup-default.tc--active, .popup-default.tc--open {
+	opacity: 1;
+	visibility: visible;
 }
 
 @media only screen and (max-width: 479px) {
@@ -54,6 +60,24 @@
 	margin: 0 auto;
 	padding: 80px 20px 40px;
 	background-color: #fff;
+	-webkit-transform: scale(0.85);
+	    -ms-transform: scale(0.85);
+	        transform: scale(0.85);
+	-webkit-transform: scale3d(0.85, 0.85, 1);
+	        transform: scale3d(0.85, 0.85, 1);
+	will-change: transform;
+	transition-property: -webkit-transform;
+	transition-property: transform;
+	transition-property: transform, -webkit-transform;
+	transition-duration: 0.2s;
+}
+
+.popup-default.tc--active .popup-default__layout, .popup-default.tc--open .popup-default__layout {
+	-webkit-transform: scale(1);
+	    -ms-transform: scale(1);
+	        transform: scale(1);
+	-webkit-transform: scale3d(1, 1, 1);
+	        transform: scale3d(1, 1, 1);
 }
 
 .popup-default__close {
@@ -103,24 +127,49 @@
 	}
 }
 
+.popup-overlay {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.35);
+	z-index: 9998;
+	opacity: 0;
+	visibility: hidden;
+	will-change: opacity, visibility;
+	transition-property: opacity, visibility;
+	transition-duration: 0.2s;
+}
+
+.popup-overlay.tc--active, .popup-overlay.tc--open {
+	opacity: 1;
+	visibility: visible;
+}
+
+/*navigation*/
+.nav-wrap {
+	position: relative;
+}
+
 /*not use*/
 a[class*="tc-"],
 a[class*="tc__"] {
 	display: inline-block;
 	vertical-align: top;
-	border: 2px solid black;
-	border-right-color: gray;
-	border-bottom-color: lightgrey;
+	border: 2px solid gray;
+	border-top-color: lightgrey;
+	border-bottom-color: black;
 	text-decoration: none;
 	padding: 0 6px;
 	border-radius: 2px;
 	color: inherit;
-	background-color: lightcyan;
 }
 
 a[class*="tc-"]:hover,
 a[class*="tc__"]:hover {
-	color: blue;
+	border-top-color: black;
+	border-bottom-color: lightgrey;
 }
 
 .tc--active.tc-js, .tc--active.tc-1-js, .tc--active.tc-2-js, .tc--active.tc-3-js, .tc--active.tc__switcher-js, .tc--active.tc-1__switcher-js, .tc--active.tc-2__switcher-js, .tc--active.tc-3__switcher-js, .tc--active.tc__add-js, .tc--active.tc-2__add-js, .tc--open.tc-js, .tc--open.tc-1-js, .tc--open.tc-2-js, .tc--open.tc-3-js, .tc--open.tc__switcher-js, .tc--open.tc-1__switcher-js, .tc--open.tc-2__switcher-js, .tc--open.tc-3__switcher-js, .tc--open.tc__add-js, .tc--open.tc-2__add-js {
@@ -129,24 +178,9 @@ a[class*="tc__"]:hover {
 	background-color: black;
 }
 
-.tc--active.tc-js:hover, .tc--active.tc-1-js:hover, .tc--active.tc-2-js:hover, .tc--active.tc-3-js:hover, .tc--active.tc__switcher-js:hover, .tc--active.tc-1__switcher-js:hover, .tc--active.tc-2__switcher-js:hover, .tc--active.tc-3__switcher-js:hover, .tc--active.tc__add-js:hover, .tc--active.tc-2__add-js:hover, .tc--open.tc-js:hover, .tc--open.tc-1-js:hover, .tc--open.tc-2-js:hover, .tc--open.tc-3-js:hover, .tc--open.tc__switcher-js:hover, .tc--open.tc-1__switcher-js:hover, .tc--open.tc-2__switcher-js:hover, .tc--open.tc-3__switcher-js:hover, .tc--open.tc__add-js:hover, .tc--open.tc-2__add-js:hover {
-	color: white;
-	background-color: blue;
-}
-
 .page-ms-popup-dynamic .layout-flood {
 	margin-right: 0;
 	margin-left: 0;
-}
-
-.tc--active.popup-default {
-	display: block;
-	box-shadow: 0 0 20px rgba(0, 75, 255, 0.5);
-}
-
-.tc--open.popup-default {
-	display: block;
-	box-shadow: 0 0 20px rgba(255, 77, 23, 0.5);
 }
 
 /*# sourceMappingURL=ms-toggle-class.css.map */

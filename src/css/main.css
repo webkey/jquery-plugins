@@ -624,13 +624,13 @@ ul li pre {
 	padding: 0 5px;
 }
 
-code.l, code.d {
+code.l, code.d, code.code {
 	display: inline;
 	padding: 0 2px;
 	margin: 0;
 }
 
-.l {
+.letters, .code {
 	color: lightseagreen;
 }
 
