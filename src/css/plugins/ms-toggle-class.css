@@ -1,4 +1,4 @@
-.css-scroll-fixed {
+.css-scroll-fixed:not(.open-only-mob) {
 	width: 100% !important;
 	height: 100% !important;
 	max-width: 100% !important;
@@ -147,14 +147,9 @@
 	visibility: visible;
 }
 
-/*navigation*/
-.nav-wrap {
-	position: relative;
-}
-
 /*not use*/
-a[class*="tc-"],
-a[class*="tc__"] {
+li a[class*="tc-"],
+li a[class*="tc__"] {
 	display: inline-block;
 	vertical-align: top;
 	border: 2px solid gray;
@@ -166,8 +161,8 @@ a[class*="tc__"] {
 	color: inherit;
 }
 
-a[class*="tc-"]:hover,
-a[class*="tc__"]:hover {
+li a[class*="tc-"]:hover,
+li a[class*="tc__"]:hover {
 	border-top-color: black;
 	border-bottom-color: lightgrey;
 }

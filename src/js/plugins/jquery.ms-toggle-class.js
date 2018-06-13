@@ -47,6 +47,8 @@
 							var $curElem = $(this);
 							if ($curElem.length) {
 								$curElem.addClass(config.modifiers.currentClass);
+
+								$element.trigger('tClass.afterEachAdded', $curElem);
 							} else {
 								// В консоль вывести предуприждение,
 								// если указанного элемента не существует.
@@ -55,6 +57,8 @@
 						});
 					} else {
 						$(this).addClass(config.modifiers.currentClass);
+
+						$element.trigger('tClass.afterEachAdded', $(this));
 					}
 				});
 
@@ -89,6 +93,8 @@
 							var $curElem = $(this);
 							if ($curElem.length) {
 								$curElem.removeClass(config.modifiers.currentClass);
+
+								$element.trigger('tClass.afterEachRemoved', $curElem);
 							} else {
 								// В консоль вывести предуприждение,
 								// если указанного элемента не существует.
@@ -97,6 +103,8 @@
 						});
 					} else {
 						$(this).removeClass(config.modifiers.currentClass);
+
+						$element.trigger('tClass.afterEachRemoved', $(this));
 					}
 				});
 

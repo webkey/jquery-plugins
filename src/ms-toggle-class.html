@@ -67,33 +67,32 @@
 		<div>2. После того, как появится кнопка, кликните по ней. Откроется навигация.</div>
 		<div>3. При сжимании и растягивании браузера навигация будет появляться и пропадать</div>
 		<br>
-		<div><a href="#" class="nav-opener-js"><span>Навигация</span></a></div>
+		<div><b>Навигация:</b></div>
+		<div><a href="#" class="nav-opener nav-opener-js"><i>&nbsp;</i><span>Навигация</span></a></div>
 		<!--navigation-->
-		<div class="nav-wrap shutter--nav-js">
+		<div class="nav-wrap shutter--nav-js" data-tc-stop>
 			<nav class="nav">
 				<ul class="nav__list nav-js">
-					<li class="">
-						<a href="http://www.kommunarka.by/about/istorija-fabriki/"><span>О компании</span></a>
+					<li class="current">
+						<a href="#?"><span>О компании</span></a>
 					</li>
 					<li class="">
-						<a href="index.html"><span>Продукция</span></a>
+						<a href="#?"><span>Продукция</span></a>
 					</li>
 					<li class="">
-						<a href="http://www.kommunarka.by/o-shokolade/"><span>О шоколаде</span></a>
+						<a href="#?"><span>Новости</span></a>
 					</li>
 					<li class="">
-						<a href="http://www.kommunarka.by/news/"><span>Новости</span></a>
+						<a href="#?"><span>Партнерам</span></a>
 					</li>
 					<li class="">
-						<a href="http://www.kommunarka.by/pokupateljam/special/"><span>Закупки</span></a>
-					</li>
-					<li class="">
-						<a href="http://www.kommunarka.by/contacts/nashi-kontakty/"><span>Контакты</span></a>
+						<a href="#?"><span>Контакты</span></a>
 					</li>
 				</ul>
 			</nav>
 			<div class="nav-footer"></div>
 		</div>
+		<div class="nav-overlay nav-overlay-js">&nbsp;</div>
 		<!--navigation end-->
 		<!--****popups****-->
 		<!--example-popup1-->
@@ -246,12 +245,24 @@
 				<div><code class="d">afterAdded: function (e, el) {}</code></div>
 			</li>
 			<li>
+				<div><b>afterEachAdded</b></div>
+				<div>Вызывается при добавлении класса на каждый элемент</div>
+				<div><code class="d">afterEachAdded: function (e, el, each) {}</code></div>
+				<div><code class="code">each</code> - элемент, на который добавляется класс</div>
+			</li>
+			<li>
 				<div><b>beforeRemoved</b></div>
 				<div><code class="d">beforeRemoved: function (e, el) {}</code></div>
 			</li>
 			<li>
 				<div><b>afterRemoved</b></div>
 				<div><code class="d">afterRemoved: function (e, el) {}</code></div>
+			</li>
+			<li>
+				<div><b>afterEachRemoved</b></div>
+				<div>Вызывается при удалении класса с каждый элемент</div>
+				<div><code class="d">afterEachRemoved: function (e, el, each) {}</code></div>
+				<div><code class="code">each</code> - элемент, с которого удаляется класс</div>
 			</li>
 		</ul>
 		<h3>Глобальные настройки</h3>

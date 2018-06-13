@@ -1,7 +1,9 @@
-@import "../utils/mixins"
+@import ../utils/variables
+@import ../utils/mixins
+@import ../../libs/include-media/dist/include-media
 
 // Блокировка скролла
-.css-scroll-fixed
+.css-scroll-fixed:not(.open-only-mob)
 	+scroll-blocked
 
 .popup-default
@@ -120,32 +122,25 @@
 		opacity: 1
 		visibility: visible
 
-
-///*=================*/
-/*navigation*/
-///*=================*/
-.nav-wrap
-	position: relative
-
-
 ///*=================*/
 /*not use*/
 ///*=================*/
-a[class*="tc-"],
-a[class*="tc__"]
-	display: inline-block
-	vertical-align: top
-	border: 2px solid gray
-	border-top-color: lightgrey
-	border-bottom-color: black
-	text-decoration: none
-	padding: 0 6px
-	border-radius: 2px
-	color: inherit
+li
+	a[class*="tc-"],
+	a[class*="tc__"]
+		display: inline-block
+		vertical-align: top
+		border: 2px solid gray
+		border-top-color: lightgrey
+		border-bottom-color: black
+		text-decoration: none
+		padding: 0 6px
+		border-radius: 2px
+		color: inherit
 
-	&:hover
-		border-top-color: black
-		border-bottom-color: lightgrey
+		&:hover
+			border-top-color: black
+			border-bottom-color: lightgrey
 
 .tc--active, .tc--open
 	&.tc-js,

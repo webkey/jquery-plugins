@@ -5,18 +5,35 @@
 'use strict';
 
 $(function () {
-	// Первый свитчер
+	// Для адаптива
 	var $nav = $('.nav-opener-js'),
 		nav;
 	if ($nav.length) {
 		nav = $nav.tClass({
-			switchBtn: '.shutter--nav-js'
-			, toggleClassTo: ['html', '.shutter--nav-js', '.tc__overlay-js']
+			toggleClassTo: ['html', '.nav-overlay-js', '.shutter--nav-js']
 			, modifiers: {
 				currentClass: 'nav-is-open open-only-mob'
+				// open-only-mob - используется для адаптива
 			}
 			, cssScrollFixed: true
 			, removeOutsideClick: true
+			, beforeAdded: function () {
+				// пример добавления классов с задержкой
+				var $curItem = $('.nav-js').children(), speed = 1000;
+
+				$('.nav-js').prop('counter', 0).animate({
+					counter: $curItem.length
+				}, {
+					duration: speed,
+					easing: 'swing',
+					step: function (now) {
+						$curItem.eq(Math.round(now)).addClass('show-nav-item')
+					}
+				});
+			}
+			, beforeRemoved: function () {
+				$('.nav-js').stop().children().removeClass('show-nav-item')
+			}
 		});
 	}
 
