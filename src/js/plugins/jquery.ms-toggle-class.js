@@ -50,7 +50,7 @@
 
 								$element.trigger('tClass.afterEachAdded', $curElem);
 							} else {
-								// В консоль вывести предуприждение,
+								// В консоль вывести предупреждение,
 								// если указанного элемента не существует.
 								console.warn('Element "' + this + '" does not exist!')
 							}

@@ -1,0 +1,1 @@
+{"version":3,"sources":["ms-tabs.css"],"names":[],"mappings":"AAAA;CACC,WAAW;CACX,mBAAmB;CACnB","file":"ms-tabs.css","sourcesContent":[".expl-tabs__panel {\n\topacity: 0;\n\tvisibility: hidden;\n}\n"]}

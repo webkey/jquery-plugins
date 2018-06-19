@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<!--[if lt IE 9]>      <html class="no-js old-ie" lang="ru"> <![endif]-->
+<!--[if IE 9]>         <html class="no-js ie9" lang="ru"> <![endif]-->
+<!--[if gt IE 9]><!-->
+<html class="no-js" lang="ru">
+<!--<![endif]-->
+
+<head>
+	<meta charset="UTF-8">
+	<title>ms-tabs</title>
+	<!--Mobile optimized-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.2">
+	<!--Theme color-->
+	<meta name="theme-color" content="#fff">
+	<!--SEO-->
+	<meta name="description" content="описание">
+	<meta name="keywords" content="ключевые слова">
+	<meta name="yandex-verification" content="XXXXXXXXXXXXXX">
+	<meta name="google-site-verification" content="XXXXXXXXXXXXXX">
+	<!--The Open Graph protocol-->
+	<meta property="og:type" content="website">
+	<meta property="og:locale" content="ru_RU">
+	<meta property="og:url" content="http://localhost:3000/index.html">
+	<meta property="og:title" content="Название">
+	<meta property="og:image" content="http://localhost:3000/img/logo.png">
+	<meta property="og:description" content="Описание">
+	<meta property="og:site_name" content="Расширенное название">
+	<!--Favicon-->
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="icon" sizes="16x16 32x32 64x64" href="favicon.ico">
+	<link rel="apple-touch-icon" href="apple-touch-icon.png">
+	<!--Style-->
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/plugins/ms-tabs.css">
+	<!--Modernizr-->
+	<script src="js/modernizr.min.js"></script>
+</head>
+
+<body class="page-ms-tabs">
+	<!--[if lt IE 9]> <div class="browserupgrade"><p>You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p></div> <![endif]-->
+	<!-- >>> head.tpl END <<< -->
+	<div class="layout-flood user-content">
+		<h1>Табы</h1>
+		<h2>Примеры использования</h2>
+		<h3>Табы</h3>
+		<h4>По умолчанию</h4>
+		<div class="expl-tabs tabs-js">
+			<div class="expl-tabs__nav">
+				<div class="expl-tabs__thumbs">
+					<a href="#tab1" class="tabs__anchor-js tabs--active"><span>Tab 1</span></a>
+					<br> ============= <br>
+					<a href="#tab2" class="tabs__anchor-js"><span>Tab 2</span></a>
+					<br> ============= <br>
+					<a href="#tab3" class="tabs__anchor-js"><span>Tab 3</span></a>
+				</div>
+			</div>
+			<div class="expl-tabs__panels tabs__panels-js">
+				<div class="expl-tabs__panel tabs__panel-js" id="tab1">
+					============= Tab 1 ============ <br> {{Content of Tab 1}} <br> {{Content of Tab 1}} <br> {{Content of Tab 1}} <br> {{Content of Tab 1}} <br> {{Content of Tab 1}} <br> {{Content of Tab 1}} <br> {{Content of Tab 1}} <br> {{Content of Tab 1}} <br>					{{Content of Tab 1}} <br>
+				</div>
+				<div class="expl-tabs__panel tabs__panel-js" id="tab2">
+					============= Tab 2 ============ <br> {{Content of Tab 2}} <br> {{Content of Tab 2}} <br> {{Content of Tab 2}} <br>
+				</div>
+				<div class="expl-tabs__panel tabs__panel-js" id="tab3">
+					============= Tab 3 ============ <br> {{Content of Tab 3}} <br> {{Content of Tab 3}} <br> {{Content of Tab 3}} <br> {{Content of Tab 3}} <br> {{Content of Tab 3}} <br>
+				</div>
+			</div>
+		</div>
+		<br>
+		<br>
+		<h3>Коты</h3>
+		<h4>data-tabs-collapsed=&quot;true&quot;</h4>
+		<div class="expl-tabs cats-js" data-tabs-collapsed="true">
+			<div class="expl-tabs__nav">
+				<div class="expl-tabs__thumbs">
+					<a href="#cat1" class="tabs__anchor-js"><span>Cat 1</span></a>
+					<br> ============= <br>
+					<a href="#cat2" class="tabs__anchor-js"><span>Cat 2</span></a>
+					<br> ============= <br>
+					<a href="#cat3" class="tabs__anchor-js"><span>Cat 3</span></a>
+				</div>
+			</div>
+			<div class="expl-tabs__panels tabs__panels-js">
+				<div class="expl-tabs__panel tabs__panel-js" id="cat1">
+					============= Cat 1 ============ <br> {{Content of Cat 1}} <br> {{Content of Cat 1}} <br> {{Content of Cat 1}} <br> {{Content of Cat 1}} <br> {{Content of Cat 1}} <br> {{Content of Cat 1}} <br> {{Content of Cat 1}} <br> {{Content of Cat 1}} <br>					{{Content of Cat 1}} <br>
+				</div>
+				<div class="expl-tabs__panel tabs__panel-js" id="cat2">
+					============= Cat 2 ============ <br> {{Content of Cat 2}} <br> {{Content of Cat 2}} <br> {{Content of Cat 2}} <br>
+				</div>
+				<div class="expl-tabs__panel tabs__panel-js" id="cat3">
+					============= Cat 3 ============ <br> {{Content of Cat 3}} <br> {{Content of Cat 3}} <br> {{Content of Cat 3}} <br> {{Content of Cat 3}} <br> {{Content of Cat 3}} <br>
+				</div>
+			</div>
+		</div>
+		<br>
+		<br>
+		<h3>Коты</h3>
+		<h4>data-tabs-collapsed=&quot;false&quot;</h4>
+		<div class="expl-tabs cats-js" data-tabs-collapsed="false">
+			<div class="expl-tabs__nav">
+				<div class="expl-tabs__thumbs">
+					<a href="#cat11" class="tabs__anchor-js"><span>Cat 1</span></a>
+					<br> ============= <br>
+					<a href="#cat21" class="tabs__anchor-js"><span>Cat 2</span></a>
+					<br> ============= <br>
+					<a href="#cat31" class="tabs__anchor-js"><span>Cat 3</span></a>
+				</div>
+			</div>
+			<div class="expl-tabs__panels tabs__panels-js">
+				<div class="expl-tabs__panel tabs__panel-js" id="cat11">
+					============= Cat 1 ============ <br> {{Content of Cat 1}} <br> {{Content of Cat 1}} <br> {{Content of Cat 1}} <br> {{Content of Cat 1}} <br> {{Content of Cat 1}} <br> {{Content of Cat 1}} <br> {{Content of Cat 1}} <br> {{Content of Cat 1}} <br>					{{Content of Cat 1}} <br>
+				</div>
+				<div class="expl-tabs__panel tabs__panel-js" id="cat21">
+					============= Cat 2 ============ <br> {{Content of Cat 2}} <br> {{Content of Cat 2}} <br> {{Content of Cat 2}} <br>
+				</div>
+				<div class="expl-tabs__panel tabs__panel-js" id="cat31">
+					============= Cat 3 ============ <br> {{Content of Cat 3}} <br> {{Content of Cat 3}} <br> {{Content of Cat 3}} <br> {{Content of Cat 3}} <br> {{Content of Cat 3}} <br>
+				</div>
+			</div>
+		</div>
+		<br>
+		<br>
+		<h2>Документация</h2>
+		<h3>Files</h3>
+		<ul>
+			<li>__ms-tabs.html</li>
+			<li>jquery.ms-tabs.js</li>
+			<li>common-ms-tabs.js</li>
+			<li>ms-tabs.sass</li>
+		</ul>
+		<h3>Options</h3>
+		<ul>
+			<li>
+				<div><b>anchor:</b></div>
+				<div><i class="o">Defaults:</i> <code class="d">'.tabs__anchor-js'</code></div>
+				<div><i class="o">Type:</i> <code class="d">String</code></div>
+				<div><i class="o">Example:</i> <code class="d">'.some-class'</code></div>
+				<div>Переключатель таба</div>
+			</li>
+			<li>
+				<div><b>panels:</b></div>
+				<div><i class="o">Defaults:</i> <code class="d">'.tabs__panels-js'</code></div>
+				<div><i class="o">Type:</i> <code class="d">String</code></div>
+				<div><i class="o">Example:</i> <code class="d">'.some-class'</code></div>
+				<div>Обертка панелей</div>
+			</li>
+			<li>
+				<div><b>panel:</b></div>
+				<div><i class="o">Defaults:</i> <code class="d">'.tabs__panel-js'</code></div>
+				<div><i class="o">Type:</i> <code class="d">String</code></div>
+				<div><i class="o">Example:</i> <code class="d">'.some-class'</code></div>
+				<div>Панель таба</div>
+			</li>
+			<li>
+				<div><b>animationSpeed:</b></div>
+				<div><i class="o">Defaults:</i> <code class="d">80</code></div>
+				<div><i class="o">Type:</i> <code class="d">Number</code></div>
+				<div><i class="o">Example:</i> <code class="d">1000</code></div>
+				<div>Скорость анимации, в ms</div>
+			</li>
+			<li>
+				<div><b>collapsed:</b></div>
+				<div><i class="o">Defaults:</i> <code class="d">false</code></div>
+				<div><i class="o">Type:</i> <code class="d">Boolean</code></div>
+				<div><i class="o">Example:</i> <code class="d">true</code></div>
+				<div>Скрывать открытый таб по второму клику, или нет</div>
+			</li>
+			<li>
+				<b>modifiers:</b>
+				<i>Defaults:</i> <br>
+				<div>
+					<code class="d" style="display: block;">{ <br>
+					&nbsp;&nbsp; init: 'tabs--initialized', <br>
+					&nbsp;&nbsp; activeClass: 'tabs--active' <br>
+				{</code>
+				</div>
+			</li>
+		</ul>
+		<h3>События</h3>
+		<ul>
+			<li>
+				<div><b>afterInit</b></div>
+				<div><code class="d">afterInit: function (e, el) {}</code></div>
+			</li>
+			<li>
+				<div><b>afterHidden</b></div>
+				<div><code class="d">afterHidden: function (e, el) {}</code></div>
+			</li>
+			<li>
+				<div><b>afterShowed</b></div>
+				<div><code class="d">afterShowed: function (e, el) {}</code></div>
+			</li>
+		</ul>
+		<h3>Глобальные настройки</h3>
+		<div>Поменять настройки плагина глобально можно через</div>
+		<div><code class="d">$.fn.tClass.defaultOptions</code></div>
+		<div><b>Например:</b></div>
+		<div><code class="d">$.fn.tClass.defaultOptions.removeOutsideClick = false;</code></div>
+	</div>
+	<!-- >>> foot.tpl <<< -->
+	<!--footer-->
+	<!--footer end-->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/libs.min.js"></script>
+	<script src="js/plugins/jquery.ms-tabs.js"></script>
+	<script src="js/common-ms-tabs.js"></script>
+</body>
+
+</html>
