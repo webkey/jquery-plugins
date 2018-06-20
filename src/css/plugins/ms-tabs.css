@@ -1,3 +1,7 @@
+.expl-tabs__panels {
+	z-index: 1;
+}
+
 .expl-tabs__panel {
 	opacity: 0;
 	visibility: hidden;

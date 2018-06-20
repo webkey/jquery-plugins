@@ -246,7 +246,7 @@
 				_[i].msTabs.events();
 			}
 			else {
-				ret = _[i].msTabs[opt].apply(_[i].slick, args);
+				ret = _[i].msTabs[opt].apply(_[i].msTabs, args);
 			}
 			if (typeof ret !== 'undefined') {
 				return ret;

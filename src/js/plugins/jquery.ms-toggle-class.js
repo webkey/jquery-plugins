@@ -227,7 +227,7 @@
 				_[i].tClass.init();
 			}
 			else {
-				ret = _[i].tClass[opt].apply(_[i].slick, args);
+				ret = _[i].tClass[opt].apply(_[i].tClass, args);
 			}
 			if (typeof ret !== 'undefined') {
 				return ret;
