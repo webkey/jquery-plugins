@@ -8,7 +8,8 @@
 	'use strict';
 
 	var MsTabs = function(element, config){
-		var $element = $(element),
+		var self,
+			$element = $(element),
 			$anchor = $element.find(config.anchor),
 			$panels = $element.find(config.panels),
 			$panel = $element.find(config.panel),
