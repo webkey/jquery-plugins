@@ -78,6 +78,11 @@ gulp.task('sassCompilation', ['compressNormalizeCss'], function () { // Созд
 gulp.task('mergeCssLibs', function () { // Таск для мержа css библиотек
 	return gulp.src([
 		'src/css/temp/*.css' // see gulpfile-special.js
+		// , 'src/libs/highlightjs/styles/default.css'
+		// , 'src/libs/highlightjs/styles/tomorrow.css'
+		// , 'src/libs/highlightjs/styles/idea.css'
+		// , 'src/libs/highlightjs/styles/foundation.css'
+		, 'src/libs/highlightjs/styles/github-gist.css'
 		// , 'src/lib/plugin/file.css'
 	]) // Выбираем файлы для конкатенации
 		.pipe(concatCss("src/css/libs.css", {
@@ -101,6 +106,8 @@ gulp.task('copyLibsScriptsToJs', ['copyJqueryToJs', 'copyJqueryUiJs', 'copyJquer
 	return gulp.src([
 		'src/libs/device.js/lib/device.min.js' // определение устройств
 		, 'src/libs/jquery-smartresize/jquery.debouncedresize.js' // "умный" ресайз
+		, 'src/libs/highlightjs/highlight.pack.min.js' // подсветка кода
+		, 'src/libs/clipboard/dist/clipboard.min.js' // копирование в буфер
 	])
 		.pipe(concat('libs.js')) // Собираем их в кучу в новом файле libs.min.js
 		.pipe(gulp.dest('src/js'))

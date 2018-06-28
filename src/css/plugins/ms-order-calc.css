@@ -27,7 +27,7 @@
 .order-calc__empty {
 	display: none;
 	padding: 8px;
-	font-family: "Roboto", sans-serif;
+	font-weight: bold;
 	font-size: 14px;
 	line-height: 1.43;
 	letter-spacing: 0.2em;

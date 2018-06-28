@@ -46,7 +46,9 @@
 	height: 30px;
 	vertical-align: top;
 	margin: 0;
-	font-family: "Roboto", sans-serif;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	font-weight: normal;
+	font-style: normal;
 	font-size: 16px;
 	line-height: 20px;
 	text-align: center;
@@ -190,7 +192,7 @@ a.c-tr:hover {
 	border: solid white;
 	border-width: 0 0 0 2px;
 	background-color: #f2f2f2;
-	font-family: "Roboto", sans-serif;
+	font-weight: bold;
 	font-size: 13px;
 	line-height: 1.31;
 	letter-spacing: 0.1em;
@@ -351,7 +353,7 @@ a.c-tr:hover {
 .c-table-result__total {
 	display: inline-block;
 	vertical-align: middle;
-	font-family: "Roboto", sans-serif;
+	font-weight: bold;
 	font-size: 14px;
 	line-height: 20px;
 	letter-spacing: 0.2em;
@@ -470,7 +472,7 @@ a.c-tr:hover {
 	content: attr(data-label) ":";
 	width: 130px;
 	padding-right: 15px;
-	font-family: "Roboto", sans-serif;
+	font-weight: bold;
 	text-transform: uppercase;
 	display: none;
 }

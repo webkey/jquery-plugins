@@ -159,47 +159,47 @@
 	<ul>
 		<li>
 			<div><b>anchor:</b></div>
-			<div><i class="o">Defaults:</i> <code class="d">'.tabs__anchor-js'</code></div>
-			<div><i class="o">Type:</i> <code class="d">String</code></div>
-			<div><i class="o">Example:</i> <code class="d">'.some-class'</code></div>
+			<div><i class="gray">Defaults:</i> <code class="red">'.tabs__anchor-js'</code></div>
+			<div><i class="gray">Type:</i> <code class="red">String</code></div>
+			<div><i class="gray">Example:</i> <code class="red">'.some-class'</code></div>
 			<div>Переключатель таба</div>
 		</li>
 		<li>
 			<div><b>panels:</b></div>
-			<div><i class="o">Defaults:</i> <code class="d">'.tabs__panels-js'</code></div>
-			<div><i class="o">Type:</i> <code class="d">String</code></div>
-			<div><i class="o">Example:</i> <code class="d">'.some-class'</code></div>
+			<div><i class="gray">Defaults:</i> <code class="red">'.tabs__panels-js'</code></div>
+			<div><i class="gray">Type:</i> <code class="red">String</code></div>
+			<div><i class="gray">Example:</i> <code class="red">'.some-class'</code></div>
 			<div>Обертка панелей</div>
 		</li>
 		<li>
 			<div><b>panel:</b></div>
-			<div><i class="o">Defaults:</i> <code class="d">'.tabs__panel-js'</code></div>
-			<div><i class="o">Type:</i> <code class="d">String</code></div>
-			<div><i class="o">Example:</i> <code class="d">'.some-class'</code></div>
+			<div><i class="gray">Defaults:</i> <code class="red">'.tabs__panel-js'</code></div>
+			<div><i class="gray">Type:</i> <code class="red">String</code></div>
+			<div><i class="gray">Example:</i> <code class="red">'.some-class'</code></div>
 			<div>Панель таба</div>
 		</li>
 		<li>
 			<div><b>animationSpeed:</b></div>
-			<div><i class="o">Defaults:</i> <code class="d">80</code></div>
-			<div><i class="o">Type:</i> <code class="d">Number</code></div>
-			<div><i class="o">Example:</i> <code class="d">1000</code></div>
+			<div><i class="gray">Defaults:</i> <code class="red">80</code></div>
+			<div><i class="gray">Type:</i> <code class="red">Number</code></div>
+			<div><i class="gray">Example:</i> <code class="red">1000</code></div>
 			<div>Скорость анимации, в ms</div>
 		</li>
 		<li>
 			<div><b>collapsed:</b></div>
-			<div><i class="o">Defaults:</i> <code class="d">false</code></div>
-			<div><i class="o">Type:</i> <code class="d">Boolean</code></div>
-			<div><i class="o">Example:</i> <code class="d">true</code></div>
+			<div><i class="gray">Defaults:</i> <code class="red">false</code></div>
+			<div><i class="gray">Type:</i> <code class="red">Boolean</code></div>
+			<div><i class="gray">Example:</i> <code class="red">true</code></div>
 			<div>Скрывать открытый таб по второму клику, или нет</div>
 		</li>
 		<li>
 			<b>modifiers:</b>
 			<i>Defaults:</i> <br>
 			<div>
-				<code class="d" style="display: block;">{ <br>
-					&nbsp;&nbsp; init: 'tabs--initialized', <br>
-					&nbsp;&nbsp; activeClass: 'tabs--active' <br>
-				{</code>
+<pre class="snippet"><code class="javascript">{
+  init: 'tabs--initialized',
+  activeClass: 'tabs--active'
+{</code></pre>
 			</div>
 		</li>
 	</ul>
@@ -208,23 +208,23 @@
 	<ul>
 		<li>
 			<div><b>afterInit</b></div>
-			<div><code class="d">afterInit: function (e, el) {}</code></div>
+			<div><code class="red">afterInit: function (e, el) {}</code></div>
 		</li>
 		<li>
 			<div><b>afterHidden</b></div>
-			<div><code class="d">afterHidden: function (e, el) {}</code></div>
+			<div><code class="red">afterHidden: function (e, el) {}</code></div>
 		</li>
 		<li>
 			<div><b>afterShowed</b></div>
-			<div><code class="d">afterShowed: function (e, el) {}</code></div>
+			<div><code class="red">afterShowed: function (e, el) {}</code></div>
 		</li>
 	</ul>
 
 	<h3>Глобальные настройки</h3>
 	<div>Поменять настройки плагина глобально можно через</div>
-	<div><code class="d">$.fn.tClass.defaultOptions</code></div>
+	<div><code class="red">$.fn.tClass.defaultOptions</code></div>
 	<div><b>Например:</b></div>
-	<div><code class="d">$.fn.tClass.defaultOptions.removeOutsideClick = false;</code></div>
+	<div><code class="red">$.fn.tClass.defaultOptions.removeOutsideClick = false;</code></div>
 </div>
 
 @@include('_tpl_layout_foot.html', {

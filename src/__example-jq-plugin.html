@@ -4,8 +4,59 @@
 	"pageClass": "page-example-jq-plugin"
 })
 
-<div class="example-jq-plugin"></div>
-<div class="example-jq-plugin2"></div>
+<div class="layout-flood user-content">
+	<h1>example-jq-plugin</h1>
+
+	<h2>Примеры использования</h2>
+
+	<h3>example-jq-plugin 1</h3>
+	<!--Code example-->
+	<pre class="snippet"><code class="html">&lt;div class="example-jq-plugin example-jq-plugin-js"&gt;
+	{{example-jq-plugin code}}
+&lt;/div&gt;</code></pre>
+	<!--Code example end-->
+	<div class="example-jq-plugin example-jq-plugin-js">
+		{{example-jq-plugin code}}
+	</div>
+
+	<br>
+	<br>
+
+	<h2>Документация</h2>
+	<h3>Подключаемые файлы</h3>
+	<ul>
+		<li>__example-jq-plugin.html</li>
+		<li>jquery.example-jq-plugin.js</li>
+		<li>common-example-jq-plugin.js</li>
+		<li>example-jq-plugin.sass</li>
+	</ul>
+	<h3>Options</h3>
+	<ul>
+		<li>
+			<div><b>someProperty:</b></div>
+			<div><i class="gray">Defaults:</i> <code class="red">someValue</code></div>
+			<div><i class="gray">Type:</i> <code class="red">String</code></div>
+			<div><i class="gray">Example:</i> <code class="red">otherValue</code></div>
+			<div>Описание</div>
+		</li>
+	</ul>
+
+	<h3>События</h3>
+	<ul>
+		<li>
+			<div><b>afterInit</b></div>
+			<div>
+				<pre class="snippet"><code class="javascript">afterInit: function (e, el) {}</code></pre>
+			</div>
+		</li>
+	</ul>
+
+	<h3>Глобальные настройки</h3>
+	<div>Поменять настройки плагина глобально можно через</div>
+	<div><code class="red">$.fn.tClass.defaultOptions</code></div>
+	<div><b>Например:</b></div>
+	<div><code class="red">$.fn.tClass.defaultOptions.someProperty = false;</code></div>
+</div>
 
 @@include('_tpl_layout_foot.html', {
 	"pathJs": ["js/plugins/jquery.example-jq-plugin.js", "js/common-example-jq-plugin.js"]

@@ -10,6 +10,7 @@ body
 	+font-normal
 	font-size: $font-size
 	line-height: $line-height
+	-webkit-font-smoothing: antialiased
 	height: 100%
 
 	color: $text-color
@@ -32,31 +33,30 @@ h1
 	+font($font-size-h1, $line-height-h1)
 
 	+media('<mob-lg')
-		+font($font-size-h1--sm, $line-height-h1--sm)
+		+font($font-size-h1--mob, $line-height-h1--mob)
 
 h2
-	+font(round-float($font-size-h1*0.78, 1), round-float(($line-height-h1*1.08),1))
+	+font($font-size-h2, $line-height-h2)
 
 	+media('<mob-lg')
-		+font(round-float($font-size-h1--sm*0.85, 1), round-float(($line-height-h1--sm*1.08),1))
+		+font($font-size-h2--mob, $line-height-h2--mob)
 
 h3
-	//+font(2.0rem, 1.3)
-	+font(round-float($font-size-h1*0.56, 1), round-float(($line-height-h1*1.08),1))
+	+font($font-size-h3, $line-height-h3)
 
-//+media('<mob-lg')
-	+font(round-float($font-size-h1--sm*0.75, 1), round-float(($line-height-h1--sm*1.08),1))
+	+media('<mob-lg')
+		+font($font-size-h3--mob, $line-height-h3--mob)
 
 h4
-	//+font(1.6rem, 1.6)
-	+font(round-float($font-size-h1*0.44, 1), round-float(($line-height-h1*1.33),1))
+	+font($font-size-h4, $line-height-h4)
 
-//+media('<mob-lg')
-	+font(round-float($font-size-h1--sm*0.70, 1), round-float(($line-height-h1--sm*1.33),1))
+h5
+	+font($font-size-h5, $line-height-h5)
 
-h5, h6
-	font-weight: 400
-	+font($font-size, 1.5)
+h6
+	+font-normal
+	+font($font-size-h6, $line-height-h6)
+	text-transform: uppercase
 
 .text-title
 	@include font-bold
@@ -86,9 +86,9 @@ hr
 
 a
 	color: $link-color
-	outline: none
 	text-decoration: underline
 	cursor: default
+	//outline: none
 
 	&:link
 		cursor: pointer
@@ -153,7 +153,7 @@ i, em
 i b, i strong, em b, em strong, b i, b em, strong i, strong em
 	+font-bold-italic
 
-code, pre
+//code, pre
 	display: block
 	padding: 8px
 	color: $text-color-light
@@ -194,23 +194,23 @@ code, pre
 	.hide-desk-sm
 		display: none !important
 
-ul li pre
+//ul li pre
 	display: inline-block
 	vertical-align: top
 	padding: 0 5px
 
-code.l, code.d, code.code
+code.l, code.red, code.green
 	display: inline
 	padding: 0 2px
 	margin: 0
 
-.letters, .code
+.green
 	color: lightseagreen
 
-.d
+.red
 	color: lightcoral
 
-.o
+.gray
 	color: #999
 
 .#{$user-content}
@@ -229,34 +229,23 @@ code.l, code.d, code.code
 .#{$user-content}, .extra-popup // add list style for popup
 	ul, ol
 		margin: $bottom-space 0
-		//padding: 0 0 $space-bottom
 		padding: 0
 		list-style: none
 
 	ul li, ol li
-		//padding: $space-bottom/2 0 0 30px
-		padding-left: 20px
+		padding-left: 15px
 		margin: #{$bottom-space-string} 0
 		position: relative
 
-	//ul li:first-child,
-	//ol > li:first-child
-	//	padding-top: 0
-
-	//ol ul > li:first-child:before,
 	ul > li:before
 		content: ''
 		position: absolute
 		left: 0
-		top: 0.5em
+		top: 0.6em
 		height: 0
 		width: 0
 		border-radius: 3px
-		border: 3px solid #999
-		box-sizing: border-box
-
-	//ul > li:first-child:before
-	//	top: 7px
+		border: 2px solid $text-color
 
 	ol
 		counter-reset: section
@@ -388,7 +377,7 @@ code.l, code.d, code.code
 			position: relative
 			margin: 0
 			padding: 0
-			font-family: $font-alt
+			+font-normal
 			+font(2rem, 1.5)
 			color: $text-color
 			z-index: 5
@@ -530,3 +519,98 @@ code.l, code.d, code.code
 input[type="radio"], input[type="checkbox"]
 	width: 15px
 	height: 15px
+
+/* snippet
+.btn
+	position: relative
+	display: inline-block
+	padding: 6px 12px
+	font-size: 13px
+	font-weight: 700
+	line-height: 20px
+	color: #333
+	white-space: nowrap
+	vertical-align: middle
+	cursor: pointer
+	background-color: #eee
+	background-image: linear-gradient(#fcfcfc, #eeeeee)
+	border: 1px solid #d5d5d5
+	border-radius: 3px
+	user-select: none
+	-webkit-appearance: none
+
+.btn i
+	font-style: normal
+	font-weight: 500
+	opacity: 0.6
+
+.btn .octicon
+	vertical-align: text-top
+
+.btn .counter
+	text-shadow: none
+	background-color: #e5e5e5
+
+.btn:focus
+	text-decoration: none
+	border-color: #51a7e8
+	outline: 0
+	box-shadow: 0 0 5px rgba(81, 167, 232, 0.5)
+
+.btn:focus:hover, .btn.selected:focus
+	border-color: #51a7e8
+
+.btn:hover, .btn:active, .btn.zeroclipboard-is-hover, .btn.zeroclipboard-is-active
+	text-decoration: none
+	background-color: #ddd
+	background-image: linear-gradient(#eeeeee, #dddddd)
+	border-color: #cccccc
+
+.btn:active, .btn.selected, .btn.zeroclipboard-is-active
+	background-color: #dcdcdc
+	background-image: none
+	border-color: #b5b5b5
+	box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15)
+
+.clippy
+	margin-top: -3px
+	position: relative
+	top: 3px
+	vertical-align: baseline
+
+.btn[disabled] .clippy
+	opacity: 0.3
+
+.snippet
+	position: relative
+	overflow: visible
+
+.snippet code
+	font-size: 14px
+	line-height: 20px
+
+.snippet .btn
+	transition: opacity .3s ease-in-out
+	opacity: 0
+	padding: 2px 6px
+	position: absolute
+	right: 4px
+	top: 4px
+
+.snippet:hover .btn, .snippet .btn:focus
+	opacity: 1
+
+@media screen and (max-width: 768px)
+	.snippet .btn
+		opacity: 1
+
+.example + .snippet .btn
+	top: 22px
+	right: 2px
+
+/* snippet end
+
+/* hljs
+.hljs
+	background-color: #f0f0f0
+/* hljs end

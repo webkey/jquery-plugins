@@ -8,12 +8,49 @@ $breakpoints: ('desk-hd': 1920px, 'desk-lg': 1600px, 'desk-ml': 1440px, 'desk-md
 $font-size: 1.6rem !default
 $line-height: round-float(24/16, 2) !default
 
-$font-size-small: 1.4rem !default
-$line-height-small: round-float(18/14, 2) !default
-$font-size-h1: 3.6rem !default
-$line-height-h1: 1.2 !default
-$font-size-h1--sm: 2.6rem !default
-$line-height-h1--sm: 1.3 !default
+// =======for mobile========
+$font-size--mob: 1.4rem !default
+$line-height--mob: round-float(2.4rem/$font-size--mob, 2) !default
+
+// ========small size=======
+$font-size--sm: 1.4rem !default
+$line-height--sm: round-float(2.4rem/$font-size--sm, 2) !default
+// ========smallest size=======
+$font-size--less: 1.2rem !default
+$line-height--less: round-float(2.0rem/$font-size--less, 2) !default
+
+// =======h1========
+$font-size-h1: 4.2rem !default
+$line-height-h1: round-float(5.6rem/$font-size-h1, 2) !default
+// sm ===
+$font-size-h1--mob: 2.0rem !default
+$line-height-h1--mob: round-float(3.0rem/$font-size-h1--mob, 2) !default
+
+// =======h2========
+$font-size-h2: 2.4rem !default
+$line-height-h2: round-float(3.0rem/$font-size-h2, 2) !default
+// sm ===
+$font-size-h2--mob: 1.8rem !default
+$line-height-h2--mob: round-float(2.8rem/$font-size-h2--mob, 2) !default
+
+// =======h3========
+$font-size-h3: 2.0rem !default
+$line-height-h3: round-float(2.4rem/$font-size-h3, 2) !default
+// sm ===
+$font-size-h3--mob: 1.6rem !default
+$line-height-h3--mob: round-float(2.4rem/$font-size-h3--mob, 2) !default
+
+// =======h4========
+$font-size-h4: $font-size !default
+$line-height-h4: $line-height !default
+
+// =======h5========
+$font-size-h5: $font-size--sm !default
+$line-height-h5: $line-height--sm !default
+
+// =======h6========
+$font-size-h6: $font-size--sm !default
+$line-height-h6: $line-height--sm !default
 
 $bottom-space: round-float($font-size*$line-height, 1) !default
 $bottom-space-string: round-float($font-size*$line-height*0.5, 1) !default
@@ -35,7 +72,7 @@ $bg-color-light: #f7f7f7 !default
 // цвет остовного текста
 $text-color: #262626 !default
 // цвет основных заголовков заголовков
-$title-color: black !default
+$title-color: #ee6e73 !default
 // цвет текста светлее основного
 $text-color-light: gray !default
 // цвет для выделения текста
@@ -103,37 +140,26 @@ $animation-speed: 0.2s !default
 $animation-speed-mouseleave: 0.35s !default
 
 // fonts style
-$font-norm: 'Roboto', sans-serif !default
-$font-b: 'Roboto', sans-serif !default
-$font-i: 'Roboto', sans-serif !default
-$font-bi: 'Roboto', sans-serif !default
-$font-alt: 'Roboto Slab', serif !default
+$font-norm: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif !default
 
-=font-reset()
-	font:
-		weight: normal
-		style: normal
 =font-normal()
 	font:
 		family: $font-norm
-//+font-reset
+		weight: normal
+		style: normal
 
 =font-bold()
-	font:
-		family: $font-b
-//+font-reset
+	font-weight: bold
 
 =font-italic()
-	font:
-		family: $font-i
-//+font-reset
+	font-style: italic
 
 =font-bold-italic()
-	font:
-		family: $font-bi
-//+font-reset
+	font-weight: bold
+	font-style: italic
 
 =font-title()
-	font:
-		family: $font-alt
-//+font-reset
+	font-weight: 400
+
+=font-alt()
+	font-weight: 400
