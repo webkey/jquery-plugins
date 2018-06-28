@@ -1,13 +1,2 @@
-@charset "UTF-8";
-.container-class {
-	width: 600px;
-	height: 200px;
-	margin: 0 auto;
-	text-align: center;
-}
-
-.container-class::before {
-	content: "Это контейнер, на котором инициилизирован плагин";
-}
 
 /*# sourceMappingURL=get-scroll-size.css.map */

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!--[if lt IE 9]>      <html class="no-js old-ie" lang="ru"> <![endif]-->
+<!--[if IE 9]>         <html class="no-js ie9" lang="ru"> <![endif]-->
+<!--[if gt IE 9]><!-->
+<html class="no-js" lang="ru">
+<!--<![endif]-->
+
+<head>
+	<meta charset="UTF-8">
+	<title>ms-rolls</title>
+	<!--Mobile optimized-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.2">
+	<!--Theme color-->
+	<meta name="theme-color" content="#fff">
+	<!--SEO-->
+	<meta name="description" content="описание">
+	<meta name="keywords" content="ключевые слова">
+	<meta name="yandex-verification" content="XXXXXXXXXXXXXX">
+	<meta name="google-site-verification" content="XXXXXXXXXXXXXX">
+	<!--The Open Graph protocol-->
+	<meta property="og:type" content="website">
+	<meta property="og:locale" content="ru_RU">
+	<meta property="og:url" content="http://localhost:3000/index.html">
+	<meta property="og:title" content="Название">
+	<meta property="og:image" content="http://localhost:3000/img/logo.png">
+	<meta property="og:description" content="Описание">
+	<meta property="og:site_name" content="Расширенное название">
+	<!--Favicon-->
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="icon" sizes="16x16 32x32 64x64" href="favicon.ico">
+	<link rel="apple-touch-icon" href="apple-touch-icon.png">
+	<!--Style-->
+	<link rel="stylesheet" href="css/libs.min.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/plugins/ms-rolls.css">
+	<!--Modernizr-->
+	<script src="js/modernizr.min.js"></script>
+</head>
+
+<body class="page-ms-rolls">
+	<!--[if lt IE 9]> <div class="browserupgrade"><p>You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p></div> <![endif]-->
+	<!-- >>> head.tpl END <<< -->
+	<div class="layout-flood user-content">
+		<h1>ms-rolls</h1>
+		<h2>Примеры использования</h2>
+		<h3>ms-rolls 1</h3>
+		<!--Code example-->
+		<pre class="snippet"><code class="html">&lt;div class="ms-rolls ms-rolls-js"&gt;
+	{{ms-rolls code}}
+&lt;/div&gt;</code></pre>
+		<!--Code example end-->
+		<div class="ms-rolls ms-rolls-js">
+			<div class="accordion accordion__container-js">
+				<div class="accordion__item accordion__item-js">
+					<div class="accordion__header accordion__header-js">
+						<div class="accordion__hand accordion__hand-js">
+							<div class="accordion__header__text">There are more than 200 children`s books</div>
+							<i class="accordion__header__angle">&nbsp;</i>
+						</div>
+					</div>
+					<div class="accordion__panel">
+						<div class="accordion__panel__frame">
+							<div class="accordion__panel__content">
+								<p>There are more than 200 children`s books in the AZ wide collection, each of which brings delight to children and surprises their parents.</p>
+								<p>The secret of AZ books is magic: They talk by themselves and ask children questions, tell stories and sing songs. The cleverness comes from the work of their talented creators and advanced technology. We publish talking alphabets and encyclopedias,
+									charming fairytales and musical books. 3-Day and Next Day shipments require a signature for delivery. The carriers we use pick-up and deliver orders Monday through Friday. Saturday delivery is not available at this time. If you prefer to have
+									your package left without a signature, please contact the carrier to make alternative arrangements.</p>
+							</div>
+							<!--<div class="accordion accordion__container-js">{{Вложенный аккордеон}}</div>-->
+						</div>
+					</div>
+				</div>
+				<div class="accordion__item accordion__item-js">
+					<div class="accordion__header accordion__header-js">
+						<div class="accordion__hand accordion__hand-js">
+							<div class="accordion__header__text">{{Title 2}}</div>
+							<i class="accordion__header__angle">&nbsp;</i>
+						</div>
+					</div>
+					<div class="accordion__panel">
+						<div class="accordion__panel__frame">
+							<div class="accordion__panel__content">
+								<h3>{{Subtitle 2}}</h3>
+								<p>3-Day and Next Day shipments require a signature for delivery. The carriers we use pick-up and deliver orders Monday through Friday. Saturday delivery is not available at this time. If you prefer to have your package left without a signature,
+									please contact the carrier to make alternative arrangements.</p>
+								<p>We are unable to authorize the re-routing of a package to an address other than the one selected at the time you place your order. You should allow 1 day for the order to be processed by our fulfillment center before counting transit time. There
+									are more than 200 children`s books in the AZ wide collection, each of which brings delight to children and surprises their parents. The secret of AZ books is magic: They talk by themselves and ask children questions, tell stories and sing songs.
+									The cleverness comes from the work of their talented creators and advanced technology.</p>
+								<p>We publish talking alphabets and encyclopedias, charming fairytales and musical books. 3-Day and Next Day shipments require a signature for delivery. The carriers we use pick-up and deliver orders Monday through Friday. Saturday delivery is not
+									available at this time.</p>
+							</div>
+							<!--<div class="accordion accordion__container-js">{{Вложенный аккордеон}}</div>-->
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--accordion end-->
+		</div>
+		<br>
+		<br>
+		<h2>Документация</h2>
+		<h3>Подключаемые файлы</h3>
+		<ul>
+			<li>__ms-rolls.html</li>
+			<li>jquery.ms-rolls.js</li>
+			<li>common-ms-rolls.js</li>
+			<li>ms-rolls.sass</li>
+		</ul>
+		<h3>Options</h3>
+		<ul>
+			<li>
+				<div><b>someProperty:</b></div>
+				<div><i class="gray">Defaults:</i> <code class="red">someValue</code></div>
+				<div><i class="gray">Type:</i> <code class="red">String</code></div>
+				<div><i class="gray">Example:</i> <code class="red">otherValue</code></div>
+				<div>Описание</div>
+			</li>
+		</ul>
+		<h3>События</h3>
+		<ul>
+			<li>
+				<div><b>afterInit</b></div>
+				<div>
+					<pre class="snippet"><code class="javascript">afterInit: function (e, el) {}</code></pre>
+				</div>
+			</li>
+		</ul>
+		<h3>Глобальные настройки</h3>
+		<div>Поменять настройки плагина глобально можно через</div>
+		<div><code class="red">$.fn.tClass.defaultOptions</code></div>
+		<div><b>Например:</b></div>
+		<div><code class="red">$.fn.tClass.defaultOptions.someProperty = false;</code></div>
+	</div>
+	<!-- >>> foot.tpl <<< -->
+	<!--footer-->
+	<!--footer end-->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/libs.min.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/plugins/jquery.ms-rolls.js"></script>
+	<script src="js/common-ms-rolls.js"></script>
+</body>
+
+</html>

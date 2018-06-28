@@ -1,0 +1,149 @@
+@import ../utils/variables
+@import ../utils/mixins
+@import ../../libs/include-media/dist/include-media
+
+// accordion default / roll up list
+$accordion-space: 23px 30px !default // h v
+$accordion-space--sm: 15px 20px !default // h v
+$accordion-space--mob: 10px 10px !default // h v
+$accordion-angle-size: 24px 24px !default // w h
+$accordion-angle-line-size: 12px 2px !default // w h
+
+.ms-rolls
+	position: relative
+
+/* accordion
+.accordion
+	margin-bottom: 4rem
+
+	&:last-child
+		margin-bottom: 0
+
+.accordion__item
+	position: relative
+	background-color: #fff
+	border-radius: 5px
+	border: 2px solid $border-color
+	margin-bottom: 2rem
+	will-change: transform, box-shadow
+	box-shadow: 0 3px 3px rgba(black, 0.1)
+
+	&:last-child
+		margin-bottom: 0
+
+.accordion__header
+	position: relative
+	z-index: 2
+
+	.accordion__panel &
+		z-index: 1
+
+.accordion__hand
+	position: relative
+	padding: nth($accordion-space, 1) nth($accordion-space, 2)
+	padding-right: nth($accordion-space, 1)*2+nth($accordion-angle-size, 2)
+	cursor: pointer
+	user-select: none
+
+	+media('<tab-lg')
+		padding: nth($accordion-space--sm, 1) nth($accordion-space--sm, 2)
+		padding-right: nth($accordion-space--sm, 1)*2+nth($accordion-angle-size, 2)
+
+	+media('<mob-lg')
+		padding: nth($accordion-space--mob, 1) nth($accordion-space--mob, 2)
+		padding-right: nth($accordion-space--mob, 1)*2+nth($accordion-angle-size, 2)
+
+	.accordion__header__text
+		+font-bold
+		+font(20px, round-float(24/20, 2))
+
+		+media('<tab-lg')
+			font-size: 18px
+
+		+media('<mob-lg')
+			font-size: 16px
+
+	.accordion__header__angle
+		display: block
+		position: absolute
+		//right: nth($accordion-space, 2)
+		@if nth($accordion-space, 1) > 18px
+			right: 18px
+		@else
+			right: $accordion-space
+
+		top: 50%
+		+size(nth($accordion-angle-size, 1), nth($accordion-angle-size, 2))
+		border-radius: 50%
+		margin-top: -#{round(nth($accordion-angle-size, 2)*0.5)}
+		background-color: $base-color
+
+		+media('<tab-lg')
+			right: nth($accordion-space--sm, 2)
+
+		+media('<mob-lg')
+			right: nth($accordion-space--mob, 2)
+
+		&::before, &::after
+			+pseudo()
+			left: 50%
+			top: 50%
+			margin: -#{round(nth($accordion-angle-line-size, 2)/2)} 0 0 -#{round(nth($accordion-angle-line-size, 1)/2)}
+			backface-visibility: hidden
+			+size(nth($accordion-angle-line-size, 1), nth($accordion-angle-line-size, 2))
+			background-color: white
+			will-change: transform
+			transition:
+				property: transform
+				duration: $animation-speed
+
+		&::before
+			transform: rotate(-0.25turn)
+			transform: rotate(-0.25turn) translateZ(0)
+
+	//&::after
+		transform: rotate(-270deg) translateZ(0)
+
+		.ie9 &
+			transform: rotate(-270deg)
+
+	// hover, active
+	//.no-touchevents &:hover, &.is-open
+		background-color: $bg-color-alt
+
+	// active
+	&.is-open
+		.accordion__header__angle
+			&::before, &::after
+				transform: rotate(0)
+				transform: rotate(0) translateZ(0)
+
+.accordion__panel
+	display: none
+
+.accordion__panel__frame
+	position: relative
+	will-change: opacity
+	opacity: 0
+	transition:
+		property: opacity
+		duration: $animation-speed
+
+	.is-open > &
+		opacity: 1
+		transition-delay: 0.08s
+
+.accordion__panel__content
+	padding: 10px nth($accordion-space, 2) round(nth($accordion-space, 1)*1.5)
+
+	+media('<tab-lg')
+		padding: 10px nth($accordion-space--sm, 2) round(nth($accordion-space--sm, 1)*1.5)
+
+	+media('<mob-lg')
+		padding: 10px nth($accordion-space--mob, 2) round(nth($accordion-space--mob, 1)*1.5)
+
+	& > p, & > ul, & > li, & > h2, & > h3, & > h4
+		&:last-child
+			margin-bottom: 0
+
+/* accordion end
