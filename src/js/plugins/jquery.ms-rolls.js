@@ -7,12 +7,13 @@
 ;(function($){
 	'use strict';
 
-	var MsTabs = function(element, config){
+	var MsRolls = function(element, config){
 		var self,
 			$element = $(element),
-			$anchor = $element.find(config.anchor),
+			$header = $element.find(config.header),
+			$hand = $element.find(config.hand),
 			$panels = $element.find(config.panels),
-			$panel = $element.find(config.panel),
+			$panel = $header.next(),
 			isAnimated = false,
 			activeId,
 			isOpen = false,
@@ -22,7 +23,7 @@
 			/** track events */
 			$.each(config, function (key, value) {
 				if (typeof value === 'function') {
-					$element.on('msTabs.' + key, function (e, param) {
+					$element.on('msRolls.' + key, function (e, param) {
 						return value(e, $element, param);
 					});
 				}
@@ -31,14 +32,14 @@
 			// Определяем текущий таб
 			var $activePanel = $panel.filter('[id="' + activeId + '"]'),
 				$otherPanel = $panel.not('[id="' + activeId + '"]'),
-				$activeAnchor = $anchor.filter('[href="#' + activeId + '"]');
+				$activeAnchor = $hand.filter('[href="#' + activeId + '"]');
 
 			if (!isAnimated) {
 				// console.log('Показать таб:', activeId);
 				isAnimated = true;
 
 				// Удалить активный класс со всех элементов
-				toggleClass([$panel, $anchor], false);
+				toggleClass([$panel, $hand], false);
 
 				// Добавить класс на каждый активный элемент
 				toggleClass([$activePanel, $activeAnchor], true);
@@ -73,7 +74,7 @@
 			}
 
 			// callback after showed tab
-			$element.trigger('msTabs.afterShowed');
+			$element.trigger('msRolls.afterShowed');
 		}, hide = function () {
 			// Определить текущий таб
 			var $activePanel = $panel.filter('[id="' + activeId + '"]');
@@ -84,7 +85,7 @@
 				isAnimated = true;
 
 				// Удалить активный класс со всех элементов
-				toggleClass([$panel, $anchor], false);
+				toggleClass([$panel, $hand], false);
 
 				// Анимирование высоты табов
 				$panels.animate({
@@ -98,7 +99,7 @@
 			}
 
 			// callback after tab hidden
-			$element.trigger('msTabs.afterHidden');
+			$element.trigger('msRolls.afterHidden');
 		}, hideTab = function (tab) {
 			var callback = arguments[1];
 			tab
@@ -154,47 +155,62 @@
 				}
 			});
 		}, events = function () {
-			$element.on('click', config.anchor, function (event) {
+			$element.on('click', config.hand, function (event) {
 				event.preventDefault();
 
-				var curId = $(this).attr('href').substring(1);
-				// console.log("Таб анимируется?: ", isAnimated);
-				// console.log("Текущий таб открыт?: ", isOpen);
-				// console.log("Таб нужно закрывать, если открыт?: ", collapsed);
-				// console.log("activeId (Предыдущий): ", activeId);
+				console.log(1);
 
-				if (isAnimated || !collapsed && curId === activeId) {
-					return false;
-				}
+				$panel.css({
+					"background-color": "red"
+				})
 
-				if (collapsed && isOpen && curId === activeId) {
-					hide();
-				} else {
-					activeId = curId;
-					// console.log("activeId (Текущий): ", activeId);
-					show();
-				}
+				// var curId = $(this).attr('href').substring(1);
+				// // console.log("Таб анимируется?: ", isAnimated);
+				// // console.log("Текущий таб открыт?: ", isOpen);
+				// // console.log("Таб нужно закрывать, если открыт?: ", collapsed);
+				// // console.log("activeId (Предыдущий): ", activeId);
+				//
+				// if (isAnimated || !collapsed && curId === activeId) {
+				// 	return false;
+				// }
+				//
+				// if (collapsed && isOpen && curId === activeId) {
+				// 	hide();
+				// } else {
+				// 	activeId = curId;
+				// 	// console.log("activeId (Текущий): ", activeId);
+				// 	show();
+				// }
 			});
 		}, init = function () {
-			activeId = $anchor.filter('.' + config.modifiers.activeClass).length && $anchor.filter('.' + config.modifiers.activeClass).attr('href').substring(1);
+			activeId = $hand.filter('.' + config.modifiers.activeClass).length && $hand.filter('.' + config.modifiers.activeClass).attr('href').substring(1);
 
 			// console.log("activeId (сразу после инициализации): ", !!activeId);
+			var i, l = $panel.length,
+				w = $('<div/>', {
+					class: '_@@_'
+				});
 
-			$panels.css({
-				'display': 'block',
-				'position': 'relative',
-				'overflow': 'hidden'
-			});
+			console.log("$panel: ", $panel);
+			for (i = 0; i < l; i++) {
+				$panel.eq(i).wrap(w);
+			}
 
-			$panel.css({
-				'position': 'absolute',
-				'left': 0,
-				'top': 0,
-				'opacity': 0,
-				'width': '100%',
-				'visibility': 'hidden',
-				'z-index': -1
-			}).attr('tabindex', -1);
+			// $panels.css({
+			// 	'display': 'block',
+			// 	'position': 'relative',
+			// 	'overflow': 'hidden'
+			// });
+
+			// $panel.css({
+			// 	'position': 'absolute',
+			// 	'left': 0,
+			// 	'top': 0,
+			// 	'opacity': 0,
+			// 	'width': '100%',
+			// 	'visibility': 'hidden',
+			// 	'z-index': -1
+			// }).attr('tabindex', -1);
 
 			if (activeId) {
 				var $activePanel = $panel.filter('[id="' + activeId + '"]');
@@ -220,7 +236,7 @@
 
 			$element.addClass(config.modifiers.init);
 
-			$element.trigger('msTabs.afterInit');
+			$element.trigger('msRolls.afterInit');
 		};
 
 		self = {
@@ -232,7 +248,7 @@
 		return self;
 	};
 
-	$.fn.msTabs = function () {
+	$.fn.msRolls = function () {
 		var _ = this,
 			opt = arguments[0],
 			args = Array.prototype.slice.call(arguments, 1),
@@ -241,13 +257,13 @@
 			ret;
 		for (i = 0; i < l; i++) {
 			if (typeof opt === 'object' || typeof opt === 'undefined') {
-				_[i].msTabs = new MsTabs(_[i], $.extend(true, {}, $.fn.msTabs.defaultOptions, opt));
-				_[i].msTabs.init();
-				_[i].msTabs.callbacks();
-				_[i].msTabs.events();
+				_[i].msRolls = new MsRolls(_[i], $.extend(true, {}, $.fn.msRolls.defaultOptions, opt));
+				_[i].msRolls.init();
+				_[i].msRolls.callbacks();
+				_[i].msRolls.events();
 			}
 			else {
-				ret = _[i].msTabs[opt].apply(_[i].msTabs, args);
+				ret = _[i].msRolls[opt].apply(_[i].msRolls, args);
 			}
 			if (typeof ret !== 'undefined') {
 				return ret;
@@ -256,15 +272,16 @@
 		return _;
 	};
 
-	$.fn.msTabs.defaultOptions = {
-		anchor: '.tabs__anchor-js',
-		panels: '.tabs__panels-js',
-		panel: '.tabs__panel-js',
+	$.fn.msRolls.defaultOptions = {
+		header: '.rolls__header-js',
+		hand: '.rolls__hand-js',
+		panels: '.rolls__panels-js',
+		panel: '.rolls__panel-js',
 		animationSpeed: 300,
 		collapsed: false,
 		modifiers: {
-			init: 'tabs--initialized',
-			activeClass: 'tabs--active'
+			init: 'rolls--initialized',
+			activeClass: 'rolls--active'
 		}
 	};
 

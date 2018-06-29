@@ -5,21 +5,10 @@
 'use strict';
 
 $(function () {
-	var $tabs = $('.tabs-js');
+	var $rolls_1_1 = $('.rolls-js');
 
-	if ($tabs.length) {
-		$tabs.msTabs({
-			// collapsed: true
-			// , modifiers: {
-			// 	activeClass: 'tab-poookkhh'
-			// }
-		});
-	}
-
-	var $cats = $('.cats-js');
-
-	if ($cats.length) {
-		$cats.msTabs({
+	if ($rolls_1_1.length) {
+		$rolls_1_1.msRolls({
 			// collapsed: true
 			// , modifiers: {
 			// 	activeClass: 'tab-poookkhh'

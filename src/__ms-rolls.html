@@ -15,46 +15,54 @@
 	{{ms-rolls code}}
 &lt;/div&gt;</code></pre>
 	<!--Code example end-->
-	<div class="ms-rolls ms-rolls-js">
-		<div class="accordion accordion__container-js">
-			<div class="accordion__item accordion__item-js">
-				<div class="accordion__header accordion__header-js">
-					<div class="accordion__hand accordion__hand-js">
-						<div class="accordion__header__text">There are more than 200 children`s books</div>
-						<i class="accordion__header__angle">&nbsp;</i>
-					</div>
-				</div>
-				<div class="accordion__panel">
-					<div class="accordion__panel__frame">
-						<div class="accordion__panel__content">
-							<p>There are more than 200 children`s books in the AZ wide collection, each of which brings delight to children and surprises their parents.</p>
-							<p>The secret of AZ books is magic: They talk by themselves and ask children questions, tell stories and sing songs. The cleverness comes from the work of their talented creators and advanced technology. We publish talking alphabets and encyclopedias, charming fairytales and musical books. 3-Day and Next Day shipments require a signature for delivery. The carriers we use pick-up and deliver orders Monday through Friday. Saturday delivery is not available at this time. If you prefer to have your package left without a signature, please contact the carrier to make alternative arrangements.</p>
-						</div>
-						<!--<div class="accordion accordion__container-js">{{Вложенный аккордеон}}</div>-->
-					</div>
-				</div>
+	<div class="rolls rolls-js">
+		<!--rolls-->
+		<!--(1) FIRST level - START-->
+		<div class="rolls__item rolls__item-js">
+			<div class="rolls__header rolls__header-js">
+				<a href="#">{{Title 1 - 1}}</a>
+				<a href="#" class="rolls__angle rolls__hand-js">&nbsp;</a>
 			</div>
-			<div class="accordion__item accordion__item-js">
-				<div class="accordion__header accordion__header-js">
-					<div class="accordion__hand accordion__hand-js">
-						<div class="accordion__header__text">{{Title 2}}</div>
-						<i class="accordion__header__angle">&nbsp;</i>
+			<div class="rolls__panel">
+				{{Content 1 - 1}}
+				<!--(2) SECOND level - START-->
+				<div class="rolls__item rolls__item-js">
+					<div class="rolls__header rolls__header-js">
+						<a href="#">{{Title 1 - 2}}</a>
+						<a href="#" class="rolls__angle rolls__hand-js">&nbsp;</a>
+					</div>
+					<div class="rolls__panel">
+						{{Content 1 - 2}}
+						<!--roll next level-->
 					</div>
 				</div>
-				<div class="accordion__panel">
-					<div class="accordion__panel__frame">
-						<div class="accordion__panel__content">
-							<h3>{{Subtitle 2}}</h3>
-							<p>3-Day and Next Day shipments require a signature for delivery. The carriers we use pick-up and deliver orders Monday through Friday. Saturday delivery is not available at this time. If you prefer to have your package left without a signature, please contact the carrier to make alternative arrangements.</p>
-							<p>We are unable to authorize the re-routing of a package to an address other than the one selected at the time you place your order. You should allow 1 day for the order to be processed by our fulfillment center before counting transit time. There are more than 200 children`s books in the AZ wide collection, each of which brings delight to children and surprises their parents. The secret of AZ books is magic: They talk by themselves and ask children questions, tell stories and sing songs. The cleverness comes from the work of their talented creators and advanced technology.</p>
-							<p>We publish talking alphabets and encyclopedias, charming fairytales and musical books. 3-Day and Next Day shipments require a signature for delivery. The carriers we use pick-up and deliver orders Monday through Friday. Saturday delivery is not available at this time.</p>
-						</div>
-						<!--<div class="accordion accordion__container-js">{{Вложенный аккордеон}}</div>-->
-					</div>
-				</div>
+				<!--(2) SECOND level - END-->
 			</div>
 		</div>
-		<!--accordion end-->
+
+		<div class="rolls__item rolls__item-js">
+			<div class="rolls__header rolls__header-js">
+				<a href="#">{{Title 2 - 1}}</a>
+				<a href="#" class="rolls__angle rolls__hand-js">&nbsp;</a>
+			</div>
+			<div class="rolls__panel">
+				{{Content 2 - 1}} <br> {{Content 2 - 1}}
+				<!--(2) SECOND level - START-->
+				<div class="rolls__item rolls__item-js">
+					<div class="rolls__header rolls__header-js">
+						<a href="#">{{Title 2 - 2}}</a>
+						<a href="#" class="rolls__angle rolls__hand-js">&nbsp;</a>
+					</div>
+					<div class="rolls__panel">
+						{{Content 2 - 2}} <br> {{Content 2 - 2}}
+						<!--roll next level-->
+					</div>
+				</div>
+				<!--(2) SECOND level - END-->
+			</div>
+		</div>
+		<!--(1) FIRST level - END-->
+		<!--rolls end-->
 	</div>
 
 	<br>
