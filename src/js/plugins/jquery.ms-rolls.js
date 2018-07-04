@@ -10,10 +10,12 @@
 	var MsRolls = function(element, config){
 		var self,
 			$element = $(element),
+			$item = $element.find(config.item),
 			$header = $element.find(config.header),
 			$hand = $element.find(config.hand),
-			$panels = $element.find(config.panels),
+			// $panels = $('.s'),
 			$panel = $header.next(),
+			$panels,
 			isAnimated = false,
 			activeId,
 			isOpen = false,
@@ -28,7 +30,7 @@
 					});
 				}
 			});
-		}, show = function () {
+		}, open = function () {
 			// Определяем текущий таб
 			var $activePanel = $panel.filter('[id="' + activeId + '"]'),
 				$otherPanel = $panel.not('[id="' + activeId + '"]'),
@@ -75,7 +77,7 @@
 
 			// callback after showed tab
 			$element.trigger('msRolls.afterShowed');
-		}, hide = function () {
+		}, close = function () {
 			// Определить текущий таб
 			var $activePanel = $panel.filter('[id="' + activeId + '"]');
 
@@ -158,11 +160,7 @@
 			$element.on('click', config.hand, function (event) {
 				event.preventDefault();
 
-				console.log(1);
-
-				$panel.css({
-					"background-color": "red"
-				})
+				var $curHand = $(this);
 
 				// var curId = $(this).attr('href').substring(1);
 				// // console.log("Таб анимируется?: ", isAnimated);
@@ -173,6 +171,9 @@
 				// if (isAnimated || !collapsed && curId === activeId) {
 				// 	return false;
 				// }
+				if (isAnimated || !collapsed) {
+					return false;
+				}
 				//
 				// if (collapsed && isOpen && curId === activeId) {
 				// 	hide();
@@ -181,36 +182,65 @@
 				// 	// console.log("activeId (Текущий): ", activeId);
 				// 	show();
 				// }
+				// if (collapsed && isOpen) {
+				// 	close();
+				// } else {
+				// 	// activeId = curId;
+				// 	// console.log("activeId (Текущий): ", activeId);
+				// 	open();
+				// }
+				var $currentItem = $curHand.closest($item);
+				var $currentPanel = $curHand.closest(config.header).next();
+
+				console.log("$currentItem.has($(panel)).length: ", $currentItem.has($panel).length);
+
+				if ($currentItem.has($panel).length) {
+					event.preventDefault();
+
+					if ($currentPanel.is(':visible')) {
+						// close($currentItem);
+						$currentItem.css('background', '');
+
+						return;
+					}
+
+					// if (self.options.collapsibleAll) {
+					// 	self.closePanel($($container).not($curHand.closest($container)).find($item));
+					// }
+					//
+					// if (self.options.collapsible) {
+					// 	self.closePanel($currentItem.siblings());
+					// }
+
+					// open($currentItem, $curHand);
+					$currentItem.css('background', 'red');
+				}
 			});
 		}, init = function () {
 			activeId = $hand.filter('.' + config.modifiers.activeClass).length && $hand.filter('.' + config.modifiers.activeClass).attr('href').substring(1);
 
 			// console.log("activeId (сразу после инициализации): ", !!activeId);
-			var i, l = $panel.length,
-				w = $('<div/>', {
-					class: '_@@_'
-				});
 
-			console.log("$panel: ", $panel);
-			for (i = 0; i < l; i++) {
-				$panel.eq(i).wrap(w);
-			}
+			$panels = $('<div/>', {
+				// class: '===js-wrap===',
+				css: {
+					display: 'block',
+					position: 'relative',
+					overflow: 'hidden'
+				}
+			});
 
-			// $panels.css({
-			// 	'display': 'block',
-			// 	'position': 'relative',
-			// 	'overflow': 'hidden'
-			// });
-
-			// $panel.css({
-			// 	'position': 'absolute',
-			// 	'left': 0,
-			// 	'top': 0,
-			// 	'opacity': 0,
-			// 	'width': '100%',
-			// 	'visibility': 'hidden',
-			// 	'z-index': -1
-			// }).attr('tabindex', -1);
+			$panel.css({
+				'position': 'absolute',
+				'left': 0,
+				'top': 0,
+				'opacity': 0,
+				'width': '100%',
+				'visibility': 'hidden',
+				'z-index': -1
+			})
+				.attr('tabindex', -1)
+				.wrap($panels);
 
 			if (activeId) {
 				var $activePanel = $panel.filter('[id="' + activeId + '"]');
@@ -273,12 +303,12 @@
 	};
 
 	$.fn.msRolls.defaultOptions = {
+		item: '.rolls__item-js',
 		header: '.rolls__header-js',
 		hand: '.rolls__hand-js',
-		panels: '.rolls__panels-js',
-		panel: '.rolls__panel-js',
+		// panel: '.rolls__panel-js',
 		animationSpeed: 300,
-		collapsed: false,
+		collapsed: true,
 		modifiers: {
 			init: 'rolls--initialized',
 			activeClass: 'rolls--active'
