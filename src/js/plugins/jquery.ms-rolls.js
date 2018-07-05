@@ -18,7 +18,7 @@
 			$panels,
 			$panel = $(config.panel, $element),
 			isAnimated = false,
-			activeId,
+			// activeId,
 			isOpen = false,
 			collapsed = $element.data('tabs-collapsed') || config.collapsed;
 
@@ -31,104 +31,126 @@
 					});
 				}
 			});
-		}, open = function ($currentItem, $currentHeader) {
+		}, open = function (_item, _header) {
 			// Определяем текущий таб
-			var $activePanel = $currentHeader.next().children();
+			var $activePanel = _header.next().children();
 
-			if (!isAnimated) {
-				console.log('Показать таб:', activeId);
-				isAnimated = true;
+			// console.log('Показать таб:', activeId);
+			// isAnimated = true;
 
-				// Удалить активный класс со всех элементов
-				// toggleClass([$item, $hand], false);
+			// Удалить активный класс со всех элементов
+			// toggleClass([$item, $hand], false);
 
-				// Добавить класс на каждый активный элемент
-				toggleClass([$currentItem, $currentHeader], true);
+			// Добавить класс на каждый активный элемент
+			toggleClass([_item], true);
 
-				// Анимирование высоты табов
-				var $currentPanels = $currentHeader.next();
-				$currentPanels.animate({
-					'height': $activePanel.outerHeight()
+			// Анимирование высоты панели
+			var $currentPanels = _header.next();
+			// $currentPanels.animate({
+			// 	'height': $activePanel.outerHeight()
+			// }, config.animationSpeed, function () {
+			// 	$currentPanels.css({
+			// 		'height': ''
+			// 	})
+			// });
+			changeHeight($currentPanels, $activePanel.outerHeight());
+
+			// Скрыть все табы, кроме активного
+			// hidePanel(_item.siblings().find($header).next().children());
+
+			// Показать активный таб
+			$activePanel
+				.css({
+					'z-index': 2
+					// visibility: 'visible',
+					// opacity: 1
+				})
+				.animate({
+					// opacity: 1
 				}, config.animationSpeed, function () {
-					$currentPanels.css({
-						'height': ''
-					})
+					$activePanel.css({
+						position: 'relative',
+						left: 'auto',
+						top: 'auto'
+					}).attr('tabindex', 0);
+
+					// Анимация полностью завершена
+					isOpen = true;
+					// isAnimated = false;
+					_header.data('opened', true);
 				});
-
-				// Скрыть все табы, кроме активного
-				console.log($currentItem.siblings().find($header).next().children());
-				hidePanel($currentItem.siblings().find($header).next().children());
-
-				// Показать активный таб
-				$activePanel
-					.css({
-						'z-index': 2,
-						'visibility': 'visible'
-					})
-					.animate({
-						'opacity': 1
-					}, config.animationSpeed, function () {
-						$activePanel.css({
-							'position': 'relative',
-							'left': 'auto',
-							'top': 'auto'
-						}).attr('tabindex', 0);
-
-						// Анимация полностью завершена
-						isOpen = true;
-						isAnimated = false;
-					});
-			}
 
 			// callback after showed tab
 			$element.trigger('msRolls.afterShowed');
-		}, close = function () {
-			// Определить текущий таб
-			var $activePanel = $panel.filter('[id="' + activeId + '"]');
+		}, close = function (_item, _header) {
+			// Определяем текущий таб
+			var $currentPanel = _header.next().children();
 
-			if (!isAnimated) {
-				// console.log("Скрыть таб: ", activeId);
+			// console.log("Скрыть таб: ", activeId);
 
-				isAnimated = true;
+			// Удалить активный класс со всех элементов
+			toggleClass([_item], false);
 
-				// Удалить активный класс со всех элементов
-				toggleClass([$panel, $hand], false);
+			// Анимирование высоты табов
+			changeHeight(_header.next(), 0);
+			// $currentPanels.animate({
+			// 	'height': 0
+			// }, config.animationSpeed);
 
-				// Анимирование высоты табов
-				$panels.animate({
-					'height': 0
-				}, config.animationSpeed);
-
-				hidePanel($activePanel, function () {
-					isOpen = false;
-					isAnimated = false;
-				});
-			}
+			hidePanel($currentPanel, function () {
+				isOpen = false;
+				// isAnimated = false;
+				_header.data('opened', false);
+			});
 
 			// callback after tab hidden
 			$element.trigger('msRolls.afterHidden');
-		}, hidePanel = function ($closedPanel) {
+		}, hidePanel = function (_panel) {
 			var callback = arguments[1];
-			$closedPanel
+			// isAnimated = true;
+			_panel
 				.css({
 					'z-index': -1
 				})
 				.attr('tabindex', -1)
 				.animate({
-					'opacity': 0
+					// 'opacity': 0
 				}, config.animationSpeed, function () {
-					$closedPanel.css({
-						'position': 'absolute',
-						'left': 0,
-						'top': 0,
-						'visibility': 'hidden'
+					_panel.css({
+						position: 'absolute',
+						left: 0,
+						top: 0
+						// opacity: 0,
+						// visibility: 'hidden'
 					});
 
 					// Анимация полностью завершена
 					if (typeof callback === "function") {
 						callback();
 					}
+
+					// isAnimated = false;
 				});
+		}, changeHeight = function (_element, _val) {
+			var callback = arguments[2];
+
+			isAnimated = true;
+
+			_element.animate({
+				'height': _val
+			}, config.animationSpeed, function () {
+
+				console.log(1);
+				isAnimated = false;
+
+				_element.css({
+					'height': ''
+				});
+
+				if (typeof callback === "function") {
+					callback();
+				}
+			});
 		}, toggleClass = function (arr) {
 			var remove = arguments[1] === false;
 			$.each(arr, function () {
@@ -163,7 +185,8 @@
 			});
 		}, events = function () {
 			$element.on('click', config.hand, function (event) {
-				event.preventDefault();
+
+				console.log("isAnimated: ", isAnimated);
 
 				var $curHand = $(this);
 
@@ -177,6 +200,7 @@
 				// 	return false;
 				// }
 				if (isAnimated || !collapsed) {
+					event.preventDefault();
 					return false;
 				}
 				//
@@ -195,11 +219,9 @@
 				// 	open();
 				// }
 				var $currentItem = $curHand.closest($item);
-				var $currentPanel = $curHand.closest($header).next().children();
+				var $currentHeader = $curHand.closest($header);
 
-				console.log($currentItem.has($panel).length);
-
-				if ($currentItem.has($panel).length) {
+				if ($currentItem.has($panel).length && !$currentHeader.data('opened')) {
 					event.preventDefault();
 
 					// if ($currentPanel.is(':visible')) {
@@ -215,12 +237,18 @@
 					// if (self.options.collapsible) {
 					// 	self.closePanel($currentItem.siblings());
 					// }
+					open($currentItem, $currentHeader);
 
-					open($currentItem, $curHand.closest($header));
+					close($currentItem.siblings(), $currentItem.siblings().find($header));
+				} else {
+					close($currentItem, $currentHeader);
+					close($(config.item, $currentItem), $($header, $currentItem));
 				}
+
+				event.preventDefault();
 			});
 		}, init = function () {
-			activeId = $hand.filter('.' + config.modifiers.activeClass).length && $hand.filter('.' + config.modifiers.activeClass).attr('href').substring(1);
+			// activeId = $hand.filter('.' + config.modifiers.activeClass).length && $hand.filter('.' + config.modifiers.activeClass).attr('href').substring(1);
 
 			// console.log("activeId (сразу после инициализации): ", !!activeId);
 
@@ -229,17 +257,19 @@
 				css: {
 					display: 'block',
 					position: 'relative',
-					overflow: 'hidden'
+					overflow: 'hidden',
+					'z-index': 1
 				}
 			});
 
 			$panel.css({
-				'position': 'absolute',
-				'left': 0,
-				'top': 0,
-				'opacity': 0,
-				'width': '100%',
-				'visibility': 'hidden',
+				display: 'block',
+				width: '100%',
+				position: 'absolute',
+				left: 0,
+				top: 0,
+				// opacity: 0,
+				// visibility: 'hidden',
 				'z-index': -1
 			})
 				.attr('tabindex', -1)
@@ -314,8 +344,7 @@
 		collapsed: true,
 		modifiers: {
 			init: 'rolls--initialized',
-			activeClass: 'rolls--active',
-			currentClass: 'rolls--current'
+			activeClass: 'rolls--active'
 		}
 	};
 

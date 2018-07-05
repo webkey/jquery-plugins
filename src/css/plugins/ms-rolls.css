@@ -31,6 +31,11 @@
 	border-radius: 50%;
 	margin-top: -12px;
 	background-color: tomato;
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
+	-webkit-tap-highlight-color: transparent;
 }
 
 .rolls__angle::before, .rolls__angle::after {
@@ -46,20 +51,34 @@
 	height: 12px;
 	background-color: white;
 	will-change: transform;
+	transition-property: -webkit-transform;
 	transition-property: transform;
+	transition-property: transform, -webkit-transform;
 	transition-duration: 0.2s;
 }
 
 .rolls__angle::before {
-	-ms-transform: rotate(-0.25turn);
-	    transform: rotate(-0.25turn);
-	transform: rotate(-0.25turn) translateZ(0);
+	-webkit-transform: rotate(-0.25turn);
+	    -ms-transform: rotate(-0.25turn);
+	        transform: rotate(-0.25turn);
+	-webkit-transform: rotate(-0.25turn) translateZ(0);
+	        transform: rotate(-0.25turn) translateZ(0);
+}
+
+.rolls__angle:active {
+	top: calc(50% + 1px);
 }
 
 .rolls__header.is-open .rolls__angle::before, .rolls__header.is-open .rolls__angle::after {
-	-ms-transform: rotate(0);
-	    transform: rotate(0);
-	transform: rotate(0) translateZ(0);
+	-webkit-transform: rotate(0);
+	    -ms-transform: rotate(0);
+	        transform: rotate(0);
+	-webkit-transform: rotate(0) translateZ(0);
+	        transform: rotate(0) translateZ(0);
+}
+
+.rolls__panel {
+	display: none;
 }
 
 .rolls__header,

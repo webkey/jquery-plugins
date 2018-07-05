@@ -37,6 +37,8 @@ $rolls-angle-line-size: 2px 12px !default // h w
 	border-radius: 50%
 	margin-top: -#{round(nth($rolls-angle-size, 2)*0.5)}
 	background-color: $base-color
+	user-select: none
+	-webkit-tap-highlight-color: transparent
 
 	&::before, &::after
 		+pseudo()
@@ -55,6 +57,12 @@ $rolls-angle-line-size: 2px 12px !default // h w
 		transform: rotate(-0.25turn)
 		transform: rotate(-0.25turn) translateZ(0)
 
+// :active
+.rolls__angle
+	&:active
+
+		top: calc(50% + 1px)
+
 // active
 .rolls__header.is-open
 	.rolls__angle
@@ -63,8 +71,8 @@ $rolls-angle-line-size: 2px 12px !default // h w
 			transform: rotate(0) translateZ(0)
 
 // panel
-//.rolls__panel
-	display: none
+.rolls__panel
+	display: none // Важно!
 
 // только в примере, в реальном проэкте не обязательно
 .rolls__header,
