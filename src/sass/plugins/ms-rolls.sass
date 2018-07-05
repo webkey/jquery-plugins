@@ -44,9 +44,9 @@ $rolls-angle-line-size: 2px 12px !default // h w
 		+pseudo()
 		left: 50%
 		top: 50%
-		margin: -#{round(nth($rolls-angle-line-size, 2)/2)} 0 0 -#{round(nth($rolls-angle-line-size, 1)/2)}
+		margin: -#{round(nth($rolls-angle-line-size, 1)/2)} 0 0 -#{round(nth($rolls-angle-line-size, 2)/2)}
 		backface-visibility: hidden
-		+size(nth($rolls-angle-line-size, 1), nth($rolls-angle-line-size, 2))
+		+size(nth($rolls-angle-line-size, 2), nth($rolls-angle-line-size, 1))
 		background-color: white
 		will-change: transform
 		transition:
@@ -64,15 +64,17 @@ $rolls-angle-line-size: 2px 12px !default // h w
 		top: calc(50% + 1px)
 
 // active
-.rolls__header.is-open
-	.rolls__angle
-		&::before, &::after
-			transform: rotate(0)
-			transform: rotate(0) translateZ(0)
+.rolls__angle.is-open
+	&::before, &::after
+		transform: rotate(0)
+		transform: rotate(0) translateZ(0)
 
 // panel
 .rolls__panel
 	display: none // Важно!
+
+	&.is-open
+		display: block // Важно!
 
 // только в примере, в реальном проэкте не обязательно
 .rolls__header,

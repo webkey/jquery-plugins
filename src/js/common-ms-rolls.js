@@ -13,6 +13,19 @@ $(function () {
 			// , modifiers: {
 			// 	activeClass: 'tab-poookkhh'
 			// }
+			animationSpeed: 250
+			, modifiers: {
+				activeClass: 'is-open'
+			}
+			// , afterEachClose: function () {
+			// 	console.log('.afterEachClose');
+			// }
+			, afterClose: function () {
+				console.log('.afterClose');
+			}
+			, afterOpen: function () {
+				console.log('.afterOpen');
+			}
 		});
 	}
 });

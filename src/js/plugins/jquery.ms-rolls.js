@@ -10,16 +10,18 @@
 	var MsRolls = function(element, config){
 		var self,
 			$element = $(element),
-			$item = $(config.item, $element),
-			$header = $(config.header, $element),
-			$hand = $(config.hand, $element),
-			// $panels = $('.s'),
-			// $panel = $header.next(),
-			$panels,
 			$panel = $(config.panel, $element),
 			isAnimated = false,
 			// activeId,
-			isOpen = false,
+			pref = 'ms-rolls__',
+			initClasses = {
+				element: pref + 'container',
+				item: pref + 'item',
+				header: pref + 'header',
+				hand: pref + 'hand',
+				panelWrap: pref + 'panel-wrap',
+				panel: pref + 'panel'
+			},
 			collapsed = $element.data('tabs-collapsed') || config.collapsed;
 
 		var callbacks = function () {
@@ -31,108 +33,69 @@
 					});
 				}
 			});
-		}, open = function (_item, _header) {
-			// Определяем текущий таб
-			var $activePanel = _header.next().children();
-
+		}, open = function (_hand) {
 			// console.log('open');
-			// console.log('Показать таб:', activeId);
-			// isAnimated = true;
+			var callback = arguments[1],
 
-			// Удалить активный класс со всех элементов
-			// toggleClass([$item, $hand], false);
+				$currentHeader = _hand.closest(config.header),
+				$currentPanelWrap = $currentHeader.next(),
+				$currentPanel = $currentPanelWrap.children();
 
-			// Добавить класс на каждый активный элемент
-			toggleClass([_item], true);
+			// Добавить класс на активные элементы
+			toggleClass([_hand.closest(config.item), $currentPanel, _hand, $currentHeader], true);
 
-			// Анимирование высоты панели
-			var $currentPanels = _header.next();
-			// $currentPanels.animate({
-			// 	'height': $activePanel.outerHeight()
-			// }, config.animationSpeed, function () {
-			// 	$currentPanels.css({
-			// 		'height': ''
-			// 	})
-			// });
-			$activePanel
-				.css({
-					'z-index': 2,
-				})
-				.attr('tabindex', 0);
-
-			changeHeight($currentPanels, $activePanel.outerHeight(), function () {
-				// Показать активный таб
-				$activePanel
-					.css({
+			// Открыть панель
+			changeHeight($currentPanelWrap, $currentPanel.outerHeight(), function () {
+				$currentPanel.css({
 						position: 'relative',
 						left: 'auto',
 						top: 'auto'
 					});
-				isOpen = true;
-				_header.data('opened', true);
-				// callback after showed tab
-				$element.trigger('msRolls.afterShowed');
+
+				_hand.data('opened', true);
+
+				// Вызов события после открытия текущей панели
+				$element.trigger('msRolls.afterOpen');
+
+				// Вызов callback функции после открытия панели
+				if (typeof callback === "function") {
+					callback();
+				}
 			});
 
-		}, close = function (_item, _header) {
-			// Определяем текущий таб
-			var $currentPanel = _header.next().children();
+		}, close = function (_hand) {
 			// console.log('close');
+			var callback = arguments[1],
 
-			// console.log("Скрыть таб: ", activeId);
+				$currentHeader = _hand.closest(config.header),
+				$currentPanelWrap = $currentHeader.next(),
+				$currentPanel = $currentPanelWrap.children();
 
 			// Удалить активный класс со всех элементов
-			toggleClass([_item], false);
+			toggleClass([_hand.closest(config.item), $currentPanel, _hand, $currentHeader], false);
 
-			// Анимирование высоты табов
-			changeHeight(_header.next(), 0);
-			// $currentPanels.animate({
-			// 	'height': 0
-			// }, config.animationSpeed);
+			// Закрыть панель
+			changeHeight($currentPanelWrap, 0, function () {
+				// Вызов события после закрытия каждой панели
+				$element.trigger('msRolls.afterEachClose');
 
-			hidePanel($currentPanel);
+				// Вызов callback функции после закрытия панели
+				if (typeof callback === "function") {
+					callback();
+				}
+			});
 
-			isOpen = false;
-			_header.data('opened', false);
-
-			// callback after tab hidden
-			$element.trigger('msRolls.afterHidden');
-		}, hidePanel = function (_panel) {
-			var callback = arguments[1];
-			// isAnimated = true;
-			_panel
+			$currentPanel
 				.css({
-					'z-index': -1,
 					position: 'absolute',
 					left: 0,
 					top: 0
-				})
-				.attr('tabindex', -1);
-				// .animate({
-				// 	// 'opacity': 0
-				// }, config.animationSpeed, function () {
-				// 	// _panel.css({
-				// 	// 	position: 'absolute',
-				// 	// 	left: 0,
-				// 	// 	top: 0
-				// 	// 	// opacity: 0,
-				// 	// 	// visibility: 'hidden'
-				// 	// });
-				//
-				// 	// Анимация полностью завершена
-				// 	// if (typeof callback === "function") {
-				// 	// 	callback();
-				// 	// }
-				//
-				// 	// isAnimated = false;
-				// });
-			if (typeof callback === "function") {
-				callback();
-			}
+				});
+
+			_hand.data('opened', false);
+
 		}, changeHeight = function (_element, _val) {
 			var callback = arguments[2];
-
-			isAnimated = true;
 
 			_element.animate({
 				'height': _val
@@ -182,117 +145,111 @@
 			});
 		}, events = function () {
 			$element.on('click', config.hand, function (event) {
-
-				var $curHand = $(this);
-				var $currentItem = $curHand.closest($item);
-				var $currentHeader = $curHand.closest($header);
-
-				// var curId = $(this).attr('href').substring(1);
-				// // console.log("Таб анимируется?: ", isAnimated);
-				// // console.log("Текущий таб открыт?: ", isOpen);
-				// // console.log("Таб нужно закрывать, если открыт?: ", collapsed);
-				// // console.log("activeId (Предыдущий): ", activeId);
-				//
-				// if (isAnimated || !collapsed && curId === activeId) {
-				// 	return false;
-				// }
-
 				// console.log("isAnimated: ", isAnimated);
 
-				if (!isAnimated) {
-					// console.log(1);
-					if ($currentItem.has($panel).length && !$currentHeader.data('opened')) {
-						event.preventDefault();
-
-						// if ($currentPanel.is(':visible')) {
-						// 	close($currentItem);
-						//
-						// 	return;
-						// }
-
-						// if (self.options.collapsibleAll) {
-						// 	self.closePanel($($container).not($curHand.closest($container)).find($item));
-						// }
-						//
-						// if (self.options.collapsible) {
-						// 	self.closePanel($currentItem.siblings());
-						// }
-						open($currentItem, $currentHeader);
-
-						close($currentItem.siblings(), $currentItem.siblings().find($header));
-					} else {
-						close($currentItem, $currentHeader);
-						close($(config.item, $currentItem), $($header, $currentItem));
-					}
+				// Если панель во время клика находится в процессе анимации,
+				// то выполнение функции прекратится
+				if (isAnimated) {
+					event.preventDefault();
+					return false;
 				}
-				//
-				// if (collapsed && isOpen && curId === activeId) {
-				// 	hide();
-				// } else {
-				// 	activeId = curId;
-				// 	// console.log("activeId (Текущий): ", activeId);
-				// 	show();
-				// }
-				// if (collapsed && isOpen) {
-				// 	close();
-				// } else {
-				// 	// activeId = curId;
-				// 	// console.log("activeId (Текущий): ", activeId);
-				// 	open();
-				// }
 
+				var $currentHand = $(this),
+					$currentItem = $currentHand.closest(config.item);
+
+				// Если текущий пункт не содержит панелей,
+				// то выполнение функции прекратится
+				if (!$currentItem.has(config.panel).length) {
+					return false;
+				}
 
 				event.preventDefault();
+
+				// Начало анимирования панели
+				// Включить флаг анимации
+				isAnimated = true;
+
+				// console.log("Текущая панель открыта?: ", $currentHand.data('opened'));
+
+				var $currentPanel = $currentHand.closest(config.header).next().children(config.panel);
+
+				if (!$currentHand.data('opened')) {
+					var $siblingsItem = $currentItem.siblings(),
+						$siblingsHand = $siblingsItem.find(config.hand);
+
+					// Закрыть соседние панели,
+					// если открыты
+					$.each($siblingsHand, function () {
+						var $eachHand = $(this);
+						// console.log("Панель в соседнем пункте открыта?: ", $eachHand.data('opened'));
+						$eachHand.data('opened') && close($eachHand);
+					});
+
+					// Открыть текущую панель
+					open($currentHand);
+
+				} else {
+					// Закрыть панели внутры текущей,
+					// если открыты
+					var $childrenHand = $(config.hand, $currentPanel);
+					$.each($childrenHand, function () {
+						var $eachHand = $(this);
+						$eachHand.data('opened') && close($eachHand);
+					});
+					// Закрыть текущую панель
+					close($currentHand, function () {
+						// callback after current panel close
+						$element.trigger('msRolls.afterClose');
+					});
+				}
 			});
 		}, init = function () {
-			// activeId = $hand.filter('.' + config.modifiers.activeClass).length && $hand.filter('.' + config.modifiers.activeClass).attr('href').substring(1);
+			// $element.addClass(initClasses.element);
+			// $(config.item, $element).addClass(initClasses.item);
+			// $(config.header, $element).addClass(initClasses.header);
+			// $(config.hand, $element).addClass(initClasses.hand);
+			// $(config.panel, $element).addClass(initClasses.panel);
 
-			// console.log("activeId (сразу после инициализации): ", !!activeId);
-
-			$panels = $('<div/>', {
-				class: '===@@-js-wrap-@@===',
+			var $panelWrap = $('<div/>', {
+				class: initClasses.panelWrap,
 				css: {
 					display: 'block',
 					position: 'relative',
-					overflow: 'hidden',
-					'z-index': 1
+					overflow: 'hidden'
 				}
 			});
 
-			$panel.css({
-				display: 'block',
-				width: '100%',
-				position: 'absolute',
-				left: 0,
-				top: 0,
-				// opacity: 0,
-				// visibility: 'hidden',
-				'z-index': -1
-			})
-				.attr('tabindex', -1)
-				.wrap($panels);
+			$panel.wrap($panelWrap);
 
-			// Открыть текущую панел
-			// if (activeId) {
-			// 	var $activePanel = $panel.filter('[id="' + activeId + '"]');
-			//
-			// 	// Добавить класс на каждый элемен
-			// 	toggleClass([$activePanel], true);
-			//
-			// 	// Показать активный таб
-			// 	$activePanel
-			// 		.css({
-			// 			'position': 'relative',
-			// 			'left': 'auto',
-			// 			'top': 'auto',
-			// 			'opacity': 1,
-			// 			'visibility': 'visible',
-			// 			'z-index': 2
-			// 		})
-			// 		.attr('tabindex', 0);
-			//
-			// 	isOpen = true;
-			// }
+			$.each($panel, function (index, panel) {
+				$(panel).css({
+					display: 'block',
+					width: '100%'
+				});
+
+				if($(panel).hasClass(config.modifiers.activeClass)) {
+
+					var $activeHeader = $(panel).parents($panelWrap).prev(config.header),
+						$activeHand = $activeHeader.find(config.hand);
+
+					$activeHeader.next().children(config.panel).css({
+						position: 'relative',
+						left: 'auto',
+						top: 'auto'
+					});
+
+					// Добавить класс на активные элементы
+					toggleClass([$(panel).parents(config.item), $activeHand, $activeHeader], true);
+
+					$activeHand.data('opened', true);
+				} else {
+					$(panel).css({
+						position: 'absolute',
+						left: 0,
+						top: 0
+					})
+				}
+			});
 
 			$element.addClass(config.modifiers.init);
 
@@ -341,7 +298,8 @@
 		collapsed: true,
 		modifiers: {
 			init: 'rolls--initialized',
-			activeClass: 'rolls--active'
+			activeClass: 'rolls--active',
+			currentClass: 'current'
 		}
 	};
 

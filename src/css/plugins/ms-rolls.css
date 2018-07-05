@@ -44,41 +44,39 @@
 	position: absolute;
 	left: 50%;
 	top: 50%;
-	margin: -6px 0 0 -1px;
+	margin: -1px 0 0 -6px;
 	-webkit-backface-visibility: hidden;
 	        backface-visibility: hidden;
-	width: 2px;
-	height: 12px;
+	width: 12px;
+	height: 2px;
 	background-color: white;
 	will-change: transform;
-	transition-property: -webkit-transform;
 	transition-property: transform;
-	transition-property: transform, -webkit-transform;
 	transition-duration: 0.2s;
 }
 
 .rolls__angle::before {
-	-webkit-transform: rotate(-0.25turn);
-	    -ms-transform: rotate(-0.25turn);
-	        transform: rotate(-0.25turn);
-	-webkit-transform: rotate(-0.25turn) translateZ(0);
-	        transform: rotate(-0.25turn) translateZ(0);
+	-ms-transform: rotate(-0.25turn);
+	    transform: rotate(-0.25turn);
+	transform: rotate(-0.25turn) translateZ(0);
 }
 
 .rolls__angle:active {
 	top: calc(50% + 1px);
 }
 
-.rolls__header.is-open .rolls__angle::before, .rolls__header.is-open .rolls__angle::after {
-	-webkit-transform: rotate(0);
-	    -ms-transform: rotate(0);
-	        transform: rotate(0);
-	-webkit-transform: rotate(0) translateZ(0);
-	        transform: rotate(0) translateZ(0);
+.rolls__angle.is-open::before, .rolls__angle.is-open::after {
+	-ms-transform: rotate(0);
+	    transform: rotate(0);
+	transform: rotate(0) translateZ(0);
 }
 
 .rolls__panel {
 	display: none;
+}
+
+.rolls__panel.is-open {
+	display: block;
 }
 
 .rolls__header,
