@@ -35,6 +35,7 @@
 			// Определяем текущий таб
 			var $activePanel = _header.next().children();
 
+			// console.log('open');
 			// console.log('Показать таб:', activeId);
 			// isAnimated = true;
 
@@ -53,38 +54,30 @@
 			// 		'height': ''
 			// 	})
 			// });
-			changeHeight($currentPanels, $activePanel.outerHeight());
-
-			// Скрыть все табы, кроме активного
-			// hidePanel(_item.siblings().find($header).next().children());
-
-			// Показать активный таб
 			$activePanel
 				.css({
-					'z-index': 2
-					// visibility: 'visible',
-					// opacity: 1
+					'z-index': 2,
 				})
-				.animate({
-					// opacity: 1
-				}, config.animationSpeed, function () {
-					$activePanel.css({
+				.attr('tabindex', 0);
+
+			changeHeight($currentPanels, $activePanel.outerHeight(), function () {
+				// Показать активный таб
+				$activePanel
+					.css({
 						position: 'relative',
 						left: 'auto',
 						top: 'auto'
-					}).attr('tabindex', 0);
+					});
+				isOpen = true;
+				_header.data('opened', true);
+				// callback after showed tab
+				$element.trigger('msRolls.afterShowed');
+			});
 
-					// Анимация полностью завершена
-					isOpen = true;
-					// isAnimated = false;
-					_header.data('opened', true);
-				});
-
-			// callback after showed tab
-			$element.trigger('msRolls.afterShowed');
 		}, close = function (_item, _header) {
 			// Определяем текущий таб
 			var $currentPanel = _header.next().children();
+			// console.log('close');
 
 			// console.log("Скрыть таб: ", activeId);
 
@@ -97,11 +90,10 @@
 			// 	'height': 0
 			// }, config.animationSpeed);
 
-			hidePanel($currentPanel, function () {
-				isOpen = false;
-				// isAnimated = false;
-				_header.data('opened', false);
-			});
+			hidePanel($currentPanel);
+
+			isOpen = false;
+			_header.data('opened', false);
 
 			// callback after tab hidden
 			$element.trigger('msRolls.afterHidden');
@@ -110,27 +102,33 @@
 			// isAnimated = true;
 			_panel
 				.css({
-					'z-index': -1
+					'z-index': -1,
+					position: 'absolute',
+					left: 0,
+					top: 0
 				})
-				.attr('tabindex', -1)
-				.animate({
-					// 'opacity': 0
-				}, config.animationSpeed, function () {
-					_panel.css({
-						position: 'absolute',
-						left: 0,
-						top: 0
-						// opacity: 0,
-						// visibility: 'hidden'
-					});
-
-					// Анимация полностью завершена
-					if (typeof callback === "function") {
-						callback();
-					}
-
-					// isAnimated = false;
-				});
+				.attr('tabindex', -1);
+				// .animate({
+				// 	// 'opacity': 0
+				// }, config.animationSpeed, function () {
+				// 	// _panel.css({
+				// 	// 	position: 'absolute',
+				// 	// 	left: 0,
+				// 	// 	top: 0
+				// 	// 	// opacity: 0,
+				// 	// 	// visibility: 'hidden'
+				// 	// });
+				//
+				// 	// Анимация полностью завершена
+				// 	// if (typeof callback === "function") {
+				// 	// 	callback();
+				// 	// }
+				//
+				// 	// isAnimated = false;
+				// });
+			if (typeof callback === "function") {
+				callback();
+			}
 		}, changeHeight = function (_element, _val) {
 			var callback = arguments[2];
 
@@ -140,9 +138,6 @@
 				'height': _val
 			}, config.animationSpeed, function () {
 
-				console.log(1);
-				isAnimated = false;
-
 				_element.css({
 					'height': ''
 				});
@@ -150,6 +145,8 @@
 				if (typeof callback === "function") {
 					callback();
 				}
+
+				isAnimated = false;
 			});
 		}, toggleClass = function (arr) {
 			var remove = arguments[1] === false;
@@ -186,9 +183,9 @@
 		}, events = function () {
 			$element.on('click', config.hand, function (event) {
 
-				console.log("isAnimated: ", isAnimated);
-
 				var $curHand = $(this);
+				var $currentItem = $curHand.closest($item);
+				var $currentHeader = $curHand.closest($header);
 
 				// var curId = $(this).attr('href').substring(1);
 				// // console.log("Таб анимируется?: ", isAnimated);
@@ -199,9 +196,34 @@
 				// if (isAnimated || !collapsed && curId === activeId) {
 				// 	return false;
 				// }
-				if (isAnimated || !collapsed) {
-					event.preventDefault();
-					return false;
+
+				// console.log("isAnimated: ", isAnimated);
+
+				if (!isAnimated) {
+					// console.log(1);
+					if ($currentItem.has($panel).length && !$currentHeader.data('opened')) {
+						event.preventDefault();
+
+						// if ($currentPanel.is(':visible')) {
+						// 	close($currentItem);
+						//
+						// 	return;
+						// }
+
+						// if (self.options.collapsibleAll) {
+						// 	self.closePanel($($container).not($curHand.closest($container)).find($item));
+						// }
+						//
+						// if (self.options.collapsible) {
+						// 	self.closePanel($currentItem.siblings());
+						// }
+						open($currentItem, $currentHeader);
+
+						close($currentItem.siblings(), $currentItem.siblings().find($header));
+					} else {
+						close($currentItem, $currentHeader);
+						close($(config.item, $currentItem), $($header, $currentItem));
+					}
 				}
 				//
 				// if (collapsed && isOpen && curId === activeId) {
@@ -218,32 +240,7 @@
 				// 	// console.log("activeId (Текущий): ", activeId);
 				// 	open();
 				// }
-				var $currentItem = $curHand.closest($item);
-				var $currentHeader = $curHand.closest($header);
 
-				if ($currentItem.has($panel).length && !$currentHeader.data('opened')) {
-					event.preventDefault();
-
-					// if ($currentPanel.is(':visible')) {
-					// 	close($currentItem);
-					//
-					// 	return;
-					// }
-
-					// if (self.options.collapsibleAll) {
-					// 	self.closePanel($($container).not($curHand.closest($container)).find($item));
-					// }
-					//
-					// if (self.options.collapsible) {
-					// 	self.closePanel($currentItem.siblings());
-					// }
-					open($currentItem, $currentHeader);
-
-					close($currentItem.siblings(), $currentItem.siblings().find($header));
-				} else {
-					close($currentItem, $currentHeader);
-					close($(config.item, $currentItem), $($header, $currentItem));
-				}
 
 				event.preventDefault();
 			});
