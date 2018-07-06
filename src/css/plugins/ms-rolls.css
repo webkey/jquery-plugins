@@ -51,14 +51,18 @@
 	height: 2px;
 	background-color: white;
 	will-change: transform;
+	transition-property: -webkit-transform;
 	transition-property: transform;
+	transition-property: transform, -webkit-transform;
 	transition-duration: 0.2s;
 }
 
 .rolls__angle::before {
-	-ms-transform: rotate(-0.25turn);
-	    transform: rotate(-0.25turn);
-	transform: rotate(-0.25turn) translateZ(0);
+	-webkit-transform: rotate(-0.25turn);
+	    -ms-transform: rotate(-0.25turn);
+	        transform: rotate(-0.25turn);
+	-webkit-transform: rotate(-0.25turn) translateZ(0);
+	        transform: rotate(-0.25turn) translateZ(0);
 }
 
 .rolls__angle:active {
@@ -66,9 +70,11 @@
 }
 
 .rolls__angle.is-open::before, .rolls__angle.is-open::after {
-	-ms-transform: rotate(0);
-	    transform: rotate(0);
-	transform: rotate(0) translateZ(0);
+	-webkit-transform: rotate(0);
+	    -ms-transform: rotate(0);
+	        transform: rotate(0);
+	-webkit-transform: rotate(0) translateZ(0);
+	        transform: rotate(0) translateZ(0);
 }
 
 .rolls__panel {
@@ -104,12 +110,24 @@
 	background-color: #fffcc1;
 }
 
+.rolls__header.is-open {
+	background-color: #fff278;
+}
+
 .rolls__item {
 	background-color: #ffdbd4;
 }
 
+.rolls__item.is-open {
+	background-color: #ffbeac;
+}
+
 .rolls__panel {
 	background-color: #c6fdcf;
+}
+
+.rolls__panel.is-open {
+	background-color: #7efd85;
 }
 
 /* rolls end */

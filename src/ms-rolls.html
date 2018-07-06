@@ -49,7 +49,7 @@
 	{{ms-rolls code}}
 &lt;/div&gt;</code></pre>
 		<!--Code example end-->
-		<div class="rolls rolls-js">
+		<div class="rolls rolls-js" data-rolls-collapsed="true">
 			<!--rolls-->
 			<!--(1) FIRST level - START-->
 			<div class="rolls__item rolls__item-js">
@@ -57,7 +57,7 @@
 					<a href="#">{{Title 1.1}}</a>
 					<a href="#" class="rolls__angle rolls__hand-js">&nbsp;</a>
 				</div>
-				<div class="rolls__panel rolls__panel-js">
+				<div class="rolls__panel rolls__panel-js is-open" id="hashExpl">
 					{{Content 1.1}}
 					<!--(2) SECOND level - START-->
 					<div class="rolls__item rolls__item-js">
@@ -65,7 +65,7 @@
 							<a href="#">{{Title 1.1 - 2.1}}</a>
 							<a href="#" class="rolls__angle rolls__hand-js">&nbsp;</a>
 						</div>
-						<div class="rolls__panel rolls__panel-js">
+						<div class="rolls__panel rolls__panel-js is-open">
 							{{Content 1.1 - 2.1}}
 							<!--(3) THIRD level - START-->
 							<div class="rolls__item rolls__item-js">
@@ -73,7 +73,7 @@
 									<a href="#">{{Title 1.1 - 2.1 - 3.1}}</a>
 									<a href="#" class="rolls__angle rolls__hand-js">&nbsp;</a>
 								</div>
-								<div class="rolls__panel rolls__panel-js">
+								<div class="rolls__panel rolls__panel-js is-open">
 									{{Content 1.1 - 2.1 - 3.1}}
 									<!--roll next level-->
 								</div>
@@ -99,7 +99,7 @@
 					<a href="#">{{Title 1.2}}</a>
 					<a href="#" class="rolls__angle rolls__hand-js">&nbsp;</a>
 				</div>
-				<div class="rolls__panel rolls__panel-js is-open">
+				<div class="rolls__panel rolls__panel-js">
 					{{Content 1.2}} <br> {{Content 1.2}}
 					<!--(2) SECOND level - START-->
 					<div class="rolls__item rolls__item-js">
@@ -107,7 +107,7 @@
 							<a href="#">{{Title 1.2 - 2.1}}</a>
 							<a href="#" class="rolls__angle rolls__hand-js">&nbsp;</a>
 						</div>
-						<div class="rolls__panel rolls__panel-js is-open">
+						<div class="rolls__panel rolls__panel-js">
 							{{Content 1.2 - 2.1}} <br> {{Content 1.2 - 2.1}}
 							<!--roll next level-->
 						</div>
@@ -142,7 +142,7 @@
 		<br>
 		<br>
 		<h2>Документация</h2>
-		<h3>Подключаемые файлы</h3>
+		<h3>Used Files:</h3>
 		<ul>
 			<li>__ms-rolls.html</li>
 			<li>jquery.ms-rolls.js</li>
@@ -152,11 +152,22 @@
 		<h3>Options</h3>
 		<ul>
 			<li>
+				<div><b>collapsed:</b></div>
+				<div><i class="gray">Default:</i> <code class="red">true</code></div>
+				<div><i class="gray">Type:</i> <code class="red">Boolean</code></div>
+				<div><i class="gray">Example:</i> <code class="red">true</code> or <code class="red">false</code></div>
+				<div><i class="gray">Description:</i> <br> Если <code class="red">true</code>, то при открытии текущей панели, закрывать открытые (если такие есть). По умолчанию <code class="red">true</code>. <br> Есть возможность переопределения через data-атрибут
+					<code
+					    class="green">data-rolls-collapsed</code>. Присваивать элементу, на котором вызывается плагин. <br> Переопределить глобально можно с помощью конструкции <code class="green">$.fn.msRolls.defaultOptions.collapsed = ...</code> <br>
+						<i>data-атрибут</i> имеет приоритет выше, чем переопределение через <i>javaScript</i>
+				</div>
+			</li>
+			<li>
 				<div><b>someProperty:</b></div>
-				<div><i class="gray">Defaults:</i> <code class="red">someValue</code></div>
+				<div><i class="gray">Default:</i> <code class="red">someValue</code></div>
 				<div><i class="gray">Type:</i> <code class="red">String</code></div>
 				<div><i class="gray">Example:</i> <code class="red">otherValue</code></div>
-				<div>Описание</div>
+				<div><i class="gray">Description:</i> <br> Описание</div>
 			</li>
 		</ul>
 		<h3>События</h3>
@@ -168,11 +179,20 @@
 				</div>
 			</li>
 		</ul>
+		<h3>Методы</h3>
+		<ul>
+			<li>
+				<div><b>afterInit</b></div>
+				<div>
+					<pre class="snippet"><code class="javascript">afterInit: function (e, el) {}</code></pre>
+				</div>
+			</li>
+		</ul>
 		<h3>Глобальные настройки</h3>
-		<div>Поменять настройки плагина глобально можно через</div>
-		<div><code class="red">$.fn.tClass.defaultOptions</code></div>
+		<div>Переопределять настройки плагина глобально можно через</div>
+		<div><code class="red">$.fn.msRolls.defaultOptions</code></div>
 		<div><b>Например:</b></div>
-		<div><code class="red">$.fn.tClass.defaultOptions.someProperty = false;</code></div>
+		<div><code class="red">$.fn.msRolls.defaultOptions.someProperty = false;</code></div>
 	</div>
 	<!-- >>> foot.tpl <<< -->
 	<!--footer-->
