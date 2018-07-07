@@ -17,12 +17,16 @@ $(function () {
 			// 	activeClass: 'tab-poookkhh'
 			// }
 			animationSpeed: 250
+			// , event: 'mouseenter'
 			// , collapsed: false
 			, modifiers: {
 				activeClass: 'is-open'
 			}
 			, afterEachClose: function () {
 				console.log('.afterEachClose');
+			}
+			, afterEachOpen: function () {
+				console.log('.afterEachOpen');
 			}
 			, afterClose: function () {
 				console.log('.afterClose');
@@ -42,9 +46,9 @@ $(function () {
 		// Первый параметр: название метода
 		// Второй параметр: селектор
 		// Трений параметр: callback-функция
-		$('h1').on('click', function () {
+		$('.open-panel-js').on('click', function () {
 			myRolls.msRolls('open', $('#hashExpl'), function () {
-				console.log('Показать после открытия панели!');
+				// console.log('Показать после открытия панели!');
 			});
 		});
 	}
