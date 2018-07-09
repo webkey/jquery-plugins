@@ -1,32 +1,37 @@
+'use strict';
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 /*! jquery.ms-tabs.js
  * Version: 2018.1.0
  * Author: Astronim*
  * Description: Extended toggle class
  */
 
-;(function($){
+;(function ($) {
 	'use strict';
 
-	var MsRolls = function(element, config){
+	var MsRolls = function MsRolls(element, config) {
 		var self,
-			$element = $(element),
-			$panel = $(config.panel, $element),
-			isAnimated = false,
-			// activeId,
-			pref = 'ms-rolls__',
-			initClasses = {
-				element: pref + 'container',
-				item: pref + 'item',
-				header: pref + 'header',
-				hand: pref + 'hand',
-				panelWrap: pref + 'panel-wrap',
-				panel: pref + 'panel'
-			};
+		    $element = $(element),
+		    $panel = $(config.panel, $element),
+		    isAnimated = false,
+
+		// activeId,
+		pref = 'ms-rolls__',
+		    initClasses = {
+			element: pref + 'container',
+			item: pref + 'item',
+			header: pref + 'header',
+			hand: pref + 'hand',
+			panelWrap: pref + 'panel-wrap',
+			panel: pref + 'panel'
+		};
 
 		var dataClpsd = $element.attr('data-rolls-collapsed');
-		var collapsed = (dataClpsd === "true" || dataClpsd === "false") ? dataClpsd === "true" : config.collapsed;
+		var collapsed = dataClpsd === "true" || dataClpsd === "false" ? dataClpsd === "true" : config.collapsed;
 
-		var callbacks = function () {
+		var callbacks = function callbacks() {
 			/** track events */
 			$.each(config, function (key, value) {
 				if (typeof value === 'function') {
@@ -35,16 +40,18 @@
 					});
 				}
 			});
-		}, open = function (_panel) {
+		},
+		    open = function open(_panel) {
 
 			// console.log('open');
 			var callback = arguments[1],
-				// $activePanelWrap = _panel.parent(),
-				// $activeHeader = $activePanelWrap.prev(config.header),
 
-				$activeHeader = _panel.parentsUntil(element).prev(config.header),
-				$activePanelWrap = $activeHeader.next(),
-				$activePanel = $activePanelWrap.children(config.panel);
+			// $activePanelWrap = _panel.parent(),
+			// $activeHeader = $activePanelWrap.prev(config.header),
+
+			$activeHeader = _panel.parentsUntil(element).prev(config.header),
+			    $activePanelWrap = $activeHeader.next(),
+			    $activePanel = $activePanelWrap.children(config.panel);
 
 			var panelLength = 0;
 			$.each($activePanel, function (index, panel) {
@@ -62,8 +69,8 @@
 				var opened = 'opened';
 				if (!$eachPanel.data(opened)) {
 					var $eachPanelWrap = $eachPanel.parent(),
-						$eachHeader = $eachPanelWrap.prev(),
-						$eachItem = $eachPanel.closest(config.item);
+					    $eachHeader = $eachPanelWrap.prev(),
+					    $eachItem = $eachPanel.closest(config.item);
 
 					// Добавить класс на активные элементы
 					toggleClass([$eachItem, $eachHeader, $(config.hand, $eachHeader), $eachPanel], true);
@@ -117,10 +124,9 @@
 						$element.trigger('msRolls.afterEachOpen');
 					}
 				}
-
 			});
-
-		}, close = function (_panel) {
+		},
+		    close = function close(_panel) {
 			var callback = arguments[1];
 
 			// Закрыть панели внутры текущей,
@@ -138,14 +144,13 @@
 					callback();
 				}
 			});
-
-		}, closePanel = function (_panel) {
+		},
+		    closePanel = function closePanel(_panel) {
 			// console.log('close');
 			if (_panel.data('opened')) {
 				var callback = arguments[1],
-
-					$currentPanelWrap = _panel.parent(),
-					$currentHeader = $currentPanelWrap.prev(config.header);
+				    $currentPanelWrap = _panel.parent(),
+				    $currentHeader = $currentPanelWrap.prev(config.header);
 
 				// Удалить активный класс со всех элементов
 				toggleClass([_panel.closest(config.item), $currentHeader, $(config.hand, $currentHeader), _panel], false);
@@ -155,13 +160,11 @@
 					// Вызов события после закрытия каждой панели
 					$element.trigger('msRolls.afterEachClose');
 
-					_panel
-						.css({
-							position: 'absolute',
-							left: 0,
-							top: 0
-						})
-						.data('opened', false);// Указать в data-атрибуте, что панель закрыта
+					_panel.css({
+						position: 'absolute',
+						left: 0,
+						top: 0
+					}).data('opened', false); // Указать в data-атрибуте, что панель закрыта
 
 					// Вызов callback функции после закрытия панели
 					if (typeof callback === "function") {
@@ -169,7 +172,8 @@
 					}
 				});
 			}
-		}, changeHeight = function (_element, _val) {
+		},
+		    changeHeight = function changeHeight(_element, _val) {
 			var callback = arguments[2];
 
 			_element.animate({
@@ -186,7 +190,8 @@
 
 				isAnimated = false;
 			});
-		}, toggleClass = function (arr) {
+		},
+		    toggleClass = function toggleClass(arr) {
 			var remove = arguments[1] === false;
 			$.each(arr, function () {
 				var iElem = this;
@@ -205,7 +210,7 @@
 						} else {
 							// В консоль вывести предупреждение,
 							// если указанного элемента не существует.
-							console.warn('Element "' + this + '" does not exist!')
+							console.warn('Element "' + this + '" does not exist!');
 						}
 					});
 				} else {
@@ -218,12 +223,10 @@
 					}
 				}
 			});
-		}, events = function () {
-			$element.on(config.event + ' focus', config.hand, function (event) {
+		},
+		    events = function events() {
+			$element.on(config.event, config.hand, function (event) {
 				// console.log("isAnimated: ", isAnimated);
-
-				console.log("event: ", event);
-				console.log(1);
 
 				// Если панель во время клика находится в процессе анимации,
 				// то выполнение функции прекратится
@@ -261,7 +264,8 @@
 					});
 				}
 			});
-		}, onfocus = function () {
+		},
+		    onfocus = function onfocus() {
 			$element.on('focus', config.hand, function (event) {
 				// Если во время получения фокуса панель находится в процессе анимации,
 				// то выполнение функции прекратится
@@ -290,15 +294,16 @@
 
 					open($currentPanel);
 				}
-			})
-		}, init = function () {
+			});
+		},
+		    init = function init() {
 			// $element.addClass(initClasses.element);
 			// $(config.item, $element).addClass(initClasses.item);
 			// $(config.header, $element).addClass(initClasses.header);
 			// $(config.panel, $element).addClass(initClasses.panel);
 			$(config.hand, $element)
-				// .addClass(initClasses.hand)
-				.attr('tabindex', 0);
+			// .addClass(initClasses.hand)
+			.attr('tabindex', 0);
 
 			var $panelWrap = $('<div/>', {
 				class: initClasses.panelWrap,
@@ -317,10 +322,10 @@
 					width: '100%'
 				});
 
-				if($(panel).hasClass(config.modifiers.activeClass)) {
+				if ($(panel).hasClass(config.modifiers.activeClass)) {
 
 					var $activeHeader = $(panel).parentsUntil(element).prev(config.header),
-						$activePanel = $activeHeader.next().children(config.panel);
+					    $activePanel = $activeHeader.next().children(config.panel);
 
 					// Добавить класс на активные элементы
 					toggleClass([$(panel).parents(config.item), $activePanel, $activeHeader, $(config.hand, $activeHeader)], true);
@@ -338,7 +343,7 @@
 						position: 'absolute',
 						left: 0,
 						top: 0
-					})
+					});
 				}
 			});
 
@@ -362,20 +367,19 @@
 
 	$.fn.msRolls = function () {
 		var _ = this,
-			opt = arguments[0],
-			args = Array.prototype.slice.call(arguments, 1),
-			l = _.length,
-			i,
-			ret;
+		    opt = arguments[0],
+		    args = Array.prototype.slice.call(arguments, 1),
+		    l = _.length,
+		    i,
+		    ret;
 		for (i = 0; i < l; i++) {
-			if (typeof opt === 'object' || typeof opt === 'undefined') {
+			if ((typeof opt === 'undefined' ? 'undefined' : _typeof(opt)) === 'object' || typeof opt === 'undefined') {
 				_[i].msRolls = new MsRolls(_[i], $.extend(true, {}, $.fn.msRolls.defaultOptions, opt));
 				_[i].msRolls.init();
 				_[i].msRolls.callbacks();
 				_[i].msRolls.events();
 				// _[i].msRolls.onfocus();
-			}
-			else {
+			} else {
 				ret = _[i].msRolls[opt].apply(_[i].msRolls, args);
 			}
 			if (typeof ret !== 'undefined') {
@@ -399,5 +403,4 @@
 			currentClass: 'current'
 		}
 	};
-
 })(jQuery);

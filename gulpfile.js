@@ -22,8 +22,8 @@ var gulp = require('gulp'), // Подключаем Gulp
 	modernizr = require('modernizr'), // For compiling modernizr.min.js
 	config = require('./modernizr-config'), // Path to modernizr-config.json
 	replace = require('gulp-string-replace'),
-	stripCssComments = require('gulp-strip-css-comments') // Удалить комментарии (css)
-
+	stripCssComments = require('gulp-strip-css-comments'), // Удалить комментарии (css)
+	babel = require('gulp-babel')
 	;
 
 gulp.task('htmlCompilation', function () { // Таск формирования ДОМ страниц
@@ -130,6 +130,7 @@ gulp.task('copyJqueryUiJs', function () {
 	])
 		.pipe(gulp.dest('src/js/jquery-ui'));
 });
+
 gulp.task('copyJqueryUiCss', function () {
 	return gulp.src([
 		, 'src/libs/jquery-ui/themes/base/base.css'
@@ -141,6 +142,15 @@ gulp.task('copyJqueryUiCss', function () {
 		.pipe(gulp.dest('src/js/jquery-ui'));
 });
 // Таск для копирования jquery-ui в js папку (конец)
+
+// babel
+// gulp.task('babelJsConvert', function () {
+// 	gulp.src('src/js/common-ms-rolls.js')
+// 		.pipe(babel({
+// 			presets: ['env']
+// 		}))
+// 		.pipe(gulp.dest('src/js/babel/'))
+// });
 
 gulp.task('browserSync', function (done) { // Таск browserSync
 	browserSync.init({
@@ -157,6 +167,8 @@ gulp.task('watch', ['normalize', 'browserSync', 'htmlCompilation', 'sassCompilat
 	gulp.watch(['src/_tpl_*.html', 'src/__*.html', 'src/includes/**/*.json'], ['htmlCompilation']); // Наблюдение за tpl
 	// файлами в папке include
 	gulp.watch('src/sass/**/*.+(scss|sass)', ['sassCompilation']); // Наблюдение за sass файлами в папке sass
+	// for babel
+	// gulp.watch('src/js/**/*.js', ['babelJsConvert']); // Наблюдение за sass файлами в папке sass
 });
 
 gulp.task('default', ['watch']); // Назначаем таск watch дефолтным
