@@ -222,8 +222,8 @@
 			$element.on(config.event + ' focus', config.hand, function (event) {
 				// console.log("isAnimated: ", isAnimated);
 
-				console.log("event: ", event);
-				console.log(1);
+				// console.log("event: ", event);
+				// console.log(1);
 
 				// Если панель во время клика находится в процессе анимации,
 				// то выполнение функции прекратится

@@ -66,6 +66,10 @@
 							'top': 'auto'
 						}).attr('tabindex', 0);
 
+						$panels.css({
+							'height': ''
+						});
+
 						// Анимация полностью завершена
 						isOpen = true;
 						isAnimated = false;
@@ -92,6 +96,10 @@
 				}, config.animationSpeed);
 
 				hideTab($activePanel, function () {
+					$panels.css({
+						'height': ''
+					});
+
 					isOpen = false;
 					isAnimated = false;
 				});
@@ -216,7 +224,6 @@
 
 				isOpen = true;
 			}
-
 
 			$element.addClass(config.modifiers.init);
 
