@@ -120,6 +120,20 @@
 			},
 			events = function () {
 				$element.on('click', function (event) {
+					var $this = $(this);
+
+					if ($this.attr('data-tc-only-add') !== undefined) {
+						add();
+
+						return false;
+					}
+
+					if ($this.attr('data-tc-only-remove') !== undefined) {
+						remove();
+
+						return false;
+					}
+
 					if (classIsAdded) {
 						remove();
 
