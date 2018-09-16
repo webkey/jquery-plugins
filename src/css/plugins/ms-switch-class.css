@@ -1,4 +1,4 @@
-.css-scroll-fixed:not(.open-only-mob) {
+html.css-scroll-fixed:not(.open-only-mob) {
 	width: 100% !important;
 	height: 100% !important;
 	max-width: 100% !important;
@@ -8,11 +8,24 @@
 	overflow: hidden !important;
 }
 
+@media (max-width: 991px) {
+	html.css-scroll-fixed.open-only-mob {
+		width: 100% !important;
+		height: 100% !important;
+		max-width: 100% !important;
+		max-height: 100% !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		overflow: hidden !important;
+	}
+}
+
 .popup-default {
 	position: fixed;
 	width: 100%;
+	width: 50%;
 	height: 100%;
-	left: 0;
+	left: 50%;
 	top: 0;
 	z-index: 9999;
 	overflow-x: hidden;
@@ -25,7 +38,7 @@
 	transition-duration: 0.2s;
 }
 
-.popup-default.tc--active, .popup-default.tc--open {
+.popup-default.active, .popup-default.is-open {
 	opacity: 1;
 	visibility: visible;
 }
@@ -37,8 +50,8 @@
 	}
 }
 
-.popup-default.tc--active,
-.popup-default.tc--open {
+.popup-default.active,
+.popup-default.is-open {
 	display: block;
 }
 
@@ -60,24 +73,18 @@
 	margin: 0 auto;
 	padding: 80px 20px 40px;
 	background-color: #fff;
-	-webkit-transform: scale(0.85);
-	    -ms-transform: scale(0.85);
-	        transform: scale(0.85);
-	-webkit-transform: scale3d(0.85, 0.85, 1);
-	        transform: scale3d(0.85, 0.85, 1);
+	-ms-transform: scale(0.85);
+	    transform: scale(0.85);
+	transform: scale3d(0.85, 0.85, 1);
 	will-change: transform;
-	transition-property: -webkit-transform;
 	transition-property: transform;
-	transition-property: transform, -webkit-transform;
 	transition-duration: 0.2s;
 }
 
-.popup-default.tc--active .popup-default__layout, .popup-default.tc--open .popup-default__layout {
-	-webkit-transform: scale(1);
-	    -ms-transform: scale(1);
-	        transform: scale(1);
-	-webkit-transform: scale3d(1, 1, 1);
-	        transform: scale3d(1, 1, 1);
+.popup-default.active .popup-default__layout, .popup-default.is-open .popup-default__layout {
+	-ms-transform: scale(1);
+	    transform: scale(1);
+	transform: scale3d(1, 1, 1);
 }
 
 .popup-default__close {
@@ -106,15 +113,13 @@
 }
 
 .popup-default__close:before {
-	-webkit-transform: rotate(45deg);
-	    -ms-transform: rotate(45deg);
-	        transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	    transform: rotate(45deg);
 }
 
 .popup-default__close:after {
-	-webkit-transform: rotate(-45deg);
-	    -ms-transform: rotate(-45deg);
-	        transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	    transform: rotate(-45deg);
 }
 
 .popup-default__close:hover {
@@ -130,8 +135,10 @@
 .popup-overlay {
 	position: fixed;
 	left: 0;
+	left: 40%;
 	top: 0;
 	width: 100%;
+	width: 60%;
 	height: 100%;
 	background-color: rgba(0, 0, 0, 0.35);
 	z-index: 9998;
@@ -142,7 +149,7 @@
 	transition-duration: 0.2s;
 }
 
-.popup-overlay.tc--active, .popup-overlay.tc--open {
+.popup-overlay.active, .popup-overlay.is-open {
 	opacity: 1;
 	visibility: visible;
 }
@@ -167,7 +174,7 @@ li a[class*="tc__"]:hover {
 	border-bottom-color: lightgrey;
 }
 
-.tc--active.tc-js, .tc--active.tc-1-js, .tc--active.tc-2-js, .tc--active.tc-3-js, .tc--active.tc__switcher-js, .tc--active.tc-1__switcher-js, .tc--active.tc-2__switcher-js, .tc--active.tc-3__switcher-js, .tc--active.tc__add-js, .tc--active.tc-2__add-js, .tc--open.tc-js, .tc--open.tc-1-js, .tc--open.tc-2-js, .tc--open.tc-3-js, .tc--open.tc__switcher-js, .tc--open.tc-1__switcher-js, .tc--open.tc-2__switcher-js, .tc--open.tc-3__switcher-js, .tc--open.tc__add-js, .tc--open.tc-2__add-js {
+.active.tc-js, .active.tc-1-js, .active.tc-2-js, .active.tc-3-js, .active.tc__switcher-js, .active.tc-1__switcher-js, .active.tc-2__switcher-js, .active.tc-3__switcher-js, .active.tc__opener-js, .active.tc-1__opener-js, .active.tc-2__opener-js, .active.tc-3__opener-js, .active.tc-1__remover-js, .active.tc-2__remover-js, .active.tc-3__remover-js, .active.tc__add-js, .active.tc-2__add-js, .is-open.tc-js, .is-open.tc-1-js, .is-open.tc-2-js, .is-open.tc-3-js, .is-open.tc__switcher-js, .is-open.tc-1__switcher-js, .is-open.tc-2__switcher-js, .is-open.tc-3__switcher-js, .is-open.tc__opener-js, .is-open.tc-1__opener-js, .is-open.tc-2__opener-js, .is-open.tc-3__opener-js, .is-open.tc-1__remover-js, .is-open.tc-2__remover-js, .is-open.tc-3__remover-js, .is-open.tc__add-js, .is-open.tc-2__add-js {
 	font-weight: bold;
 	color: white;
 	background-color: black;
@@ -178,4 +185,4 @@ li a[class*="tc__"]:hover {
 	margin-left: 0;
 }
 
-/*# sourceMappingURL=ms-toggle-class.css.map */
+/*# sourceMappingURL=ms-switch-class.css.map */

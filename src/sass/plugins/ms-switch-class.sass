@@ -3,14 +3,21 @@
 @import ../../libs/include-media/dist/include-media
 
 // Блокировка скролла
-.css-scroll-fixed:not(.open-only-mob)
-	+scroll-blocked
+html
+
+	&.css-scroll-fixed:not(.open-only-mob)
+		+scroll-blocked
+
+	&.css-scroll-fixed.open-only-mob
+		+media('<tab-lg')
+			+scroll-blocked
 
 .popup-default
 	position: fixed
 	width: 100%
+	width: 50%
 	height: 100%
-	left: 0
+	left: 50%
 	top: 0
 	z-index: 9999
 	overflow-x: hidden
@@ -24,7 +31,7 @@
 		property: $prop
 		duration: $animation-speed
 
-	&.tc--active, &.tc--open
+	&.active, &.is-open
 		opacity: 1
 		visibility: visible
 
@@ -33,8 +40,8 @@
 		padding: 0
 		background-color: #fff
 
-.popup-default.tc--active,
-.popup-default.tc--open
+.popup-default.active,
+.popup-default.is-open
 	display: block
 
 .popup-default__holder
@@ -62,7 +69,7 @@
 		property: $prop
 		duration: $animation-speed
 
-	.popup-default.tc--active &, .popup-default.tc--open &
+	.popup-default.active &, .popup-default.is-open &
 		transform: scale(1)
 		transform: scale3d(1, 1, 1)
 
@@ -105,8 +112,10 @@
 .popup-overlay
 	position: fixed
 	left: 0
+	left: 40%
 	top: 0
 	width: 100%
+	width: 60%
 	height: 100%
 	background-color: rgba(black, 0.35)
 	z-index: 9998
@@ -118,7 +127,7 @@
 		property: $prop
 		duration: $animation-speed
 
-	&.tc--active, &.tc--open
+	&.active, &.is-open
 		opacity: 1
 		visibility: visible
 
@@ -142,7 +151,7 @@ li
 			border-top-color: black
 			border-bottom-color: lightgrey
 
-.tc--active, .tc--open
+.active, .is-open
 	&.tc-js,
 	&.tc-1-js,
 	&.tc-2-js,
@@ -151,6 +160,13 @@ li
 	&.tc-1__switcher-js,
 	&.tc-2__switcher-js,
 	&.tc-3__switcher-js,
+	&.tc__opener-js,
+	&.tc-1__opener-js,
+	&.tc-2__opener-js,
+	&.tc-3__opener-js,
+	&.tc-1__remover-js,
+	&.tc-2__remover-js,
+	&.tc-3__remover-js,
 	&.tc__add-js,
 	&.tc-2__add-js
 		font-weight: bold

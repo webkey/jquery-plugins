@@ -6,18 +6,21 @@
 
 $(function () {
 	// Для адаптива
+	// На примере навигации
 	var $nav = $('.nav-opener-js'),
 		nav;
 	if ($nav.length) {
-		nav = $nav.tClass({
-			toggleClassTo: ['html', '.nav-overlay-js', '.shutter--nav-js']
+		nav = $nav.switchClass({
+			switchClassTo: $('.shutter--nav-js').add('.nav-overlay-js')
 			, modifiers: {
-				currentClass: 'nav-is-open open-only-mob'
-				// open-only-mob - используется для адаптива
+				activeClass: 'nav-is-open',
+				stopRemoveClass: 'stop-nav-remove-class'
 			}
 			, cssScrollFixed: true
-			, removeOutsideClick: true
 			, beforeAdded: function () {
+				$('html').addClass('open-only-mob');
+				// open-only-mob - используется для адаптива
+
 				// пример добавления классов с задержкой
 				var $curItem = $('.nav-js').children(), speed = 1000;
 
@@ -32,6 +35,8 @@ $(function () {
 				});
 			}
 			, beforeRemoved: function () {
+				$('html').removeClass('open-only-mob');
+				// open-only-mob - используется для адаптива
 				$('.nav-js').stop().children().removeClass('show-nav-item')
 			}
 		});
@@ -41,32 +46,37 @@ $(function () {
 	var $switcher1 = $('.tc-js'),
 		tc1;
 	if ($switcher1.length) {
-		tc1 = $switcher1.tClass({
+		var options = {
 			// /*options*/
-			switchBtn: '.tc__switcher-js'
-			, toggleClassTo: ['html', '.tc__popup-js', '.tc__overlay-js']
+			switcher: '.tc__switcher-js'
+			, adder: '.tc__opener-js'
+			, remover: '.tc__remover-js'
+			, switchClassTo: $('.tc__popup-js').add('.tc__overlay-js')
 			, modifiers: {
-				currentClass: 'tc--active'
+				activeClass: 'active'
 			}
-			, cssScrollFixed: true
+			, cssScrollFixed: false
 			, removeOutsideClick: true
-		});
+		};
+		// tc1 = $switcher1.switchClass(options);
+		setTimeout(function () {
+			// Добавить кнопку(и) динамически
+			$('#add-switcher').html('<a href="#" class="tc__switcher-js"><span>Открыть попап 1 (switcher) (loaded)</span></a>');
+			tc1 = $switcher1.switchClass(options);
+		}, 1500);
 	}
 
-	setTimeout(function () {
-		// Добавить кнопку(и) динамически
-		$('#add-switcher').html('<a href="#" class="tc__switcher-js"><span>Открыть попап 1 (switcher) (loaded)</span></a>');
-	}, 1500);
 
 	// Второй свитчер
 	var $switcher2 = $('.tc-2-js'),
 		tc2;
 	if ($switcher2.length) {
-		tc2 = $switcher2.tClass({
-			switchBtn: '.tc-2__switcher-js'
-			, toggleClassTo: ['html', '.tc-2__popup-js', '.tc__overlay-js']
+		tc2 = $switcher2.switchClass({
+			remover: '.tc-2__remover-js'
+			, adder: '.tc-2__opener-js'
+			, switchClassTo: $('.tc-2__popup-js').add('.tc__overlay-js')
 			, modifiers: {
-				currentClass: 'tc--open'
+				activeClass: 'is-open'
 			}
 			, cssScrollFixed: true
 			, beforeAdded: function () {
@@ -83,38 +93,39 @@ $(function () {
 
 		// Трений свитчер. Добавляется на страницу динамически
 		var $switcher3 = $('.tc-3-js');
-		var tc3 = $switcher3.tClass({
-			switchBtn: '.tc-3__switcher-js'
-			, toggleClassTo: ['html', '.tc-3__popup-js', '.tc__overlay-js']
+		var tc3 = $switcher3.switchClass({
+			switcher: '.tc-3__switcher-js'
+			, remover: '.tc-3__remover-js'
+			, switchClassTo: $('.tc-3__popup-js').add('.tc__overlay-js')
 			, modifiers: {
-				currentClass: 'tc--active'
+				activeClass: 'active'
 			}
 			, cssScrollFixed: true
 			, beforeAdded: function () {
 				// console.log('beforeAdded 3');
 				// Если нужно удалять уже добавленные классы одного экземпляра плагина, при добавлении другого
-				tc1.tClass('remove');
-				tc2.tClass('remove');
+				tc1.switchClass('remove');
+				tc2.switchClass('remove');
 			}
 			, afterRemoved: function () {
 				// console.log('afterRemoved 3');
 			}
 		});
 
-		tc2.on('tClass.beforeAdded', function () {
-			tc1.tClass('remove');
-			tc3.tClass('remove');
-			nav.tClass('remove');
+		tc2.on('switchClass.beforeAdded', function () {
+			tc1.switchClass('remove');
+			tc3.switchClass('remove');
+			nav.switchClass('remove');
 		});
-		tc1.on('tClass.beforeAdded', function () {
-			tc2.tClass('remove');
-			tc3.tClass('remove');
-			nav.tClass('remove');
+		tc1.on('switchClass.beforeAdded', function () {
+			tc2.switchClass('remove');
+			tc3.switchClass('remove');
+			nav.switchClass('remove');
 		});
-		nav.on('tClass.beforeAdded', function () {
-			tc1.tClass('remove');
-			tc2.tClass('remove');
-			tc3.tClass('remove');
+		nav.on('switchClass.beforeAdded', function () {
+			tc1.switchClass('remove');
+			tc2.switchClass('remove');
+			tc3.switchClass('remove');
 		});
 	}, 1500);
 });

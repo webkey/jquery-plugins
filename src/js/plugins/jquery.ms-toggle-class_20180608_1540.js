@@ -1,4 +1,4 @@
-/*! jquery.ms-toggle-class.js
+/*! jquery.ms-switch-class.js
  * Version: 2018.1.0
  * Author: Astronim*
  * Description: Extended toggle class
@@ -213,7 +213,7 @@
 		removeOutsideClick: true,
 		modifiers: {
 			init: 'tc--initialized',
-			currentClass: 'tc--active',
+			currentClass: 'active',
 			cssScrollFixed: 'css-scroll-fixed'
 		}
 	}

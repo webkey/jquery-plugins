@@ -298,9 +298,8 @@ a.nav-opener
 		property: $prop
 		duration: $animation-speed
 
-	&.open-only-mob
-		+media('>=tab-lg')
-			display: none
+	+media('>=tab-lg')
+		display: none
 
 	&.#{$nav-is-open-class}
 		opacity: 1
