@@ -7,13 +7,13 @@
 ;(function($){
 	'use strict';
 
-	var MsRolls = function(element, config){
+	var MsClap = function(element, config){
 		var self,
 			$element = $(element),
 			$panel = $(config.panel, $element),
 			isAnimated = false,
 			// activeId,
-			pref = 'ms-rolls__',
+			pref = 'ms-clap__',
 			initClasses = {
 				element: pref + 'container',
 				item: pref + 'item',
@@ -23,14 +23,14 @@
 				panel: pref + 'panel'
 			};
 
-		var dataClpsd = $element.attr('data-rolls-collapsed');
+		var dataClpsd = $element.attr('data-clap-collapsed');
 		var collapsed = (dataClpsd === "true" || dataClpsd === "false") ? dataClpsd === "true" : config.collapsed;
 
 		var callbacks = function () {
 			/** track events */
 			$.each(config, function (key, value) {
 				if (typeof value === 'function') {
-					$element.on('msRolls.' + key, function (e, param) {
+					$element.on('msClap.' + key, function (e, param) {
 						return value(e, $element, param);
 					});
 				}
@@ -93,10 +93,10 @@
 							$eachPanel.data('opened', true);
 
 							// Вызов события после открытия каждой панели панели
-							$element.trigger('msRolls.afterEachOpen');
+							$element.trigger('msClap.afterEachOpen');
 
 							// Вызов события после открытия текущей панели
-							$element.trigger('msRolls.afterOpen');
+							$element.trigger('msClap.afterOpen');
 
 							// Вызов callback функции после открытия панели
 							if (typeof callback === "function") {
@@ -114,7 +114,7 @@
 						$eachPanel.data(opened, true);
 
 						// Вызов события после открытия каждой панели панели
-						$element.trigger('msRolls.afterEachOpen');
+						$element.trigger('msClap.afterEachOpen');
 					}
 				}
 
@@ -153,7 +153,7 @@
 				// Закрыть панель
 				changeHeight($currentPanelWrap, 0, function () {
 					// Вызов события после закрытия каждой панели
-					$element.trigger('msRolls.afterEachClose');
+					$element.trigger('msClap.afterEachClose');
 
 					_panel
 						.css({
@@ -257,40 +257,17 @@
 					// Закрыть текущую панель
 					close($currentPanel, function () {
 						// callback after current panel close
-						$element.trigger('msRolls.afterClose');
+						$element.trigger('msClap.afterClose');
 					});
 				}
 			});
-		}, onfocus = function () {
-			$element.on('focus', config.hand, function (event) {
-				// Если во время получения фокуса панель находится в процессе анимации,
-				// то выполнение функции прекратится
-				if (isAnimated) {
-					event.preventDefault();
-					return false;
-				}
-
-				var $currentHand = $(this);
-
-				// Если текущий пункт не содержит панелей,
-				// то выполнение функции прекратится
-				if (!$currentHand.closest(config.item).has(config.panel).length) {
-					return false;
-				}
-
-				event.preventDefault();
-
-				// Открыть текущую панель
-				var $currentPanel = $currentHand.closest(config.header).next().children(config.panel);
-
-				if (!$currentPanel.data('opened')) {
-					// Начало анимирования панели
-					// Включить флаг анимации
-					isAnimated = true;
-
-					open($currentPanel);
-				}
-			})
+		}, focusing = function () {
+			/**
+			 * !Clear focus state after mouse key up
+			 */
+			// $btn.add($settingsBtn).add($settingsResetBtn).add($scrollToContentBtn).mouseup(function () {
+			// 	$(this).blur();
+			// })
 		}, init = function () {
 			// $element.addClass(initClasses.element);
 			// $(config.item, $element).addClass(initClasses.item);
@@ -344,7 +321,7 @@
 
 			$element.addClass(config.modifiers.init);
 
-			$element.trigger('msRolls.afterInit');
+			$element.trigger('msClap.afterInit');
 		};
 
 		self = {
@@ -360,7 +337,7 @@
 		return self;
 	};
 
-	$.fn.msRolls = function () {
+	$.fn.msClap = function () {
 		var _ = this,
 			opt = arguments[0],
 			args = Array.prototype.slice.call(arguments, 1),
@@ -369,14 +346,14 @@
 			ret;
 		for (i = 0; i < l; i++) {
 			if (typeof opt === 'object' || typeof opt === 'undefined') {
-				_[i].msRolls = new MsRolls(_[i], $.extend(true, {}, $.fn.msRolls.defaultOptions, opt));
-				_[i].msRolls.init();
-				_[i].msRolls.callbacks();
-				_[i].msRolls.events();
-				// _[i].msRolls.onfocus();
+				_[i].msClap = new MsClap(_[i], $.extend(true, {}, $.fn.msClap.defaultOptions, opt));
+				_[i].msClap.init();
+				_[i].msClap.callbacks();
+				_[i].msClap.events();
+				// _[i].msClap.onfocus();
 			}
 			else {
-				ret = _[i].msRolls[opt].apply(_[i].msRolls, args);
+				ret = _[i].msClap[opt].apply(_[i].msClap, args);
 			}
 			if (typeof ret !== 'undefined') {
 				return ret;
@@ -385,17 +362,17 @@
 		return _;
 	};
 
-	$.fn.msRolls.defaultOptions = {
-		item: '.rolls__item-js',
-		header: '.rolls__header-js',
-		hand: '.rolls__hand-js',
-		panel: '.rolls__panel-js',
+	$.fn.msClap.defaultOptions = {
+		item: '.clap__item-js',
+		header: '.clap__header-js',
+		hand: '.clap__hand-js',
+		panel: '.clap__panel-js',
 		event: 'click',
 		animationSpeed: 300,
 		collapsed: true,
 		modifiers: {
-			init: 'rolls--initialized',
-			activeClass: 'rolls--active',
+			init: 'clap--initialized',
+			activeClass: 'clap--active',
 			currentClass: 'current'
 		}
 	};

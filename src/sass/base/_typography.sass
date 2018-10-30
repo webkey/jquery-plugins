@@ -226,46 +226,50 @@ code.l, code.red, code.green
 /*base end
 
 /*list
-.#{$user-content}, .extra-popup // add list style for popup
+.#{$user-content}
 	ul, ol
-		margin: $bottom-space 0
-		padding: 0
-		list-style: none
+		&#{$not-list-classes}
+			margin: $bottom-space 0
+			padding: 0
+			list-style: none
 
-	ul li, ol li
-		padding-left: 15px
-		margin: #{$bottom-space-string} 0
-		position: relative
+			li
+				padding-left: 15px
+				margin: #{$bottom-space-string} 0
+				position: relative
 
-	ul > li:before
-		content: ''
-		position: absolute
-		left: 0
-		top: 0.7em
-		height: 0
-		width: 0
-		border-radius: 3px
-		border: 2px solid $text-color
+	ul
+		&#{$not-list-classes}
+			& > li:before
+				content: ''
+				position: absolute
+				left: 0
+				top: 0.7em
+				height: 0
+				width: 0
+				border-radius: 3px
+				border: 2px solid $text-color
 
 	ol
-		counter-reset: section
+		&#{$not-list-classes}
+			counter-reset: section
 
-		& > li
-			counter-increment: section
-			height: 1%
-			overflow: hidden
+			& > li
+				counter-increment: section
+				height: 1%
+				overflow: hidden
 
-			&:before
-				position: relative
-				display: inline-block
-				text-align: left
-				@include font-title
-				color: $mark-color
-				content: counter(section)
-				padding: 0 4px 0 0
-				min-width: 30px
-				margin-left: -30px
-				box-sizing: border-box
+				&:before
+					position: relative
+					display: inline-block
+					text-align: left
+					@include font-title
+					color: $mark-color
+					content: counter(section)
+					padding: 0 4px 0 0
+					min-width: 30px
+					margin-left: -30px
+					box-sizing: border-box
 
 	//ol > li > ul
 	//ul ul, ul ol, ol ul

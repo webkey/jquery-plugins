@@ -1,0 +1,339 @@
+@import ../utils/variables
+@import ../utils/mixins
+@import ../../libs/include-media/dist/include-media
+
+// clap default / roll up list
+$clap-space: 10px 10px !default // v h
+$clap-angle-size: 24px 24px !default // h w
+$clap-angle-line-size: 2px 12px !default // h w
+
+/* clap
+.clap
+	margin-bottom: 4rem
+
+	&:last-child
+		margin-bottom: 0
+
+/* =============================== */
+/* !!! Списком !!!
+/* ul.clap__list li
+
+/* === NAVIGATION ===
+// nav variables
+$nav-width: 280px !default
+$nav-space: 14px 30px !default
+$nav-space--mob: 12px 15px !default
+$nav-arrow-size: 40px !default
+$nav-arrow-space: 5px !default
+/* nav list
+// Общие стили для пунктов навигации
+.clapNav__list
+	position: relative
+
+	&, & ul
+		padding: 0
+		margin: 0
+		list-style: none
+
+		li
+			padding: 0
+			margin: 0
+
+	li
+		position: relative
+
+	.clapNav__tab
+		position: relative
+
+	a
+		display: block
+		position: relative
+		padding: nth($nav-space, 1) nth($nav-space, 2)
+		color: inherit
+		text-decoration: none
+		outline: none
+
+		// Убрать подсветку при клике на тачскринах
+		.touchevents &
+			user-select: none
+			-webkit-tap-highlight-color: transparent
+
+		span
+			display: block
+
+		// Hover
+		.no-touchevents &:hover
+			color: $link-color
+
+		// Focus
+		.no-touchevents &:focus
+			span
+				outline: $focus-color auto 5px
+
+// Общие стили для подменю навигации
+.clapNav__drop
+	position: relative
+	//display: none
+
+	.no-js &
+		display: block
+
+// Стили для пунктов навигации, у которых ЕСТЬ ПОДМЕНЮ
+.clapNav__list li.has-drop > .clapNav__tab > a
+	padding-right: round($nav-arrow-size + 10 + $nav-arrow-space * 2)
+
+// Стили для пункта навигации ТЕКУЩЕЙ страницы
+.clapNav__list li.current > .clapNav__tab
+
+	&, .no-touchevents &
+
+		a, a:hover
+			color: $base-color
+			font-weight: bold
+
+// Стрелки навигации
+.clapNav__angle
+	position: absolute
+	right: $nav-arrow-space
+	top: 50%
+	width: $nav-arrow-size
+	height: $nav-arrow-size
+	margin-top: -(round($nav-arrow-size / 2))
+	background-color: rgba(black, 0.1)
+	z-index: 2
+	cursor: pointer
+	display: none
+	// Удалить выделение при клике
+	user-select: none
+	-webkit-tap-highlight-color: transparent
+
+	// Стили текстовой стрелки
+	font-size: 16px
+	line-height: $nav-arrow-size
+	letter-spacing: normal
+	text-align: center
+
+	// Показывать стрелку только, если есть подпункты
+	li.has-drop > .clapNav__tab > &
+		display: block
+
+	i
+		display: block
+		pointer-events: none
+		position: relative
+		// transition
+		$prop: transform
+		will-change: $prop
+		transition:
+			property: $prop
+			duration: $animation-speed
+			timing-function: ease-in-out
+
+	// Стили стрелок навигации для разных состояний
+	// Активное: подменю открыто
+	li.is-open > .clapNav__tab &
+		& i
+			transform: rotate(0.5turn)
+
+	// Ховер
+	.no-touchevents &:hover i
+		background-color: rgba(black, 0.15)
+
+	// Нажатие, клик, тап
+	&:active
+		transform: scale(0.95)
+
+	// Фокус
+	&:focus
+		outline: $focus-color auto 5px
+
+// Особые стили для пунктов навигации ПЕРВОГО уровня
+.clapNav__list > li
+	& > .clapNav__tab a
+		text-transform: uppercase
+
+// Особые стили для пунктов ПОДМЕНЮ
+// Особые стили для пунктов навигации 2-го уровня
+.clapNav__drop
+	a
+		padding-left: round(nth($nav-space, 2) * 2)
+
+	// Особые стили для пунктов навигации 3-го уровня
+	.clapNav__drop
+		a
+			padding-left: round(nth($nav-space, 2) * 3)
+
+		// Особые стили для пунктов навигации 4-го уровня
+		.clapNav__drop
+			a
+				padding-left: round(nth($nav-space, 2) * 4)
+
+// Добавить дерево структиры
+// .clapNav_has-branches
+// Для пунктов навигации 2-го уровня
+.clapNav__drop
+	.clapNav_has-branches &
+		li
+			$bdw: 2px // Толщина ветки дерева
+			$bdh: 30px // Высоту веток дерева легче всего просто подобрать
+			&::before, &::after
+				content: ''
+				display: block
+				position: absolute
+				left: round(nth($nav-space, 2) * 1.5)
+				top: 0
+				margin: 0
+				padding: 0
+				background: none
+				border-radius: 0
+				width: round(nth($nav-space, 2) * 0.5 - 4)
+				border: 0 solid currentColor
+				z-index: 10
+
+			&::before
+				border-width: 0 0 0 $bdw
+				bottom: 0
+
+			&::after
+				height: $bdh
+				border-width: 0 0 $bdw 0
+
+			&:last-child
+				&::before
+					bottom: auto
+					height: $bdh
+
+		// Для пунктов навигации 3-го уровня
+		.clapNav__drop
+			li
+				&::before, &::after
+					left: round(nth($nav-space, 2) * 2.5)
+
+			// Для пунктов навигации 4-го уровня
+			.clapNav__drop
+				li
+					&::before, &::after
+						left: round(nth($nav-space, 2) * 3.5)
+
+/* nav list
+/* === NAVIGATION end ===
+
+
+/* =============================== */
+/* !!! div-ами !!!
+/* div.clap div.clap__item
+// item
+.clap__item
+	padding: 10px
+	margin-bottom: 2rem
+
+	&:last-child
+		margin-bottom: 0
+
+// header
+.clap__header
+	position: relative
+
+// angle
+.clap__angle
+	display: block
+	position: absolute
+	right: 10px
+	top: 50%
+	text-decoration: none
+	+size(nth($clap-angle-size, 1), nth($clap-angle-size, 2))
+	border-radius: 50%
+	margin-top: -#{round(nth($clap-angle-size, 2)*0.5)}
+	background-color: $base-color
+	user-select: none
+	-webkit-tap-highlight-color: transparent
+
+	&::before, &::after
+		+pseudo()
+		left: 50%
+		top: 50%
+		margin: -#{round(nth($clap-angle-line-size, 1)/2)} 0 0 -#{round(nth($clap-angle-line-size, 2)/2)}
+		backface-visibility: hidden
+		+size(nth($clap-angle-line-size, 2), nth($clap-angle-line-size, 1))
+		background-color: white
+		will-change: transform
+		transition:
+			property: transform
+			duration: $animation-speed
+
+	&::before
+		transform: rotate(-0.25turn)
+		transform: rotate(-0.25turn) translateZ(0)
+
+// :active
+.clap__angle
+	&:active
+
+		top: calc(50% + 1px)
+
+// active
+.clap__angle.is-open
+	&::before, &::after
+		transform: rotate(0)
+		transform: rotate(0) translateZ(0)
+
+// panel
+.clap__panel
+	display: none // Важно!
+
+	&.is-open
+		display: block // Важно!
+
+// только в примере, в реальном проэкте не обязательно
+.clap__header,
+.clap__item,
+.clap__panel
+	//border: 2px solid $border-color
+	padding: 10px
+	margin-bottom: 10px
+
+	&:last-child
+		margin-bottom: 0
+
+.clap__item
+	margin-bottom: 0
+
+	& ~ &
+		padding-top: 0
+
+.clap__header
+	background-color: #fffcc1
+
+	// Визуализация при добавлении на элемент активного класса
+	&.is-open
+		background-color: #fff278
+
+.clap__item, .clapNav__list li
+	background-color: #fff6f4
+
+	// Визуализация при добавлении на элемент активного класса
+	&.is-open
+		background-color: #ffe3db
+
+.clap__panel, .clapNav__list li li
+	background-color: #deffe3
+
+	// Визуализация при добавлении на элемент активного класса
+	&.is-open
+		background-color: #b3ffb7
+
+.clapNav__list li li li
+	background-color: #d8f3ff
+
+	// Визуализация при добавлении на элемент активного класса
+	&.is-open
+		background-color: #c4e9ff
+
+.clapNav__list li li li li
+	background-color: #eae0ff
+
+	// Визуализация при добавлении на элемент активного класса
+	&.is-open
+		background-color: #d7c5fd
+
+/* clap end

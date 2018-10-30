@@ -79,6 +79,8 @@ $text-color-light: gray !default
 $text-color-alt: tomato !default
 // цвет ссылки
 $link-color: blue !default
+// цвет фокуса
+$focus-color: #0080ff !default
 // цвет линий и границ
 $border-color: lightgray !default
 // цвет специальных элементов
@@ -88,6 +90,13 @@ $mark-color: tomato !default
 // class на контейнере, в котором будет использоваться стилизация
 // типографических элементов: списков, таблиц, цытат и т.д.
 $user-content: user-content !default
+
+// Список классов-исключений для тегов ul, ol
+// Добавляются к типографическим стилям списков ul, ol, чтобы не применять стили для указанных классов
+// Example: $not-list-classes: ':not(.class1):not(.class2)'
+// Enter: .user-content ul:not(.class1):not(.class1)
+// ==========================================================================
+$not-list-classes: ':not(.breadcrumbs-list):not(.clapNav__list):not(.sub-clapNav__list)'
 
 // layout
 // отступы слева и справа для всего сайта

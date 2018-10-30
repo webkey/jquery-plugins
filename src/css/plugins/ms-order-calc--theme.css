@@ -105,8 +105,9 @@
 }
 
 .ui-spinner-up .ui-button-icon::before {
-	-ms-transform: rotate(0.25turn);
-	    transform: rotate(0.25turn);
+	-webkit-transform: rotate(0.25turn);
+	    -ms-transform: rotate(0.25turn);
+	        transform: rotate(0.25turn);
 }
 
 [aria-valuenow="0"] ~ .ui-spinner-down {
@@ -399,14 +400,17 @@ a.c-tr:hover {
 
 @media (max-width: 991px) {
 	.c-tbody {
+		display: -webkit-box;
 		display: -ms-flexbox;
 		display: flex;
 		-ms-flex-wrap: wrap;
 		    flex-wrap: wrap;
-		-ms-flex-pack: justify;
-		    justify-content: space-between;
-		-ms-flex-align: start;
-		    align-items: flex-start;
+		-webkit-box-pack: justify;
+		    -ms-flex-pack: justify;
+		        justify-content: space-between;
+		-webkit-box-align: start;
+		    -ms-flex-align: start;
+		        align-items: flex-start;
 	}
 }
 
@@ -451,10 +455,12 @@ a.c-tr:hover {
 
 @media (max-width: 991px) {
 	.c-td {
+		display: -webkit-box;
 		display: -ms-flexbox;
 		display: flex;
-		-ms-flex-align: center;
-		    align-items: center;
+		-webkit-box-align: center;
+		    -ms-flex-align: center;
+		        align-items: center;
 		border: none;
 	}
 	.history-orders .c-td:nth-child(even) {
@@ -509,12 +515,15 @@ a.c-tr:hover {
 	.c-td.c-td--del .btn-del {
 		width: auto;
 		height: auto;
+		display: -webkit-box;
 		display: -ms-flexbox;
 		display: flex;
-		-ms-flex-align: center;
-		    align-items: center;
-		-ms-flex-pack: center;
-		    justify-content: center;
+		-webkit-box-align: center;
+		    -ms-flex-align: center;
+		        align-items: center;
+		-webkit-box-pack: center;
+		    -ms-flex-pack: center;
+		        justify-content: center;
 		margin-right: auto;
 		margin-left: auto;
 		width: 100%;
@@ -532,8 +541,9 @@ a.c-tr:hover {
 
 @media (max-width: 991px) {
 	[data-label] .c-td__val {
-		-ms-flex: 1 1;
-		    flex: 1 1;
+		-webkit-box-flex: 1;
+		    -ms-flex: 1 1;
+		        flex: 1 1;
 	}
 }
 
@@ -571,10 +581,12 @@ a.c-tr:hover {
 /* color pic end */
 /* order list */
 .caption-for-table {
+	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
-	-ms-flex-align: center;
-	    align-items: center;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
 }
 
 @media (max-width: 1199px) and (min-width: 992px) {
@@ -634,8 +646,9 @@ a.c-tr:hover {
 }
 
 .caption-for-table .title-for-table {
-	-ms-flex: 1 1;
-	    flex: 1 1;
+	-webkit-box-flex: 1;
+	    -ms-flex: 1 1;
+	        flex: 1 1;
 }
 
 .order-list__color {

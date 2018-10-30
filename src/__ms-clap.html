@@ -1,0 +1,197 @@
+@@include('_tpl_layout_head.html', {
+	"title": "ms-clap",
+	"pathCss": ["css/plugins/ms-clap.css"],
+	"pageClass": "page-ms-clap"
+})
+
+<div class="layout-flood user-content">
+	<h1>ms-clap</h1>
+
+	<h2>Примеры использования</h2>
+
+	<h3>ms-clap 1</h3>
+	<!--Code example-->
+	<pre class="snippet"><code class="html">&lt;div class="ms-clap ms-clap-js"&gt;
+	{{ms-clap code}}
+&lt;/div&gt;</code></pre>
+	<!--Code example end-->
+	<div class="clap">
+		@@include('_tpl_nav-constructor-clap.html', {
+			"currentItem": "&sim;Item 1.1&sim;",
+			"bsKey": "clapNav"
+		})
+	</div>
+
+	<h3>ms-clap 2</h3>
+	<div class="clap clap-js">
+		<!--clap-->
+		<!--(1) FIRST level - START-->
+		<div class="clap__item clap__item-js">
+			<div class="clap__header clap__header-js">
+				<a href="#">{{Title 1.1}}</a>
+				<a href="#" class="clap__angle clap__hand-js">&nbsp;</a>
+			</div>
+			<div class="clap__panel clap__panel-js is-open" id="hashExpl">
+				<div>{{Content 1.1}}</div>
+				<!--(2) SECOND level - START-->
+				<div class="clap__item clap__item-js">
+					<div class="clap__header clap__header-js">
+						<a href="#">{{Title 1.1 - 2.1}}</a>
+						<a href="#" class="clap__angle clap__hand-js">&nbsp;</a>
+					</div>
+					<div class="clap__panel clap__panel-js is-open">
+						<div>{{Content 1.1 - 2.1}}</div>
+						<!--(3) THIRD level - START-->
+						<div class="clap__item clap__item-js">
+							<div class="clap__header clap__header-js">
+								<a href="#">{{Title 1.1 - 2.1 - 3.1}}</a>
+								<a href="#" class="clap__angle clap__hand-js">&nbsp;</a>
+							</div>
+							<div class="clap__panel clap__panel-js is-open">
+								<div>{{Content 1.1 - 2.1 - 3.1}}</div>
+								<!--roll next level-->
+							</div>
+						</div>
+						<!--(3) THIRD level - END-->
+					</div>
+				</div>
+				<div class="clap__item clap__item-js">
+					<div class="clap__header clap__header-js">
+						<a href="#">{{Title 1.1 - 2.2}}</a>
+						<a href="#" class="clap__angle clap__hand-js">&nbsp;</a>
+					</div>
+					<div class="clap__panel clap__panel-js">
+						<div>{{Content 1.1 - 2.2}}</div>
+						<!--roll next level-->
+					</div>
+				</div>
+				<!--(2) SECOND level - END-->
+			</div>
+		</div>
+
+		<div class="clap__item clap__item-js">
+			<div class="clap__header clap__header-js">
+				<a href="#">{{Title 1.2}}</a>
+				<a href="#" class="clap__angle clap__hand-js">&nbsp;</a>
+			</div>
+			<div class="clap__panel clap__panel-js">
+				<div>{{Content 1.2}} <br> {{Content 1.2}}</div>
+				<!--(2) SECOND level - START-->
+				<div class="clap__item clap__item-js">
+					<div class="clap__header clap__header-js">
+						<a href="#">{{Title 1.2 - 2.1}}</a>
+						<a href="#" class="clap__angle clap__hand-js">&nbsp;</a>
+					</div>
+					<div class="clap__panel clap__panel-js">
+						<div>{{Content 1.2 - 2.1}} <br> {{Content 1.2 - 2.1}}</div>
+						<!--roll next level-->
+					</div>
+				</div>
+				<!--(2) SECOND level - END-->
+			</div>
+		</div>
+
+		<div class="clap__item clap__item-js">
+			<div class="clap__header clap__header-js">
+				<a href="#">{{Title 1.3}}</a>
+				<a href="#" class="clap__angle clap__hand-js">&nbsp;</a>
+			</div>
+			<div class="clap__panel clap__panel-js">
+				<div>{{Content 1.3}} <br> {{Content 1.3}}</div>
+				<!--(2) SECOND level - START-->
+				<div class="clap__item clap__item-js">
+					<div class="clap__header clap__header-js">
+						<a href="#">{{Title 1.3 - 2.1}}</a>
+						<a href="#" class="clap__angle clap__hand-js">&nbsp;</a>
+					</div>
+					<div class="clap__panel clap__panel-js">
+						<div>{{Content 1.3 - 2.1}} <br> {{Content 1.3 - 2.1}}</div>
+						<!--roll next level-->
+					</div>
+				</div>
+				<!--(2) SECOND level - END-->
+			</div>
+		</div>
+		<!--(1) FIRST level - END-->
+		<!--clap end-->
+	</div>
+
+	<div>
+		<button class="open-panel-js">Открыть панель #hashExpl</button>
+	</div>
+
+	<br>
+	<br>
+
+	<h2>Документация</h2>
+	<h3>Used Files:</h3>
+	<ul>
+		<li>__ms-clap.html</li>
+		<li>jquery.ms-clap.js</li>
+		<li>common-ms-clap.js</li>
+		<li>ms-clap.sass</li>
+	</ul>
+	<h3>Options</h3>
+	<ul>
+		<li>
+			<div><b>collapsed:</b></div>
+			<div><i class="gray">Default:</i> <code class="red">true</code></div>
+			<div><i class="gray">Type:</i> <code class="red">Boolean</code></div>
+			<div><i class="gray">Values:</i> <code class="red">true</code> or <code class="red">false</code></div>
+			<div><i class="gray">Description:</i> <br>
+				Если <code class="red">true</code>, то при открытии текущей панели, закрывать открытые (если такие есть). <br>
+				Есть возможность переопределения через data-атрибут <code class="green">data-clap-collapsed</code>. Присваивать элементу, на котором вызывается плагин. <br>
+				Переопределить глобально можно с помощью конструкции <code class="green">$.fn.msclap.defaultOptions.collapsed = ...</code> <br>
+				<i>data-атрибут</i> имеет приоритет выше, чем переопределение через <i>javaScript</i>
+			</div>
+		</li>
+		<li>
+			<div><b>event:</b></div>
+			<div><i class="gray">Default:</i> <code class="red">'click'</code></div>
+			<div><i class="gray">Type:</i> <code class="red">String</code></div>
+			<div><i class="gray">Values:</i> <code class="red"><code class="red">'click'</code> or <code class="red">'mouseenter'</code></code></div>
+			<div><i class="gray">Description:</i> <br>
+				Событие, на которое происходить открытие/закрытие панели. <br>
+				Если <code class="red">'click'</code>, то <i>по клику</i>. <br>
+				Если <code class="red">'mouseenter'</code>, то <i>при наведении</i>.
+			</div>
+		</li>
+		<li>
+			<div><b>someProperty:</b></div>
+			<div><i class="gray">Default:</i> <code class="red">someValue</code></div>
+			<div><i class="gray">Type:</i> <code class="red">String</code></div>
+			<div><i class="gray">Values:</i> <code class="red">otherValue</code></div>
+			<div><i class="gray">Description:</i> <br> Описание</div>
+		</li>
+	</ul>
+
+	<h3>События</h3>
+	<ul>
+		<li>
+			<div><b>afterInit</b></div>
+			<div>
+				<pre class="snippet"><code class="javascript">afterInit: function (e, el) {}</code></pre>
+			</div>
+		</li>
+	</ul>
+
+	<h3>Методы</h3>
+	<ul>
+		<li>
+			<div><b>afterInit</b></div>
+			<div>
+				<pre class="snippet"><code class="javascript">afterInit: function (e, el) {}</code></pre>
+			</div>
+		</li>
+	</ul>
+
+	<h3>Глобальные настройки</h3>
+	<div>Переопределять настройки плагина глобально можно через</div>
+	<div><code class="red">$.fn.msclap.defaultOptions</code></div>
+	<div><b>Например:</b></div>
+	<div><code class="red">$.fn.msclap.defaultOptions.someProperty = false;</code></div>
+</div>
+
+@@include('_tpl_layout_foot.html', {
+	"pathJs": ["js/plugins/jquery.ms-clap.js", "js/common-ms-clap.js"]
+})
