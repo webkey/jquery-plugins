@@ -8,7 +8,7 @@ $(function () {
 	// Тест переопределения настроек глобально
 	// $.fn.msClap.defaultOptions.collapsed = false;
 
-	var $clap_1_1 = $('.clap-js');
+	var $clap_1_1 = $('.clapNav-js');
 
 	if ($clap_1_1.length) {
 		var myClap = $clap_1_1.msClap({
@@ -16,11 +16,16 @@ $(function () {
 			// , modifiers: {
 			// 	activeClass: 'tab-poookkhh'
 			// }
-			animationSpeed: 250
-			// , event: 'mouseenter'
-			// , collapsed: false
-			, modifiers: {
-				activeClass: 'is-open'
+			item: 'li',//По сути общий ближайший родитель (Далее Элемент) для переключателя и разворачивающейся панели (Далее Панель)
+			header: '.clapNav__header-js',//Обертка для переключателя (Далее Шапка)
+			hand: '.clapNav__hand-js',//Переключатель
+			panel: '.clapNav__panel-js',//Панель (Да)
+			// event: 'click',//Событие, которое разворачивает/сворачивает Панель
+			animationSpeed: 250,//Скорость анимации Панели
+			// collapsed: true,//Параметр, указывающий на необходимось сворачивать ранее открытые Панели
+			modifiers: {
+				// init: 'clapNav--initialized',//Класс, который добавляется сразу после формирования DOM плагина
+				activeClass: 'is-open'//Класс, который добавляется, на активный Элемент
 			}
 			, afterEachClose: function () {
 				console.log('.afterEachClose');

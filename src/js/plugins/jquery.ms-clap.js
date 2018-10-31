@@ -12,14 +12,12 @@
 			$element = $(element),
 			$panel = $(config.panel, $element),
 			isAnimated = false,
-			// activeId,
-			pref = 'ms-clap__',
+			pref = 'ms-clap-init__',
 			initClasses = {
 				element: pref + 'container',
 				item: pref + 'item',
 				header: pref + 'header',
 				hand: pref + 'hand',
-				panelWrap: pref + 'panel-wrap',
 				panel: pref + 'panel'
 			};
 
@@ -48,7 +46,7 @@
 
 			var panelLength = 0;
 			$.each($activePanel, function (index, panel) {
-				if (!$(panel).data('opened')) {
+				if (!$(panel).data('active')) {
 					++panelLength;
 				}
 			});
@@ -59,21 +57,21 @@
 				var $eachPanel = $(panel);
 
 				// Выборка только закрытых панелей на момент открытия
-				var opened = 'opened';
+				var opened = 'active';
 				if (!$eachPanel.data(opened)) {
 					var $eachPanelWrap = $eachPanel.parent(),
 						$eachHeader = $eachPanelWrap.prev(),
 						$eachItem = $eachPanel.closest(config.item);
 
 					// Добавить класс на активные элементы
-					toggleClass([$eachItem, $eachHeader, $(config.hand, $eachHeader), $eachPanel], true);
+					$eachItem.add(config.addActiveClassTo).addClass(config.modifiers.activeClass);
 
 					if (index === panelLength - 1) {
 						// Закрыть соседние панели,
 						// если открыты
 						if (collapsed) {
 							$.each($(config.panel, $eachItem.siblings()), function (index, panel) {
-								$(panel).data('opened') && closePanel($(panel));
+								$(panel).data('active') && closePanel($(panel));
 							});
 						}
 
@@ -90,7 +88,7 @@
 							});
 
 							// Указать в data-атрибуте, что панель открыта
-							$eachPanel.data('opened', true);
+							$eachPanel.data('active', true);
 
 							// Вызов события после открытия каждой панели панели
 							$element.trigger('msClap.afterEachOpen');
@@ -126,10 +124,12 @@
 			// Закрыть панели внутры текущей,
 			// если открыты
 			var $childrenPanel = $(config.panel, _panel);
-			$.each($childrenPanel, function () {
-				var $eachPanel = $(this);
-				$eachPanel.data('opened') && closePanel($eachPanel);
-			});
+			console.log("$childrenPanel: ", $childrenPanel.filter(':visible'));
+			closePanel($childrenPanel.filter(':visible'));
+			// $.each($childrenPanel, function () {
+			// 	var $eachPanel = $(this);
+			// 	$eachPanel.data('active') && closePanel($eachPanel);
+			// });
 
 			// Закрыть текущую панель
 			closePanel(_panel, function () {
@@ -141,92 +141,32 @@
 
 		}, closePanel = function (_panel) {
 			// console.log('close');
-			if (_panel.data('opened')) {
-				var callback = arguments[1],
-
-					$currentPanelWrap = _panel.parent(),
-					$currentHeader = $currentPanelWrap.prev(config.header);
+			if (_panel.data('active')) {
+				var callback = arguments[1];
 
 				// Удалить активный класс со всех элементов
-				toggleClass([_panel.closest(config.item), $currentHeader, $(config.hand, $currentHeader), _panel], false);
+				_panel.add(config.addActiveClassTo).removeClass(config.modifiers.activeClass);
 
 				// Закрыть панель
-				changeHeight($currentPanelWrap, 0, function () {
-					// Вызов события после закрытия каждой панели
-					$element.trigger('msClap.afterEachClose');
+				// Вызов события после закрытия каждой панели
+				$element.trigger('msClap.afterEachClose');
 
-					_panel
-						.css({
-							position: 'absolute',
-							left: 0,
-							top: 0
-						})
-						.data('opened', false);// Указать в data-атрибуте, что панель закрыта
-
-					// Вызов callback функции после закрытия панели
-					if (typeof callback === "function") {
-						callback();
-					}
-				});
-			}
-		}, changeHeight = function (_element, _val) {
-			var callback = arguments[2];
-
-			_element.animate({
-				'height': _val
-			}, config.animationSpeed, function () {
-
-				_element.css({
-					'height': ''
-				});
-
-				if (typeof callback === "function") {
-					callback();
-				}
-
-				isAnimated = false;
-			});
-		}, toggleClass = function (arr) {
-			var remove = arguments[1] === false;
-			$.each(arr, function () {
-				var iElem = this;
-				// если массив, то устанавливаем класс на каждый из элемент этого массива
-				if ($.isArray(iElem)) {
-					$.each(iElem, function () {
-						var $curElem = $(this);
-						if ($curElem.length) {
-							// Если второй аргумент false, то удаляем класс
-							if (remove) {
-								$curElem.removeClass(config.modifiers.activeClass);
-							} else {
-								// Если второй аргумент не false, то добавляем класс
-								$curElem.addClass(config.modifiers.activeClass);
-							}
-						} else {
-							// В консоль вывести предупреждение,
-							// если указанного элемента не существует.
-							console.warn('Element "' + this + '" does not exist!')
+				_panel
+					.slideUp(config.animationSpeed, function () {
+						// Вызов callback функции после закрытия панели
+						if (typeof callback === "function") {
+							callback();
 						}
-					});
-				} else {
-					// Если второй аргумент false, то удаляем класс
-					if (remove) {
-						$(iElem).removeClass(config.modifiers.activeClass);
-					} else {
-						// Если второй аргумент не false, то добавляем класс
-						$(iElem).addClass(config.modifiers.activeClass);
-					}
-				}
-			});
+					})
+					.data('active', false);// Указать в data-атрибуте, что панель закрыта
+			}
 		}, events = function () {
 			$element.on(config.event + ' focus', config.hand, function (event) {
 				// console.log("isAnimated: ", isAnimated);
 
-				// console.log("event: ", event);
-				// console.log(1);
+				console.log("event: ", event.type);
 
-				// Если панель во время клика находится в процессе анимации,
-				// то выполнение функции прекратится
+				// Если панель во время клика находится в процессе анимации, то выполнение функции прекратится
 				if (isAnimated) {
 					event.preventDefault();
 					return false;
@@ -234,23 +174,22 @@
 
 				var $currentHand = $(this);
 
-				// Если текущий пункт не содержит панелей,
-				// то выполнение функции прекратится
+				// Если текущий пункт не содержит панелей, то выполнение функции прекратится
 				if (!$currentHand.closest(config.item).has(config.panel).length) {
 					return false;
 				}
-
-				event.preventDefault();
 
 				// Начало анимирования панели
 				// Включить флаг анимации
 				isAnimated = true;
 
-				// console.log("Текущая панель открыта?: ", $currentPanel.data('opened'));
+				event.preventDefault();
 
-				var $currentPanel = $currentHand.closest(config.header).next().children(config.panel);
+				// console.log("Текущая панель открыта?: ", $currentPanel.data('active'));
 
-				if (!$currentPanel.data('opened')) {
+				var $currentPanel = $currentHand.closest(config.header).next(config.panel);
+
+				if (!$currentPanel.data('active')) {
 					// Открыть текущую панель
 					open($currentPanel);
 				} else {
@@ -277,47 +216,8 @@
 				// .addClass(initClasses.hand)
 				.attr('tabindex', 0);
 
-			var $panelWrap = $('<div/>', {
-				class: initClasses.panelWrap,
-				css: {
-					display: 'block',
-					position: 'relative',
-					overflow: 'hidden'
-				}
-			});
-
-			$panel.wrap($panelWrap);
-
-			$.each($panel, function (index, panel) {
-				$(panel).css({
-					display: 'block',
-					width: '100%'
-				});
-
-				if($(panel).hasClass(config.modifiers.activeClass)) {
-
-					var $activeHeader = $(panel).parentsUntil(element).prev(config.header),
-						$activePanel = $activeHeader.next().children(config.panel);
-
-					// Добавить класс на активные элементы
-					toggleClass([$(panel).parents(config.item), $activePanel, $activeHeader, $(config.hand, $activeHeader)], true);
-
-					$activePanel.css({
-						position: 'relative',
-						left: 'auto',
-						top: 'auto'
-					});
-
-					// Указать в data-атрибуте, что панель(и) открыта(ы)
-					$activePanel.data('opened', true);
-				} else {
-					$(panel).css({
-						position: 'absolute',
-						left: 0,
-						top: 0
-					})
-				}
-			});
+			// Найти активные панели и установить дата-атрибуту active заначение true
+			$(config.panel, $element).filter(':visible').data('active', true);
 
 			$element.addClass(config.modifiers.init);
 
@@ -328,9 +228,7 @@
 			callbacks: callbacks,
 			open: open,
 			close: close,
-			toggleClass: toggleClass,
 			events: events,
-			// onfocus: onfocus,
 			init: init
 		};
 
@@ -363,18 +261,24 @@
 	};
 
 	$.fn.msClap.defaultOptions = {
-		item: '.clap__item-js',
-		header: '.clap__header-js',
-		hand: '.clap__hand-js',
-		panel: '.clap__panel-js',
-		event: 'click',
-		animationSpeed: 300,
-		collapsed: true,
+		item: '.msClap__item-js',//По сути общий ближайший родитель (Далее Элемент) для переключателя и разворачивающейся панели (Далее Панель)
+		header: '.msClap__header-js',//Обертка для переключателя (Далее Шапка)
+		hand: '.msClap__hand-js',//Переключатель
+		panel: '.msClap__panel-js',//Панель (Да)
+		event: 'click',//Событие, которое разворачивает/сворачивает Панель
+		animationSpeed: 300,//Скорость анимации Панели
+		collapsed: true,//Параметр, указывающий на необходимось сворачивать ранее открытые Панели
 		modifiers: {
-			init: 'clap--initialized',
-			activeClass: 'clap--active',
-			currentClass: 'current'
-		}
+			init: 'msClap--initialized',//Класс, который добавляется сразу после формирования DOM плагина
+			activeClass: 'msClap--active'//Класс, который добавляется, на активный Элемент
+		},
+		addActiveClassTo: null
+		/**
+		 * @description - Один или несколько эелментов, на которые будет добавляться/удаляться активный класс (modifiers.activeClass)
+		 * @example {JQ Object} null - 1) $('html, .popup-js, .overlay-js')
+		 * @example {JQ Object} null - 2) $('html').add('.popup-js').add('.overlay-js')
+		 * @default {JQ Object} - Элемент
+		 */
 	};
 
 })(jQuery);

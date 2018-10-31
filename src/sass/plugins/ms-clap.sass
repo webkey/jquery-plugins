@@ -42,6 +42,9 @@ $nav-arrow-space: 5px !default
 	li
 		position: relative
 
+		// Удалить в реальном проекте. Нужно для визуального разделения пунктов
+		border-top: 1px solid rgba(black, 0.1)
+
 	.clapNav__tab
 		position: relative
 
@@ -64,6 +67,9 @@ $nav-arrow-space: 5px !default
 		// Hover
 		.no-touchevents &:hover
 			color: $link-color
+
+			span
+				background-color: rgba($link-color, 0.1)
 
 		// Focus
 		.no-touchevents &:focus
@@ -107,7 +113,7 @@ $nav-arrow-space: 5px !default
 	user-select: none
 	-webkit-tap-highlight-color: transparent
 
-	// Стили текстовой стрелки
+	// Стили для текстовой стрелки
 	font-size: 16px
 	line-height: $nav-arrow-size
 	letter-spacing: normal
@@ -129,6 +135,12 @@ $nav-arrow-space: 5px !default
 			duration: $animation-speed
 			timing-function: ease-in-out
 
+		// Стили для текстовой стрелки
+		display: inline-block
+		line-height: 15px
+		height: 15px
+		width: 15px
+
 	// Стили стрелок навигации для разных состояний
 	// Активное: подменю открыто
 	li.is-open > .clapNav__tab &
@@ -136,8 +148,8 @@ $nav-arrow-space: 5px !default
 			transform: rotate(0.5turn)
 
 	// Ховер
-	.no-touchevents &:hover i
-		background-color: rgba(black, 0.15)
+	.no-touchevents &:hover
+		background-color: rgba($link-color, 0.1)
 
 	// Нажатие, клик, тап
 	&:active
@@ -149,7 +161,7 @@ $nav-arrow-space: 5px !default
 
 // Особые стили для пунктов навигации ПЕРВОГО уровня
 .clapNav__list > li
-	& > .clapNav__tab a
+	& > .clapNav__tab a, & > a
 		text-transform: uppercase
 
 // Особые стили для пунктов ПОДМЕНЮ
@@ -168,11 +180,12 @@ $nav-arrow-space: 5px !default
 			a
 				padding-left: round(nth($nav-space, 2) * 4)
 
-// Добавить дерево структиры
-// .clapNav_has-branches
-// Для пунктов навигации 2-го уровня
+////*========Добавить дерево структиры=========*/
+
+// .блок_has-branches
 .clapNav__drop
 	.clapNav_has-branches &
+		// Для пунктов навигации 2-го уровня
 		li
 			$bdw: 2px // Толщина ветки дерева
 			$bdh: 30px // Высоту веток дерева легче всего просто подобрать
@@ -187,7 +200,8 @@ $nav-arrow-space: 5px !default
 				background: none
 				border-radius: 0
 				width: round(nth($nav-space, 2) * 0.5 - 4)
-				border: 0 solid currentColor
+				border: 0 solid rgba(black, 0.2)
+				pointer-events: none
 				z-index: 10
 
 			&::before
@@ -203,19 +217,22 @@ $nav-arrow-space: 5px !default
 					bottom: auto
 					height: $bdh
 
-		// Для пунктов навигации 3-го уровня
-		.clapNav__drop
+			// Для пунктов навигации 3-го уровня
 			li
 				&::before, &::after
 					left: round(nth($nav-space, 2) * 2.5)
 
-			// Для пунктов навигации 4-го уровня
-			.clapNav__drop
+				// Для пунктов навигации 4-го уровня
 				li
 					&::before, &::after
 						left: round(nth($nav-space, 2) * 3.5)
 
-/* nav list
+// Не исспользовать в реальном проекте
+// Визуализация
+.clapNav__list
+	li
+		border-top: 1px solid rgba(black, 0.1)
+
 /* === NAVIGATION end ===
 
 

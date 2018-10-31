@@ -30,6 +30,7 @@
 
 .clapNav__list li {
 	position: relative;
+	border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .clapNav__list .clapNav__tab {
@@ -59,6 +60,10 @@
 
 .no-touchevents .clapNav__list a:hover {
 	color: blue;
+}
+
+.no-touchevents .clapNav__list a:hover span {
+	background-color: rgba(0, 0, 255, 0.1);
 }
 
 .no-touchevents .clapNav__list a:focus span {
@@ -118,6 +123,10 @@ li.has-drop > .clapNav__tab > .clapNav__angle {
 	transition-property: transform, -webkit-transform;
 	transition-duration: 0.2s;
 	transition-timing-function: ease-in-out;
+	display: inline-block;
+	line-height: 15px;
+	height: 15px;
+	width: 15px;
 }
 
 li.is-open > .clapNav__tab .clapNav__angle i {
@@ -126,8 +135,8 @@ li.is-open > .clapNav__tab .clapNav__angle i {
 	        transform: rotate(0.5turn);
 }
 
-.no-touchevents .clapNav__angle:hover i {
-	background-color: rgba(0, 0, 0, 0.15);
+.no-touchevents .clapNav__angle:hover {
+	background-color: rgba(0, 0, 255, 0.1);
 }
 
 .clapNav__angle:active {
@@ -140,7 +149,7 @@ li.is-open > .clapNav__tab .clapNav__angle i {
 	outline: #0080ff auto 5px;
 }
 
-.clapNav__list > li > .clapNav__tab a {
+.clapNav__list > li > .clapNav__tab a, .clapNav__list > li > a {
 	text-transform: uppercase;
 }
 
@@ -167,7 +176,8 @@ li.is-open > .clapNav__tab .clapNav__angle i {
 	background: none;
 	border-radius: 0;
 	width: 11px;
-	border: 0 solid currentColor;
+	border: 0 solid rgba(0, 0, 0, 0.2);
+	pointer-events: none;
 	z-index: 10;
 }
 
@@ -186,15 +196,18 @@ li.is-open > .clapNav__tab .clapNav__angle i {
 	height: 30px;
 }
 
-.clapNav_has-branches .clapNav__drop .clapNav__drop li::before, .clapNav_has-branches .clapNav__drop .clapNav__drop li::after {
+.clapNav_has-branches .clapNav__drop li li::before, .clapNav_has-branches .clapNav__drop li li::after {
 	left: 75px;
 }
 
-.clapNav_has-branches .clapNav__drop .clapNav__drop .clapNav__drop li::before, .clapNav_has-branches .clapNav__drop .clapNav__drop .clapNav__drop li::after {
+.clapNav_has-branches .clapNav__drop li li li::before, .clapNav_has-branches .clapNav__drop li li li::after {
 	left: 105px;
 }
 
-/* nav list */
+.clapNav__list li {
+	border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
 /* === NAVIGATION end === */
 /* =============================== */
 /* !!! div-ами !!! */
