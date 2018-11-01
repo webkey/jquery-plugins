@@ -23,7 +23,7 @@ $(function () {
 			// event: 'click',//Событие, которое разворачивает/сворачивает Панель
 			animationSpeed: 250,//Скорость анимации Панели
 			// collapsed: false,//Параметр, указывающий на необходимось сворачивать ранее открытые Панели
-			accessibility: false,//Enables tabbing and arrow key navigation
+			accessibility: true,//Enables tabbing and arrow key navigation
 			modifiers: {
 				// init: 'clapNav--initialized',//Класс, который добавляется сразу после формирования DOM плагина
 				activeClass: 'is-open'//Класс, который добавляется, на активный Элемент

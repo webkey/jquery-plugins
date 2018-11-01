@@ -10,6 +10,7 @@
 	var MsClap = function(element, config){
 		var self,
 			$element = $(element),
+			$html = $('html'),
 			$panel = $(config.panel, $element),
 			isAnimated = false,
 			pref = 'ms-clap-init__',
@@ -49,7 +50,9 @@
 				tabindexOn($(focusElements, _panel));
 
 				// В неактивных Панелях все элементы с фокусировкой убрать с фокус-очереди
-				tabindexOff($(focusElements, _panel.find(config.panel)));
+				tabindexOff($(focusElements, _panel.find(config.panel).filter(function () {
+					return $(this).data('active');
+				})));
 			}
 
 			// Добавить класс на активные элементы
@@ -80,6 +83,7 @@
 
 			if (collapsed) {
 				// Закрыть активные панели внутри текущей
+				// var blah = ;
 				var $childrenOpenedPanel = $(config.panel, _panel).filter(function () {
 					return $(this).data('active');
 				});
@@ -153,12 +157,12 @@
 				if ($currentPanel.data('active')) {
 					// Закрыть текущую панель
 					close($currentPanel, function () {
-						isAnimated = false;// Анимация заверешина
+						isAnimated = false;// Анимация завершина
 					});
 				} else {
 					// Открыть текущую панель
 					open($currentPanel, function () {
-						isAnimated = false;// Анимация заверешина
+						isAnimated = false;// Анимация завершина
 					});
 
 					if (collapsed) {
@@ -178,6 +182,14 @@
 			// $btn.add($settingsBtn).add($settingsResetBtn).add($scrollToContentBtn).mouseup(function () {
 			// 	$(this).blur();
 			// })
+		}, enterClick = function () {
+			if (config.accessibility) {
+				$html.keyup(function (event) {
+					if (event.keyCode === 13) {
+						$(config.hand).filter(':focus').trigger('click');
+					}
+				});
+			}
 		}, init = function () {
 			var $activePanel = $panel.filter(':visible');
 			// На активные панели установить дата-атрибуту active сo заначением true
@@ -204,6 +216,7 @@
 			open: open,
 			close: close,
 			events: events,
+			enterClick: enterClick,
 			init: init
 		};
 
@@ -223,6 +236,7 @@
 				_[i].msClap.init();
 				_[i].msClap.callbacks();
 				_[i].msClap.events();
+				_[i].msClap.enterClick();
 				// _[i].msClap.onfocus();
 			}
 			else {
@@ -243,7 +257,7 @@
 		event: 'click',//Событие, которое разворачивает/сворачивает Панель
 		animationSpeed: 300,//Скорость анимации Панели
 		collapsed: true,//Параметр, указывающий на необходимось сворачивать ранее открытые Панели
-		accessibility: true,//Enables tabbing and arrow key navigation
+		accessibility: false,//Enables tabbing and arrow key navigation
 		modifiers: {
 			init: 'msClap--initialized',//Класс, который добавляется сразу после формирования DOM плагина
 			activeClass: 'msClap--active'//Класс, который добавляется, на активный Элемент
