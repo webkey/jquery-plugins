@@ -48,6 +48,7 @@
 		<pre class="snippet"><code class="html">&lt;div class="ms-clap ms-clap-js"&gt;
 	{{ms-clap code}}
 &lt;/div&gt;</code></pre>
+		<p class="warning">В структуре Панель (<code class="red">__panel-js</code>) всегда должна лежать <em>непосредственно</em> после Шапки (<code class="red">__header-js</code>)</p>
 		<!--Code example end-->
 		<div class="clap">
 			<ul class="clapNav__list clapNav_has-branches clapNav-js">
@@ -57,7 +58,7 @@
 						<span class="clapNav__angle clapNav__hand-js" tabindex="0"><i>&#9660;</i></span>
 					</div>
 					<!--(2) START clapNav SECOND level-->
-					<div class="clapNav__drop clapNav__panel-js">
+					<div class="clapNav__drop clapNav__panel-js" style="display: block;">
 						<ul class="sub-clapNav__list">
 							<li class="has-drop">
 								<div class="clapNav__tab clapNav__header-js">
@@ -65,7 +66,7 @@
 									<span class="clapNav__angle clapNav__hand-js" tabindex="0"><i>&#9660;</i></span>
 								</div>
 								<!--(3) START clapNav THIRD level-->
-								<div class="clapNav__drop clapNav__panel-js">
+								<div class="clapNav__drop clapNav__panel-js" style="display: block;">
 									<ul class="sub-clapNav__list">
 										<li class="has-drop">
 											<div class="clapNav__tab clapNav__header-js">
@@ -73,7 +74,7 @@
 												<span class="clapNav__angle clapNav__hand-js" tabindex="0"><i>&#9660;</i></span>
 											</div>
 											<!--(4) START clapNav FOURTH level-->
-											<div class="clapNav__drop clapNav__panel-js">
+											<div class="clapNav__drop clapNav__panel-js" style="display: block;">
 												<ul class="sub-clapNav__list">
 													<li><a href="#"><span>&sim;Item 1.1 - 2.1 - 3.1 - 4.1&sim;</span></a></li>
 													<li><a href="#"><span>&sim;Item 1.1 - 2.1 - 3.1 - 4.2&sim;</span></a></li>

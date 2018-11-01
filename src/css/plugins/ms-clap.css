@@ -72,6 +72,7 @@
 
 .clapNav__drop {
 	position: relative;
+	display: none;
 }
 
 .no-js .clapNav__drop {
@@ -350,7 +351,5 @@ li.is-open > .clapNav__tab .clapNav__angle i {
 .clapNav__list li li li li.is-open {
 	background-color: #d7c5fd;
 }
-
-/* clap end */
 
 /*# sourceMappingURL=ms-clap.css.map */

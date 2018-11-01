@@ -213,6 +213,16 @@ code.l, code.red, code.green
 .gray
 	color: #999
 
+.warning
+	display: block
+	background-image: url(../../img/icon-warning.svg)
+	background-repeat: no-repeat
+	background-position: 10px 50%
+	background-size: 24px
+	padding: 10px 10px 10px 45px
+	//border: 1px solid $base-color
+	background-color: rgba($base-color, 0.1)
+
 .#{$user-content}
 	@each $tags in h2, h3, h4, h5
 		p + #{$tags},

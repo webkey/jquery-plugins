@@ -610,6 +610,16 @@ code.l, code.red, code.green {
 	color: #999;
 }
 
+.warning {
+	display: block;
+	background-image: url(../img/icon-warning.svg);
+	background-repeat: no-repeat;
+	background-position: 10px 50%;
+	background-size: 24px;
+	padding: 10px 10px 10px 45px;
+	background-color: rgba(255, 99, 71, 0.1);
+}
+
 .user-content p + h2,
 .user-content ul + h2,
 .user-content ol + h2 {

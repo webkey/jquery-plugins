@@ -22,7 +22,8 @@ $(function () {
 			panel: '.clapNav__panel-js',//Панель (Да)
 			// event: 'click',//Событие, которое разворачивает/сворачивает Панель
 			animationSpeed: 250,//Скорость анимации Панели
-			// collapsed: true,//Параметр, указывающий на необходимось сворачивать ранее открытые Панели
+			// collapsed: false,//Параметр, указывающий на необходимось сворачивать ранее открытые Панели
+			accessibility: false,//Enables tabbing and arrow key navigation
 			modifiers: {
 				// init: 'clapNav--initialized',//Класс, который добавляется сразу после формирования DOM плагина
 				activeClass: 'is-open'//Класс, который добавляется, на активный Элемент
@@ -30,14 +31,17 @@ $(function () {
 			, afterEachClose: function () {
 				console.log('.afterEachClose');
 			}
-			, afterEachOpen: function () {
-				console.log('.afterEachOpen');
+			, beforeClose: function () {
+				console.log('.beforeClose');
 			}
 			, afterClose: function () {
 				console.log('.afterClose');
 
 				// Удалить класс с элементов
 				// myClap.msClap('toggleClass', [$('html')], false);
+			}
+			, beforeOpen: function () {
+				console.log('.beforeOpen');
 			}
 			, afterOpen: function () {
 				console.log('.afterOpen');

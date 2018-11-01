@@ -19,7 +19,8 @@
 				header: pref + 'header',
 				hand: pref + 'hand',
 				panel: pref + 'panel'
-			};
+			},
+			focusElements = 'input, a, [tabindex], area, select, textarea, button, [contentEditable=true]' + config.hand;
 
 		var dataClpsd = $element.attr('data-clap-collapsed');
 		var collapsed = (dataClpsd === "true" || dataClpsd === "false") ? dataClpsd === "true" : config.collapsed;
@@ -33,148 +34,108 @@
 					});
 				}
 			});
+		}, tabindexOn = function (_element) {
+			// Все элементы _element поставить в фокус-очередь
+			_element.attr('tabindex', '0');
+		}, tabindexOff = function (_element) {
+			// Все элементы _element убрать с фокус-очереди
+			_element.attr('tabindex', '-1');
 		}, open = function (_panel) {
-
 			// console.log('open');
-			var callback = arguments[1],
-				// $activePanelWrap = _panel.parent(),
-				// $activeHeader = $activePanelWrap.prev(config.header),
+			$element.trigger('msClap.beforeOpen');// Вызов события перед открытием текущей панели
 
-				$activeHeader = _panel.parentsUntil(element).prev(config.header),
-				$activePanelWrap = $activeHeader.next(),
-				$activePanel = $activePanelWrap.children(config.panel);
+			if (config.accessibility) {
+				// Все элементы с фокусировкой поставить в фокус-очередь
+				tabindexOn($(focusElements, _panel));
 
-			var panelLength = 0;
-			$.each($activePanel, function (index, panel) {
-				if (!$(panel).data('active')) {
-					++panelLength;
-				}
-			});
+				// В неактивных Панелях все элементы с фокусировкой убрать с фокус-очереди
+				tabindexOff($(focusElements, _panel.find(config.panel)));
+			}
 
-			// Открыть панель
-			$.each($activePanel, function (index, panel) {
+			// Добавить класс на активные элементы
+			_panel.closest(config.item).addClass(config.modifiers.activeClass);
 
-				var $eachPanel = $(panel);
-
-				// Выборка только закрытых панелей на момент открытия
-				var opened = 'active';
-				if (!$eachPanel.data(opened)) {
-					var $eachPanelWrap = $eachPanel.parent(),
-						$eachHeader = $eachPanelWrap.prev(),
-						$eachItem = $eachPanel.closest(config.item);
-
-					// Добавить класс на активные элементы
-					$eachItem.add(config.addActiveClassTo).addClass(config.modifiers.activeClass);
-
-					if (index === panelLength - 1) {
-						// Закрыть соседние панели,
-						// если открыты
-						if (collapsed) {
-							$.each($(config.panel, $eachItem.siblings()), function (index, panel) {
-								$(panel).data('active') && closePanel($(panel));
-							});
-						}
-
-						// Открываем, анимируя высоту, только ТЕКУЩУЮ
-						// или первую, если текущая открывается внутри закрытых панелей
-						// (например, при открытии по хештегу или через метод)
-						// Т.е., если родительская панель закрыта, то анимируется только она,
-						// А внутренние панели открываются без анимации (в т.ч. текущая)
-						changeHeight($eachPanelWrap, $eachPanel.outerHeight(), function () {
-							$eachPanel.css({
-								position: 'relative',
-								left: 'auto',
-								top: 'auto'
-							});
-
-							// Указать в data-атрибуте, что панель открыта
-							$eachPanel.data('active', true);
-
-							// Вызов события после открытия каждой панели панели
-							$element.trigger('msClap.afterEachOpen');
-
-							// Вызов события после открытия текущей панели
-							$element.trigger('msClap.afterOpen');
-
-							// Вызов callback функции после открытия панели
-							if (typeof callback === "function") {
-								callback();
-							}
-						});
-					} else {
-						$eachPanel.css({
-							position: 'relative',
-							left: 'auto',
-							top: 'auto'
-						});
-
-						// Указать в data-атрибуте, что панель открыта
-						$eachPanel.data(opened, true);
-
-						// Вызов события после открытия каждой панели панели
-						$element.trigger('msClap.afterEachOpen');
-					}
-				}
-
-			});
-
-		}, close = function (_panel) {
 			var callback = arguments[1];
+			// Закрыть панель
+			_panel
+				.slideDown(config.animationSpeed, function () {
+					$(this).data('active', true).attr('data-active', true);// Указать в data-атрибуте, что панель открыта
 
-			// Закрыть панели внутры текущей,
-			// если открыты
-			var $childrenPanel = $(config.panel, _panel);
-			console.log("$childrenPanel: ", $childrenPanel.filter(':visible'));
-			closePanel($childrenPanel.filter(':visible'));
-			// $.each($childrenPanel, function () {
-			// 	var $eachPanel = $(this);
-			// 	$eachPanel.data('active') && closePanel($eachPanel);
-			// });
+					$element.trigger('msClap.afterOpen');// Вызов события после открытия текущей панели
+
+					// Вызов callback функции после открытия панели
+					if (typeof callback === "function") {
+						callback();
+					}
+				});
+		}, close = function (_panel) {
+			// Закрыть отдельно все вложенные активные панели
+			// И отдельно текущую панель
+			// Это сделано с целью определения события закрытия текущей панели отдельно
+
+			// Все элементы с фокусировкой убрать с фокус-очереди
+			if (config.accessibility) {
+				tabindexOff($(focusElements, _panel));
+			}
+
+			if (collapsed) {
+				// Закрыть активные панели внутри текущей
+				var $childrenOpenedPanel = $(config.panel, _panel).filter(function () {
+					return $(this).data('active');
+				});
+				// console.log("$childrenOpenedPanel: ", $childrenOpenedPanel);
+				closePanel($childrenOpenedPanel);
+			}
 
 			// Закрыть текущую панель
+			$element.trigger('msClap.beforeClose');// Вызов события перед закрытием текущей панели
+			var callback = arguments[1];
 			closePanel(_panel, function () {
+				$element.trigger('msClap.afterClose');// Вызов события после закрытия текущей панели
+
 				// Вызов callback функции после закрытия панели
 				if (typeof callback === "function") {
 					callback();
 				}
 			});
-
 		}, closePanel = function (_panel) {
+			// if (!_panel.data('active')) return;//Не выполнять для неактивных панелей
 			// console.log('close');
-			if (_panel.data('active')) {
-				var callback = arguments[1];
+			var callback = arguments[1];
 
-				// Удалить активный класс со всех элементов
-				_panel.add(config.addActiveClassTo).removeClass(config.modifiers.activeClass);
+			// Удалить активный класс со всех элементов
+			_panel.closest(config.item).removeClass(config.modifiers.activeClass);
 
-				// Закрыть панель
-				// Вызов события после закрытия каждой панели
-				$element.trigger('msClap.afterEachClose');
+			// Закрыть панель
+			_panel
+				.slideUp(config.animationSpeed, function () {
+					$(this).data('active', false).attr('data-active', false);// Указать в data-атрибуте, что панель закрыта
 
-				_panel
-					.slideUp(config.animationSpeed, function () {
-						// Вызов callback функции после закрытия панели
-						if (typeof callback === "function") {
-							callback();
-						}
-					})
-					.data('active', false);// Указать в data-атрибуте, что панель закрыта
-			}
+					$element.trigger('msClap.afterEachClose');// Вызов события после закрытия каждой панели
+
+					// Вызов callback функции после закрытия панели
+					if (typeof callback === "function") {
+						callback();
+					}
+				});
 		}, events = function () {
-			$element.on(config.event + ' focus', config.hand, function (event) {
+			// $element.on(config.event + ' focus', config.hand, function (event) {
+			$(config.hand).on(config.event, function (event) {
 				// console.log("isAnimated: ", isAnimated);
 
-				console.log("event: ", event.type);
+				// console.log("event: ", event.type);
 
 				// Если панель во время клика находится в процессе анимации, то выполнение функции прекратится
+				// Переход по ссылке не произойдет
+				// console.log("isAnimated: ", isAnimated);
 				if (isAnimated) {
 					event.preventDefault();
 					return false;
 				}
 
-				var $currentHand = $(this);
-
 				// Если текущий пункт не содержит панелей, то выполнение функции прекратится
+				// Произойдет переход по сылки
+				var $currentHand = $(this);
 				if (!$currentHand.closest(config.item).has(config.panel).length) {
 					return false;
 				}
@@ -189,15 +150,25 @@
 
 				var $currentPanel = $currentHand.closest(config.header).next(config.panel);
 
-				if (!$currentPanel.data('active')) {
-					// Открыть текущую панель
-					open($currentPanel);
-				} else {
+				if ($currentPanel.data('active')) {
 					// Закрыть текущую панель
 					close($currentPanel, function () {
-						// callback after current panel close
-						$element.trigger('msClap.afterClose');
+						isAnimated = false;// Анимация заверешина
 					});
+				} else {
+					// Открыть текущую панель
+					open($currentPanel, function () {
+						isAnimated = false;// Анимация заверешина
+					});
+
+					if (collapsed) {
+						// Закрыть активные панели в соседних Элементах
+						close($currentHand.closest(config.item).siblings().find(config.panel).filter(function () {
+							return $(this).data('active');
+						}), function () {
+							isAnimated = false;// Анимация заверешина
+						});
+					}
 				}
 			});
 		}, focusing = function () {
@@ -208,16 +179,20 @@
 			// 	$(this).blur();
 			// })
 		}, init = function () {
-			// $element.addClass(initClasses.element);
-			// $(config.item, $element).addClass(initClasses.item);
-			// $(config.header, $element).addClass(initClasses.header);
-			// $(config.panel, $element).addClass(initClasses.panel);
-			$(config.hand, $element)
-				// .addClass(initClasses.hand)
-				.attr('tabindex', 0);
+			var $activePanel = $panel.filter(':visible');
+			// На активные панели установить дата-атрибуту active сo заначением true
+			$activePanel.addClass(config.modifiers.activeClass).data('active', true).attr('data-active', true);
+			// На элементы содержащие активные панели добавить активный класс
+			$activePanel.closest(config.item).addClass(config.modifiers.activeClass);
 
-			// Найти активные панели и установить дата-атрибуту active заначение true
-			$(config.panel, $element).filter(':visible').data('active', true);
+			if (config.accessibility) {
+				// Переключатель поставить в фокус-очередь
+				tabindexOn($(config.hand, $element));
+				// Все элементы с фокусировкой убрать с фокус-очереди
+				tabindexOff($(focusElements, $panel));
+				// Все элементы с фокусировкой внутри активных элементов поставить в фокус-очередь
+				tabindexOn($(focusElements, $activePanel));
+			}
 
 			$element.addClass(config.modifiers.init);
 
@@ -264,15 +239,15 @@
 		item: '.msClap__item-js',//По сути общий ближайший родитель (Далее Элемент) для переключателя и разворачивающейся панели (Далее Панель)
 		header: '.msClap__header-js',//Обертка для переключателя (Далее Шапка)
 		hand: '.msClap__hand-js',//Переключатель
-		panel: '.msClap__panel-js',//Панель (Да)
+		panel: '.msClap__panel-js',//Панель
 		event: 'click',//Событие, которое разворачивает/сворачивает Панель
 		animationSpeed: 300,//Скорость анимации Панели
 		collapsed: true,//Параметр, указывающий на необходимось сворачивать ранее открытые Панели
+		accessibility: true,//Enables tabbing and arrow key navigation
 		modifiers: {
 			init: 'msClap--initialized',//Класс, который добавляется сразу после формирования DOM плагина
 			activeClass: 'msClap--active'//Класс, который добавляется, на активный Элемент
-		},
-		addActiveClassTo: null
+		}
 		/**
 		 * @description - Один или несколько эелментов, на которые будет добавляться/удаляться активный класс (modifiers.activeClass)
 		 * @example {JQ Object} null - 1) $('html, .popup-js, .overlay-js')
