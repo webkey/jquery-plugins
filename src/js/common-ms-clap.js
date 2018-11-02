@@ -56,7 +56,9 @@ $(function () {
 		// Второй параметр: селектор
 		// Трений параметр: callback-функция
 		$('.open-panel-js').on('click', function () {
-			myClap.msClap('open', $('#hashExpl'), function () {
+			var id = $(this).attr('data-id');
+			myClap.msClap('open', $('#' + id), function () {
+				console.log('Открылась панел ' + '#' + id);
 				// console.log('Показать после открытия панели!');
 			});
 		});

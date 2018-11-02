@@ -6,6 +6,13 @@
 
 <div class="layout-flood user-content">
 	<h1>ms-clap</h1>
+	<p class="warning">Необходимо подключить <code class="red">modernizr.js</code> для определения touch-устройств</p>
+	<p>В плагине код определения touch-устройтва удалить, если уже есть в <code class="green">common.js</code>:</p>
+	<pre class="snippet"><code class="js">/**
+ * !Detected touchscreen devices
+ * */
+var TOUCH = Modernizr.touchevents,
+	DESKTOP = !TOUCH;</code></pre>
 
 	<h2>Примеры использования</h2>
 
@@ -21,6 +28,10 @@
 			"currentItem": "&sim;Item 1.1&sim;",
 			"bsKey": "clapNav"
 		})
+	</div>
+
+	<div>
+		<button class="open-panel-js" data-id="hashTest">Открыть панель #hashTest</button>
 	</div>
 
 	<h3>ms-clap 2</h3>

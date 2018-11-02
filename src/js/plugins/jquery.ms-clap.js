@@ -1,3 +1,9 @@
+/**
+ * !Detected touchscreen devices
+ * */
+var TOUCH = Modernizr.touchevents,
+	DESKTOP = !TOUCH;
+
 /*! jquery.ms-clap.js
  * Version: 2018.1.0
  * Author: Astronim*
@@ -59,7 +65,7 @@
 			_panel.closest(config.item).addClass(config.modifiers.activeClass);
 
 			var callback = arguments[1];
-			// Закрыть панель
+			// Открыть панель
 			_panel
 				.slideDown(config.animationSpeed, function () {
 					$(this).data('active', true).attr('data-active', true);// Указать в data-атрибуте, что панель открыта
@@ -71,6 +77,15 @@
 						callback();
 					}
 				});
+
+			if (collapsed) {
+				// Закрыть активные панели в соседних Элементах
+				close(_panel.closest(config.item).siblings().find(config.panel).filter(function () {
+					return $(this).data('active');
+				}), function () {
+					isAnimated = false;// Анимация заверешина
+				});
+			}
 		}, close = function (_panel) {
 			// Закрыть отдельно все вложенные активные панели
 			// И отдельно текущую панель
@@ -164,15 +179,6 @@
 					open($currentPanel, function () {
 						isAnimated = false;// Анимация завершина
 					});
-
-					if (collapsed) {
-						// Закрыть активные панели в соседних Элементах
-						close($currentHand.closest(config.item).siblings().find(config.panel).filter(function () {
-							return $(this).data('active');
-						}), function () {
-							isAnimated = false;// Анимация заверешина
-						});
-					}
 				}
 			});
 		}, focusing = function () {
@@ -259,8 +265,16 @@
 		collapsed: true,//Параметр, указывающий на необходимось сворачивать ранее открытые Панели
 		accessibility: false,//Enables tabbing and arrow key navigation
 		modifiers: {
-			init: 'msClap--initialized',//Класс, который добавляется сразу после формирования DOM плагина
-			activeClass: 'msClap--active'//Класс, который добавляется, на активный Элемент
+			init: 'msClap_initialized',//Класс, который добавляется сразу после формирования DOM плагина
+			activeClass: 'msClap_active'//Класс, который добавляется, на активный Элемент
+		},
+		hover: {
+			turnOn: true,
+			modifiers: {
+				current: 'msClap_hover',
+				next: 'msClap_hover-next',
+				prev: 'msClap_hover-prev'
+			}
 		}
 		/**
 		 * @description - Один или несколько эелментов, на которые будет добавляться/удаляться активный класс (modifiers.activeClass)

@@ -42,6 +42,13 @@
 	<!-- >>> head.tpl END <<< -->
 	<div class="layout-flood user-content">
 		<h1>ms-clap</h1>
+		<p class="warning">Необходимо подключить <code class="red">modernizr.js</code> для определения touch-устройств</p>
+		<p>В плагине код определения touch-устройтва удалить, если уже есть в <code class="green">common.js</code>:</p>
+		<pre class="snippet"><code class="js">/**
+ * !Detected touchscreen devices
+ * */
+var TOUCH = Modernizr.touchevents,
+	DESKTOP = !TOUCH;</code></pre>
 		<h2>Примеры использования</h2>
 		<h3>ms-clap 1</h3>
 		<!--Code example-->
@@ -97,7 +104,7 @@
 									<span class="clapNav__angle clapNav__hand-js" tabindex="0"><i>&#9660;</i></span>
 								</div>
 								<!--(3) START clapNav THIRD level-->
-								<div class="clapNav__drop clapNav__panel-js">
+								<div class="clapNav__drop clapNav__panel-js" id="hashTest">
 									<ul class="sub-clapNav__list">
 										<li><a href="#"><span>&sim;Item 1.1 - 2.2 - 3.1&sim;</span></a></li>
 										<li><a href="#"><span>&sim;Item 1.1 - 2.2 - 3.2&sim;</span></a></li>
@@ -173,6 +180,9 @@
 				<li class=""><a href="#"><span>&sim;Item 1.3&sim;</span></a></li>
 				<li class=""><a href="#"><span>&sim;Item 1.4&sim;</span></a></li>
 			</ul>
+		</div>
+		<div>
+			<button class="open-panel-js" data-id="hashTest">Открыть панель #hashTest</button>
 		</div>
 		<h3>ms-clap 2</h3>
 		<div class="clap clap-js">
