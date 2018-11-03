@@ -48,18 +48,22 @@ $(function () {
 
 				// Добавить класс на элементы
 				// myClap.msClap('toggleClass', [$('html')]);
-			},
+			}
 			//Добавлять кастомний ховер
-			customHover: {
+			, customHover: {
 				turnOn: true,
 				element: 'li',
-				timeoutAdd: 1000,
-				timeoutRemove: 1000
+				timeoutAdd: 530,
+				timeoutRemove: 530
 				// modifiers: {
 				// 	current: 'hover',
 				// 	next: 'hover-next',
 				// 	prev: 'hover-prev'
 				// }
+			}, afterAddHover: function () {
+				// console.log('.afterAddHover');
+			}, afterRemoveHover: function () {
+				// console.log('.afterRemoveHover');
 			}
 		});
 
