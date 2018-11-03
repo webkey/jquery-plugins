@@ -1,13 +1,13 @@
-<ul class="@@bsKey__list @@bsKey_has-branches @@bsKey-js">
+<ul class="@@bsKey__list L1">
 	<li class="has-drop@@if(currentItem === '&sim;Item 1.1&sim;'){ current}">
-		@@include('_tpl_nav-LINK--full.html', { "txt": "&sim;Item 1.1&sim;", "href": "#", "key": "@@bsKey" })
+		@@include('_tpl_nav-LINK--full.html', { "txt": "&sim;Item 1.1&sim;", "href": "#1", "key": "@@bsKey" })
 		@@include('_tpl_nav-DROP-WRAP.html', { "dropLevel": "(==========2==========)", "pos": "start", "key": "@@bsKey", "isOpen": "true" })
 	<li class="has-drop">
 		@@include('_tpl_nav-LINK--full.html', { "txt": "&sim;Item 1.1 - 2.1&sim;", "href": "#", "key": "@@bsKey" })
 		@@include('_tpl_nav-DROP-WRAP.html', { "dropLevel": "(==========3==========)", "pos": "start", "key": "@@bsKey", "isOpen": "true"})
 	<li class="has-drop">
 		@@include('_tpl_nav-LINK--full.html', { "txt": "&sim;Item 1.1 - 2.1 - 3.1&sim;", "href": "#", "key": "@@bsKey" })
-		@@include('_tpl_nav-DROP-WRAP.html', { "dropLevel": "(==========4==========)", "pos": "start", "key": "@@bsKey", "isOpen": "true"})
+		@@include('_tpl_nav-DROP-WRAP.html', { "dropLevel": "(==========4==========)", "pos": "start", "key": "@@bsKey", "isOpen": "true", "id": "hashTest"})
 	<li>@@include('_tpl_nav-LINK--short.html', { "txt": "&sim;Item 1.1 - 2.1 - 3.1 - 4.1&sim;", "href": "#", "key": "@@bsKey" })</li>
 	<li>@@include('_tpl_nav-LINK--short.html', { "txt": "&sim;Item 1.1 - 2.1 - 3.1 - 4.2&sim;", "href": "#", "key": "@@bsKey" })</li>
 	<li>@@include('_tpl_nav-LINK--short.html', { "txt": "&sim;Item 1.1 - 2.1 - 3.1 - 4.3&sim;", "href": "#", "key": "@@bsKey" })</li>
@@ -21,7 +21,7 @@
 
 	<li class="has-drop">
 		@@include('_tpl_nav-LINK--full.html', { "txt": "&sim;Item 1.1 - 2.2&sim;", "href": "#", "key": "@@bsKey" })
-		@@include('_tpl_nav-DROP-WRAP.html', { "dropLevel": "(==========3==========)", "pos": "start", "key": "@@bsKey", "id": "hashTest" })
+		@@include('_tpl_nav-DROP-WRAP.html', { "dropLevel": "(==========3==========)", "pos": "start", "key": "@@bsKey" })
 	<li>@@include('_tpl_nav-LINK--short.html', { "txt": "&sim;Item 1.1 - 2.2 - 3.1&sim;", "href": "#", "key": "@@bsKey" })</li>
 	<li>@@include('_tpl_nav-LINK--short.html', { "txt": "&sim;Item 1.1 - 2.2 - 3.2&sim;", "href": "#", "key": "@@bsKey" })</li>
 		@@include('_tpl_nav-DROP-WRAP.html', { "dropLevel": "(==========3==========)", "pos": "end", "key": "@@bsKey"})
@@ -34,7 +34,7 @@
 	</li>
 	
 	<li class="has-drop@@if(currentItem === '&sim;Item 1.2&sim;'){ current}">
-		@@include('_tpl_nav-LINK--full.html', { "txt": "&sim;Item 1.2&sim;", "href": "#", "key": "@@bsKey" })
+		@@include('_tpl_nav-LINK--full.html', { "txt": "&sim;Item 1.2&sim;", "href": "#2", "key": "@@bsKey" })
 		@@include('_tpl_nav-DROP-WRAP.html', { "dropLevel": "(==========2==========)", "pos": "start", "key": "@@bsKey" })
 	<li class="has-drop">
 		@@include('_tpl_nav-LINK--full.html', { "txt": "&sim;Item 1.2 - 2.1&sim;", "href": "#", "key": "@@bsKey" })
@@ -67,7 +67,7 @@
 
 	</li>
 
-	<li class="@@if(currentItem === '&sim;Item 1.3&sim;'){current}">@@include('_tpl_nav-LINK--short.html', { "txt": "&sim;Item 1.3&sim;", "href": "#", "key": "@@bsKey" })</li>
+	<li class="@@if(currentItem === '&sim;Item 1.3&sim;'){current}">@@include('_tpl_nav-LINK--short.html', { "txt": "&sim;Item 1.3&sim;", "href": "#3", "key": "@@bsKey" })</li>
 
-	<li class="@@if(currentItem === '&sim;Item 1.4&sim;'){current}">@@include('_tpl_nav-LINK--short.html', { "txt": "&sim;Item 1.4&sim;", "href": "#", "key": "@@bsKey" })</li>
+	<li class="@@if(currentItem === '&sim;Item 1.4&sim;'){current}">@@include('_tpl_nav-LINK--short.html', { "txt": "&sim;Item 1.4&sim;", "href": "#4", "key": "@@bsKey" })</li>
 </ul>

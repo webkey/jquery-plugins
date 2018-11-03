@@ -13,6 +13,14 @@
 /* ul.clap__list li */
 /* === NAVIGATION === */
 /* nav list */
+.clapNav {
+	margin-bottom: 4rem;
+}
+
+.clapNav:last-child {
+	margin-bottom: 0;
+}
+
 .clapNav__list {
 	position: relative;
 }
@@ -30,7 +38,6 @@
 
 .clapNav__list li {
 	position: relative;
-	border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .clapNav__list .clapNav__tab {
@@ -115,13 +122,10 @@ li.has-drop > .clapNav__tab > .clapNav__angle {
 }
 
 .clapNav__angle i {
-	display: block;
 	pointer-events: none;
 	position: relative;
 	will-change: transform;
-	transition-property: -webkit-transform;
 	transition-property: transform;
-	transition-property: transform, -webkit-transform;
 	transition-duration: 0.2s;
 	transition-timing-function: ease-in-out;
 	display: inline-block;
@@ -131,9 +135,8 @@ li.has-drop > .clapNav__tab > .clapNav__angle {
 }
 
 li.is-open > .clapNav__tab .clapNav__angle i {
-	-webkit-transform: rotate(0.5turn);
-	    -ms-transform: rotate(0.5turn);
-	        transform: rotate(0.5turn);
+	-ms-transform: rotate(0.5turn);
+	    transform: rotate(0.5turn);
 }
 
 .no-touchevents .clapNav__angle:hover {
@@ -141,9 +144,8 @@ li.is-open > .clapNav__tab .clapNav__angle i {
 }
 
 .clapNav__angle:active {
-	-webkit-transform: scale(0.95);
-	    -ms-transform: scale(0.95);
-	        transform: scale(0.95);
+	-ms-transform: scale(0.95);
+	    transform: scale(0.95);
 }
 
 .clapNav__angle:focus {
@@ -205,11 +207,28 @@ li.is-open > .clapNav__tab .clapNav__angle i {
 	left: 105px;
 }
 
+/* === NAVIGATION end === */
+/* ================ NOT USE =============== */
 .clapNav__list li {
 	border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-/* === NAVIGATION end === */
+.clapNav__list li.hover {
+	box-shadow: 0 0 2px 1px blue;
+	z-index: 2;
+}
+
+.clapNav__list li.hover::after {
+	content: '.hover';
+	position: absolute;
+	left: 5px;
+	top: 0;
+	font-size: 12px;
+	line-height: 14px;
+	color: blue;
+}
+
+/* ================ NOT USE END =============== */
 /* =============================== */
 /* !!! div-ами !!! */
 /* div.clap div.clap__item */
@@ -257,18 +276,14 @@ li.is-open > .clapNav__tab .clapNav__angle i {
 	height: 2px;
 	background-color: white;
 	will-change: transform;
-	transition-property: -webkit-transform;
 	transition-property: transform;
-	transition-property: transform, -webkit-transform;
 	transition-duration: 0.2s;
 }
 
 .clap__angle::before {
-	-webkit-transform: rotate(-0.25turn);
-	    -ms-transform: rotate(-0.25turn);
-	        transform: rotate(-0.25turn);
-	-webkit-transform: rotate(-0.25turn) translateZ(0);
-	        transform: rotate(-0.25turn) translateZ(0);
+	-ms-transform: rotate(-0.25turn);
+	    transform: rotate(-0.25turn);
+	transform: rotate(-0.25turn) translateZ(0);
 }
 
 .clap__angle:active {
@@ -276,11 +291,9 @@ li.is-open > .clapNav__tab .clapNav__angle i {
 }
 
 .clap__angle.is-open::before, .clap__angle.is-open::after {
-	-webkit-transform: rotate(0);
-	    -ms-transform: rotate(0);
-	        transform: rotate(0);
-	-webkit-transform: rotate(0) translateZ(0);
-	        transform: rotate(0) translateZ(0);
+	-ms-transform: rotate(0);
+	    transform: rotate(0);
+	transform: rotate(0) translateZ(0);
 }
 
 .clap__panel {

@@ -21,18 +21,29 @@ var TOUCH = Modernizr.touchevents,
 	<pre class="snippet"><code class="html">&lt;div class="ms-clap ms-clap-js"&gt;
 	{{ms-clap code}}
 &lt;/div&gt;</code></pre>
-	<p class="warning">В структуре Панель (<code class="red">__panel-js</code>) всегда должна лежать <em>непосредственно</em> после Шапки (<code class="red">__header-js</code>)</p>
+	<p class="warning">В структуре Панель (<code class="red">[block]__panel-js</code>) всегда должна лежать <em>непосредственно</em> после Шапки (<code class="red">[block]__header-js</code>)</p>
 	<!--Code example end-->
-	<div class="clap">
+	<!--<div class="clapNav clapNav_has-branches clapNav-js">-->
+	<div class="clapNav clapNav-js">
 		@@include('_tpl_nav-constructor-clap.html', {
 			"currentItem": "&sim;Item 1.1&sim;",
 			"bsKey": "clapNav"
 		})
 	</div>
 
-	<div>
-		<button class="open-panel-js" data-id="hashTest">Открыть панель #hashTest</button>
-	</div>
+	<p>Открыть панель используя метод <code class="green">'open'</code> <br> <code class="red">myClap.msClap('open', $panel[, callback]);</code></p>
+  <!--<pre class="snippet"><code class="js">$('.open-panel-js').on('click', function () {
+    var id = $(this).attr('data-id') || $(this).attr('href')
+    myClap.msClap('open', $(id), function () {
+      console.log('Открылась панел ' + id);
+    });
+});</code></pre>-->
+	<p>
+		<button class="open-panel-js" data-id="#hashTest">Открыть панель #hashTest</button>
+	</p>
+	<p>
+		<a href="#hashTest" class="open-panel-js">Открыть панель #hashTest</a>
+	</p>
 
 	<h3>ms-clap 2</h3>
 	<div class="clap clap-js">
@@ -202,6 +213,24 @@ var TOUCH = Modernizr.touchevents,
 	<div><code class="red">$.fn.msclap.defaultOptions</code></div>
 	<div><b>Например:</b></div>
 	<div><code class="red">$.fn.msclap.defaultOptions.someProperty = false;</code></div>
+
+	<br>
+	<br>
+	<h2>Стили</h2>
+	<h3>Modifiers</h3>
+	<ul>
+		<li>
+			<div><b>[block]_has-branches</b></div>
+			<div>
+				<pre class="snippet"><code class="javascript">afterInit: function (e, el) {}</code></pre>
+			</div>
+			<div>
+				<i class="gray">Description:</i> <br>
+				Добавляет ветки струкуры
+			</div>
+		</li>
+	</ul>
+
 </div>
 
 @@include('_tpl_layout_foot.html', {

@@ -27,6 +27,12 @@ $nav-arrow-size: 40px !default
 $nav-arrow-space: 5px !default
 /* nav list
 // Общие стили для пунктов навигации
+.clapNav
+	margin-bottom: 4rem
+
+	&:last-child
+		margin-bottom: 0
+
 .clapNav__list
 	position: relative
 
@@ -41,9 +47,6 @@ $nav-arrow-space: 5px !default
 
 	li
 		position: relative
-
-		// Удалить в реальном проекте. Нужно для визуального разделения пунктов
-		border-top: 1px solid rgba(black, 0.1)
 
 	.clapNav__tab
 		position: relative
@@ -124,7 +127,7 @@ $nav-arrow-space: 5px !default
 		display: block
 
 	i
-		display: block
+		//display: block
 		pointer-events: none
 		position: relative
 		// transition
@@ -227,13 +230,32 @@ $nav-arrow-space: 5px !default
 					&::before, &::after
 						left: round(nth($nav-space, 2) * 3.5)
 
+/* === NAVIGATION end ===
+
+
+/* ================ NOT USE ===============
+
 // Не исспользовать в реальном проекте
 // Визуализация
 .clapNav__list
 	li
+		// Визуальное разделение пунктов
 		border-top: 1px solid rgba(black, 0.1)
 
-/* === NAVIGATION end ===
+		// Визуализация кастомного ховера
+		&.hover
+			box-shadow: 0 0 2px 1px $link-color
+			z-index: 2
+			&::after
+				content: '.hover'
+				position: absolute
+				left: 5px
+				top: 0
+				font-size: 12px
+				line-height: 14px
+				color: $link-color
+
+/* ================ NOT USE END ===============
 
 
 /* =============================== */

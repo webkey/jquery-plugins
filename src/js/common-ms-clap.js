@@ -29,25 +29,37 @@ $(function () {
 				activeClass: 'is-open'//Класс, который добавляется, на активный Элемент
 			}
 			, afterEachClose: function () {
-				console.log('.afterEachClose');
+				// console.log('.afterEachClose');
 			}
 			, beforeClose: function () {
-				console.log('.beforeClose');
+				// console.log('.beforeClose');
 			}
 			, afterClose: function () {
-				console.log('.afterClose');
+				// console.log('.afterClose');
 
 				// Удалить класс с элементов
 				// myClap.msClap('toggleClass', [$('html')], false);
 			}
 			, beforeOpen: function () {
-				console.log('.beforeOpen');
+				// console.log('.beforeOpen');
 			}
 			, afterOpen: function () {
-				console.log('.afterOpen');
+				// console.log('.afterOpen');
 
 				// Добавить класс на элементы
 				// myClap.msClap('toggleClass', [$('html')]);
+			},
+			//Добавлять кастомний ховер
+			customHover: {
+				turnOn: true,
+				element: 'li',
+				timeoutAdd: 1000,
+				timeoutRemove: 1000
+				// modifiers: {
+				// 	current: 'hover',
+				// 	next: 'hover-next',
+				// 	prev: 'hover-prev'
+				// }
 			}
 		});
 
@@ -56,10 +68,9 @@ $(function () {
 		// Второй параметр: селектор
 		// Трений параметр: callback-функция
 		$('.open-panel-js').on('click', function () {
-			var id = $(this).attr('data-id');
-			myClap.msClap('open', $('#' + id), function () {
-				console.log('Открылась панел ' + '#' + id);
-				// console.log('Показать после открытия панели!');
+			var id = $(this).attr('data-id') || $(this).attr('href');
+			myClap.msClap('open', $(id), function () {
+				console.log('Открылась панел ' + id);
 			});
 		});
 	}

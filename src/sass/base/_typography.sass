@@ -38,6 +38,10 @@ h1
 h2
 	+font($font-size-h2, $line-height-h2)
 
+	&::before
+		content: '§ '
+		display: inline
+
 	+media('<mob-lg')
 		+font($font-size-h2--mob, $line-height-h2--mob)
 
