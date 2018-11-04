@@ -50,20 +50,27 @@ $(function () {
 				// myClap.msClap('toggleClass', [$('html')]);
 			}
 			//Добавлять кастомний ховер
-			, customHover: {
-				turnOn: true,
+			, customHover: true
+			, customHoverSetting: {
 				element: 'li',
-				timeoutAdd: 530,
-				timeoutRemove: 530
+				timeoutAdd: 100,
+				timeoutRemove: 100
 				// modifiers: {
 				// 	current: 'hover',
 				// 	next: 'hover-next',
 				// 	prev: 'hover-prev'
 				// }
-			}, afterAddHover: function () {
+			}
+			, afterAddHover: function () {
 				// console.log('.afterAddHover');
-			}, afterRemoveHover: function () {
+			}
+			, afterRemoveHover: function () {
 				// console.log('.afterRemoveHover');
+			}
+			// Выравнивать подменю
+			, align: true
+			, alignSetting: {
+
 			}
 		});
 
@@ -74,6 +81,81 @@ $(function () {
 		$('.open-panel-js').on('click', function () {
 			var id = $(this).attr('data-id') || $(this).attr('href');
 			myClap.msClap('open', $(id), function () {
+				console.log('Открылась панел ' + id);
+			});
+		});
+
+		// Для написании стилей, можно ховер добавлять при загрузке
+		// с помощью метода 'hover'
+		myClap.msClap('hover', $('#hashTest').parentsUntil($clap_1_1, 'li'));
+	}
+
+	var $clap_1_2 = $('.clap-js');
+
+	if ($clap_1_2.length) {
+		var clapSimple = $clap_1_2.msClap({
+			// collapsed: true
+			// , modifiers: {
+			// 	activeClass: 'tab-poookkhh'
+			// }
+			item: '.clap__item-js',//По сути общий ближайший родитель (Далее Элемент) для переключателя и разворачивающейся панели (Далее Панель)
+			header: '.clap__header-js',//Обертка для переключателя (Далее Шапка)
+			hand: '.clap__hand-js',//Переключатель
+			panel: '.clap__panel-js',//Панель (Да)
+			// event: 'click',//Событие, которое разворачивает/сворачивает Панель
+			animationSpeed: 250,//Скорость анимации Панели
+			// collapsed: false,//Параметр, указывающий на необходимось сворачивать ранее открытые Панели
+			accessibility: true,//Enables tabbing and arrow key navigation
+			modifiers: {
+				// init: 'clap--initialized',//Класс, который добавляется сразу после формирования DOM плагина
+				activeClass: 'is-open'//Класс, который добавляется, на активный Элемент
+			}
+			, afterEachClose: function () {
+				// console.log('.afterEachClose');
+			}
+			, beforeClose: function () {
+				// console.log('.beforeClose');
+			}
+			, afterClose: function () {
+				// console.log('.afterClose');
+
+				// Удалить класс с элементов
+				// myClap.msClap('toggleClass', [$('html')], false);
+			}
+			, beforeOpen: function () {
+				// console.log('.beforeOpen');
+			}
+			, afterOpen: function () {
+				// console.log('.afterOpen');
+
+				// Добавить класс на элементы
+				// myClap.msClap('toggleClass', [$('html')]);
+			}
+			//Добавлять кастомний ховер
+			, customHover: true
+			, customHoverSetting: {
+				element: 'li',
+				timeoutAdd: 330,
+				timeoutRemove: 330
+			}, afterAddHover: function () {
+				// console.log('.afterAddHover');
+			}, afterRemoveHover: function () {
+				// console.log('.afterRemoveHover');
+			}
+			// Выравнивать подменю
+			, align: false
+			, alignSetting: {
+
+			}
+		});
+
+		// Тестирование метода "open"
+		// Первый параметр: название метода
+		// Второй параметр: селектор
+		// Трений параметр: callback-функция
+		$('.open-panel-js').on('click', function () {
+			var id = $(this).attr('data-id') || $(this).attr('href');
+			clapSimple.msClap('open', $(id), function () {
 				console.log('Открылась панел ' + id);
 			});
 		});

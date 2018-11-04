@@ -16,7 +16,9 @@ var TOUCH = Modernizr.touchevents,
 	var MsClap = function(element, config){
 		var self,
 			$element = $(element),
+			$window = $(window),
 			$html = $('html'),
+			$item = $(config.item, $element),
 			$hand = $(config.hand, $element),
 			$panel = $(config.panel, $element),
 			isAnimated = false,
@@ -209,7 +211,7 @@ var TOUCH = Modernizr.touchevents,
 				})
 			},
 			hover = function () {
-				if (!config.customHover.turnOn) {
+				if (!config.customHover) {
 					return;
 				}
 
@@ -217,18 +219,23 @@ var TOUCH = Modernizr.touchevents,
 					intentPropName = 'hoverIntent';
 
 				var removeHover = function ($element) {
-					$element.removeClass(config.customHover.modifiers.current);
-					$element.prev().removeClass(config.customHover.modifiers.prev);
-					$element.next().removeClass(config.customHover.modifiers.next);
+					$element.removeClass(config.customHoverSetting.modifiers.current);
+					$element.prev().removeClass(config.customHoverSetting.modifiers.prev);
+					$element.next().removeClass(config.customHoverSetting.modifiers.next);
 				};
 
 				var addHover = function ($element) {
-					$element.addClass(config.customHover.modifiers.current);
-					$element.prev().addClass(config.customHover.modifiers.prev);
-					$element.next().addClass(config.customHover.modifiers.next);
+					$element.addClass(config.customHoverSetting.modifiers.current);
+					$element.prev().addClass(config.customHoverSetting.modifiers.prev);
+					$element.next().addClass(config.customHoverSetting.modifiers.next);
 				};
 
-				$element.on('click', config.customHover.element, function (event) {
+				if (arguments[0] !== undefined) {
+					addHover($(arguments[0]));
+					return false;
+				}
+
+				$element.on('click', config.customHoverSetting.element, function (event) {
 					var $this = $(this);
 
 					// Скрипт выполнять только, если есть Панель
@@ -246,18 +253,27 @@ var TOUCH = Modernizr.touchevents,
 						$this.prop(intentPropName, clearTimeout($this.prop(intentPropName)));
 					}
 
-					if (!$this.hasClass(config.customHover.modifiers.current)){
+					if (!$this.hasClass(config.customHoverSetting.modifiers.current)){
 						event.preventDefault();
 
-						removeHover($(config.customHover.element, $element).not($this.parents()));
+						removeHover($(config.customHoverSetting.element, $element).not($this.parents()));
 
 						addHover($this);
 						$element.trigger('msClap.afterAddHover');
 					}
 				});
 
-				$(config.customHover.element).mouseenter(function () {
+				$(config.customHoverSetting.element, $element).mouseenter(function () {
 					var $this = $(this);
+
+					// console.log(event.type);
+					// console.log($this);
+
+					if (!$this.closest(config.item).has(config.panel).length) {
+						addHover($this);
+						$element.trigger('msClap.afterAddHover');
+						return;
+					}
 
 					// Если курсор входит в область елемента (а не в любую другую),
 					// то с соседних элементов модификаторы удалять без задержки,
@@ -270,10 +286,19 @@ var TOUCH = Modernizr.touchevents,
 					$this.prop(intentPropName, setTimeout(function () {
 						addHover($this);
 						$element.trigger('msClap.afterAddHover');
-					}, config.customHover.timeoutAdd));
+					}, config.customHoverSetting.timeoutAdd));
 				})
-					.mouseleave(function () {
+				.mouseleave(function () {
 					var $this = $(this);
+
+					// console.log(event.type);
+					// console.log($this);
+
+					if (!$this.closest(config.item).has(config.panel).length) {
+						removeHover($this);
+						$element.trigger('msClap.afterRemoveHover');
+						return;
+					}
 
 					if ($this.prop(intentPropName)) {
 						$this.prop(intentPropName, clearTimeout($this.prop(intentPropName)));
@@ -282,13 +307,76 @@ var TOUCH = Modernizr.touchevents,
 					$this.prop(timeoutPropName, setTimeout(function () {
 						removeHover($this);
 						$element.trigger('msClap.afterRemoveHover');
-					}, config.customHover.timeoutRemove));
+					}, config.customHoverSetting.timeoutRemove));
 				});
 
 				$html.on('click', function (event) {
 					if (!$(event.target).closest(config.panel).length) {
-						removeHover($(config.customHover.element));
+						removeHover($(config.customHoverSetting.element));
 					}
+				});
+			},
+			align = function () {
+				if (!config.align) {
+					return;
+				}
+
+				var alignWrap = config.alignSetting.wrapper || 'html';
+
+				var createAlignDropClass = function ($_item, $_panel) {
+					var $alignWrap = $_item.closest(alignWrap);
+
+					// for align right
+					var wrapRight = $alignWrap.offset().left + $alignWrap.outerWidth();
+					// var wrapRight = $('body').outerWidth();
+					var panelRight = $_panel.offset().left + $_panel.outerWidth();
+
+					if (wrapRight < panelRight) {
+						$_item.addClass(config.alignSetting.modifiers.right);
+					}
+
+					// clear js style
+					$_panel.attr('style', '');
+
+					// for align bottom
+					// var maxBottom = $(window).height() - $navContainer.outerHeight();
+					var maxBottom = $window.height();
+					var panelHeight = $_panel.outerHeight();
+					var panelBottom = $_panel.offset().top - $(window).scrollTop() + panelHeight;
+
+					console.log("maxBottom: ", maxBottom);
+					console.log("panelBottom: ", panelBottom);
+					if (maxBottom < panelBottom) {
+						if (maxBottom < 500) {
+							return;
+						}
+						$_item.addClass(config.alignSetting.modifiers.bottom);
+						$_panel.css('margin-top', maxBottom - panelBottom);
+					}
+				};
+
+				// $navContainer.on('click', '' + navMenuItem + '', function () {
+				// 	var $this = $(this);
+				// 	var $drop = $this.find(self.$navDropMenu).eq(0);
+				//
+				// 	if (!device.desktop() && $drop.length) {
+				// 		self.createAlignDropClass($this, $drop);
+				// 	}
+				// });
+
+				$item.on('mouseenter', function () {
+					var $this = $(this),
+						$panel = $this.find(config.panel).eq(0);
+
+					// if (DESKTOP && $panel.length) {
+					if ($panel.length) {
+						createAlignDropClass($this, $panel);
+					}
+				});
+
+
+				$window.on('debouncedresize', function () {
+					$item.removeClass(config.alignSetting.modifiers.right + ' ' + config.alignSetting.modifiers.bottom);
 				});
 			},
 			enterClick = function () {
@@ -303,7 +391,8 @@ var TOUCH = Modernizr.touchevents,
 			init = function () {
 				var $activePanel = $panel.filter(':visible');
 				// На активные панели установить дата-атрибуту active сo заначением true
-				$activePanel.addClass(config.modifiers.active).data('active', true).attr('data-active', true);
+
+				$activePanel.data('active', true).attr('data-active', true);
 				// На элементы содержащие активные панели добавить активный класс
 				$activePanel.closest(config.item).addClass(config.modifiers.active);
 
@@ -328,6 +417,7 @@ var TOUCH = Modernizr.touchevents,
 			events: events,
 			focus: focus,
 			hover: hover,
+			align: align,
 			enterClick: enterClick,
 			init: init
 		};
@@ -350,6 +440,7 @@ var TOUCH = Modernizr.touchevents,
 				_[i].msClap.events();
 				_[i].msClap.focus();
 				_[i].msClap.hover();
+				_[i].msClap.align();
 				_[i].msClap.enterClick();
 				// _[i].msClap.onfocus();
 			}
@@ -377,8 +468,8 @@ var TOUCH = Modernizr.touchevents,
 			active: 'is-open',// Класс, который добавляется, на активный Элемент
 			focus: 'focus'// Класс, который добавляется, на Переключатель во время получения им фокуса
 		},
-		customHover: {
-			turnOn: false,// Добавлять кастомный ховер?
+		customHover: false,// Добавлять кастомный ховер?
+		customHoverSetting: {
 			element: '.msClap__item-js',// Элемент на который будет добавлятся модификатор
 			timeoutAdd: 50,// Задержке пред добавлением модификатора
 			timeoutRemove: 50,// Задержке пред удалением модификатора
@@ -386,6 +477,16 @@ var TOUCH = Modernizr.touchevents,
 				current: 'hover',
 				next: 'hover-next',
 				prev: 'hover-prev'
+			}
+		},
+		align: false,
+		alignSetting: {
+			wrapper: null,// По умолчанию $('html')
+			modifiers: {
+				top: 'top',
+				right: 'right',
+				bottom: 'bottom',
+				left: 'left'
 			}
 		}
 		/**

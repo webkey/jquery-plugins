@@ -42,7 +42,9 @@
 	<!-- >>> head.tpl END <<< -->
 	<div class="layout-flood user-content">
 		<h1>ms-clap</h1>
-		<p class="warning">Необходимо подключить <code class="red">modernizr.js</code> для определения touch-устройств</p>
+		<p class="warning">
+			<strong>Допольнительные плагины:</strong> <br> - Для определения touch-устройств: <code class="red">modernizr.js</code> <br> - Для опраделения событий изменения размеров браузера: <code class="red">jquery.debouncedresize.js</code>
+		</p>
 		<p>В плагине код определения touch-устройтва удалить, если уже есть в <code class="green">common.js</code>:</p>
 		<pre class="snippet"><code class="js">/**
  * !Detected touchscreen devices
@@ -50,16 +52,13 @@
 var TOUCH = Modernizr.touchevents,
 	DESKTOP = !TOUCH;</code></pre>
 		<h2>Примеры использования</h2>
-		<h3>ms-clap 1</h3>
+		<h3>Навигация сайта</h3>
+		<p><em>0 - 992px</em> - аккордеон, <em>>992px</em> - меню с выпадающими подменю.</p>
 		<!--Code example-->
-		<pre class="snippet"><code class="html">&lt;div class="ms-clap ms-clap-js"&gt;
-	{{ms-clap code}}
-&lt;/div&gt;</code></pre>
 		<p class="warning">В структуре Панель (<code class="red">[block]__panel-js</code>) всегда должна лежать <em>непосредственно</em> после Шапки (<code class="red">[block]__header-js</code>)</p>
 		<!--Code example end-->
-		<!--<div class="clapNav clapNav_has-branches clapNav-js">-->
-		<div class="clapNav clapNav-js">
-			<ul class="clapNav__list L1">
+		<div class="clapNav">
+			<ul class="clapNav__list L1 clapNav_has-branches clapNav-js">
 				<li class="has-drop current">
 					<div class="clapNav__tab clapNav__header-js">
 						<a href="#1"><span>&sim;Item 1.1&sim;</span></a>
@@ -287,7 +286,7 @@ var TOUCH = Modernizr.touchevents,
 			<!--clap end-->
 		</div>
 		<div>
-			<button class="open-panel-js">Открыть панель #hashExpl</button>
+			<button class="open-panel-js" data-id="#hashExpl">Открыть панель #hashExpl</button>
 		</div>
 		<br>
 		<br>
@@ -354,6 +353,7 @@ var TOUCH = Modernizr.touchevents,
 	<script src="js/jquery.min.js"></script>
 	<script src="js/libs.min.js"></script>
 	<script src="js/main.js"></script>
+	<script src="libs/jquery-smartresize/jquery.debouncedresize.js"></script>
 	<script src="js/plugins/jquery.ms-clap.js"></script>
 	<script src="js/common-ms-clap.js"></script>
 </body>

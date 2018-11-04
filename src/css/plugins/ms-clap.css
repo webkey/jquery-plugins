@@ -14,15 +14,20 @@
 /* === NAVIGATION === */
 /* nav list */
 .clapNav {
+	position: relative;
 	margin-bottom: 4rem;
+	z-index: 5;
+}
+
+@media (min-width: 992px) {
+	.clapNav {
+		display: inline-block;
+		width: 100%;
+	}
 }
 
 .clapNav:last-child {
 	margin-bottom: 0;
-}
-
-.clapNav__list {
-	position: relative;
 }
 
 .clapNav__list, .clapNav__list ul {
@@ -77,15 +82,6 @@
 	outline: #0080ff auto 5px;
 }
 
-.clapNav__drop {
-	position: relative;
-	display: none;
-}
-
-.no-js .clapNav__drop {
-	display: block;
-}
-
 .clapNav__list li.has-drop > .clapNav__tab > a {
 	padding-right: 60px;
 }
@@ -103,7 +99,7 @@
 	height: 40px;
 	margin-top: -20px;
 	background-color: rgba(0, 0, 0, 0.1);
-	z-index: 2;
+	z-index: 1;
 	cursor: pointer;
 	display: none;
 	-webkit-user-select: none;
@@ -119,6 +115,12 @@
 
 li.has-drop > .clapNav__tab > .clapNav__angle {
 	display: block;
+}
+
+@media (min-width: 992px) {
+	.clapNav__angle {
+		pointer-events: none;
+	}
 }
 
 .clapNav__angle i {
@@ -139,6 +141,13 @@ li.is-open > .clapNav__tab .clapNav__angle i {
 	    transform: rotate(0.5turn);
 }
 
+@media (min-width: 992px) {
+	li.is-open > .clapNav__tab .clapNav__angle i {
+		-ms-transform: rotate(0);
+		    transform: rotate(0);
+	}
+}
+
 .no-touchevents .clapNav__angle:hover {
 	background-color: rgba(0, 0, 255, 0.1);
 }
@@ -152,20 +161,97 @@ li.is-open > .clapNav__tab .clapNav__angle i {
 	outline: #0080ff auto 5px;
 }
 
+@media (min-width: 992px) {
+	.clapNav__list > li {
+		float: left;
+	}
+}
+
 .clapNav__list > li > .clapNav__tab a, .clapNav__list > li > a {
 	text-transform: uppercase;
+}
+
+.clapNav__drop {
+	position: relative;
+	display: none;
+}
+
+@media (min-width: 992px) {
+	.clapNav__drop {
+		position: absolute;
+		left: 0;
+		top: 100%;
+		width: 400px;
+		opacity: 0;
+		pointer-events: none;
+		z-index: 2;
+	}
+}
+
+@media (min-width: 992px) {
+	.msClap_initialized .clapNav__drop {
+		display: block;
+	}
+}
+
+@media (min-width: 992px) {
+	.msClap_initialized .clapNav__drop[style*="display: none"] {
+		display: block !important;
+	}
+}
+
+.no-js .clapNav__drop {
+	display: block;
+}
+
+@media (min-width: 992px) {
+	.no-js .clapNav__drop {
+		display: none;
+	}
+}
+
+@media (min-width: 992px) {
+	li.hover > .clapNav__drop, .no-js li:hover > .clapNav__drop {
+		opacity: 1;
+		pointer-events: auto;
+	}
 }
 
 .clapNav__drop a {
 	padding-left: 60px;
 }
 
+@media (min-width: 992px) {
+	.clapNav__drop a {
+		padding-left: 30px;
+	}
+}
+
+@media (min-width: 992px) {
+	.clapNav__drop .clapNav__drop {
+		top: 0;
+		left: 100%;
+	}
+}
+
 .clapNav__drop .clapNav__drop a {
 	padding-left: 90px;
 }
 
+@media (min-width: 992px) {
+	.clapNav__drop .clapNav__drop a {
+		padding-left: 30px;
+	}
+}
+
 .clapNav__drop .clapNav__drop .clapNav__drop a {
 	padding-left: 120px;
+}
+
+@media (min-width: 992px) {
+	.clapNav__drop .clapNav__drop .clapNav__drop a {
+		padding-left: 30px;
+	}
 }
 
 .clapNav_has-branches .clapNav__drop li::before, .clapNav_has-branches .clapNav__drop li::after {
@@ -182,6 +268,12 @@ li.is-open > .clapNav__tab .clapNav__angle i {
 	border: 0 solid rgba(0, 0, 0, 0.2);
 	pointer-events: none;
 	z-index: 10;
+}
+
+@media (min-width: 992px) {
+	.clapNav_has-branches .clapNav__drop li::before, .clapNav_has-branches .clapNav__drop li::after {
+		display: none;
+	}
 }
 
 .clapNav_has-branches .clapNav__drop li::before {
@@ -210,22 +302,24 @@ li.is-open > .clapNav__tab .clapNav__angle i {
 /* === NAVIGATION end === */
 /* ================ NOT USE =============== */
 .clapNav__list li {
-	border-top: 1px solid rgba(0, 0, 0, 0.1);
+	box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.1);
 }
 
 .clapNav__list li.hover {
-	box-shadow: 0 0 2px 1px blue;
-	z-index: 2;
+	box-shadow: inset 0 0 2px 1px blue;
 }
 
-.clapNav__list li.hover::after {
-	content: '.hover';
-	position: absolute;
-	left: 5px;
-	top: 0;
-	font-size: 12px;
-	line-height: 14px;
-	color: blue;
+@media (min-width: 992px) {
+	.clapNav__list > li {
+		box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.1);
+	}
+}
+
+@media (min-width: 992px) {
+	.clapNav__drop {
+		border: 0 solid rgba(0, 0, 0, 0.1);
+		border-width: 0 1px 1px;
+	}
 }
 
 /* ================ NOT USE END =============== */
