@@ -40,312 +40,329 @@
 <body class="page-ms-clap">
 	<!--[if lt IE 9]> <div class="browserupgrade"><p>You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p></div> <![endif]-->
 	<!-- >>> head.tpl END <<< -->
-	<div class="layout-flood user-content">
-		<h1>ms-clap</h1>
-		<p class="warning">
-			<strong>Допольнительные плагины:</strong> <br> - Для определения touch-устройств: <code class="red">modernizr.js</code> <br> - Для опраделения событий изменения размеров браузера: <code class="red">jquery.debouncedresize.js</code>
-		</p>
-		<p>В плагине код определения touch-устройтва удалить, если уже есть в <code class="green">common.js</code>:</p>
+	<div class="wrapper">
+		<div class="layout-flood user-content">
+			<h1>ms-clap</h1>
+			<p class="warning">
+				<strong>Допольнительные плагины:</strong> <br>
+				<!-- - Для определения touch-устройств: <code class="red">modernizr.js</code>  <br>-->
+				- Для опраделения событий изменения размеров браузера: <code class="red">jquery.debouncedresize.js</code>
+			</p>
+			<!--<p>В плагине код определения touch-устройтва удалить, если уже есть в <code class="green">common.js</code>:</p>
 		<pre class="snippet"><code class="js">/**
- * !Detected touchscreen devices
- * */
-var TOUCH = Modernizr.touchevents,
-	DESKTOP = !TOUCH;</code></pre>
-		<h2>Примеры использования</h2>
-		<h3>Навигация сайта</h3>
-		<p><em>0 - 992px</em> - аккордеон, <em>>992px</em> - меню с выпадающими подменю.</p>
-		<!--Code example-->
-		<p class="warning">В структуре Панель (<code class="red">[block]__panel-js</code>) всегда должна лежать <em>непосредственно</em> после Шапки (<code class="red">[block]__header-js</code>)</p>
-		<!--Code example end-->
-		<div class="clapNav">
-			<ul class="clapNav__list L1 clapNav_has-branches clapNav-js">
-				<li class="has-drop current">
-					<div class="clapNav__tab clapNav__header-js">
-						<a href="#1"><span>&sim;Item 1.1&sim;</span></a>
-						<span class="clapNav__angle clapNav__hand-js" tabindex="0"><i>&#9660;</i></span>
+	 * !Detected touchscreen devices
+	 * */
+	var TOUCH = Modernizr.touchevents,
+		DESKTOP = !TOUCH;</code></pre>-->
+			<h2>Примеры использования</h2>
+			<h3>1. Навигация сайта</h3>
+			<p><em>0 - 992px</em> - аккордеон, <em>>992px</em> - меню с выпадающими подменю.</p>
+			<!--Code example-->
+			<p class="warning">В структуре Панель (<code class="red">[block]__panel-js</code>) всегда должна лежать <em>непосредственно</em> после Шапки (<code class="red">[block]__header-js</code>)</p>
+			<!--Code example end-->
+			<div class="clapNav">
+				<ul class="clapNav__list L1 clapNav_has-branches clapNav-js">
+					<li class="has-drop current">
+						<div class="clapNav__tab clapNav__header-js">
+							<a href="#1"><span>&sim;Item 1.1&sim;</span></a>
+							<span class="clapNav__angle clapNav__hand-js" tabindex="0"><i>&#9660;</i></span>
+						</div>
+						<!--(2) START clapNav SECOND level-->
+						<div class="clapNav__drop L2 clapNav__panel-js" style="display: block;">
+							<ul class="sub-clapNav__list">
+								<li class="has-drop">
+									<div class="clapNav__tab clapNav__header-js">
+										<a href="#"><span>&sim;Item 1.1 - 2.1&sim;</span></a>
+										<span class="clapNav__angle clapNav__hand-js" tabindex="0"><i>&#9660;</i></span>
+									</div>
+									<!--(3) START clapNav THIRD level-->
+									<div class="clapNav__drop L3 clapNav__panel-js" style="display: block;">
+										<ul class="sub-clapNav__list">
+											<li class="has-drop">
+												<div class="clapNav__tab clapNav__header-js">
+													<a href="#"><span>&sim;Item 1.1 - 2.1 - 3.1&sim;</span></a>
+													<span class="clapNav__angle clapNav__hand-js" tabindex="0"><i>&#9660;</i></span>
+												</div>
+												<!--(4) START clapNav FOURTH level-->
+												<div class="clapNav__drop L4 clapNav__panel-js" style="display: block;" id="hashTest">
+													<ul class="sub-clapNav__list">
+														<li><a href="#"><span>&sim;Item 1.1 - 2.1 - 3.1 - 4.1&sim;</span></a></li>
+														<li><a href="#"><span>&sim;Item 1.1 - 2.1 - 3.1 - 4.2&sim;</span></a></li>
+														<li><a href="#"><span>&sim;Item 1.1 - 2.1 - 3.1 - 4.3&sim; - test long text - lorem ipsum dolor sit amet consectetur adipisicing elit accusamus quam</span></a></li>
+														<li><a href="#"><span>&sim;Item 1.1 - 2.1 - 3.1 - 4.4&sim;</span></a></li>
+														<li><a href="#"><span>&sim;Item 1.1 - 2.1 - 3.1 - 4.5&sim;</span></a></li>
+														<li><a href="#"><span>&sim;Item 1.1 - 2.1 - 3.1 - 4.6&sim;</span></a></li>
+														<li><a href="#"><span>&sim;Item 1.1 - 2.1 - 3.1 - 4.7&sim;</span></a></li>
+														<li><a href="#"><span>&sim;Item 1.1 - 2.1 - 3.1 - 4.8&sim;</span></a></li>
+														<li><a href="#"><span>&sim;Item 1.1 - 2.1 - 3.1 - 4.9&sim;</span></a></li>
+														<li><a href="#"><span>&sim;Item 1.1 - 2.1 - 3.1 - 4.10&sim;</span></a></li>
+														<li><a href="#"><span>&sim;Item 1.1 - 2.1 - 3.1 - 4.11&sim;</span></a></li>
+														<li><a href="#"><span>&sim;Item 1.1 - 2.1 - 3.1 - 4.12&sim;</span></a></li>
+														<li><a href="#"><span>&sim;Item 1.1 - 2.1 - 3.1 - 4.13&sim;</span></a></li>
+														<li><a href="#"><span>&sim;Item 1.1 - 2.1 - 3.1 - 4.14&sim;</span></a></li>
+														<li><a href="#"><span>&sim;Item 1.1 - 2.1 - 3.1 - 4.15&sim;</span></a></li>
+													</ul>
+												</div>
+												<!--(4) END clapNav FOURTH level-->
+											</li>
+											<li><a href="#"><span>&sim;Item 1.1 - 2.1 - 3.2&sim;</span></a></li>
+											<li><a href="#"><span>&sim;Item 1.1 - 2.1 - 3.3&sim;</span></a></li>
+											<li><a href="#"><span>&sim;Item 1.1 - 2.1 - 3.4&sim;</span></a></li>
+											<li><a href="#"><span>&sim;Item 1.1 - 2.1 - 3.5&sim;</span></a></li>
+										</ul>
+									</div>
+									<!--(3) END clapNav THIRD level-->
+								</li>
+								<li class="has-drop">
+									<div class="clapNav__tab clapNav__header-js">
+										<a href="#"><span>&sim;Item 1.1 - 2.2&sim;</span></a>
+										<span class="clapNav__angle clapNav__hand-js" tabindex="0"><i>&#9660;</i></span>
+									</div>
+									<!--(3) START clapNav THIRD level-->
+									<div class="clapNav__drop L3 clapNav__panel-js">
+										<ul class="sub-clapNav__list">
+											<li><a href="#"><span>&sim;Item 1.1 - 2.2 - 3.1&sim;</span></a></li>
+											<li><a href="#"><span>&sim;Item 1.1 - 2.2 - 3.2&sim;</span></a></li>
+										</ul>
+									</div>
+									<!--(3) END clapNav THIRD level-->
+								</li>
+								<li><a href="#"><span>&sim;Item 1.1 - 2.3&sim;</span></a></li>
+								<li><a href="#"><span>&sim;Item 1.1 - 2.4&sim;</span></a></li>
+							</ul>
+						</div>
+						<!--(2) END clapNav SECOND level-->
+					</li>
+					<li class="has-drop">
+						<div class="clapNav__tab clapNav__header-js">
+							<a href="#2"><span>&sim;Item 1.2&sim;</span></a>
+							<span class="clapNav__angle clapNav__hand-js" tabindex="0"><i>&#9660;</i></span>
+						</div>
+						<!--(2) START clapNav SECOND level-->
+						<div class="clapNav__drop L2 clapNav__panel-js">
+							<ul class="sub-clapNav__list">
+								<li class="has-drop">
+									<div class="clapNav__tab clapNav__header-js">
+										<a href="#"><span>&sim;Item 1.2 - 2.1&sim;</span></a>
+										<span class="clapNav__angle clapNav__hand-js" tabindex="0"><i>&#9660;</i></span>
+									</div>
+									<!--(3) START clapNav THIRD level-->
+									<div class="clapNav__drop L3 clapNav__panel-js">
+										<ul class="sub-clapNav__list">
+											<li class="has-drop">
+												<div class="clapNav__tab clapNav__header-js">
+													<a href="#"><span>&sim;Item 1.2 - 2.1 - 3.1&sim;</span></a>
+													<span class="clapNav__angle clapNav__hand-js" tabindex="0"><i>&#9660;</i></span>
+												</div>
+												<!--(4) START clapNav FOURTH level-->
+												<div class="clapNav__drop L4 clapNav__panel-js">
+													<ul class="sub-clapNav__list">
+														<li><a href="#"><span>&sim;Item 1.2 - 2.1 - 3.1 - 4.1&sim;</span></a></li>
+														<li><a href="#"><span>&sim;Item 1.2 - 2.1 - 3.1 - 4.2&sim;</span></a></li>
+														<li><a href="#"><span>&sim;Item 1.2 - 2.1 - 3.1 - 4.3&sim;</span></a></li>
+														<li><a href="#"><span>&sim;Item 1.2 - 2.1 - 3.1 - 4.4&sim;</span></a></li>
+													</ul>
+												</div>
+												<!--(4) END clapNav FOURTH level-->
+											</li>
+											<li><a href="#"><span>&sim;Item 1.2 - 2.1 - 3.2&sim;</span></a></li>
+											<li><a href="#"><span>&sim;Item 1.2 - 2.1 - 3.3&sim;</span></a></li>
+											<li><a href="#"><span>&sim;Item 1.2 - 2.1 - 3.4&sim;</span></a></li>
+										</ul>
+									</div>
+									<!--(3) END clapNav THIRD level-->
+								</li>
+								<li class="has-drop">
+									<div class="clapNav__tab clapNav__header-js">
+										<a href="#"><span>&sim;Item 1.2 - 2.2&sim;</span></a>
+										<span class="clapNav__angle clapNav__hand-js" tabindex="0"><i>&#9660;</i></span>
+									</div>
+									<!--(3) START clapNav THIRD level-->
+									<div class="clapNav__drop L3 clapNav__panel-js">
+										<ul class="sub-clapNav__list">
+											<li><a href="#"><span>&sim;Item 1.2 - 2.2 - 3.1&sim;</span></a></li>
+											<li><a href="#"><span>&sim;Item 1.2 - 2.2 - 3.2&sim;</span></a></li>
+										</ul>
+									</div>
+									<!--(3) END clapNav THIRD level-->
+								</li>
+								<li><a href="#"><span>&sim;Item 1.2 - 2.3&sim;</span></a></li>
+								<li><a href="#"><span>&sim;Item 1.2 - 2.4&sim;</span></a></li>
+							</ul>
+						</div>
+						<!--(2) END clapNav SECOND level-->
+					</li>
+					<li class=""><a href="#3"><span>&sim;Item 1.3&sim;</span></a></li>
+					<li class=""><a href="#4"><span>&sim;Item 1.4&sim;</span></a></li>
+				</ul>
+			</div>
+			<p>Открыть панель используя метод <code class="green">'open'</code> <br> <code class="red">myClap.msClap('open', $panel[, callback]);</code></p>
+			<!--<pre class="snippet"><code class="js">$('.open-panel-js').on('click', function () {
+		var id = $(this).attr('data-id') || $(this).attr('href')
+		myClap.msClap('open', $(id), function () {
+		  console.log('Открылась панел ' + id);
+		});
+	});</code></pre>-->
+			<p>
+				<button class="open-panel-js" data-id="#hashTest">Открыть панель #hashTest</button>
+			</p>
+			<p>
+				<a href="#hashTest" class="open-panel-js">Открыть панель #hashTest</a>
+			</p>
+			<br>
+			<h3>2. Аккордеон</h3>
+			<div class="clap clap-js">
+				<!--clap-->
+				<!--(1) FIRST level - START-->
+				<div class="clap__item clap__item-js">
+					<div class="clap__header clap__header-js">
+						<a href="#">{{Title 1.1}}</a>
+						<a href="#" class="clap__angle clap__hand-js">&nbsp;</a>
 					</div>
-					<!--(2) START clapNav SECOND level-->
-					<div class="clapNav__drop L2 clapNav__panel-js" style="display: block;">
-						<ul class="sub-clapNav__list">
-							<li class="has-drop">
-								<div class="clapNav__tab clapNav__header-js">
-									<a href="#"><span>&sim;Item 1.1 - 2.1&sim;</span></a>
-									<span class="clapNav__angle clapNav__hand-js" tabindex="0"><i>&#9660;</i></span>
+					<div class="clap__panel clap__panel-js is-open" id="hashExpl">
+						<div>{{Content 1.1}}</div>
+						<!--(2) SECOND level - START-->
+						<div class="clap__item clap__item-js">
+							<div class="clap__header clap__header-js">
+								<a href="#">{{Title 1.1 - 2.1}}</a>
+								<a href="#" class="clap__angle clap__hand-js">&nbsp;</a>
+							</div>
+							<div class="clap__panel clap__panel-js is-open">
+								<div>{{Content 1.1 - 2.1}}</div>
+								<!--(3) THIRD level - START-->
+								<div class="clap__item clap__item-js">
+									<div class="clap__header clap__header-js">
+										<a href="#">{{Title 1.1 - 2.1 - 3.1}}</a>
+										<a href="#" class="clap__angle clap__hand-js">&nbsp;</a>
+									</div>
+									<div class="clap__panel clap__panel-js is-open">
+										<div>{{Content 1.1 - 2.1 - 3.1}}</div>
+										<!--roll next level-->
+									</div>
 								</div>
-								<!--(3) START clapNav THIRD level-->
-								<div class="clapNav__drop L3 clapNav__panel-js" style="display: block;">
-									<ul class="sub-clapNav__list">
-										<li class="has-drop">
-											<div class="clapNav__tab clapNav__header-js">
-												<a href="#"><span>&sim;Item 1.1 - 2.1 - 3.1&sim;</span></a>
-												<span class="clapNav__angle clapNav__hand-js" tabindex="0"><i>&#9660;</i></span>
-											</div>
-											<!--(4) START clapNav FOURTH level-->
-											<div class="clapNav__drop L4 clapNav__panel-js" style="display: block;" id="hashTest">
-												<ul class="sub-clapNav__list">
-													<li><a href="#"><span>&sim;Item 1.1 - 2.1 - 3.1 - 4.1&sim;</span></a></li>
-													<li><a href="#"><span>&sim;Item 1.1 - 2.1 - 3.1 - 4.2&sim;</span></a></li>
-													<li><a href="#"><span>&sim;Item 1.1 - 2.1 - 3.1 - 4.3&sim;</span></a></li>
-													<li><a href="#"><span>&sim;Item 1.1 - 2.1 - 3.1 - 4.4&sim;</span></a></li>
-												</ul>
-											</div>
-											<!--(4) END clapNav FOURTH level-->
-										</li>
-										<li><a href="#"><span>&sim;Item 1.1 - 2.1 - 3.2&sim;</span></a></li>
-										<li><a href="#"><span>&sim;Item 1.1 - 2.1 - 3.3&sim;</span></a></li>
-										<li><a href="#"><span>&sim;Item 1.1 - 2.1 - 3.4&sim;</span></a></li>
-									</ul>
-								</div>
-								<!--(3) END clapNav THIRD level-->
-							</li>
-							<li class="has-drop">
-								<div class="clapNav__tab clapNav__header-js">
-									<a href="#"><span>&sim;Item 1.1 - 2.2&sim;</span></a>
-									<span class="clapNav__angle clapNav__hand-js" tabindex="0"><i>&#9660;</i></span>
-								</div>
-								<!--(3) START clapNav THIRD level-->
-								<div class="clapNav__drop L3 clapNav__panel-js">
-									<ul class="sub-clapNav__list">
-										<li><a href="#"><span>&sim;Item 1.1 - 2.2 - 3.1&sim;</span></a></li>
-										<li><a href="#"><span>&sim;Item 1.1 - 2.2 - 3.2&sim;</span></a></li>
-									</ul>
-								</div>
-								<!--(3) END clapNav THIRD level-->
-							</li>
-							<li><a href="#"><span>&sim;Item 1.1 - 2.3&sim;</span></a></li>
-							<li><a href="#"><span>&sim;Item 1.1 - 2.4&sim;</span></a></li>
-						</ul>
+								<!--(3) THIRD level - END-->
+							</div>
+						</div>
+						<div class="clap__item clap__item-js">
+							<div class="clap__header clap__header-js">
+								<a href="#">{{Title 1.1 - 2.2}}</a>
+								<a href="#" class="clap__angle clap__hand-js">&nbsp;</a>
+							</div>
+							<div class="clap__panel clap__panel-js">
+								<div>{{Content 1.1 - 2.2}}</div>
+								<!--roll next level-->
+							</div>
+						</div>
+						<!--(2) SECOND level - END-->
 					</div>
-					<!--(2) END clapNav SECOND level-->
+				</div>
+				<div class="clap__item clap__item-js">
+					<div class="clap__header clap__header-js">
+						<a href="#">{{Title 1.2}}</a>
+						<a href="#" class="clap__angle clap__hand-js">&nbsp;</a>
+					</div>
+					<div class="clap__panel clap__panel-js">
+						<div>{{Content 1.2}} <br> {{Content 1.2}}</div>
+						<!--(2) SECOND level - START-->
+						<div class="clap__item clap__item-js">
+							<div class="clap__header clap__header-js">
+								<a href="#">{{Title 1.2 - 2.1}}</a>
+								<a href="#" class="clap__angle clap__hand-js">&nbsp;</a>
+							</div>
+							<div class="clap__panel clap__panel-js">
+								<div>{{Content 1.2 - 2.1}} <br> {{Content 1.2 - 2.1}}</div>
+								<!--roll next level-->
+							</div>
+						</div>
+						<!--(2) SECOND level - END-->
+					</div>
+				</div>
+				<div class="clap__item clap__item-js">
+					<div class="clap__header clap__header-js">
+						<a href="#">{{Title 1.3}}</a>
+						<a href="#" class="clap__angle clap__hand-js">&nbsp;</a>
+					</div>
+					<div class="clap__panel clap__panel-js">
+						<div>{{Content 1.3}} <br> {{Content 1.3}}</div>
+						<!--(2) SECOND level - START-->
+						<div class="clap__item clap__item-js">
+							<div class="clap__header clap__header-js">
+								<a href="#">{{Title 1.3 - 2.1}}</a>
+								<a href="#" class="clap__angle clap__hand-js">&nbsp;</a>
+							</div>
+							<div class="clap__panel clap__panel-js">
+								<div>{{Content 1.3 - 2.1}} <br> {{Content 1.3 - 2.1}}</div>
+								<!--roll next level-->
+							</div>
+						</div>
+						<!--(2) SECOND level - END-->
+					</div>
+				</div>
+				<!--(1) FIRST level - END-->
+				<!--clap end-->
+			</div>
+			<div>
+				<button class="open-panel-js" data-id="#hashExpl">Открыть панель #hashExpl</button>
+			</div>
+			<br>
+			<br>
+			<h2>Документация</h2>
+			<h3>Used Files:</h3>
+			<ul>
+				<li>__ms-clap.html</li>
+				<li>jquery.ms-clap.js</li>
+				<li>common-ms-clap.js</li>
+				<li>ms-clap.sass</li>
+			</ul>
+			<h3>Options</h3>
+			<ul>
+				<li>
+					<div><b>someProperty:</b></div>
+					<div><i class="gray">Default:</i> <code class="red">someValue</code></div>
+					<div><i class="gray">Type:</i> <code class="red">String</code></div>
+					<div><i class="gray">Values:</i> <code class="red">otherValue</code></div>
+					<div><i class="gray">Description:</i> <br> Описание</div>
 				</li>
-				<li class="has-drop">
-					<div class="clapNav__tab clapNav__header-js">
-						<a href="#2"><span>&sim;Item 1.2&sim;</span></a>
-						<span class="clapNav__angle clapNav__hand-js" tabindex="0"><i>&#9660;</i></span>
+			</ul>
+			<h3>События</h3>
+			<ul>
+				<li>
+					<div><b>afterInit</b></div>
+					<div>
+						<pre class="snippet"><code class="javascript">afterInit: function (e, el) {}</code></pre>
 					</div>
-					<!--(2) START clapNav SECOND level-->
-					<div class="clapNav__drop L2 clapNav__panel-js">
-						<ul class="sub-clapNav__list">
-							<li class="has-drop">
-								<div class="clapNav__tab clapNav__header-js">
-									<a href="#"><span>&sim;Item 1.2 - 2.1&sim;</span></a>
-									<span class="clapNav__angle clapNav__hand-js" tabindex="0"><i>&#9660;</i></span>
-								</div>
-								<!--(3) START clapNav THIRD level-->
-								<div class="clapNav__drop L3 clapNav__panel-js">
-									<ul class="sub-clapNav__list">
-										<li class="has-drop">
-											<div class="clapNav__tab clapNav__header-js">
-												<a href="#"><span>&sim;Item 1.2 - 2.1 - 3.1&sim;</span></a>
-												<span class="clapNav__angle clapNav__hand-js" tabindex="0"><i>&#9660;</i></span>
-											</div>
-											<!--(4) START clapNav FOURTH level-->
-											<div class="clapNav__drop L4 clapNav__panel-js">
-												<ul class="sub-clapNav__list">
-													<li><a href="#"><span>&sim;Item 1.2 - 2.1 - 3.1 - 4.1&sim;</span></a></li>
-													<li><a href="#"><span>&sim;Item 1.2 - 2.1 - 3.1 - 4.2&sim;</span></a></li>
-													<li><a href="#"><span>&sim;Item 1.2 - 2.1 - 3.1 - 4.3&sim;</span></a></li>
-													<li><a href="#"><span>&sim;Item 1.2 - 2.1 - 3.1 - 4.4&sim;</span></a></li>
-												</ul>
-											</div>
-											<!--(4) END clapNav FOURTH level-->
-										</li>
-										<li><a href="#"><span>&sim;Item 1.2 - 2.1 - 3.2&sim;</span></a></li>
-										<li><a href="#"><span>&sim;Item 1.2 - 2.1 - 3.3&sim;</span></a></li>
-										<li><a href="#"><span>&sim;Item 1.2 - 2.1 - 3.4&sim;</span></a></li>
-									</ul>
-								</div>
-								<!--(3) END clapNav THIRD level-->
-							</li>
-							<li class="has-drop">
-								<div class="clapNav__tab clapNav__header-js">
-									<a href="#"><span>&sim;Item 1.2 - 2.2&sim;</span></a>
-									<span class="clapNav__angle clapNav__hand-js" tabindex="0"><i>&#9660;</i></span>
-								</div>
-								<!--(3) START clapNav THIRD level-->
-								<div class="clapNav__drop L3 clapNav__panel-js">
-									<ul class="sub-clapNav__list">
-										<li><a href="#"><span>&sim;Item 1.2 - 2.2 - 3.1&sim;</span></a></li>
-										<li><a href="#"><span>&sim;Item 1.2 - 2.2 - 3.2&sim;</span></a></li>
-									</ul>
-								</div>
-								<!--(3) END clapNav THIRD level-->
-							</li>
-							<li><a href="#"><span>&sim;Item 1.2 - 2.3&sim;</span></a></li>
-							<li><a href="#"><span>&sim;Item 1.2 - 2.4&sim;</span></a></li>
-						</ul>
-					</div>
-					<!--(2) END clapNav SECOND level-->
 				</li>
-				<li class=""><a href="#3"><span>&sim;Item 1.3&sim;</span></a></li>
-				<li class=""><a href="#4"><span>&sim;Item 1.4&sim;</span></a></li>
+			</ul>
+			<h3>Методы</h3>
+			<ul>
+				<li>
+					<div><b>afterInit</b></div>
+					<div>
+						<pre class="snippet"><code class="javascript">afterInit: function (e, el) {}</code></pre>
+					</div>
+				</li>
+			</ul>
+			<h3>Глобальные настройки</h3>
+			<div>Переопределять настройки плагина глобально можно через</div>
+			<div><code class="red">$.fn.msclap.defaultOptions</code></div>
+			<div><b>Например:</b></div>
+			<div><code class="red">$.fn.msclap.defaultOptions.someProperty = false;</code></div>
+			<br>
+			<br>
+			<h2>Стили</h2>
+			<h3>Modifiers</h3>
+			<ul>
+				<li>
+					<div><b>[block]_has-branches</b></div>
+					<div>
+						<pre class="snippet"><code class="javascript">afterInit: function (e, el) {}</code></pre>
+					</div>
+					<div>
+						<i class="gray">Description:</i> <br> Добавляет ветки струкуры
+					</div>
+				</li>
 			</ul>
 		</div>
-		<p>Открыть панель используя метод <code class="green">'open'</code> <br> <code class="red">myClap.msClap('open', $panel[, callback]);</code></p>
-		<!--<pre class="snippet"><code class="js">$('.open-panel-js').on('click', function () {
-    var id = $(this).attr('data-id') || $(this).attr('href')
-    myClap.msClap('open', $(id), function () {
-      console.log('Открылась панел ' + id);
-    });
-});</code></pre>-->
-		<p>
-			<button class="open-panel-js" data-id="#hashTest">Открыть панель #hashTest</button>
-		</p>
-		<p>
-			<a href="#hashTest" class="open-panel-js">Открыть панель #hashTest</a>
-		</p>
-		<h3>ms-clap 2</h3>
-		<div class="clap clap-js">
-			<!--clap-->
-			<!--(1) FIRST level - START-->
-			<div class="clap__item clap__item-js">
-				<div class="clap__header clap__header-js">
-					<a href="#">{{Title 1.1}}</a>
-					<a href="#" class="clap__angle clap__hand-js">&nbsp;</a>
-				</div>
-				<div class="clap__panel clap__panel-js is-open" id="hashExpl">
-					<div>{{Content 1.1}}</div>
-					<!--(2) SECOND level - START-->
-					<div class="clap__item clap__item-js">
-						<div class="clap__header clap__header-js">
-							<a href="#">{{Title 1.1 - 2.1}}</a>
-							<a href="#" class="clap__angle clap__hand-js">&nbsp;</a>
-						</div>
-						<div class="clap__panel clap__panel-js is-open">
-							<div>{{Content 1.1 - 2.1}}</div>
-							<!--(3) THIRD level - START-->
-							<div class="clap__item clap__item-js">
-								<div class="clap__header clap__header-js">
-									<a href="#">{{Title 1.1 - 2.1 - 3.1}}</a>
-									<a href="#" class="clap__angle clap__hand-js">&nbsp;</a>
-								</div>
-								<div class="clap__panel clap__panel-js is-open">
-									<div>{{Content 1.1 - 2.1 - 3.1}}</div>
-									<!--roll next level-->
-								</div>
-							</div>
-							<!--(3) THIRD level - END-->
-						</div>
-					</div>
-					<div class="clap__item clap__item-js">
-						<div class="clap__header clap__header-js">
-							<a href="#">{{Title 1.1 - 2.2}}</a>
-							<a href="#" class="clap__angle clap__hand-js">&nbsp;</a>
-						</div>
-						<div class="clap__panel clap__panel-js">
-							<div>{{Content 1.1 - 2.2}}</div>
-							<!--roll next level-->
-						</div>
-					</div>
-					<!--(2) SECOND level - END-->
-				</div>
-			</div>
-			<div class="clap__item clap__item-js">
-				<div class="clap__header clap__header-js">
-					<a href="#">{{Title 1.2}}</a>
-					<a href="#" class="clap__angle clap__hand-js">&nbsp;</a>
-				</div>
-				<div class="clap__panel clap__panel-js">
-					<div>{{Content 1.2}} <br> {{Content 1.2}}</div>
-					<!--(2) SECOND level - START-->
-					<div class="clap__item clap__item-js">
-						<div class="clap__header clap__header-js">
-							<a href="#">{{Title 1.2 - 2.1}}</a>
-							<a href="#" class="clap__angle clap__hand-js">&nbsp;</a>
-						</div>
-						<div class="clap__panel clap__panel-js">
-							<div>{{Content 1.2 - 2.1}} <br> {{Content 1.2 - 2.1}}</div>
-							<!--roll next level-->
-						</div>
-					</div>
-					<!--(2) SECOND level - END-->
-				</div>
-			</div>
-			<div class="clap__item clap__item-js">
-				<div class="clap__header clap__header-js">
-					<a href="#">{{Title 1.3}}</a>
-					<a href="#" class="clap__angle clap__hand-js">&nbsp;</a>
-				</div>
-				<div class="clap__panel clap__panel-js">
-					<div>{{Content 1.3}} <br> {{Content 1.3}}</div>
-					<!--(2) SECOND level - START-->
-					<div class="clap__item clap__item-js">
-						<div class="clap__header clap__header-js">
-							<a href="#">{{Title 1.3 - 2.1}}</a>
-							<a href="#" class="clap__angle clap__hand-js">&nbsp;</a>
-						</div>
-						<div class="clap__panel clap__panel-js">
-							<div>{{Content 1.3 - 2.1}} <br> {{Content 1.3 - 2.1}}</div>
-							<!--roll next level-->
-						</div>
-					</div>
-					<!--(2) SECOND level - END-->
-				</div>
-			</div>
-			<!--(1) FIRST level - END-->
-			<!--clap end-->
-		</div>
-		<div>
-			<button class="open-panel-js" data-id="#hashExpl">Открыть панель #hashExpl</button>
-		</div>
-		<br>
-		<br>
-		<h2>Документация</h2>
-		<h3>Used Files:</h3>
-		<ul>
-			<li>__ms-clap.html</li>
-			<li>jquery.ms-clap.js</li>
-			<li>common-ms-clap.js</li>
-			<li>ms-clap.sass</li>
-		</ul>
-		<h3>Options</h3>
-		<ul>
-			<li>
-				<div><b>someProperty:</b></div>
-				<div><i class="gray">Default:</i> <code class="red">someValue</code></div>
-				<div><i class="gray">Type:</i> <code class="red">String</code></div>
-				<div><i class="gray">Values:</i> <code class="red">otherValue</code></div>
-				<div><i class="gray">Description:</i> <br> Описание</div>
-			</li>
-		</ul>
-		<h3>События</h3>
-		<ul>
-			<li>
-				<div><b>afterInit</b></div>
-				<div>
-					<pre class="snippet"><code class="javascript">afterInit: function (e, el) {}</code></pre>
-				</div>
-			</li>
-		</ul>
-		<h3>Методы</h3>
-		<ul>
-			<li>
-				<div><b>afterInit</b></div>
-				<div>
-					<pre class="snippet"><code class="javascript">afterInit: function (e, el) {}</code></pre>
-				</div>
-			</li>
-		</ul>
-		<h3>Глобальные настройки</h3>
-		<div>Переопределять настройки плагина глобально можно через</div>
-		<div><code class="red">$.fn.msclap.defaultOptions</code></div>
-		<div><b>Например:</b></div>
-		<div><code class="red">$.fn.msclap.defaultOptions.someProperty = false;</code></div>
-		<br>
-		<br>
-		<h2>Стили</h2>
-		<h3>Modifiers</h3>
-		<ul>
-			<li>
-				<div><b>[block]_has-branches</b></div>
-				<div>
-					<pre class="snippet"><code class="javascript">afterInit: function (e, el) {}</code></pre>
-				</div>
-				<div>
-					<i class="gray">Description:</i> <br> Добавляет ветки струкуры
-				</div>
-			</li>
-		</ul>
 	</div>
 	<!-- >>> foot.tpl <<< -->
 	<!--footer-->

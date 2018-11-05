@@ -53,8 +53,9 @@ $(function () {
 			, customHover: true
 			, customHoverSetting: {
 				element: 'li',
-				timeoutAdd: 100,
-				timeoutRemove: 100
+				timeoutAdd: 70,
+				timeoutRemove: 150,
+				// siblingsRemoveImmediately: false,
 				// modifiers: {
 				// 	current: 'hover',
 				// 	next: 'hover-next',
@@ -70,7 +71,7 @@ $(function () {
 			// Выравнивать подменю
 			, align: true
 			, alignSetting: {
-
+				// wrapper: $clap_1_1
 			}
 		});
 
@@ -78,16 +79,19 @@ $(function () {
 		// Первый параметр: название метода
 		// Второй параметр: селектор
 		// Трений параметр: callback-функция
-		$('.open-panel-js').on('click', function () {
+		$('.open-panel-js').on('click', function (event) {
+
 			var id = $(this).attr('data-id') || $(this).attr('href');
 			myClap.msClap('open', $(id), function () {
 				console.log('Открылась панел ' + id);
 			});
+
+			event.preventDefault();
+			event.stopPropagation();
 		});
 
-		// Для написании стилей, можно ховер добавлять при загрузке
-		// с помощью метода 'hover'
-		myClap.msClap('hover', $('#hashTest').parentsUntil($clap_1_1, 'li'));
+		// Тестирование метода "hover"
+		// myClap.msClap('hover', $('#hashTest').parentsUntil($clap_1_1, 'li'));
 	}
 
 	var $clap_1_2 = $('.clap-js');

@@ -1,9 +1,3 @@
-/**
- * !Detected touchscreen devices
- * */
-var TOUCH = Modernizr.touchevents,
-	DESKTOP = !TOUCH;
-
 /*! jquery.ms-clap.js
  * Version: 2018.1.0
  * Author: Astronim*
@@ -45,8 +39,8 @@ var TOUCH = Modernizr.touchevents,
 				// Все элементы _element убрать с фокус-очереди
 				_element.attr('tabindex', '-1');
 			},
-			open = function (_panel) {
-				if (!_panel.length) {
+			open = function ($_panel) {
+				if (!$_panel.length) {
 					return;
 				}
 				// console.log('open');
@@ -54,26 +48,30 @@ var TOUCH = Modernizr.touchevents,
 
 				if (config.accessibility) {
 					// Все элементы с фокусировкой поставить в фокус-очередь
-					tabindexOn($(focusElements, _panel));
+					tabindexOn($(focusElements, $_panel));
 
 					// В неактивных Панелях все элементы с фокусировкой убрать с фокус-очереди
-					tabindexOff($(focusElements, _panel.find(config.panel).filter(function () {
+					tabindexOff($(focusElements, $_panel.find(config.panel).filter(function () {
 						return $(this).data('active');
 					})));
 				}
 
 				// Добавить класс на активные элементы
-				_panel.closest(config.item).addClass(config.modifiers.active);
+				$_panel.closest(config.item).addClass(config.modifiers.active);
+
+				if (config.customHover) {
+					addHover($_panel.parentsUntil($element, $_panel.item));
+				}
 
 				var callback = arguments[1];
 				// Открыть панель
-				_panel
+				$_panel
 					// Открывать родительские Панели необходимо, если, например, открывается вложенная Панель методом "open"
 					// Все закрытые родительские Панели открыть без анимации
 					.parentsUntil($element, config.panel + ':hidden').show()
 					// Указать в data-атрибуте, что родительская Панель открыта
 					.data('active', true).attr('data-active', true).end()
-					// Добавить активный класс на родительские Елементы
+					// Добавить активный класс на родительские Элементы
 					.parentsUntil($element, config.item).addClass(config.modifiers.active).end()
 					.slideDown(config.animationSpeed, function () {
 						$(this).data('active', true).attr('data-active', true);// Указать в data-атрибуте, что Панель открыта
@@ -89,7 +87,7 @@ var TOUCH = Modernizr.touchevents,
 				if (collapsed) {
 					// Проверить у соседей всех родительских Элементов наличие активных Панелей
 					// Закрыть эти Панели
-					var $siblingsPanel = _panel.parentsUntil($element, config.item).siblings().find(config.panel).filter(function () {
+					var $siblingsPanel = $_panel.parentsUntil($element, config.item).siblings().find(config.panel).filter(function () {
 						return $(this).data('active');
 					});
 					close($siblingsPanel, function () {
@@ -97,8 +95,8 @@ var TOUCH = Modernizr.touchevents,
 					});
 				}
 			},
-			close = function (_panel) {
-				if (!_panel.length) {
+			close = function ($_panel) {
+				if (!$_panel.length) {
 					return;
 				}
 				// Закрыть отдельно все вложенные активные панели
@@ -107,13 +105,13 @@ var TOUCH = Modernizr.touchevents,
 
 				// Все элементы с фокусировкой убрать с фокус-очереди
 				if (config.accessibility) {
-					tabindexOff($(focusElements, _panel));
+					tabindexOff($(focusElements, $_panel));
 				}
 
 				if (collapsed) {
 					// Закрыть активные панели внутри текущей
 					// var blah = ;
-					var $childrenOpenedPanel = $(config.panel, _panel).filter(function () {
+					var $childrenOpenedPanel = $(config.panel, $_panel).filter(function () {
 						return $(this).data('active');
 					});
 					// console.log("$childrenOpenedPanel: ", $childrenOpenedPanel);
@@ -123,7 +121,7 @@ var TOUCH = Modernizr.touchevents,
 				// Закрыть текущую панель
 				$element.trigger('msClap.beforeClose');// Вызов события перед закрытием текущей панели
 				var callback = arguments[1];
-				closePanel(_panel, function () {
+				closePanel($_panel, function () {
 					$element.trigger('msClap.afterClose');// Вызов события после закрытия текущей панели
 
 					// Вызов callback функции после закрытия панели
@@ -132,16 +130,16 @@ var TOUCH = Modernizr.touchevents,
 					}
 				});
 			},
-			closePanel = function (_panel) {
-				// if (!_panel.data('active')) return;//Не выполнять для неактивных панелей
+			closePanel = function ($_panel) {
+				// if (!$_panel.data('active')) return;//Не выполнять для неактивных панелей
 				// console.log('close');
 				var callback = arguments[1];
 
 				// Удалить активный класс со всех элементов
-				_panel.closest(config.item).removeClass(config.modifiers.active);
+				$_panel.closest(config.item).removeClass(config.modifiers.active);
 
 				// Закрыть панель
-				_panel
+				$_panel
 					.slideUp(config.animationSpeed, function () {
 						$(this).data('active', false).attr('data-active', false);// Указать в data-атрибуте, что панель закрыта
 
@@ -210,6 +208,16 @@ var TOUCH = Modernizr.touchevents,
 					$(this).removeClass(config.modifiers.focus)
 				})
 			},
+			addHover = function ($_element) {
+				$_element.addClass(config.customHoverSetting.modifiers.current);
+				$_element.prev().addClass(config.customHoverSetting.modifiers.prev);
+				$_element.next().addClass(config.customHoverSetting.modifiers.next);
+			},
+			removeHover = function ($_element) {
+				$_element.removeClass(config.customHoverSetting.modifiers.current);
+				$_element.prev().removeClass(config.customHoverSetting.modifiers.prev);
+				$_element.next().removeClass(config.customHoverSetting.modifiers.next);
+			},
 			hover = function () {
 				if (!config.customHover) {
 					return;
@@ -217,18 +225,6 @@ var TOUCH = Modernizr.touchevents,
 
 				var timeoutPropName = 'hoverTimeout',
 					intentPropName = 'hoverIntent';
-
-				var removeHover = function ($element) {
-					$element.removeClass(config.customHoverSetting.modifiers.current);
-					$element.prev().removeClass(config.customHoverSetting.modifiers.prev);
-					$element.next().removeClass(config.customHoverSetting.modifiers.next);
-				};
-
-				var addHover = function ($element) {
-					$element.addClass(config.customHoverSetting.modifiers.current);
-					$element.prev().addClass(config.customHoverSetting.modifiers.prev);
-					$element.next().addClass(config.customHoverSetting.modifiers.next);
-				};
 
 				if (arguments[0] !== undefined) {
 					addHover($(arguments[0]));
@@ -275,8 +271,9 @@ var TOUCH = Modernizr.touchevents,
 						return;
 					}
 
-					// Если курсор входит в область елемента (а не в любую другую),
-					// то с соседних элементов модификаторы удалять без задержки,
+					// Если курсор входит в область соседнего Элемента, который содержит Панель,
+					// то ховер-модификаторы удалять без задержки
+					config.customHoverSetting.siblingsRemoveImmediately &&
 					removeHover($this.siblings(config.item));
 
 					if ($this.prop(timeoutPropName)) {
@@ -326,54 +323,42 @@ var TOUCH = Modernizr.touchevents,
 				var createAlignDropClass = function ($_item, $_panel) {
 					var $alignWrap = $_item.closest(alignWrap);
 
-					// for align right
-					var wrapRight = $alignWrap.offset().left + $alignWrap.outerWidth();
-					// var wrapRight = $('body').outerWidth();
-					var panelRight = $_panel.offset().left + $_panel.outerWidth();
+					// Если не помещается по горизонтали
+					if (config.alignSetting.horizontal) {
+						var wrapRight = $alignWrap.offset().left + $alignWrap.outerWidth(),
+							panelRight = $_panel.offset().left + $_panel.outerWidth();
 
-					if (wrapRight < panelRight) {
-						$_item.addClass(config.alignSetting.modifiers.right);
+						if (wrapRight < panelRight) {
+							$_item.addClass(config.alignSetting.modifiers.right);
+						}
 					}
 
-					// clear js style
-					$_panel.attr('style', '');
+					// Если не помещается по вертикали
+					if (config.alignSetting.vertical) {
+						$_panel.attr('style', '');
 
-					// for align bottom
-					// var maxBottom = $(window).height() - $navContainer.outerHeight();
-					var maxBottom = $window.height();
-					var panelHeight = $_panel.outerHeight();
-					var panelBottom = $_panel.offset().top - $(window).scrollTop() + panelHeight;
+						var maxBottom = $window.height(),
+							panelHeight = $_panel.outerHeight(),
+							panelBottom = $_panel.offset().top - $(window).scrollTop() + panelHeight;
 
-					console.log("maxBottom: ", maxBottom);
-					console.log("panelBottom: ", panelBottom);
-					if (maxBottom < panelBottom) {
-						if (maxBottom < 500) {
-							return;
+						if (maxBottom < panelBottom) {
+							if (maxBottom < 500) {
+								return;
+							}
+							$_item.addClass(config.alignSetting.modifiers.bottom);
+							$_panel.css('margin-top', maxBottom - panelBottom);
 						}
-						$_item.addClass(config.alignSetting.modifiers.bottom);
-						$_panel.css('margin-top', maxBottom - panelBottom);
 					}
 				};
 
-				// $navContainer.on('click', '' + navMenuItem + '', function () {
-				// 	var $this = $(this);
-				// 	var $drop = $this.find(self.$navDropMenu).eq(0);
-				//
-				// 	if (!device.desktop() && $drop.length) {
-				// 		self.createAlignDropClass($this, $drop);
-				// 	}
-				// });
-
-				$item.on('mouseenter', function () {
+				$item.on('mouseenter click', function () {
 					var $this = $(this),
 						$panel = $this.find(config.panel).eq(0);
 
-					// if (DESKTOP && $panel.length) {
 					if ($panel.length) {
 						createAlignDropClass($this, $panel);
 					}
 				});
-
 
 				$window.on('debouncedresize', function () {
 					$item.removeClass(config.alignSetting.modifiers.right + ' ' + config.alignSetting.modifiers.bottom);
@@ -468,11 +453,12 @@ var TOUCH = Modernizr.touchevents,
 			active: 'is-open',// Класс, который добавляется, на активный Элемент
 			focus: 'focus'// Класс, который добавляется, на Переключатель во время получения им фокуса
 		},
-		customHover: false,// Добавлять кастомный ховер?
+		customHover: true,// Добавлять кастомный ховер?
 		customHoverSetting: {
 			element: '.msClap__item-js',// Элемент на который будет добавлятся модификатор
 			timeoutAdd: 50,// Задержке пред добавлением модификатора
 			timeoutRemove: 50,// Задержке пред удалением модификатора
+			siblingsRemoveImmediately: true,// Если курсор входит в область соседнего Элемента, который содержит Панель, то ховер-модификаторы удалять без задержки
 			modifiers: {
 				current: 'hover',
 				next: 'hover-next',
@@ -482,6 +468,8 @@ var TOUCH = Modernizr.touchevents,
 		align: false,
 		alignSetting: {
 			wrapper: null,// По умолчанию $('html')
+			horizontal: true,
+			vertical: false,
 			modifiers: {
 				top: 'top',
 				right: 'right',

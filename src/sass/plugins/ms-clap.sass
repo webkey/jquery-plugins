@@ -188,7 +188,8 @@ $nav-arrow-space: 5px !default
 		top: 100%
 		width: 400px
 		opacity: 0
-		pointer-events: none
+		pointer-events: none // Не работает на ие10
+		visibility: hidden // Для ие10
 		z-index: 2
 
 	// Для корректной работы скрипта стили нужно присвоить после инициализации скрипта
@@ -212,7 +213,8 @@ $nav-arrow-space: 5px !default
 	li.hover > &, .no-js li:hover > &
 		+media('>=#{$nav-mob}')
 			opacity: 1
-			pointer-events: auto
+			pointer-events: auto // Не работает на ие10
+			visibility: visible // Для ие10
 
 	// Стили для пунктов ПОДМЕНЮ
 	// Стили для пунктов навигации 2-го уровня
@@ -228,6 +230,7 @@ $nav-arrow-space: 5px !default
 		+media('>=#{$nav-mob}')
 			top: 0
 			left: 100%
+			margin: 10px -10px
 
 		a
 			padding-left: round(nth($nav-space, 2) * 3)
@@ -235,13 +238,20 @@ $nav-arrow-space: 5px !default
 			+media('>=#{$nav-mob}')
 				padding-left: nth($nav-space, 2)
 
-		// Стили для пунктов навигации 4-го уровня
-		.clapNav__drop
-			a
-				padding-left: round(nth($nav-space, 2) * 4)
+	// Стили для пунктов навигации 3-го уровня
+	.right .clapNav__drop
 
-				+media('>=#{$nav-mob}')
-					padding-left: nth($nav-space, 2)
+		+media('>=#{$nav-mob}')
+			left: auto
+			right: 100%
+
+	// Стили для пунктов навигации 4-го уровня
+	.clapNav__drop .clapNav__drop
+		a
+			padding-left: round(nth($nav-space, 2) * 4)
+
+			+media('>=#{$nav-mob}')
+				padding-left: nth($nav-space, 2)
 
 ////*========Добавить дерево структиры=========*/
 
