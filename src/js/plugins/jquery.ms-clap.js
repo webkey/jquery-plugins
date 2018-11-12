@@ -369,6 +369,7 @@
 					$html.keyup(function (event) {
 						if (event.keyCode === 13) {
 							$(config.hand).filter(':focus').trigger('click');
+							// $(config.hand).filter(':focus').closest(config.item).trigger('mouseenter');
 						}
 					});
 				}
