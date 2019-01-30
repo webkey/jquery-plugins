@@ -270,8 +270,8 @@
 		animationSpeed: 300,
 		collapsed: false,
 		modifiers: {
-			init: 'tabs--initialized',
-			activeClass: 'tabs--active'
+			init: 'tabs-initialized',
+			activeClass: 'tabs-active'
 		}
 	};
 
