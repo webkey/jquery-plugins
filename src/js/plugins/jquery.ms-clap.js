@@ -52,7 +52,7 @@
 
 					// В неактивных Панелях все элементы с фокусировкой убрать с фокус-очереди
 					tabindexOff($(focusElements, $_panel.find(config.panel).filter(function () {
-						return $(this).data('active');
+						return !$(this).data('active');
 					})));
 				}
 
@@ -90,8 +90,12 @@
 					var $siblingsPanel = $_panel.parentsUntil($element, config.item).siblings().find(config.panel).filter(function () {
 						return $(this).data('active');
 					});
-					close($siblingsPanel, function () {
-						isAnimated = false;// Анимация завершена
+					// close($siblingsPanel, function () {
+					// 	isAnimated = false;// Анимация завершена
+					// });
+
+					closePanel($siblingsPanel, function () {
+						isAnimated = false; // Анимация завершена
 					});
 				}
 			},
@@ -99,9 +103,9 @@
 				if (!$_panel.length) {
 					return;
 				}
-				// Закрыть отдельно все вложенные активные панели
-				// И отдельно текущую панель
-				// Это сделано с целью определения события закрытия текущей панели отдельно
+				// Закрыть отдельно все вложенные активные панели,
+				// И отдельно текущую панель.
+				// Это сделано с целью определения события закрытия текущей панели отдельно.
 
 				// Все элементы с фокусировкой убрать с фокус-очереди
 				if (config.accessibility) {
@@ -110,7 +114,6 @@
 
 				if (collapsed) {
 					// Закрыть активные панели внутри текущей
-					// var blah = ;
 					var $childrenOpenedPanel = $(config.panel, $_panel).filter(function () {
 						return $(this).data('active');
 					});
@@ -376,7 +379,7 @@
 			},
 			init = function () {
 				var $activePanel = $panel.filter(':visible');
-				// На активные панели установить дата-атрибуту active сo заначением true
+				// На активные панели установить дата-атрибут active сo заначением true
 
 				$activePanel.data('active', true).attr('data-active', true);
 				// На элементы содержащие активные панели добавить активный класс
@@ -441,7 +444,7 @@
 	};
 
 	$.fn.msClap.defaultOptions = {
-		item: '.msClap__item-js',// По сути общий ближайший родитель (Далее Элемент) для переключателя и разворачивающейся панели (Далее Панель)
+		item: '.msClap__item-js',// Общий ближайший родитель (Далее Элемент) для переключателя и разворачивающейся панели (Далее Панель)
 		header: '.msClap__header-js',// Обертка для переключателя (Далее Шапка)
 		hand: '.msClap__hand-js',// Переключатель
 		panel: '.msClap__panel-js',// Панель

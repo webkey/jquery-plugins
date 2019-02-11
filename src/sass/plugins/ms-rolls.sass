@@ -7,9 +7,15 @@ $rolls-space: 10px 10px !default // v h
 $rolls-angle-size: 24px 24px !default // h w
 $rolls-angle-line-size: 2px 12px !default // h w
 
+// panel
+.rolls:not(.ms-rolls_initialized)
+	.rolls__panel
+		display: none // Важно! До инициализации скрипта, скрыть все панели, а после показать.
+
 /* rolls
 .rolls
 	margin-bottom: 4rem
+	-webkit-tap-highlight-color: transparent
 
 	&:last-child
 		margin-bottom: 0
@@ -69,20 +75,35 @@ $rolls-angle-line-size: 2px 12px !default // h w
 		transform: rotate(0)
 		transform: rotate(0) translateZ(0)
 
-// panel
+// Fade panel
 .rolls__panel
-	display: none // Важно!
+	opacity: 0
+	// transition
+	$prop: opacity
+	will-change: $prop
+	transition:
+		property: $prop
+		duration: 0.5s
+		timing-function: ease-in-out
 
 	&.is-open
-		display: block // Важно!
+		opacity: 1
 
-// только в примере, в реальном проэкте не обязательно
+
+// только в примере, в реальном проекте не обязательно
 .rolls__header,
 .rolls__item,
 .rolls__panel
 	//border: 2px solid $border-color
 	padding: 10px
 	margin-bottom: 10px
+	// transition
+	//$prop: background-color, opacity
+	//will-change: $prop
+	//transition:
+		property: $prop
+		duration: 0.7s
+		timing-function: ease-in-out
 
 	&:last-child
 		margin-bottom: 0

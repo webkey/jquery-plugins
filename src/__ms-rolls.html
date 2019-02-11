@@ -7,6 +7,8 @@
 <div class="layout-flood user-content">
 	<h1>ms-rolls</h1>
 
+	<p>Скипты, которые должны отрабатывать внутри Панелей, желательно подключать после инициализации плагина</p>
+
 	<h2>Примеры использования</h2>
 
 	<h3>ms-rolls 1</h3>
@@ -23,7 +25,7 @@
 				<a href="#">{{Title 1.1}}</a>
 				<a href="#" class="rolls__angle rolls__hand-js">&nbsp;</a>
 			</div>
-			<div class="rolls__panel rolls__panel-js is-open" id="hashExpl">
+			<div class="rolls__panel rolls__panel-js">
 				<div>{{Content 1.1}}</div>
 				<!--(2) SECOND level - START-->
 				<div class="rolls__item rolls__item-js">
@@ -31,7 +33,7 @@
 						<a href="#">{{Title 1.1 - 2.1}}</a>
 						<a href="#" class="rolls__angle rolls__hand-js">&nbsp;</a>
 					</div>
-					<div class="rolls__panel rolls__panel-js is-open">
+					<div class="rolls__panel rolls__panel-js">
 						<div>{{Content 1.1 - 2.1}}</div>
 						<!--(3) THIRD level - START-->
 						<div class="rolls__item rolls__item-js">
@@ -74,7 +76,7 @@
 						<a href="#">{{Title 1.2 - 2.1}}</a>
 						<a href="#" class="rolls__angle rolls__hand-js">&nbsp;</a>
 					</div>
-					<div class="rolls__panel rolls__panel-js">
+					<div class="rolls__panel rolls__panel-js" id="hashExpl">
 						<div>{{Content 1.2 - 2.1}} <br> {{Content 1.2 - 2.1}}</div>
 						<!--roll next level-->
 					</div>
@@ -161,9 +163,31 @@
 	<ul>
 		<li>
 			<div><b>afterInit</b></div>
+			<div><code class="red">afterInit: function (e, el) {}</code></div>
 			<div>
-				<pre class="snippet"><code class="javascript">afterInit: function (e, el) {}</code></pre>
+				<i class="gray">Description:</i> <br>
+				Событие нужно вызывать до инициализации плагина <br>
+				<pre class="snippet"><code class="js">$('.ms-rolls-js').on('msRolls.afterInit', function () {
+	console.log('Plugin MS-Rolls has initialized!');
+}).msRolls({});</code></pre>
 			</div>
+		</li>
+		<li>
+			<div><b>beforeOpen</b></div>
+			<div><code class="red">beforeOpen: function (e, el) {}</code></div>
+		</li>
+		<li>
+			<div><b>afterOpen</b></div>
+			<div><code class="red">afterOpen: function (e, el) {}</code></div>
+		</li>
+
+		<li>
+			<div><b>beforeClose</b></div>
+			<div><code class="red">beforeClose: function (e, el) {}</code></div>
+		</li>
+		<li>
+			<div><b>afterClose</b></div>
+			<div><code class="red">afterClose: function (e, el) {}</code></div>
 		</li>
 	</ul>
 

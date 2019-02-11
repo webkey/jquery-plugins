@@ -1,6 +1,11 @@
+.rolls:not(.ms-rolls_initialized) .rolls__panel {
+	display: none;
+}
+
 /* rolls */
 .rolls {
 	margin-bottom: 4rem;
+	-webkit-tap-highlight-color: transparent;
 }
 
 .rolls:last-child {
@@ -78,11 +83,15 @@
 }
 
 .rolls__panel {
-	display: none;
+	opacity: 0;
+	will-change: opacity;
+	transition-property: opacity;
+	transition-duration: 0.5s;
+	transition-timing-function: ease-in-out;
 }
 
 .rolls__panel.is-open {
-	display: block;
+	opacity: 1;
 }
 
 .rolls__header,

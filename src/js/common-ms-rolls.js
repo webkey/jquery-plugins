@@ -11,36 +11,36 @@ $(function () {
 	var $rolls_1_1 = $('.rolls-js');
 
 	if ($rolls_1_1.length) {
-		var myRolls = $rolls_1_1.msRolls({
-			// collapsed: true
+
+		var options = {
+			collapsed: true
 			// , modifiers: {
 			// 	activeClass: 'tab-poookkhh'
 			// }
-			animationSpeed: 250
+			, animationSpeed: 500
+			, accessibility: false // Включить переходы табом
 			// , event: 'mouseenter'
 			// , collapsed: false
 			, modifiers: {
 				activeClass: 'is-open'
 			}
-			, afterEachClose: function () {
-				console.log('.afterEachClose');
-			}
-			, afterEachOpen: function () {
-				console.log('.afterEachOpen');
-			}
-			, afterClose: function () {
-				console.log('.afterClose');
-
-				// Удалить класс с элементов
-				// myRolls.msRolls('toggleClass', [$('html')], false);
+			, beforeOpen: function () {
+				console.log('.beforeOpen');
 			}
 			, afterOpen: function () {
 				console.log('.afterOpen');
-
-				// Добавить класс на элементы
-				// myRolls.msRolls('toggleClass', [$('html')]);
 			}
-		});
+			, beforeClose: function () {
+				console.log('.beforeClose');
+			}
+			, afterClose: function () {
+				console.log('.afterClose');
+			}
+		};
+
+		var myRolls = $rolls_1_1.on('msRolls.afterInit', function () {
+			console.log('Plugin MS-Rolls has initialized!');
+		}).msRolls(options);
 
 		// Тестирование метода "open"
 		// Первый параметр: название метода

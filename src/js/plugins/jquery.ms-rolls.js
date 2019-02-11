@@ -1,5 +1,5 @@
-/*! jquery.ms-clap.js
- * Version: 2018.1.0
+/*! jquery.ms-rolls.js
+ * Version: 2019.1.0
  * Author: Astronim*
  * Description: Extended toggle class
  */
@@ -9,349 +9,310 @@
 
 	var MsRolls = function(element, config){
 		var self,
-			$element = $(element),
-			$panel = $(config.panel, $element),
-			isAnimated = false,
-			// activeId,
-			pref = 'ms-rolls__',
-			initClasses = {
-				element: pref + 'container',
-				item: pref + 'item',
-				header: pref + 'header',
-				hand: pref + 'hand',
-				panelWrap: pref + 'panel-wrap',
-				panel: pref + 'panel'
-			};
+				$element = $(element),
+				$panel = $(config.panel, $element),
+				isAnimated = false,
+				pref = 'ms-rolls',
+				pluginClasses = {
+					initClass: pref + '_initialized'
+				},
+				focusElements = 'input, a, [tabindex], area, select, textarea, button, [contentEditable=true]' + config.hand,
+				$panelWrap,
+				relativeStyles = {
+					position: '',
+					left: '',
+					top: '',
+					width: ''
+				},
+				showStyles = {
+					opacity: '',
+					'user-select': '',
+					'pointer-event': '',
+					'z-index': ''
+				},
+				absoluteStyles = {
+					position: 'absolute',
+					left: 0,
+					top: 0,
+					width: '100%'
+				},
+				hideStyles = {
+					opacity: 0,
+					'user-select': 'none',
+					'pointer-event': 'none',
+					'z-index': -1
+				};
 
 		var dataClpsd = $element.attr('data-rolls-collapsed');
 		var collapsed = (dataClpsd === "true" || dataClpsd === "false") ? dataClpsd === "true" : config.collapsed;
 
 		var callbacks = function () {
-			/** track events */
-			$.each(config, function (key, value) {
-				if (typeof value === 'function') {
-					$element.on('msRolls.' + key, function (e, param) {
-						return value(e, $element, param);
+					/** track events */
+					$.each(config, function (key, value) {
+						if (typeof value === 'function') {
+							$element.on('msRolls.' + key, function (e, param) {
+								return value(e, $element, param);
+							});
+						}
 					});
-				}
-			});
-		}, open = function (_panel) {
+				},
+				tabindexOn = function (_element) {
+					// Все элементы _element поставить в фокус-очередь
+					_element.attr('tabindex', '0');
+				},
+				tabindexOff = function (_element) {
+					// Все элементы _element убрать с фокус-очереди
+					_element.attr('tabindex', '-1');
+				},
+				open = function ($_panel) {
+					if (!$_panel.length) {
+						return false;
+					}
 
-			// console.log('open');
-			var callback = arguments[1],
-				// $activePanelWrap = _panel.parent(),
-				// $activeHeader = $activePanelWrap.prev(config.header),
+					var $activePanelWrap = $_panel.parent(), // Ближайшая родительская обертка активной Панели
+							$activeParentsPanels = $_panel.parentsUntil(element, config.panel), // Все родительские Панели активной Панели
+							$otherActivePanelsWrap = $activeParentsPanels.parent(), // Все родительские Обертка активной Панели не включая ближайшую
+							$otherActiveHeader = $otherActivePanelsWrap.prev(config.header), // Все родительские Обертка активной Панели не включая ближайшую
+							$otherActiveParentsItems = $activeParentsPanels.parentsUntil(element, config.item) // Все родительские Элементы активной Панели
+							;
 
-				$activeHeader = _panel.parentsUntil(element).prev(config.header),
-				$activePanelWrap = $activeHeader.next(),
-				$activePanel = $activePanelWrap.children(config.panel);
+					// 1) Открыть все родительские Панели (без анимации)
+					// Добавить класс на активные родительские (не ближайшие) элементы
+					$activeParentsPanels.add($otherActiveParentsItems).add($otherActiveHeader).add($(config.hand, $otherActiveHeader)).addClass(config.modifiers.activeClass);
 
-			var panelLength = 0;
-			$.each($activePanel, function (index, panel) {
-				if (!$(panel).data('opened')) {
-					++panelLength;
-				}
-			});
+					// Открывать родительские Панели необходимо, если, например, открывается вложенная Панель методом "open"
+					$activeParentsPanels
+							.css(relativeStyles)
+							.css(showStyles)
+							.data('active', true).attr('data-active', true); // Указать в data-атрибуте, что Панель открыта;
 
-			// Открыть панель
-			$.each($activePanel, function (index, panel) {
+					// 2) Открыть текущую панель (с анимацией)
+					$element.trigger('msRolls.beforeOpen');// Вызов события перед открытием текущей панели
 
-				var $eachPanel = $(panel);
-
-				// Выборка только закрытых панелей на момент открытия
-				var opened = 'opened';
-				if (!$eachPanel.data(opened)) {
-					var $eachPanelWrap = $eachPanel.parent(),
-						$eachHeader = $eachPanelWrap.prev(),
-						$eachItem = $eachPanel.closest(config.item);
+					var $activeItems = $_panel.closest(config.item), // Родительский Элемент активной Панели
+							$activeHeader = $activePanelWrap.prev(config.header); // Шапка активной Панели
 
 					// Добавить класс на активные элементы
-					toggleClass([$eachItem, $eachHeader, $(config.hand, $eachHeader), $eachPanel], true);
+					$_panel.add($activeItems).add($activeHeader).add($(config.hand, $activeHeader)).addClass(config.modifiers.activeClass);
 
-					if (index === panelLength - 1) {
-						// Закрыть соседние панели,
-						// если открыты
-						if (collapsed) {
-							$.each($(config.panel, $eachItem.siblings()), function (index, panel) {
-								$(panel).data('opened') && closePanel($(panel));
-							});
+					var callback = arguments[1];
+
+					$_panel.css(showStyles); // Панель делаем видимой до начала анимации
+
+					changeHeight($activePanelWrap, $_panel.outerHeight(), function () {
+						$_panel
+								.css(relativeStyles)
+								.data('active', true).attr('data-active', true); // Указать в data-атрибуте, что Панель открыта
+
+						$activePanelWrap.css({
+							position: '',
+							overflow: '',
+							'height': ''
+						});
+
+						if (config.accessibility) {
+							// Поставить в фокус-очередь все элементы с фокусировкой внутри активной Панели
+							tabindexOn($(focusElements, $_panel));
+
+							// В неактивных Панелях все элементы с фокусировкой убрать с фокус-очереди
+							tabindexOff($(focusElements, $_panel.find(config.panel).filter(function () {
+								return !$(this).data('active');
+							})));
 						}
 
-						// Открываем, анимируя высоту, только ТЕКУЩУЮ
-						// или первую, если текущая открывается внутри закрытых панелей
-						// (например, при открытии по хештегу или через метод)
-						// Т.е., если родительская панель закрыта, то анимируется только она,
-						// А внутренние панели открываются без анимации (в т.ч. текущая)
-						changeHeight($eachPanelWrap, $eachPanel.outerHeight(), function () {
-							$eachPanel.css({
-								position: 'relative',
-								left: 'auto',
-								top: 'auto'
-							});
+						// Вызов события после открытия текущей панели
+						$element.trigger('msRolls.afterOpen');
 
-							// Указать в data-атрибуте, что панель открыта
-							$eachPanel.data('opened', true);
-
-							// Вызов события после открытия каждой панели панели
-							$element.trigger('msRolls.afterEachOpen');
-
-							// Вызов события после открытия текущей панели
-							$element.trigger('msRolls.afterOpen');
-
-							// Вызов callback функции после открытия панели
-							if (typeof callback === "function") {
-								callback();
-							}
-						});
-					} else {
-						$eachPanel.css({
-							position: 'relative',
-							left: 'auto',
-							top: 'auto'
-						});
-
-						// Указать в data-атрибуте, что панель открыта
-						$eachPanel.data(opened, true);
-
-						// Вызов события после открытия каждой панели панели
-						$element.trigger('msRolls.afterEachOpen');
-					}
-				}
-
-			});
-
-		}, close = function (_panel) {
-			var callback = arguments[1];
-
-			// Закрыть панели внутры текущей,
-			// если открыты
-			var $childrenPanel = $(config.panel, _panel);
-			$.each($childrenPanel, function () {
-				var $eachPanel = $(this);
-				$eachPanel.data('opened') && closePanel($eachPanel);
-			});
-
-			// Закрыть текущую панель
-			closePanel(_panel, function () {
-				// Вызов callback функции после закрытия панели
-				if (typeof callback === "function") {
-					callback();
-				}
-			});
-
-		}, closePanel = function (_panel) {
-			// console.log('close');
-			if (_panel.data('opened')) {
-				var callback = arguments[1],
-
-					$currentPanelWrap = _panel.parent(),
-					$currentHeader = $currentPanelWrap.prev(config.header);
-
-				// Удалить активный класс со всех элементов
-				toggleClass([_panel.closest(config.item), $currentHeader, $(config.hand, $currentHeader), _panel], false);
-
-				// Закрыть панель
-				changeHeight($currentPanelWrap, 0, function () {
-					// Вызов события после закрытия каждой панели
-					$element.trigger('msRolls.afterEachClose');
-
-					_panel
-						.css({
-							position: 'absolute',
-							left: 0,
-							top: 0
-						})
-						.data('opened', false);// Указать в data-атрибуте, что панель закрыта
-
-					// Вызов callback функции после закрытия панели
-					if (typeof callback === "function") {
-						callback();
-					}
-				});
-			}
-		}, changeHeight = function (_element, _val) {
-			var callback = arguments[2];
-
-			_element.animate({
-				'height': _val
-			}, config.animationSpeed, function () {
-
-				_element.css({
-					'height': ''
-				});
-
-				if (typeof callback === "function") {
-					callback();
-				}
-
-				isAnimated = false;
-			});
-		}, toggleClass = function (arr) {
-			var remove = arguments[1] === false;
-			$.each(arr, function () {
-				var iElem = this;
-				// если массив, то устанавливаем класс на каждый из элемент этого массива
-				if ($.isArray(iElem)) {
-					$.each(iElem, function () {
-						var $curElem = $(this);
-						if ($curElem.length) {
-							// Если второй аргумент false, то удаляем класс
-							if (remove) {
-								$curElem.removeClass(config.modifiers.activeClass);
-							} else {
-								// Если второй аргумент не false, то добавляем класс
-								$curElem.addClass(config.modifiers.activeClass);
-							}
-						} else {
-							// В консоль вывести предупреждение,
-							// если указанного элемента не существует.
-							console.warn('Element "' + this + '" does not exist!')
+						// Вызов callback функции после открытия панели
+						if (typeof callback === "function") {
+							callback();
 						}
 					});
-				} else {
-					// Если второй аргумент false, то удаляем класс
-					if (remove) {
-						$(iElem).removeClass(config.modifiers.activeClass);
-					} else {
-						// Если второй аргумент не false, то добавляем класс
-						$(iElem).addClass(config.modifiers.activeClass);
+
+					if (collapsed) {
+						// Проверить у соседей всех родительских Элементов наличие активных Панелей
+						// Закрыть эти Панели
+						var $siblingsPanel = $_panel.parentsUntil($element, config.item).siblings().find(config.panel).filter(function () {
+							return $(this).data('active');
+						});
+
+						closePanel($siblingsPanel, function () {
+							isAnimated = false; // Анимация завершена
+						});
 					}
-				}
-			});
-		}, events = function () {
-			$element.on(config.event + ' focus', config.hand, function (event) {
-				// console.log("isAnimated: ", isAnimated);
+				},
+				close = function ($_panel) {
+					if (!$_panel.length) {
+						return false;
+					}
+					// Закрыть отдельно все вложенные активные панели,
+					// И отдельно текущую панель.
+					// Это сделано с целью определения события закрытия текущей панели отдельно.
 
-				// console.log("event: ", event);
-				// console.log(1);
+					if (collapsed) {
+						// Закрыть активные панели внутри текущей
+						var $childrenOpenedPanel = $(config.panel, $_panel).filter(function () {
+							return $(this).data('active');
+						});
 
-				// Если панель во время клика находится в процессе анимации,
-				// то выполнение функции прекратится
-				if (isAnimated) {
-					event.preventDefault();
-					return false;
-				}
+						closePanel($childrenOpenedPanel);
+					}
 
-				var $currentHand = $(this);
-
-				// Если текущий пункт не содержит панелей,
-				// то выполнение функции прекратится
-				if (!$currentHand.closest(config.item).has(config.panel).length) {
-					return false;
-				}
-
-				event.preventDefault();
-
-				// Начало анимирования панели
-				// Включить флаг анимации
-				isAnimated = true;
-
-				// console.log("Текущая панель открыта?: ", $currentPanel.data('opened'));
-
-				var $currentPanel = $currentHand.closest(config.header).next().children(config.panel);
-
-				if (!$currentPanel.data('opened')) {
-					// Открыть текущую панель
-					open($currentPanel);
-				} else {
 					// Закрыть текущую панель
-					close($currentPanel, function () {
-						// callback after current panel close
-						$element.trigger('msRolls.afterClose');
+					$element.trigger('msRolls.beforeClose'); // Вызов события перед закрытием текущей панели
+					var callback = arguments[1];
+
+					closePanel($_panel, function () {
+						$element.trigger('msRolls.afterClose'); // Вызов события после закрытия текущей панели
+
+						// Вызов callback функции после закрытия панели
+						if (typeof callback === "function") {
+							callback();
+						}
 					});
-				}
-			});
-		}, onfocus = function () {
-			$element.on('focus', config.hand, function (event) {
-				// Если во время получения фокуса панель находится в процессе анимации,
-				// то выполнение функции прекратится
-				if (isAnimated) {
-					event.preventDefault();
-					return false;
-				}
+				},
+				closePanel = function ($_panel) {
+					if (!$_panel.length) {
+						return false;
+					}
 
-				var $currentHand = $(this);
+					var callback = arguments[1],
+							$curPanelWrap = $_panel.parent(); // родительская обертка активной Панели
 
-				// Если текущий пункт не содержит панелей,
-				// то выполнение функции прекратится
-				if (!$currentHand.closest(config.item).has(config.panel).length) {
-					return false;
-				}
+					var $curItems = $_panel.closest(config.item), // родительский Элемент активной Панели
+							$curHeader = $curPanelWrap.prev(config.header); // Шапка активной Панели
 
-				event.preventDefault();
+					// Удалить активный класс со всех элементов
+					$_panel.add($curItems).add($curHeader).add($(config.hand, $curHeader)).removeClass(config.modifiers.activeClass);
 
-				// Открыть текущую панель
-				var $currentPanel = $currentHand.closest(config.header).next().children(config.panel);
+					// Закрыть панель
+					changeHeight($curPanelWrap, 0, function () {
+						$_panel
+								.css(absoluteStyles)
+								.css(hideStyles)
+								.data('active', false).attr('data-active', false); // Указать в data-атрибуте, что панель закрыта
 
-				if (!$currentPanel.data('opened')) {
-					// Начало анимирования панели
-					// Включить флаг анимации
-					isAnimated = true;
+						$curPanelWrap.css('height', '');
 
-					open($currentPanel);
-				}
-			})
-		}, init = function () {
-			// $element.addClass(initClasses.element);
-			// $(config.item, $element).addClass(initClasses.item);
-			// $(config.header, $element).addClass(initClasses.header);
-			// $(config.panel, $element).addClass(initClasses.panel);
-			$(config.hand, $element)
-				// .addClass(initClasses.hand)
-				.attr('tabindex', 0);
+						// Web accessibility
+						if (config.accessibility) {
+							// Убрать с фокус-очереди все элементы с фокусировкой внутри текущей Панели
+							tabindexOff($(focusElements, $_panel));
+						}
 
-			var $panelWrap = $('<div/>', {
-				class: initClasses.panelWrap,
-				css: {
-					display: 'block',
-					position: 'relative',
-					overflow: 'hidden'
-				}
-			});
+						// Вызов callback функции после закрытия панели
+						if (typeof callback === "function") {
+							callback();
+						}
+					});
+				},
+				changeHeight = function ($_wrap, _val) {
+					var callback = arguments[2];
 
-			$panel.wrap($panelWrap);
+					$_wrap.css({
+						position: 'relative',
+						overflow: 'hidden'
+					}).animate({
+						'height': _val
+					}, config.animationSpeed, function () {
 
-			$.each($panel, function (index, panel) {
-				$(panel).css({
-					display: 'block',
-					width: '100%'
-				});
+						if (typeof callback === "function") {
+							callback();
+						}
 
-				if($(panel).hasClass(config.modifiers.activeClass)) {
+						isAnimated = false;
+					});
+				},
+				events = function () {
+					$element.on(config.event, config.hand, function (event) {
+						// Если панель во время клика находится в процессе анимации, то выполнение функции прекратится
+						if (isAnimated) {
+							event.preventDefault();
+							return false;
+						}
 
-					var $activeHeader = $(panel).parentsUntil(element).prev(config.header),
-						$activePanel = $activeHeader.next().children(config.panel);
+						var $currentHand = $(this);
+						// Если текущий пункт не содержит панелей,
+						// то выполнение функции прекратится
+						if (!$currentHand.closest(config.item).has(config.panel).length) {
+							return false;
+						}
+
+						// Начало анимирования панели
+						// Включить флаг анимации
+						isAnimated = true;
+
+						event.preventDefault();
+
+						var $currentPanel = $currentHand.closest(config.header).next().children(config.panel);
+
+						if ($currentPanel.data('active')) {
+							// Закрыть текущую панель
+							close($currentPanel, function () {
+								isAnimated = false; // Анимация завершина
+							});
+						} else {
+							// Открыть текущую панель
+							open($currentPanel, function () {
+								isAnimated = false; // Анимация завершина
+							});
+						}
+					});
+				},
+				init = function () {
+					$panelWrap = $('<div/>', {
+						class: 'rolls-panel-wrap-js',
+						css: {
+							position: 'relative',
+							overflow: 'hidden'
+						}
+					});
+
+					$panel.wrap($panelWrap);
+
+					$panel
+							.css(absoluteStyles)
+							.css(hideStyles);
+
+					var $activePanels = $panel.filter('.' + config.modifiers.activeClass);
 
 					// Добавить класс на активные элементы
-					toggleClass([$(panel).parents(config.item), $activePanel, $activeHeader, $(config.hand, $activeHeader)], true);
+					var $activeItems = $activePanels.parents(config.item), // Все родительские Элементы активной Панели
+							$activeHeaders = $activePanels.parentsUntil(element).prev(config.header), // Все Шапки в родительских Элементах
+							$allActivePanels = $activeHeaders.next().children(config.panel); // Все родительские Панели
 
-					$activePanel.css({
-						position: 'relative',
-						left: 'auto',
-						top: 'auto'
+					$activePanels.add($activeItems).add($activeHeaders).add($allActivePanels).add($(config.hand, $activeHeaders)).addClass(config.modifiers.activeClass);
+
+					// Открыть все родительские панели
+					$allActivePanels.css(relativeStyles).css(showStyles);
+
+					// Удалить лишние внутренние стили у оберток активных Панелей
+					$allActivePanels.parent().css({
+						// position: '',
+						overflow: ''
 					});
 
-					// Указать в data-атрибуте, что панель(и) открыта(ы)
-					$activePanel.data('opened', true);
-				} else {
-					$(panel).css({
-						position: 'absolute',
-						left: 0,
-						top: 0
-					})
-				}
-			});
+					// На активные панели установить дата-атрибут active сo заначением true
+					$allActivePanels.data('active', true).attr('data-active', true);
 
-			$element.addClass(config.modifiers.init);
+					// Web accessibility
+					if (config.accessibility) {
+						// Переключатель поставить в фокус-очередь
+						tabindexOn($(config.hand, $element));
+						// Все элементы с фокусировкой внутри панелей убрать с фокус-очереди
+						tabindexOff($(focusElements, $panel));
+						// Все элементы с фокусировкой внутри активных панелей поставить в фокус-очередь
+						tabindexOn($(focusElements, $allActivePanels));
+					}
 
-			$element.trigger('msRolls.afterInit');
-		};
+					$element.addClass(pluginClasses.initClass);
+					$element.trigger('msRolls.afterInit');
+				};
 
 		self = {
 			callbacks: callbacks,
 			open: open,
 			close: close,
-			toggleClass: toggleClass,
 			events: events,
 			// onfocus: onfocus,
 			init: init
@@ -373,7 +334,6 @@
 				_[i].msRolls.init();
 				_[i].msRolls.callbacks();
 				_[i].msRolls.events();
-				// _[i].msRolls.onfocus();
 			}
 			else {
 				ret = _[i].msRolls[opt].apply(_[i].msRolls, args);
@@ -386,17 +346,16 @@
 	};
 
 	$.fn.msRolls.defaultOptions = {
-		item: '.rolls__item-js',
-		header: '.rolls__header-js',
-		hand: '.rolls__hand-js',
-		panel: '.rolls__panel-js',
-		event: 'click',
-		animationSpeed: 300,
-		collapsed: true,
+		item: '.rolls__item-js', // Общий ближайший родитель (Далее Элемент) для переключателя и разворачивающейся панели (Далее Панель)
+		header: '.rolls__header-js', // Обертка для переключателя (Далее Шапка)
+		hand: '.rolls__hand-js', // Переключатель
+		panel: '.rolls__panel-js', // Панель
+		event: 'click', // Событие, которое разворачивает/сворачивает Панель
+		animationSpeed: 300, // Скорость анимации Панели
+		collapsed: true, // Параметр, указывающий на необходимось сворачивать ранее открытые Панели
+		accessibility: false, // Enables tabbing
 		modifiers: {
-			init: 'rolls--initialized',
-			activeClass: 'rolls--active',
-			currentClass: 'current'
+			activeClass: 'rolls-active' // Класс, который добавляется, на активный элементы
 		}
 	};
 
