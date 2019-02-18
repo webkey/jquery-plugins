@@ -1,7 +1,7 @@
 /*! jquery.ms-rolls.js
  * Version: 2019.1.0
  * Author: Astronim*
- * Description: Extended toggle class
+ * Description: Rolls
  */
 
 ;(function ($) {

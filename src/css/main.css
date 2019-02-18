@@ -355,7 +355,7 @@ body {
 	-webkit-font-smoothing: antialiased;
 	height: 100%;
 	color: #262626;
-	background: white url(../img/empty.png) repeat fixed;
+	background: white url(../../img/empty.png) repeat fixed;
 	min-width: 320px;
 }
 
@@ -618,7 +618,7 @@ code.l, code.red, code.green {
 
 .warning {
 	display: block;
-	background-image: url(../img/icon-warning.svg);
+	background-image: url(../../img/icon-warning.svg);
 	background-repeat: no-repeat;
 	background-position: 10px 10px;
 	background-size: 24px;
@@ -1303,7 +1303,7 @@ input[type="radio"], input[type="checkbox"] {
 /*logo*/
 .logo {
 	float: left;
-	background: url(../img/logo.png) no-repeat;
+	background: url(../../img/logo.png) no-repeat;
 	width: 220px;
 	height: 85px;
 	text-indent: -9999px;

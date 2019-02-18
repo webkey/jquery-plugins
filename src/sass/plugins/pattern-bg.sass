@@ -1,0 +1,38 @@
+$size-bg-top: 584px 600px // height width
+$size-bg-center: 600px 600px // height width
+$size-bg-bottom: 200px 600px // height width
+
+body.pattern-bg
+  position: relative
+  background-position: center #{nth($size-bg-top, 1)}
+  background-image: url(../../img/pattern-bg/bg-center.png)
+  background-color: white
+  background-attachment: scroll
+  background-repeat: repeat
+
+  .wrapper
+    position: relative
+    z-index: 1
+    //min-height: nth($size, 1) * 2
+
+  .bg-t, .bg-b
+    position: absolute
+    left: 0
+    width: 100%
+    background-repeat: repeat-x
+    background-position: center 0
+    background-color: white
+    z-index: -1
+
+  .bg-t
+    top: 0
+    height: nth($size-bg-top, 1)
+    background-image: url(../../img/pattern-bg/bg-top.png)
+    //outline: 1px solid blue
+
+  .bg-b
+    bottom: 0
+    //outline: 1px solid red
+    height: nth($size-bg-bottom, 1)
+    background-image: url(../../img/pattern-bg/bg-bottom.png)
+  //opacity: 0.2
