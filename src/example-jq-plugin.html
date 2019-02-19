@@ -42,7 +42,9 @@
 	<!-- >>> head.tpl END <<< -->
 	<div class="layout-flood user-content">
 		<h1>example-jq-plugin</h1>
-		<h2>Примеры использования</h2>
+		<h2>Examples and demos</h2>
+		<p>{{Краткое описание}}</p>
+		<p class="warning">{{Важная информация}}</p>
 		<h3>example-jq-plugin 1</h3>
 		<!--Code example-->
 		<pre class="snippet"><code class="html">&lt;div class="example-jq-plugin example-jq-plugin-js"&gt;
@@ -54,7 +56,11 @@
 		</div>
 		<br>
 		<br>
-		<h2>Документация</h2>
+		<br>
+		<br>
+		<!--==== API ====-->
+		<!--==================================================-->
+		<h2>API</h2>
 		<h3>Used Files:</h3>
 		<ul>
 			<li>__example-jq-plugin.html</li>
@@ -62,6 +68,8 @@
 			<li>common-example-jq-plugin.js</li>
 			<li>example-jq-plugin.sass</li>
 		</ul>
+		<!--==== Options ====-->
+		<!--==================================================-->
 		<h3>Options</h3>
 		<ul>
 			<li>
@@ -69,23 +77,41 @@
 				<div><i class="gray">Defaults:</i> <code class="red">someValue</code></div>
 				<div><i class="gray">Type:</i> <code class="red">String</code></div>
 				<div><i class="gray">Values:</i> <code class="red">otherValue</code></div>
-				<div><i class="gray">Description:</i> Описание</div>
+				<div><i class="gray">Description:</i></div>
+				<div>Описание</div>
 			</li>
 		</ul>
-		<h3>События</h3>
+		<!--==== Events ====-->
+		<!--==================================================-->
+		<h3>Events</h3>
 		<ul>
 			<li>
 				<div><b>afterInit</b></div>
+				<div><i class="gray">Description:</i></div>
+				<div>Описание</div>
 				<div>
 					<pre class="snippet"><code class="javascript">afterInit: function (e, el) {}</code></pre>
 				</div>
 			</li>
 		</ul>
-		<h3>Глобальные настройки</h3>
+		<!--==== Methods ====-->
+		<!--==================================================-->
+		<h3>Methods</h3>
+		<ul>
+			<li>
+				<div><b>afterInit</b></div>
+				<div><i class="gray">Description:</i></div>
+				<div>Описание</div>
+				<div>
+					<pre class="snippet"><code class="javascript">afterInit: function (e, el) {}</code></pre>
+				</div>
+			</li>
+		</ul>
+		<h3>Global settings</h3>
 		<div>Переопределять настройки плагина глобально можно через</div>
-		<div><code class="red">$.fn.tClass.defaultOptions</code></div>
+		<div><code class="red">$.fn.exampleJqPluginName.defaultOptions</code></div>
 		<div><b>Например:</b></div>
-		<div><code class="red">$.fn.tClass.defaultOptions.someProperty = false;</code></div>
+		<div><code class="red">$.fn.exampleJqPluginName.defaultOptions.someProperty = value;</code></div>
 	</div>
 	<!-- >>> foot.tpl <<< -->
 	<!--footer-->
