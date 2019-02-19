@@ -1,4 +1,4 @@
-/*! jquery.ms-rolls.js
+/**! jquery.ms-rolls.js
  * Version: 2019.1.0
  * Author: Astronim*
  * Description: Rolls
@@ -330,8 +330,8 @@
     for (i = 0; i < l; i++) {
       if (typeof opt === 'object' || typeof opt === 'undefined') {
         _[i].msRolls = new MsRolls(_[i], $.extend(true, {}, $.fn.msRolls.defaultOptions, opt));
-        _[i].msRolls.init();
         _[i].msRolls.callbacks();
+        _[i].msRolls.init();
         _[i].msRolls.events();
       } else {
         ret = _[i].msRolls[opt].apply(_[i].msRolls, args);

@@ -6,47 +6,46 @@
 <!--<![endif]-->
 
 <head>
-	<meta charset="UTF-8">
-	<title>ms-rolls</title>
-	<!--Mobile optimized-->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.2">
-	<!--Theme color-->
-	<meta name="theme-color" content="#fff">
-	<!--SEO-->
-	<meta name="description" content="описание">
-	<meta name="keywords" content="ключевые слова">
-	<meta name="yandex-verification" content="XXXXXXXXXXXXXX">
-	<meta name="google-site-verification" content="XXXXXXXXXXXXXX">
-	<!--The Open Graph protocol-->
-	<meta property="og:type" content="website">
-	<meta property="og:locale" content="ru_RU">
-	<meta property="og:url" content="http://localhost:3000/index.html">
-	<meta property="og:title" content="Название">
-	<meta property="og:image" content="http://localhost:3000/img/logo.png">
-	<meta property="og:description" content="Описание">
-	<meta property="og:site_name" content="Расширенное название">
-	<!--Favicon-->
-	<link rel="shortcut icon" href="favicon.ico">
-	<link rel="icon" sizes="16x16 32x32 64x64" href="favicon.ico">
-	<link rel="apple-touch-icon" href="apple-touch-icon.png">
-	<!--Style-->
-	<link rel="stylesheet" href="css/libs.min.css">
-	<link rel="stylesheet" href="css/main.css">
-	<link rel="stylesheet" href="css/plugins/ms-rolls.css">
-	<!--Modernizr-->
-	<script src="js/modernizr.min.js"></script>
+  <meta charset="UTF-8">
+  <title>ms-rolls</title>
+  <!--Mobile optimized-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.2">
+  <!--Theme color-->
+  <meta name="theme-color" content="#fff">
+  <!--SEO-->
+  <meta name="description" content="описание">
+  <meta name="keywords" content="ключевые слова">
+  <meta name="yandex-verification" content="XXXXXXXXXXXXXX">
+  <meta name="google-site-verification" content="XXXXXXXXXXXXXX">
+  <!--The Open Graph protocol-->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:url" content="http://localhost:3000/index.html">
+  <meta property="og:title" content="Название">
+  <meta property="og:image" content="http://localhost:3000/img/logo.png">
+  <meta property="og:description" content="Описание">
+  <meta property="og:site_name" content="Расширенное название">
+  <!--Favicon-->
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="icon" sizes="16x16 32x32 64x64" href="favicon.ico">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <!--Style-->
+  <link rel="stylesheet" href="css/libs.min.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/plugins/ms-rolls.css">
+  <!--Modernizr-->
+  <script src="js/modernizr.min.js"></script>
 </head>
 
 <body class="page-ms-rolls">
-	<!--[if lt IE 9]> <div class="browserupgrade"><p>You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p></div> <![endif]-->
-	<!-- >>> head.tpl END <<< -->
-	<div class="layout-flood user-content">
-		<h1>ms-rolls</h1>
-		<p>Скипты, которые должны отрабатывать внутри Панелей, желательно подключать после инициализации плагина</p>
-		<h2>Примеры использования</h2>
-		<h3>.ms-rolls-js</h3>
-		<!--Code example-->
-		<pre class="snippet">
+  <!--[if lt IE 9]> <div class="browserupgrade"><p>You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p></div> <![endif]-->
+  <div class="layout-flood user-content">
+    <h1>ms-rolls</h1>
+    <p>Скипты, которые должны отрабатывать внутри Панелей, желательно подключать после инициализации плагина</p>
+    <h2>Примеры использования</h2>
+    <h3>.ms-rolls-js</h3>
+    <!--Code example-->
+    <pre class="snippet">
 <code class="html">&lt;div class="rolls rolls-js"&gt;
 
   &lt;div class="rolls__item rolls__item-js"&gt;
@@ -79,282 +78,281 @@
   &lt;/div&gt;
 
 &lt;/div&gt;</code></pre>
-		<!--Code example end-->
-		<div class="rolls rolls-js">
-			<!--rolls-->
-			<!--(1) FIRST level - START-->
-			<div class="rolls__item rolls__item-js">
-				<div class="rolls__header rolls__header-js">
-					<a href="#">{{Title 1.1}}</a> <a href="#" class="rolls__angle rolls__hand-js">&nbsp;</a>
-				</div>
-				<div class="rolls__panel rolls__panel-js">
-					<div>{{Content 1.1}}</div>
-					<!--(2) SECOND level - START-->
-					<div class="rolls__item rolls__item-js">
-						<div class="rolls__header rolls__header-js">
-							<a href="#">{{Title 1.1 - 2.1}}</a> <a href="#" class="rolls__angle rolls__hand-js">&nbsp;</a>
-						</div>
-						<div class="rolls__panel rolls__panel-js">
-							<div>{{Content 1.1 - 2.1}}</div>
-							<!--(3) THIRD level - START-->
-							<div class="rolls__item rolls__item-js">
-								<div class="rolls__header rolls__header-js">
-									<a href="#">{{Title 1.1 - 2.1 - 3.1}}</a> <a href="#" class="rolls__angle rolls__hand-js">&nbsp;</a>
-								</div>
-								<div class="rolls__panel rolls__panel-js is-open">
-									<div>{{Content 1.1 - 2.1 - 3.1}}</div>
-									<!--roll next level-->
-								</div>
-							</div>
-							<!--(3) THIRD level - END-->
-						</div>
-					</div>
-					<div class="rolls__item rolls__item-js">
-						<div class="rolls__header rolls__header-js">
-							<a href="#">{{Title 1.1 - 2.2}}</a> <a href="#" class="rolls__angle rolls__hand-js">&nbsp;</a>
-						</div>
-						<div class="rolls__panel rolls__panel-js">
-							<div>{{Content 1.1 - 2.2}}</div>
-							<!--roll next level-->
-						</div>
-					</div>
-					<!--(2) SECOND level - END-->
-				</div>
-			</div>
-			<div class="rolls__item rolls__item-js">
-				<div class="rolls__header rolls__header-js">
-					<a href="#">{{Title 1.2}}</a> <a href="#" class="rolls__angle rolls__hand-js">&nbsp;</a>
-				</div>
-				<div class="rolls__panel rolls__panel-js">
-					<div>{{Content 1.2}} <br> {{Content 1.2}}</div>
-					<!--(2) SECOND level - START-->
-					<div class="rolls__item rolls__item-js">
-						<div class="rolls__header rolls__header-js">
-							<a href="#">{{Title 1.2 - 2.1}}</a> <a href="#" class="rolls__angle rolls__hand-js">&nbsp;</a>
-						</div>
-						<div class="rolls__panel rolls__panel-js" id="hashExpl">
-							<div>{{Content 1.2 - 2.1}} <br> {{Content 1.2 - 2.1}}</div>
-							<!--roll next level-->
-						</div>
-					</div>
-					<!--(2) SECOND level - END-->
-				</div>
-			</div>
-			<div class="rolls__item rolls__item-js">
-				<div class="rolls__header rolls__header-js">
-					<a href="#">{{Title 1.3}}</a> <a href="#" class="rolls__angle rolls__hand-js">&nbsp;</a>
-				</div>
-				<div class="rolls__panel rolls__panel-js">
-					<div>{{Content 1.3}} <br> {{Content 1.3}}</div>
-					<!--(2) SECOND level - START-->
-					<div class="rolls__item rolls__item-js">
-						<div class="rolls__header rolls__header-js">
-							<a href="#">{{Title 1.3 - 2.1}}</a> <a href="#" class="rolls__angle rolls__hand-js">&nbsp;</a>
-						</div>
-						<div class="rolls__panel rolls__panel-js">
-							<div>{{Content 1.3 - 2.1}} <br> {{Content 1.3 - 2.1}}</div>
-							<!--roll next level-->
-						</div>
-					</div>
-					<!--(2) SECOND level - END-->
-				</div>
-			</div>
-			<!--(1) FIRST level - END-->
-			<!--rolls end-->
-		</div>
-		<div>
-			<button class="open-panel-js">Открыть панель #hashExpl</button>
-		</div>
-		<br> <br>
-		<h2>Документация</h2>
-		<h3>Used Files:</h3>
-		<ul>
-			<li>__ms-rolls.html</li>
-			<li>jquery.ms-rolls.js</li>
-			<li>common-ms-rolls.js</li>
-			<li>ms-rolls.sass</li>
-		</ul>
-		<h3>Options</h3>
-		<ul>
-			<li>
-				<div><b>item:</b></div>
-				<div><i class="gray">Default:</i> <code class="red">'.rolls__item-js'</code></div>
-				<div><i class="gray">Type:</i> <code class="red">String</code></div>
-				<div><i class="gray">Values:</i> <code class="red">'.your-class'</code></div>
-				<div><i class="gray">Description:</i></div>
-				<div>Общий ближайший родитель (Элемент) для переключателя и разворачивающейся панели (Далее Панель)</div>
-			</li>
-			<li>
-				<div><b>header:</b></div>
-				<div><i class="gray">Default:</i> <code class="red">'.rolls__header-js'</code></div>
-				<div><i class="gray">Type:</i> <code class="red">String</code></div>
-				<div><i class="gray">Values:</i> <code class="red">'.your-class'</code></div>
-				<div><i class="gray">Description:</i></div>
-				<div>Обертка для переключателя (Шапка)</div>
-			</li>
-			<li>
-				<div><b>panel:</b></div>
-				<div><i class="gray">Default:</i> <code class="red">'.rolls__panel-js'</code></div>
-				<div><i class="gray">Type:</i> <code class="red">String</code></div>
-				<div><i class="gray">Values:</i> <code class="red">'.your-class'</code></div>
-				<div><i class="gray">Description:</i></div>
-				<div>Панель. Элемент, который будет открываться/закрываться</div>
-			</li>
-			<li>
-				<div><b>hand:</b></div>
-				<div><i class="gray">Default:</i> <code class="red">'.rolls__hand-js'</code></div>
-				<div><i class="gray">Type:</i> <code class="red">String</code></div>
-				<div><i class="gray">Values:</i> <code class="red">'.your-class'</code></div>
-				<div><i class="gray">Description:</i></div>
-				<div>Переключатель. Элемент по клику (ховеру) происходить открытие или закрытие Панели</div>
-			</li>
-			<li>
-				<div><b>event:</b></div>
-				<div><i class="gray">Default:</i> <code class="red">'click'</code></div>
-				<div><i class="gray">Type:</i> <code class="red">String</code></div>
-				<div><i class="gray">Values:</i> <code class="red"><code class="red">'click'</code> or <code class="red">'mouseenter'</code></code>
-				</div>
-				<div><i class="gray">Description:</i></div>
-				<div>Событие, на которое происходить открытие/закрытие панели. <br> Если <code class="red">'click'</code>, то <i>по клику</i>. <br> Если <code class="red">'mouseenter'</code>, то <i>при наведении</i>.</div>
-			</li>
-			<li>
-				<div><b>animationSpeed:</b></div>
-				<div><i class="gray">Default:</i> <code class="red">300</code></div>
-				<div><i class="gray">Type:</i> <code class="red">Number</code></div>
-				<div><i class="gray">Values:</i> <code class="red">Время в милисекундах</code></div>
-				<div><i class="gray">Description:</i></div>
-				<div>Скорость анимации Панели</div>
-			</li>
-			<li>
-				<div><b>collapsed:</b></div>
-				<div><i class="gray">Default:</i> <code class="red">true</code></div>
-				<div><i class="gray">Type:</i> <code class="red">Boolean</code></div>
-				<div><i class="gray">Values:</i> <code class="red">true</code> or <code class="red">false</code></div>
-				<div><i class="gray">Description:</i></div>
-				<div>
-					Если <code class="red">true</code>, то при открытии текущей панели, закрывать открытые (если такие есть). <br> Есть возможность переопределения через data-атрибут
-					<code class="green">data-rolls-collapsed</code>. Присваивать элементу, на котором вызывается плагин. <br> Переопределить глобально можно с помощью конструкции
-					<code class="green">$.fn.msRolls.defaultOptions.collapsed = ...</code> <br> <i>data-атрибут</i> имеет приоритет выше, чем переопределение через <i>javaScript</i>
-				</div>
-			</li>
-			<li>
-				<div><b>accessibility:</b></div>
-				<div><i class="gray">Default:</i> <code class="red">false</code></div>
-				<div><i class="gray">Type:</i> <code class="red">Boolean</code></div>
-				<div><i class="gray">Values:</i> <code class="red">true/false</code></div>
-				<div><i class="gray">Description:</i></div>
-				<div>Опримизирует переключение фокуса по табу, но при этом снижает скорость выполнения скрипта</div>
-			</li>
-			<li>
-				<div><b>modifiers:</b></div>
-				<div><i class="gray">Default:</i> <code class="red">modifiers: { activeClass: 'rolls-active' }</code>
-				</div>
-				<div><i class="gray">Type:</i> <code class="red">Object</code></div>
-				<div><i class="gray">Values:</i> <code class="red">Some class</code></div>
-				<div><i class="gray">Description:</i></div>
-				<div>Модификаторы (классы) состояний</div>
-			</li>
-		</ul>
-		<h3>События</h3>
-		<ul>
-			<li>
-				<div><b>afterInit</b></div>
-				<div><code class="red">afterInit: function (e, el) {}</code></div>
-				<div>
-					<pre class="snippet"><code class="js">$('.ms-rolls-js').on('msRolls.afterInit', function () {
+    <!--Code example end-->
+    <div class="rolls rolls-js">
+      <!--rolls-->
+      <!--(1) FIRST level - START-->
+      <div class="rolls__item rolls__item-js">
+        <div class="rolls__header rolls__header-js">
+          <a href="#">{{Title 1.1}}</a> <a href="#" class="rolls__angle rolls__hand-js">&nbsp;</a>
+        </div>
+        <div class="rolls__panel rolls__panel-js">
+          <div>{{Content 1.1}}</div>
+          <!--(2) SECOND level - START-->
+          <div class="rolls__item rolls__item-js">
+            <div class="rolls__header rolls__header-js">
+              <a href="#">{{Title 1.1 - 2.1}}</a> <a href="#" class="rolls__angle rolls__hand-js">&nbsp;</a>
+            </div>
+            <div class="rolls__panel rolls__panel-js">
+              <div>{{Content 1.1 - 2.1}}</div>
+              <!--(3) THIRD level - START-->
+              <div class="rolls__item rolls__item-js">
+                <div class="rolls__header rolls__header-js">
+                  <a href="#">{{Title 1.1 - 2.1 - 3.1}}</a> <a href="#" class="rolls__angle rolls__hand-js">&nbsp;</a>
+                </div>
+                <div class="rolls__panel rolls__panel-js is-open">
+                  <div>{{Content 1.1 - 2.1 - 3.1}}</div>
+                  <!--roll next level-->
+                </div>
+              </div>
+              <!--(3) THIRD level - END-->
+            </div>
+          </div>
+          <div class="rolls__item rolls__item-js">
+            <div class="rolls__header rolls__header-js">
+              <a href="#">{{Title 1.1 - 2.2}}</a> <a href="#" class="rolls__angle rolls__hand-js">&nbsp;</a>
+            </div>
+            <div class="rolls__panel rolls__panel-js">
+              <div>{{Content 1.1 - 2.2}}</div>
+              <!--roll next level-->
+            </div>
+          </div>
+          <!--(2) SECOND level - END-->
+        </div>
+      </div>
+      <div class="rolls__item rolls__item-js">
+        <div class="rolls__header rolls__header-js">
+          <a href="#">{{Title 1.2}}</a> <a href="#" class="rolls__angle rolls__hand-js">&nbsp;</a>
+        </div>
+        <div class="rolls__panel rolls__panel-js">
+          <div>{{Content 1.2}} <br> {{Content 1.2}}</div>
+          <!--(2) SECOND level - START-->
+          <div class="rolls__item rolls__item-js">
+            <div class="rolls__header rolls__header-js">
+              <a href="#">{{Title 1.2 - 2.1}}</a> <a href="#" class="rolls__angle rolls__hand-js">&nbsp;</a>
+            </div>
+            <div class="rolls__panel rolls__panel-js" id="hashExpl">
+              <div>{{Content 1.2 - 2.1}} <br> {{Content 1.2 - 2.1}}</div>
+              <!--roll next level-->
+            </div>
+          </div>
+          <!--(2) SECOND level - END-->
+        </div>
+      </div>
+      <div class="rolls__item rolls__item-js">
+        <div class="rolls__header rolls__header-js">
+          <a href="#">{{Title 1.3}}</a> <a href="#" class="rolls__angle rolls__hand-js">&nbsp;</a>
+        </div>
+        <div class="rolls__panel rolls__panel-js">
+          <div>{{Content 1.3}} <br> {{Content 1.3}}</div>
+          <!--(2) SECOND level - START-->
+          <div class="rolls__item rolls__item-js">
+            <div class="rolls__header rolls__header-js">
+              <a href="#">{{Title 1.3 - 2.1}}</a> <a href="#" class="rolls__angle rolls__hand-js">&nbsp;</a>
+            </div>
+            <div class="rolls__panel rolls__panel-js">
+              <div>{{Content 1.3 - 2.1}} <br> {{Content 1.3 - 2.1}}</div>
+              <!--roll next level-->
+            </div>
+          </div>
+          <!--(2) SECOND level - END-->
+        </div>
+      </div>
+      <!--(1) FIRST level - END-->
+      <!--rolls end-->
+    </div>
+    <div>
+      <button class="open-panel-js">Открыть панель #hashExpl</button>
+    </div>
+    <br> <br>
+    <h2>Документация</h2>
+    <h3>Used Files:</h3>
+    <ul>
+      <li>__ms-rolls.html</li>
+      <li>ms-rolls.sass</li>
+      <li>jquery.ms-rolls.js</li>
+      <li>common-ms-rolls.js</li>
+    </ul>
+    <h3>Options</h3>
+    <ul>
+      <li>
+        <div><b>item:</b></div>
+        <div><i class="gray">Default:</i> <code class="red">'.rolls__item-js'</code></div>
+        <div><i class="gray">Type:</i> <code class="red">String</code></div>
+        <div><i class="gray">Values:</i> <code class="red">'.your-class'</code></div>
+        <div><i class="gray">Description:</i></div>
+        <div>Общий ближайший родитель (Элемент) для переключателя и разворачивающейся панели (Далее Панель)</div>
+      </li>
+      <li>
+        <div><b>header:</b></div>
+        <div><i class="gray">Default:</i> <code class="red">'.rolls__header-js'</code></div>
+        <div><i class="gray">Type:</i> <code class="red">String</code></div>
+        <div><i class="gray">Values:</i> <code class="red">'.your-class'</code></div>
+        <div><i class="gray">Description:</i></div>
+        <div>Обертка для переключателя (Шапка)</div>
+      </li>
+      <li>
+        <div><b>panel:</b></div>
+        <div><i class="gray">Default:</i> <code class="red">'.rolls__panel-js'</code></div>
+        <div><i class="gray">Type:</i> <code class="red">String</code></div>
+        <div><i class="gray">Values:</i> <code class="red">'.your-class'</code></div>
+        <div><i class="gray">Description:</i></div>
+        <div>Панель. Элемент, который будет открываться/закрываться</div>
+      </li>
+      <li>
+        <div><b>hand:</b></div>
+        <div><i class="gray">Default:</i> <code class="red">'.rolls__hand-js'</code></div>
+        <div><i class="gray">Type:</i> <code class="red">String</code></div>
+        <div><i class="gray">Values:</i> <code class="red">'.your-class'</code></div>
+        <div><i class="gray">Description:</i></div>
+        <div>Переключатель. Элемент по клику (ховеру) происходить открытие или закрытие Панели</div>
+      </li>
+      <li>
+        <div><b>event:</b></div>
+        <div><i class="gray">Default:</i> <code class="red">'click'</code></div>
+        <div><i class="gray">Type:</i> <code class="red">String</code></div>
+        <div><i class="gray">Values:</i> <code class="red"><code class="red">'click'</code> or <code class="red">'mouseenter'</code></code>
+        </div>
+        <div><i class="gray">Description:</i></div>
+        <div>Событие, на которое происходить открытие/закрытие панели. <br> Если <code class="red">'click'</code>, то <i>по клику</i>. <br> Если <code class="red">'mouseenter'</code>, то <i>при наведении</i>.</div>
+      </li>
+      <li>
+        <div><b>animationSpeed:</b></div>
+        <div><i class="gray">Default:</i> <code class="red">300</code></div>
+        <div><i class="gray">Type:</i> <code class="red">Number</code></div>
+        <div><i class="gray">Values:</i> <code class="red">Время в милисекундах</code></div>
+        <div><i class="gray">Description:</i></div>
+        <div>Скорость анимации Панели</div>
+      </li>
+      <li>
+        <div><b>collapsed:</b></div>
+        <div><i class="gray">Default:</i> <code class="red">true</code></div>
+        <div><i class="gray">Type:</i> <code class="red">Boolean</code></div>
+        <div><i class="gray">Values:</i> <code class="red">true</code> or <code class="red">false</code></div>
+        <div><i class="gray">Description:</i></div>
+        <div>
+          Если <code class="red">true</code>, то при открытии текущей панели, закрывать открытые (если такие есть). <br> Есть возможность переопределения через data-атрибут
+          <code class="green">data-rolls-collapsed</code>. Присваивать элементу, на котором вызывается плагин. <br> Переопределить глобально можно с помощью конструкции
+          <code class="green">$.fn.msRolls.defaultOptions.collapsed = ...</code> <br> <i>data-атрибут</i> имеет приоритет выше, чем переопределение через <i>javaScript</i>
+        </div>
+      </li>
+      <li>
+        <div><b>accessibility:</b></div>
+        <div><i class="gray">Default:</i> <code class="red">false</code></div>
+        <div><i class="gray">Type:</i> <code class="red">Boolean</code></div>
+        <div><i class="gray">Values:</i> <code class="red">true/false</code></div>
+        <div><i class="gray">Description:</i></div>
+        <div>Опримизирует переключение фокуса по табу, но при этом снижает скорость выполнения скрипта</div>
+      </li>
+      <li>
+        <div><b>modifiers:</b></div>
+        <div><i class="gray">Default:</i> <code class="red">modifiers: { activeClass: 'rolls-active' }</code>
+        </div>
+        <div><i class="gray">Type:</i> <code class="red">Object</code></div>
+        <div><i class="gray">Values:</i> <code class="red">Some class</code></div>
+        <div><i class="gray">Description:</i></div>
+        <div>Модификаторы (классы) состояний</div>
+      </li>
+    </ul>
+    <h3>События</h3>
+    <ul>
+      <li>
+        <div><b>afterInit</b></div>
+        <pre class="snippet"><code class="js">afterInit: function (e, el) {}</code></pre>
+        <div>
+          <pre class="snippet"><code class="js">$('.ms-rolls-js').on('msRolls.afterInit', function () {
   console.log('Plugin MS-Rolls has initialized!');
 }).msRolls({});</code></pre>
-				</div>
-			</li>
-			<li>
-				<div><b>beforeOpen</b></div>
-				<div><i class="gray">Description:</i></div>
-				<div>Вызывается перед началом открытия текущей Панели</div>
-				<div>
-					<pre class="snippet"><code class="js">beforeOpen: function (e, el) {}</code></pre>
-				</div>
-			</li>
-			<li>
-				<div><b>afterOpen</b></div>
-				<div><i class="gray">Description:</i></div>
-				<div>Вызывается после окончания открытия текущей Панели</div>
-				<div>
-					<pre class="snippet"><code class="js">afterOpen: function (e, el) {}</code></pre>
-				</div>
-			</li>
-			<li>
-				<div><b>beforeClose</b></div>
-				<div><i class="gray">Description:</i></div>
-				<div>Вызывается перед началом закрытия текущей Панели</div>
-				<div>
-					<pre class="snippet"><code class="js">beforeClose: function (e, el) {}</code></pre>
-				</div>
-			</li>
-			<li>
-				<div><b>afterClose</b></div>
-				<div><i class="gray">Description:</i></div>
-				<div>Вызывается после окончания закрытия текущей Панели</div>
-				<div>
-					<pre class="snippet"><code class="js">afterClose: function (e, el) {}</code></pre>
-				</div>
-			</li>
-		</ul>
-		<h3>Пример исспользования событий</h3>
-		<ul>
-			<li>
-				<pre class="snippet"><code class="js">$('.rolls-js').msRolls({
+        </div>
+      </li>
+      <li>
+        <div><b>beforeOpen</b></div>
+        <div><i class="gray">Description:</i></div>
+        <div>Вызывается перед началом открытия текущей Панели</div>
+        <div>
+          <pre class="snippet"><code class="js">beforeOpen: function (e, el) {}</code></pre>
+        </div>
+      </li>
+      <li>
+        <div><b>afterOpen</b></div>
+        <div><i class="gray">Description:</i></div>
+        <div>Вызывается после окончания открытия текущей Панели</div>
+        <div>
+          <pre class="snippet"><code class="js">afterOpen: function (e, el) {}</code></pre>
+        </div>
+      </li>
+      <li>
+        <div><b>beforeClose</b></div>
+        <div><i class="gray">Description:</i></div>
+        <div>Вызывается перед началом закрытия текущей Панели</div>
+        <div>
+          <pre class="snippet"><code class="js">beforeClose: function (e, el) {}</code></pre>
+        </div>
+      </li>
+      <li>
+        <div><b>afterClose</b></div>
+        <div><i class="gray">Description:</i></div>
+        <div>Вызывается после окончания закрытия текущей Панели</div>
+        <div>
+          <pre class="snippet"><code class="js">afterClose: function (e, el) {}</code></pre>
+        </div>
+      </li>
+    </ul>
+    <h3>Пример исспользования событий</h3>
+    <ul>
+      <li>
+        <pre class="snippet"><code class="js">$('.rolls-js').msRolls({
   beforeOpen: function (e, el) {
     console.log('.beforeOpen');
   }
 })</code></pre>
-			</li>
-		</ul>
-		<h3>Методы</h3>
-		<div>
-			<pre class="snippet"><code class="js">var myRolls = $('.rolls-js').msRolls();
+      </li>
+    </ul>
+    <h3>Методы</h3>
+    <div>
+      <pre class="snippet"><code class="js">var myRolls = $('.rolls-js').msRolls();
 myRolls.msRolls('название метода', 'целевая Панель' [, callback function]);</code></pre>
-		</div>
-		<ul>
-			<li>
-				<div><b>open</b></div>
-				<div><i class="gray">Description:</i></div>
-				<div>Открывает указанную панель</div>
-			</li>
-			<li>
-				<div><b>close</b></div>
-				<div><i class="gray">Description:</i></div>
-				<div>Закрывает указанную панель</div>
-			</li>
-		</ul>
-		<h3>Пример исспользования методов</h3>
-		<ul>
-			<li>
-				<div>Открыть по клику на <code class="green">.example-btn</code> Панель с id <code class="green">#panelId</code></div>
-				<pre class="snippet"><code class="js">var myRolls = $('.rolls-js').msRolls();
+    </div>
+    <ul>
+      <li>
+        <div><b>open</b></div>
+        <div><i class="gray">Description:</i></div>
+        <div>Открывает указанную панель</div>
+      </li>
+      <li>
+        <div><b>close</b></div>
+        <div><i class="gray">Description:</i></div>
+        <div>Закрывает указанную панель</div>
+      </li>
+    </ul>
+    <h3>Пример исспользования методов</h3>
+    <ul>
+      <li>
+        <div>Открыть по клику на <code class="green">.example-btn</code> Панель с id <code class="green">#panelId</code></div>
+        <pre class="snippet"><code class="js">var myRolls = $('.rolls-js').msRolls();
 
 $('.example-btn').on('click', function () {
   myRolls.msRolls('open', $('#panelId'), function () {
     console.log('Панель #hashExpl открыта!');
   });
 });</code></pre>
-			</li>
-		</ul>
-		<h3>Глобальные настройки</h3>
-		<div>Переопределять настройки плагина глобально можно через</div>
-		<div><code class="red">$.fn.msRolls.defaultOptions</code></div>
-		<div><b>Например:</b></div>
-		<div>
-			<pre class="snippet"><code class="js">$.fn.msRolls.defaultOptions.animationSpeed = 1000;</code></pre>
-		</div>
-	</div>
-	<!-- >>> foot.tpl <<< -->
-	<!--footer-->
-	<!--footer end-->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/libs.min.js"></script>
-	<script src="js/main.js"></script>
-	<script src="js/plugins/jquery.ms-rolls.js"></script>
-	<script src="js/common-ms-rolls.js"></script>
+      </li>
+    </ul>
+    <h3>Глобальные настройки</h3>
+    <div>Переопределять настройки плагина глобально можно через</div>
+    <div><code class="red">$.fn.msRolls.defaultOptions</code></div>
+    <div><b>Например:</b></div>
+    <div>
+      <pre class="snippet"><code class="js">$.fn.msRolls.defaultOptions.animationSpeed = 1000;</code></pre>
+    </div>
+  </div>
+  <!--footer-->
+  <!--footer end-->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/libs.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/plugins/jquery.ms-rolls.js"></script>
+  <script src="js/common-ms-rolls.js"></script>
 </body>
 
 </html>

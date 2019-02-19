@@ -1,0 +1,1 @@
+{"version":3,"sources":["ms-example.css"],"names":[],"mappings":"AAAA,iBAAiB;AACjB;CACC,eAAe;CACf,sEAAsE;CACtE,iBAAiB;CACjB,mBAAmB;CACnB","file":"ms-example.css","sourcesContent":["@charset \"UTF-8\";\n.ms-example-js::after {\n\tdisplay: block;\n\tcontent: \"(::after) Это контейнер, на котором инициилизирован плагин\";\n\tfont-size: small;\n\tfont-style: italic;\n}\n"]}

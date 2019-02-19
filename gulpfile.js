@@ -26,21 +26,34 @@ var gulp = require('gulp'), // Подключаем Gulp
 	babel = require('gulp-babel')
 	;
 
-gulp.task('htmlCompilation', function () { // Таск формирования ДОМ страниц
+/**
+ * @description Относительный путь
+ * @type {{dist: string}}
+ */
+var path = {
+	plugins: 'src/plugins',
+	dist: 'dist'
+};
+
+/**
+ * @description Таск формирует ДОМ страниц
+ */
+gulp.task('htmlCompilation', function () {
 	return gulp.src(['src/__*.html'])
-		.pipe(fileinclude({
-			filters: {
-				markdown: markdown.parse
-			}
-		}))
-		.pipe(rename(function (path) {
-			path.basename = path.basename.substr(2);
-		}))
-		.pipe(htmlbeautify({
-			"indent_with_tabs": true,
-			"max_preserve_newlines": 0
-		}))
-		.pipe(gulp.dest('./src/'));
+			.pipe(fileinclude({
+				filters: {
+					markdown: markdown.parse
+				}
+			}))
+			.pipe(rename(function (path) {
+				path.basename = path.basename.substr(2);
+			}))
+			.pipe(htmlbeautify({
+				// "indent_with_tabs": true,
+				"indent_size": 2,
+				"max_preserve_newlines": 0
+			}))
+			.pipe(gulp.dest('./src/'));
 });
 
 /// Таск для переноса normalize.css и его минификации
