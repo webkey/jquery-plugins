@@ -39,6 +39,7 @@
 
 <body class="page-ms-filters">
   <!--[if lt IE 9]> <div class="browserupgrade"><p>You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p></div> <![endif]-->
+  <header class="header layout"><a href="index.html">На главную</a></header>
   <div class="layout-flood user-content">
     <h1>ms-filters</h1>
     <h2>Examples and demos</h2>
@@ -68,22 +69,32 @@
               <ul class="p-filters-drop-list p-filters-group-js" data-filter-group="checkboxes-1">
                 <li>
                   <label class="check-label">
-        <input type="checkbox" name="white" data-filter-name="white" />
-        <span class="p-filters-label-text-js">Злой</span>
+        <input type="checkbox" name="human" data-filter-name="human" />
+        <span class="p-filters-label-text-js">Человек</span>
         
         
       </label>
                 </li>
                 <li>
                   <label class="check-label">
-        <input type="checkbox" name="black" data-filter-name="black" />
-        <span class="p-filters-label-text-js">Добрый</span>
+        <input type="checkbox" name="animal" data-filter-name="animal" />
+        <span class="p-filters-label-text-js">Животное</span>
+        
+        
+      </label>
+                </li>
+                <li>
+                  <label class="check-label">
+        <input type="checkbox" name="bird" data-filter-name="bird" />
+        <span class="p-filters-label-text-js">Птица</span>
         
         
       </label>
                 </li>
               </ul>
-              <!--<div class="p-filters-drop-footer"> <button class="btn-reset btn-reset-js" disabled><span>Очистить фильтр</span></button> </div>-->
+              <div class="p-filters-drop-footer">
+                <button class="btn-reset btn-reset-js" disabled><span>Очистить фильтр</span></button>
+              </div>
             </div>
           </div>
           <!--===============-->
@@ -112,7 +123,9 @@
       </label>
                 </li>
               </ul>
-              <!--<div class="p-filters-drop-footer"> <button class="btn-reset btn-reset-js" disabled><span>Очистить фильтр</span></button> </div>-->
+              <div class="p-filters-drop-footer">
+                <button class="btn-reset btn-reset-js" disabled><span>Очистить фильтр</span></button>
+              </div>
             </div>
           </div>
           <!--===============-->
@@ -164,7 +177,9 @@
                   </div>
                 </li>
               </ul>
-              <!--<div class="p-filters-drop-footer"> <button class="btn-reset btn-reset-js" disabled><span>Очистить фильтр</span></button> </div>-->
+              <div class="p-filters-drop-footer">
+                <button class="btn-reset btn-reset-js" disabled><span>Очистить фильтр</span></button>
+              </div>
             </div>
           </div>
           <!--===============-->
@@ -182,12 +197,14 @@
                       <input class="form-light form-small field-effects-js" value="300" type="text" placeholder="От" data-filter-default="300" data-filter-tag="От" data-filter-title="Цена от" data-filter-type="input">
                     </div>
                     <div class="input-wrap">
-                      <input class="form-light form-small field-effects-js" value="5700" type="text" placeholder="От" data-filter-default="300" data-filter-tag="До" data-filter-title="Цена до" data-filter-type="input">
+                      <input class="form-light form-small field-effects-js" value="5000" type="text" placeholder="От" data-filter-default="5000" data-filter-tag="До" data-filter-title="Цена до" data-filter-type="input">
                     </div>
                   </div>
                 </li>
               </ul>
-              <!--<div class="p-filters-drop-footer"> <button class="btn-reset btn-reset-js" disabled><span>Очистить фильтр</span></button> </div>-->
+              <div class="p-filters-drop-footer">
+                <button class="btn-reset btn-reset-js" disabled><span>Очистить фильтр</span></button>
+              </div>
             </div>
           </div>
           <!--===============-->
@@ -195,6 +212,64 @@
         </div>
         <!--filters end-->
       </form>
+      <div class="p-filters-results p-filters-results-js">
+        <input disabled class="btn-clear-filters btn-clear-filters-js" type="reset" value="Очистить все фильтры" />
+      </div>
+    </div>
+    <div class="p-filters p-filters-2 p-filters-js">
+      <form name="form" action="#?" method="get">
+        <!--filters-->
+        <!--Имя тега берется с аттрибута data-filter-tag-->
+        <!--Если есть элемент с классом .p-filters-label-text-js, то именем тега будет контент этого элемента-->
+        <!--Если есть data-filter-tag, то тег берется с этого аттрибута-->
+        <div class="p-filters-list">
+          <!--===============-->
+          <!--===============-->
+          <div class="p-filters-item p-filters-item-js p-filters-is-open">
+            <div class="p-filters-select p-filters-select-js">
+              <div class="p-filters-title"><span>Чекбоксы. Текст тега берется с названия чекбокса</span><i>▼</i></div>
+              <div class="p-filters-selected">Всего выбрано: <span class="p-filters-selected-js">0</span></div>
+            </div>
+            <div class="p-filters-drop p-filters-drop-js">
+              <ul class="p-filters-drop-list p-filters-group-js" data-filter-group="checkboxes-1">
+                <li>
+                  <label class="check-label">
+        <input type="checkbox" name="human" data-filter-name="human" />
+        <span class="p-filters-label-text-js">Человек</span>
+        
+        
+      </label>
+                </li>
+                <li>
+                  <label class="check-label">
+        <input type="checkbox" name="animal" data-filter-name="animal" />
+        <span class="p-filters-label-text-js">Животное</span>
+        
+        
+      </label>
+                </li>
+                <li>
+                  <label class="check-label">
+        <input type="checkbox" name="bird" data-filter-name="bird" />
+        <span class="p-filters-label-text-js">Птица</span>
+        
+        
+      </label>
+                </li>
+              </ul>
+              <div class="p-filters-drop-footer">
+                <button class="btn-reset btn-reset-js" disabled><span>Очистить фильтр</span></button>
+              </div>
+            </div>
+          </div>
+          <!--===============-->
+          <!--===============-->
+        </div>
+        <!--filters end-->
+      </form>
+      <div class="p-filters-results p-filters-results-js">
+        <input disabled class="btn-clear-filters btn-clear-filters-js" type="reset" value="Очистить все фильтры" />
+      </div>
     </div>
     <br> <br> <br> <br>
     <!--==== API ====-->

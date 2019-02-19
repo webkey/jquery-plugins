@@ -37,14 +37,20 @@
             "hasIcon": "",
             "keepTagFromLabel": "true",
             "checkboxes": {
-              "white": {
-                "labelText": "Злой",
+              "human": {
+                "labelText": "Человек",
                 "tagText": "",
                 "img": "",
                 "icon": ""
               },
-              "black": {
-                "labelText": "Добрый",
+              "animal": {
+                "labelText": "Животное",
+                "tagText": "",
+                "img": "",
+                "icon": ""
+              },
+              "bird": {
+                "labelText": "Птица",
                 "tagText": "",
                 "img": "",
                 "icon": ""
@@ -137,7 +143,7 @@
                   <input class="form-light form-small field-effects-js" value="300" type="text" placeholder="От" data-filter-default="300" data-filter-tag="От" data-filter-title="Цена от" data-filter-type="input">
                 </div>
                 <div class="input-wrap">
-                  <input class="form-light form-small field-effects-js" value="5700" type="text" placeholder="От" data-filter-default="300" data-filter-tag="До" data-filter-title="Цена до" data-filter-type="input">
+                  <input class="form-light form-small field-effects-js" value="5000" type="text" placeholder="От" data-filter-default="5000" data-filter-tag="До" data-filter-title="Цена до" data-filter-type="input">
                 </div>
               </div>
             </li>
@@ -148,6 +154,62 @@
       </div>
       <!--filters end-->
     </form>
+
+    <div class="p-filters-results p-filters-results-js">
+      <input disabled class="btn-clear-filters btn-clear-filters-js" type="reset" value="Очистить все фильтры" />
+    </div>
+  </div>
+
+  <div class="p-filters p-filters-2 p-filters-js">
+    <form name="form" action="#?" method="get">
+      <!--filters-->
+      <!--Имя тега берется с аттрибута data-filter-tag-->
+      <!--Если есть элемент с классом .p-filters-label-text-js, то именем тега будет контент этого элемента-->
+      <!--Если есть data-filter-tag, то тег берется с этого аттрибута-->
+      <div class="p-filters-list">
+        <!--===============-->
+        <!--===============-->
+        <div class="p-filters-item p-filters-item-js p-filters-is-open">
+          @@include('_tpl_products-filters-item.html', {"itemLayout": "START", "title": "Чекбоксы. Текст тега берется с названия чекбокса", "group": "checkboxes-1", "modGroup": "" })
+
+          @@include('_tpl_products-filters-element.html', {
+            "addClass": "",
+            "hasImg": "",
+            "hasIcon": "",
+            "keepTagFromLabel": "true",
+            "checkboxes": {
+              "human": {
+                "labelText": "Человек",
+                "tagText": "",
+                "img": "",
+                "icon": ""
+              },
+              "animal": {
+                "labelText": "Животное",
+                "tagText": "",
+                "img": "",
+                "icon": ""
+              },
+              "bird": {
+                "labelText": "Птица",
+                "tagText": "",
+                "img": "",
+                "icon": ""
+              }
+            }
+          })
+
+          @@include('_tpl_products-filters-item.html', {"itemLayout": "END"})
+        </div>
+        <!--===============-->
+        <!--===============-->
+      </div>
+      <!--filters end-->
+    </form>
+
+    <div class="p-filters-results p-filters-results-js">
+      <input disabled class="btn-clear-filters btn-clear-filters-js" type="reset" value="Очистить все фильтры" />
+    </div>
   </div>
 
   <br> <br> <br> <br>
