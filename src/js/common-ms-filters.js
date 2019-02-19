@@ -1,7 +1,7 @@
 $(function () {
-  var $msFilters = $('.ms-filters-js');
-  if ($msFilters.length) {
-    $msFilters.msFilters({
+  var $filters = $('.p-filters-js');
+  if ($filters.length) {
+    $filters.msFilters({
       afterInit: function (e, el, param) {
         console.log("jQuery Plugin Created !!! It's fired afterInit event");
       }

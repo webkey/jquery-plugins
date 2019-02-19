@@ -1,9 +1,5 @@
-@charset "UTF-8";
-.ms-filters-js::after {
-	display: block;
-	content: "(::after) Это контейнер, на котором инициилизирован плагин";
-	font-size: small;
-	font-style: italic;
+.ms-filters-js {
+	position: relative;
 }
 
 /*# sourceMappingURL=ms-filters.css.map */

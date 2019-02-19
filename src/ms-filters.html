@@ -50,8 +50,151 @@
 	{{ms-filters code}}
 &lt;/div&gt;</code></pre>
     <!--Code example end-->
-    <div class="ms-filters ms-filters-js">
-      {{ms-filters code}}
+    <div class="p-filters p-filters-js">
+      <form name="form" action="#?" method="get">
+        <!--filters-->
+        <!--Имя тега берется с аттрибута data-filter-tag-->
+        <!--Если есть элемент с классом .p-filters-label-text-js, то именем тега будет контент этого элемента-->
+        <!--Если есть data-filter-tag, то тег берется с этого аттрибута-->
+        <div class="p-filters-list">
+          <!--===============-->
+          <!--===============-->
+          <div class="p-filters-item p-filters-item-js p-filters-is-open">
+            <div class="p-filters-select p-filters-select-js">
+              <div class="p-filters-title"><span>Чекбоксы. Текст тега берется с названия чекбокса</span><i>▼</i></div>
+              <div class="p-filters-selected">Всего выбрано: <span class="p-filters-selected-js">0</span></div>
+            </div>
+            <div class="p-filters-drop p-filters-drop-js">
+              <ul class="p-filters-drop-list p-filters-group-js" data-filter-group="checkboxes-1">
+                <li>
+                  <label class="check-label">
+        <input type="checkbox" name="white" data-filter-name="white" />
+        <span class="p-filters-label-text-js">Злой</span>
+        
+        
+      </label>
+                </li>
+                <li>
+                  <label class="check-label">
+        <input type="checkbox" name="black" data-filter-name="black" />
+        <span class="p-filters-label-text-js">Добрый</span>
+        
+        
+      </label>
+                </li>
+              </ul>
+              <!--<div class="p-filters-drop-footer"> <button class="btn-reset btn-reset-js" disabled><span>Очистить фильтр</span></button> </div>-->
+            </div>
+          </div>
+          <!--===============-->
+          <!--===============-->
+          <div class="p-filters-item p-filters-item-js p-filters-is-open">
+            <div class="p-filters-select p-filters-select-js">
+              <div class="p-filters-title"><span>Чекбоксы. Текст тега указан в отдельном атрибуте</span><i>▼</i></div>
+              <div class="p-filters-selected">Всего выбрано: <span class="p-filters-selected-js">0</span></div>
+            </div>
+            <div class="p-filters-drop p-filters-drop-js">
+              <ul class="p-filters-drop-list p-filters-group-js" data-filter-group="checkboxes-2">
+                <li>
+                  <label class="check-label">
+        <input type="checkbox" name="white" data-filter-name="white" data-filter-tag="Белый (tag)" />
+        <span class="">Белый цвет (label)</span>
+        
+        
+      </label>
+                </li>
+                <li>
+                  <label class="check-label">
+        <input type="checkbox" name="black" data-filter-name="black" data-filter-tag="Черный (tag)" />
+        <span class="">Черный цвет (label)</span>
+        
+        
+      </label>
+                </li>
+              </ul>
+              <!--<div class="p-filters-drop-footer"> <button class="btn-reset btn-reset-js" disabled><span>Очистить фильтр</span></button> </div>-->
+            </div>
+          </div>
+          <!--===============-->
+          <!--===============-->
+          <div class="p-filters-item p-filters-item-js p-filters-is-open">
+            <div class="p-filters-select p-filters-select-js">
+              <div class="p-filters-title"><span>Цена</span><i>▼</i></div>
+              <div class="p-filters-selected">Всего выбрано: <span class="p-filters-selected-js">0</span></div>
+            </div>
+            <div class="p-filters-drop p-filters-drop-js">
+              <ul class="p-filters-drop-list p-filters-group-js" data-filter-group="price">
+                <li>
+                  <div class="form-row">
+                    <div class="input-wrap">
+                      <div class="select select-small">
+                        <select class="field-effects-js" name="filter-by-price-from" data-filter-select="price-from" data-filter-default="">
+                      <option value="" data-filter-tag="5">5</option>
+                      <option value="10" data-filter-tag="10">10</option>
+                      <option value="20" data-filter-tag="20">20</option>
+                      <option value="30" data-filter-tag="30">30</option>
+                      <option value="50" data-filter-tag="50">50</option>
+                      <option value="100" data-filter-tag="100">100</option>
+                      <option value="200" data-filter-tag="200">200</option>
+                      <option value="500" data-filter-tag="500">500</option>
+                      <option value="1000" data-filter-tag="1000">1000</option>
+                    </select>
+                      </div>
+                    </div>
+                    <div class="input-wrap">
+                      <div class="select select-small">
+                        <select class="field-effects-js" name="filter-by-price-to" data-filter-select="price-to" data-filter-default="">
+                      <option value="" data-filter-tag="5">5</option>
+                      <option value="10" data-filter-tag="10">10</option>
+                      <option value="20" data-filter-tag="20">20</option>
+                      <option value="30" data-filter-tag="30">30</option>
+                      <option value="50" data-filter-tag="50">50</option>
+                      <option value="100" data-filter-tag="100">100</option>
+                      <option value="200" data-filter-tag="200">200</option>
+                      <option value="500" data-filter-tag="500">500</option>
+                      <option value="1000" data-filter-tag="1000">1000</option>
+                      <option value="2000" data-filter-tag="2000">2000</option>
+                      <option value="3000" data-filter-tag="3000">3000</option>
+                      <option value="4000" data-filter-tag="4000">4000</option>
+                      <option value="5000" data-filter-tag="5000">5000</option>
+                      <option value="6000" data-filter-tag="6000">6000</option>
+                    </select>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+              <!--<div class="p-filters-drop-footer"> <button class="btn-reset btn-reset-js" disabled><span>Очистить фильтр</span></button> </div>-->
+            </div>
+          </div>
+          <!--===============-->
+          <!--===============-->
+          <div class="p-filters-item p-filters-item-js p-filters-is-open">
+            <div class="p-filters-select p-filters-select-js">
+              <div class="p-filters-title"><span>Цена2</span><i>▼</i></div>
+              <div class="p-filters-selected">Всего выбрано: <span class="p-filters-selected-js">0</span></div>
+            </div>
+            <div class="p-filters-drop p-filters-drop-js">
+              <ul class="p-filters-drop-list p-filters-group-js" data-filter-group="price2">
+                <li>
+                  <div class="form-row">
+                    <div class="input-wrap">
+                      <input class="form-light form-small field-effects-js" value="300" type="text" placeholder="От" data-filter-default="300" data-filter-tag="От" data-filter-title="Цена от" data-filter-type="input">
+                    </div>
+                    <div class="input-wrap">
+                      <input class="form-light form-small field-effects-js" value="5700" type="text" placeholder="От" data-filter-default="300" data-filter-tag="До" data-filter-title="Цена до" data-filter-type="input">
+                    </div>
+                  </div>
+                </li>
+              </ul>
+              <!--<div class="p-filters-drop-footer"> <button class="btn-reset btn-reset-js" disabled><span>Очистить фильтр</span></button> </div>-->
+            </div>
+          </div>
+          <!--===============-->
+          <!--===============-->
+        </div>
+        <!--filters end-->
+      </form>
     </div>
     <br> <br> <br> <br>
     <!--==== API ====-->

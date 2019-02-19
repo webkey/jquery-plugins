@@ -1,0 +1,14 @@
+@@if(itemLayout === "START") {
+<div class="p-filters-select p-filters-select-js">
+  <div class="p-filters-title"><span>@@title</span><i>▼</i></div>
+  <div class="p-filters-selected">Всего выбрано: <span class="p-filters-selected-js">0</span></div>
+</div>
+
+<div class="p-filters-drop p-filters-drop-js">
+  <ul class="p-filters-drop-list p-filters-group-js@@if(context.modGroup){ @@modGroup}" data-filter-group="@@group">
+}
+@@if(itemLayout === "END") {
+  </ul>
+  <!--<div class="p-filters-drop-footer"> <button class="btn-reset btn-reset-js" disabled><span>Очистить фильтр</span></button> </div>-->
+</div>
+}

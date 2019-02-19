@@ -1,1 +1,1 @@
-{"version":3,"sources":["ms-filters.css"],"names":[],"mappings":"AAAA,iBAAiB;AACjB;CACC,eAAe;CACf,sEAAsE;CACtE,iBAAiB;CACjB,mBAAmB;CACnB","file":"ms-filters.css","sourcesContent":["@charset \"UTF-8\";\n.ms-filters-js::after {\n\tdisplay: block;\n\tcontent: \"(::after) Это контейнер, на котором инициилизирован плагин\";\n\tfont-size: small;\n\tfont-style: italic;\n}\n"]}
+{"version":3,"sources":["ms-filters.css"],"names":[],"mappings":"AAAA;CACC,mBAAmB;CACnB","file":"ms-filters.css","sourcesContent":[".ms-filters-js {\n\tposition: relative;\n}\n"]}

@@ -19,8 +19,135 @@
 	{{ms-filters code}}
 &lt;/div&gt;</code></pre>
   <!--Code example end-->
-  <div class="ms-filters ms-filters-js">
-    {{ms-filters code}}
+  <div class="p-filters p-filters-js">
+    <form name="form" action="#?" method="get">
+      <!--filters-->
+      <!--Имя тега берется с аттрибута data-filter-tag-->
+      <!--Если есть элемент с классом .p-filters-label-text-js, то именем тега будет контент этого элемента-->
+      <!--Если есть data-filter-tag, то тег берется с этого аттрибута-->
+      <div class="p-filters-list">
+        <!--===============-->
+        <!--===============-->
+        <div class="p-filters-item p-filters-item-js p-filters-is-open">
+          @@include('_tpl_products-filters-item.html', {"itemLayout": "START", "title": "Чекбоксы. Текст тега берется с названия чекбокса", "group": "checkboxes-1", "modGroup": "" })
+
+          @@include('_tpl_products-filters-element.html', {
+            "addClass": "",
+            "hasImg": "",
+            "hasIcon": "",
+            "keepTagFromLabel": "true",
+            "checkboxes": {
+              "white": {
+                "labelText": "Злой",
+                "tagText": "",
+                "img": "",
+                "icon": ""
+              },
+              "black": {
+                "labelText": "Добрый",
+                "tagText": "",
+                "img": "",
+                "icon": ""
+              }
+            }
+          })
+
+          @@include('_tpl_products-filters-item.html', {"itemLayout": "END"})
+        </div>
+        <!--===============-->
+        <!--===============-->
+        <div class="p-filters-item p-filters-item-js p-filters-is-open">
+          @@include('_tpl_products-filters-item.html', {"itemLayout": "START", "title": "Чекбоксы. Текст тега указан в отдельном атрибуте", "group": "checkboxes-2", "modGroup": "" })
+
+          @@include('_tpl_products-filters-element.html', {
+            "addClass": "",
+            "hasImg": "",
+            "hasIcon": "",
+            "keepTagFromLabel": "",
+            "checkboxes": {
+              "white": {
+                "labelText": "Белый цвет (label)",
+                "tagText": "Белый (tag)",
+                "img": "",
+                "icon": ""
+              },
+              "black": {
+                "labelText": "Черный цвет (label)",
+                "tagText": "Черный (tag)",
+                "img": "",
+                "icon": ""
+              }
+            }
+          })
+
+          @@include('_tpl_products-filters-item.html', {"itemLayout": "END"})
+        </div>
+        <!--===============-->
+        <!--===============-->
+        <div class="p-filters-item p-filters-item-js p-filters-is-open">
+          @@include('_tpl_products-filters-item.html', {"itemLayout": "START", "title": "Цена", "group": "price", "modGroup": "" })
+            <li>
+              <div class="form-row">
+                <div class="input-wrap">
+                  <div class="select select-small">
+                    <select class="field-effects-js" name="filter-by-price-from" data-filter-select="price-from" data-filter-default="">
+                      <option value="" data-filter-tag="5">5</option>
+                      <option value="10" data-filter-tag="10">10</option>
+                      <option value="20" data-filter-tag="20">20</option>
+                      <option value="30" data-filter-tag="30">30</option>
+                      <option value="50" data-filter-tag="50">50</option>
+                      <option value="100" data-filter-tag="100">100</option>
+                      <option value="200" data-filter-tag="200">200</option>
+                      <option value="500" data-filter-tag="500">500</option>
+                      <option value="1000" data-filter-tag="1000">1000</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="input-wrap">
+                  <div class="select select-small">
+                    <select class="field-effects-js" name="filter-by-price-to" data-filter-select="price-to" data-filter-default="">
+                      <option value="" data-filter-tag="5">5</option>
+                      <option value="10" data-filter-tag="10">10</option>
+                      <option value="20" data-filter-tag="20">20</option>
+                      <option value="30" data-filter-tag="30">30</option>
+                      <option value="50" data-filter-tag="50">50</option>
+                      <option value="100" data-filter-tag="100">100</option>
+                      <option value="200" data-filter-tag="200">200</option>
+                      <option value="500" data-filter-tag="500">500</option>
+                      <option value="1000" data-filter-tag="1000">1000</option>
+                      <option value="2000" data-filter-tag="2000">2000</option>
+                      <option value="3000" data-filter-tag="3000">3000</option>
+                      <option value="4000" data-filter-tag="4000">4000</option>
+                      <option value="5000" data-filter-tag="5000">5000</option>
+                      <option value="6000" data-filter-tag="6000">6000</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </li>
+          @@include('_tpl_products-filters-item.html', {"itemLayout": "END"})
+        </div>
+        <!--===============-->
+        <!--===============-->
+        <div class="p-filters-item p-filters-item-js p-filters-is-open">
+          @@include('_tpl_products-filters-item.html', {"itemLayout": "START", "title": "Цена2", "group": "price2", "modGroup": "" })
+            <li>
+              <div class="form-row">
+                <div class="input-wrap">
+                  <input class="form-light form-small field-effects-js" value="300" type="text" placeholder="От" data-filter-default="300" data-filter-tag="От" data-filter-title="Цена от" data-filter-type="input">
+                </div>
+                <div class="input-wrap">
+                  <input class="form-light form-small field-effects-js" value="5700" type="text" placeholder="От" data-filter-default="300" data-filter-tag="До" data-filter-title="Цена до" data-filter-type="input">
+                </div>
+              </div>
+            </li>
+          @@include('_tpl_products-filters-item.html', {"itemLayout": "END"})
+        </div>
+        <!--===============-->
+        <!--===============-->
+      </div>
+      <!--filters end-->
+    </form>
   </div>
 
   <br> <br> <br> <br>

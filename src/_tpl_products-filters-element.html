@@ -1,0 +1,12 @@
+@@if(context.checkboxes) {
+  @@for(var key in checkboxes) {
+    <li>
+      <label class="check-label@@if(context.addClass){ @@addClass}">
+        <input type="checkbox" name="`+key+`" data-filter-name="`+key+`"@@if(!context.keepTagFromLabel){ data-filter-tag="`+checkboxes[key].tagText+`"} />
+        <span class="@@if(context.keepTagFromLabel){p-filters-label-text-js}">`+checkboxes[key].labelText+`</span>
+        @@if(context.hasIcon){<em class="checkbox-icon"><img src="`+checkboxes[key].icon+`" alt="`+checkboxes[key].labelText+`" /></em>}
+        @@if(context.hasImg){<img src="`+checkboxes[key].img+`" alt="`+checkboxes[key].labelText+`" />}
+      </label>
+    </li>
+  }
+}

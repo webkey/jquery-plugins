@@ -170,6 +170,7 @@ gulp.task('browserSync', function (done) { // Таск browserSync
 		server: {
 			baseDir: "./src"
 		},
+		open: false,
 		notify: false // Отключаем уведомления
 	});
 	browserSync.watch(['src/*.html', 'src/js/**/*.js', 'src/includes/**/*.json']).on("change", browserSync.reload);

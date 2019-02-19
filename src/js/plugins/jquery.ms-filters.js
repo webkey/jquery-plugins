@@ -28,7 +28,7 @@
         events = function () {
           $element.on('mouseenter', function (event) {
             event.preventDefault();
-            alert("Let's go!");
+            console.log("Let's go!");
           });
         },
         init = function () {
