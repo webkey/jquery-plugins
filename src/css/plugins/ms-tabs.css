@@ -7,4 +7,8 @@
 	visibility: hidden;
 }
 
+.expl-tabs__thumbs > a.tabs-active {
+	font-weight: bold;
+}
+
 /*# sourceMappingURL=ms-tabs.css.map */

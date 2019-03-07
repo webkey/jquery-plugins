@@ -14,9 +14,9 @@
 	<div class="expl-tabs tabs-js">
 		<div class="expl-tabs__nav">
 			<div class="expl-tabs__thumbs">
-				<a href="#tab1" class="tabs__anchor-js tabs--active"><span>Tab 1</span></a>
+				<a href="#tab1" class="tabs__anchor-js"><span>Tab 1</span></a>
 				<br> ============= <br>
-				<a href="#tab2" class="tabs__anchor-js"><span>Tab 2</span></a>
+				<a href="#tab2" class="tabs__anchor-js tabs-active"><span>Tab 2</span></a>
 				<br> ============= <br>
 				<a href="#tab3" class="tabs__anchor-js"><span>Tab 3</span></a>
 			</div>
@@ -24,16 +24,18 @@
 
 		<div class="expl-tabs__panels tabs__panels-js">
 			<div class="expl-tabs__panel tabs__panel-js" id="tab1">
-				============= Tab 1 ============ <br>
-				{{Content of Tab 1}} <br>
-				{{Content of Tab 1}} <br>
-				{{Content of Tab 1}} <br>
-				{{Content of Tab 1}} <br>
-				{{Content of Tab 1}} <br>
-				{{Content of Tab 1}} <br>
-				{{Content of Tab 1}} <br>
-				{{Content of Tab 1}} <br>
-				{{Content of Tab 1}} <br>
+				<a href="#" style="display: block; position: relative; overflow: visible; z-index: 99">
+					============= Tab 1 ============ <br>
+					{{Content of Tab 1}} <br>
+					{{Content of Tab 1}} <br>
+					{{Content of Tab 1}} <br>
+					{{Content of Tab 1}} <br>
+					{{Content of Tab 1}} <br>
+					{{Content of Tab 1}} <br>
+					{{Content of Tab 1}} <br>
+					{{Content of Tab 1}} <br>
+					{{Content of Tab 1}} <br>
+				</a>
 			</div>
 			<div class="expl-tabs__panel tabs__panel-js" id="tab2">
 				============= Tab 2 ============ <br>
@@ -198,7 +200,7 @@
 			<div>
 <pre class="snippet"><code class="javascript">{
   init: 'tabs--initialized',
-  activeClass: 'tabs--active'
+  activeClass: 'tabs-active'
 {</code></pre>
 			</div>
 		</li>
