@@ -2,5 +2,29 @@
 @import ../utils/mixins
 @import ../../libs/include-media/dist/include-media
 
-.ms-filters-js
+/*ms-filters*/
+
+/*Стили нужны только для тестирования плагина*/
+.p-filters
   position: relative
+  margin-bottom: 3rem
+
+.p-filters-item
+  margin-bottom: 3rem
+  font-size: 1.4rem
+  line-height: 2.0rem
+
+.p-filters-results
+  position: fixed
+  left: 0
+  bottom: 0
+  padding: 1rem
+  background-color: #333
+
+/*Второй блок с фильтрами. Для тестирования*/
+.p-filters-2
+  box-shadow: 0 0 0 5px red
+
+  .p-filters-results
+    bottom: 60px
+    box-shadow: 0 0 0 5px red
