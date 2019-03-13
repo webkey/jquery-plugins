@@ -138,7 +138,7 @@
             }
           });
     }, events = function () {
-      $element.on('click', config.anchor, function (event) {
+      $anchor.on('click', function (event) {
         event.preventDefault();
 
         var curId = $(this).attr('href').substring(1);
