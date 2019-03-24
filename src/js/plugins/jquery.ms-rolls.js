@@ -11,40 +11,40 @@
     var self,
         $element = $(element),
         $panel = $(config.panel, $element),
+        $panelWrap = $('.rolls__panel-wrap-js', $element),
         isAnimated = false,
         pref = 'ms-rolls',
         pluginClasses = {
           initClass: pref + '_initialized'
         },
-        focusElements = 'input, a, [tabindex], area, select, textarea, button, [contentEditable=true]' + config.hand,
-        $panelWrap,
-        relativeStyles = {
-          position: '',
-          left: '',
-          top: '',
-          width: ''
-        },
-        showStyles = {
-          opacity: '',
-          'user-select': '',
-          'pointer-event': '',
-          'z-index': ''
-        },
-        absoluteStyles = {
+        focusElements = 'input, a, [tabindex], area, select, textarea, button, [contentEditable=true]' + config.switcher,
+        positionPanelStyle = {
           position: 'absolute',
           left: 0,
           top: 0,
           width: '100%'
         },
-        hideStyles = {
+        destroyPositionPanelStyle = {
+          position: '',
+          left: '',
+          top: '',
+          width: ''
+        },
+        showPanelStyles = {
+          opacity: '',
+          'user-select': '',
+          'pointer-event': '',
+          'z-index': ''
+        },
+        hidePanelStyles = {
           opacity: 0,
           'user-select': 'none',
           'pointer-event': 'none',
           'z-index': -1
         };
 
-    var dataClpsd = $element.attr('data-rolls-collapsed');
-    var collapsed = (dataClpsd === "true" || dataClpsd === "false") ? dataClpsd === "true" : config.collapsed;
+    var dataCollapsed = $element.attr('data-rolls-collapsed');
+    var collapsed = (dataCollapsed === "true" || dataCollapsed === "false") ? dataCollapsed === "true" : config.collapsed;
 
     var callbacks = function () {
           /** track events */
@@ -65,25 +65,29 @@
           _element.attr('tabindex', '-1');
         },
         open = function ($_panel) {
+          // Если входящей Панели не существует, выполнение функции прекращается
           if (!$_panel.length) {
             return false;
           }
 
+          //
           var $activePanelWrap = $_panel.parent(), // Ближайшая родительская обертка активной Панели
               $activeParentsPanels = $_panel.parentsUntil(element, config.panel), // Все родительские Панели активной Панели
               $otherActivePanelsWrap = $activeParentsPanels.parent(), // Все родительские Обертка активной Панели не включая ближайшую
               $otherActiveHeader = $otherActivePanelsWrap.prev(config.header), // Все родительские Обертка активной Панели не включая ближайшую
-              $otherActiveParentsItems = $activeParentsPanels.parentsUntil(element, config.item) // Все родительские Элементы активной Панели
-          ;
+              $otherActiveParentsItems = $activeParentsPanels.parentsUntil(element, config.item); // Все родительские Элементы активной Панели
 
           // 1) Открыть все родительские Панели (без анимации)
           // Добавить класс на активные родительские (не ближайшие) элементы
-          $activeParentsPanels.add($otherActiveParentsItems).add($otherActiveHeader).add($(config.hand, $otherActiveHeader)).addClass(config.modifiers.activeClass);
+          $activeParentsPanels
+              .add($otherActiveParentsItems)
+              .add($otherActiveHeader)
+              .add($(config.switcher, $otherActiveHeader))
+              .addClass(config.modifiers.activeClass);
 
           // Открывать родительские Панели необходимо, если, например, открывается вложенная Панель методом "open"
           $activeParentsPanels
-              .css(relativeStyles)
-              .css(showStyles)
+              .css($.extend(destroyPositionPanelStyle, showPanelStyles))
               .data('active', true).attr('data-active', true); // Указать в data-атрибуте, что Панель открыта;
 
           // 2) Открыть текущую панель (с анимацией)
@@ -93,15 +97,15 @@
               $activeHeader = $activePanelWrap.prev(config.header); // Шапка активной Панели
 
           // Добавить класс на активные элементы
-          $_panel.add($activeItems).add($activeHeader).add($(config.hand, $activeHeader)).addClass(config.modifiers.activeClass);
+          $_panel.add($activeItems).add($activeHeader).add($(config.switcher, $activeHeader)).addClass(config.modifiers.activeClass);
 
           var callback = arguments[1];
 
-          $_panel.css(showStyles); // Панель делаем видимой до начала анимации
+          $_panel.css(showPanelStyles); // Панель делаем видимой до начала анимации
 
           changeHeight($activePanelWrap, $_panel.outerHeight(), function () {
             $_panel
-                .css(relativeStyles)
+                .css(destroyPositionPanelStyle)
                 .data('active', true).attr('data-active', true); // Указать в data-атрибуте, что Панель открыта
 
             $activePanelWrap.css({
@@ -183,13 +187,13 @@
               $curHeader = $curPanelWrap.prev(config.header); // Шапка активной Панели
 
           // Удалить активный класс со всех элементов
-          $_panel.add($curItems).add($curHeader).add($(config.hand, $curHeader)).removeClass(config.modifiers.activeClass);
+          $_panel.add($curItems).add($curHeader).add($(config.switcher, $curHeader)).removeClass(config.modifiers.activeClass);
 
           // Закрыть панель
           changeHeight($curPanelWrap, 0, function () {
             $_panel
-                .css(absoluteStyles)
-                .css(hideStyles)
+                .css(positionPanelStyle)
+                .css(hidePanelStyles)
                 .data('active', false).attr('data-active', false); // Указать в data-атрибуте, что панель закрыта
 
             $curPanelWrap.css('height', '');
@@ -224,17 +228,18 @@
           });
         },
         events = function () {
-          $element.on(config.event, config.hand, function (event) {
+          $(config.switcher, $element).on(config.event, function (event) {
             // Если панель во время клика находится в процессе анимации, то выполнение функции прекратится
             if (isAnimated) {
               event.preventDefault();
               return false;
             }
 
-            var $currentHand = $(this);
+            var $currentSwitcher = $(this);
+
             // Если текущий пункт не содержит панелей,
             // то выполнение функции прекратится
-            if (!$currentHand.closest(config.item).has(config.panel).length) {
+            if (!$currentSwitcher.closest(config.item).has(config.panel).length) {
               return false;
             }
 
@@ -244,8 +249,10 @@
 
             event.preventDefault();
 
-            var $currentPanel = $currentHand.closest(config.header).next().children(config.panel);
+            // Определение текущей панели
+            var $currentPanel = $currentSwitcher.closest(config.header).next().children(config.panel);
 
+            // Проверка на наличише активного дата-атрибута
             if ($currentPanel.data('active')) {
               // Закрыть текущую панель
               close($currentPanel, function () {
@@ -260,49 +267,52 @@
           });
         },
         init = function () {
-          $panelWrap = $('<div/>', {
-            class: 'rolls-panel-wrap-js',
-            css: {
-              position: 'relative',
-              overflow: 'hidden'
-            }
+          $panelWrap.css({
+            position: 'relative',
+            overflow: 'hidden'
           });
-
-          $panel.wrap($panelWrap);
 
           $panel
-              .css(absoluteStyles)
-              .css(hideStyles);
+              .css(positionPanelStyle)
+              .css(hidePanelStyles);
 
-          var $activePanels = $panel.filter('.' + config.modifiers.activeClass);
+          var $activePanel = $panel.filter('.' + config.modifiers.activeClass);
+
+          // Определить в переменных все элементы, на которые нужно добавить активный класс
+          var $activeItems = $activePanel.parents(config.item), // Все родительские Элементы активной Панели
+              $parentPanels = $activePanel.parents(config.panel), // Все родительские Панели
+              $allActivePanels = $activePanel.add($parentPanels), // Все активные Панели, включая текущую и родительские
+              $activeHeaders = $activePanel.parents($allActivePanels).prev(), // Все Шапки родительских Элементов
+              $activeSwitcher = $(config.switcher, $activeHeaders), // Все Шапки родительских Элементов
+              $parentPanelsWrap = $activePanel.parents($panelWrap); // Все вспомогательные обертки родительских Панелей
 
           // Добавить класс на активные элементы
-          var $activeItems = $activePanels.parents(config.item), // Все родительские Элементы активной Панели
-              $activeHeaders = $activePanels.parentsUntil(element).prev(config.header), // Все Шапки в родительских Элементах
-              $allActivePanels = $activeHeaders.next().children(config.panel); // Все родительские Панели
+          $allActivePanels
+              .add($activeItems)
+              .add($activeHeaders)
+              .add($activeSwitcher)
+              .addClass(config.modifiers.activeClass);
 
-          $activePanels.add($activeItems).add($activeHeaders).add($allActivePanels).add($(config.hand, $activeHeaders)).addClass(config.modifiers.activeClass);
-
-          // Открыть все родительские панели
-          $allActivePanels.css(relativeStyles).css(showStyles);
-
-          // Удалить лишние внутренние стили у оберток активных Панелей
-          $allActivePanels.parent().css({
-            // position: '',
-            overflow: ''
-          });
+          // Открыть активные панели
+          $allActivePanels.css($.extend(destroyPositionPanelStyle, showPanelStyles));
 
           // На активные панели установить дата-атрибут active сo заначением true
           $allActivePanels.data('active', true).attr('data-active', true);
 
+          // Очистить стили вспомогательных оберток активных Панелей
+          $parentPanelsWrap.css({
+            position: '',
+            overflow: ''
+          });
+
           // Web accessibility
           if (config.accessibility) {
             // Переключатель поставить в фокус-очередь
-            tabindexOn($(config.hand, $element));
+            tabindexOn($(config.switcher, $element));
             // Все элементы с фокусировкой внутри панелей убрать с фокус-очереди
             tabindexOff($(focusElements, $panel));
             // Все элементы с фокусировкой внутри активных панелей поставить в фокус-очередь
-            tabindexOn($(focusElements, $allActivePanels));
+            tabindexOn($(focusElements, $parentPanels));
           }
 
           $element.addClass(pluginClasses.initClass);
@@ -346,7 +356,7 @@
   $.fn.msRolls.defaultOptions = {
     item: '.rolls__item-js', // Общий ближайший родитель (Элемент) для переключателя и разворачивающейся панели (Далее Панель)
     header: '.rolls__header-js', // Обертка для переключателя (Шапка)
-    hand: '.rolls__hand-js', // Переключатель
+    switcher: '.rolls__switcher-js', // Переключатель состояния панели, которая относится к этому переключателю
     panel: '.rolls__panel-js', // Панель
     event: 'click', // Событие, которое разворачивает/сворачивает Панель
     animationSpeed: 300, // Скорость анимации Панели
