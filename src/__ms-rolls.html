@@ -47,91 +47,119 @@
 
 &lt;/div&gt;</code></pre>
 
-  <!--Code example end-->
+  <!--===== Rolls ======-->
+  <!-- Rolls main container -->
   <div class="rolls rolls-js">
-    <!--rolls-->
     <!--(1) FIRST level - START-->
+    <!-- Item -->
     <div class="rolls__item rolls__item-js">
+      <!-- Title-switcher -->
       <div class="rolls__header rolls__header-js">
-        <a href="#">{{Title 1.1}}</a> <a href="#" class="rolls__angle rolls__hand-js">&nbsp;</a>
+        <a href="#">{{Title 1.1}}</a>
+        <!-- Switcher -->
+        <a href="#" class="rolls__angle rolls__switcher-js">&nbsp;</a>
       </div>
-      <div class="rolls__panel rolls__panel-js">
-        <div>{{Content 1.1}}</div>
-        <!--(2) SECOND level - START-->
-        <div class="rolls__item rolls__item-js">
-          <div class="rolls__header rolls__header-js">
-            <a href="#">{{Title 1.1 - 2.1}}</a> <a href="#" class="rolls__angle rolls__hand-js">&nbsp;</a>
-          </div>
-          <div class="rolls__panel rolls__panel-js">
-            <div>{{Content 1.1 - 2.1}}</div>
-            <!--(3) THIRD level - START-->
-            <div class="rolls__item rolls__item-js">
-              <div class="rolls__header rolls__header-js">
-                <a href="#">{{Title 1.1 - 2.1 - 3.1}}</a> <a href="#" class="rolls__angle rolls__hand-js">&nbsp;</a>
+      <!--Additional required wrapper for panel-->
+      <div class="rolls__panel-wrap-js">
+        <!-- Panel -->
+        <div class="rolls__panel rolls__panel-js">
+          <div>{{Content 1.1}}</div>
+          <!-- Nested items -->
+          <!--(2) SECOND level - START-->
+          <div class="rolls__item rolls__item-js">
+            <div class="rolls__header rolls__header-js">
+              <a href="#">{{Title 1.1 - 2.1}}</a>
+              <a href="#" class="rolls__angle rolls__switcher-js">&nbsp;</a>
+            </div>
+            <div class="rolls__panel-wrap-js">
+              <div class="rolls__panel rolls__panel-js">
+                <div>{{Content 1.1 - 2.1}}</div>
+                <!--(3) THIRD level - START-->
+                <div class="rolls__item rolls__item-js">
+                  <div class="rolls__header rolls__header-js">
+                    <a href="#">{{Title 1.1 - 2.1 - 3.1}}</a>
+                    <a href="#" class="rolls__angle rolls__switcher-js">&nbsp;</a>
+                  </div>
+                  <div class="rolls__panel-wrap-js">
+                    <div class="rolls__panel rolls__panel-js is-open">
+                      <div>{{Content 1.1 - 2.1 - 3.1}}</div>
+                      <!--roll next level-->
+                    </div>
+                  </div>
+                </div>
+                <!--(3) THIRD level - END-->
               </div>
-              <div class="rolls__panel rolls__panel-js is-open">
-                <div>{{Content 1.1 - 2.1 - 3.1}}</div>
+            </div>
+          </div>
+          <div class="rolls__item rolls__item-js">
+            <div class="rolls__header rolls__header-js">
+              <a href="#">{{Title 1.1 - 2.2}}</a>
+              <a href="#" class="rolls__angle rolls__switcher-js">&nbsp;</a>
+            </div>
+            <div class="rolls__panel-wrap-js">
+              <div class="rolls__panel rolls__panel-js">
+                <div>{{Content 1.1 - 2.2}}</div>
                 <!--roll next level-->
               </div>
             </div>
-            <!--(3) THIRD level - END-->
           </div>
+          <!--(2) SECOND level - END-->
         </div>
-        <div class="rolls__item rolls__item-js">
-          <div class="rolls__header rolls__header-js">
-            <a href="#">{{Title 1.1 - 2.2}}</a> <a href="#" class="rolls__angle rolls__hand-js">&nbsp;</a>
-          </div>
-          <div class="rolls__panel rolls__panel-js">
-            <div>{{Content 1.1 - 2.2}}</div>
-            <!--roll next level-->
-          </div>
-        </div>
-        <!--(2) SECOND level - END-->
       </div>
     </div>
-
     <div class="rolls__item rolls__item-js">
       <div class="rolls__header rolls__header-js">
-        <a href="#">{{Title 1.2}}</a> <a href="#" class="rolls__angle rolls__hand-js">&nbsp;</a>
+        <a href="#">{{Title 1.2}}</a>
+        <a href="#" class="rolls__angle rolls__switcher-js">&nbsp;</a>
       </div>
-      <div class="rolls__panel rolls__panel-js">
-        <div>{{Content 1.2}} <br> {{Content 1.2}}</div>
-        <!--(2) SECOND level - START-->
-        <div class="rolls__item rolls__item-js">
-          <div class="rolls__header rolls__header-js">
-            <a href="#">{{Title 1.2 - 2.1}}</a> <a href="#" class="rolls__angle rolls__hand-js">&nbsp;</a>
+      <div class="rolls__panel-wrap-js">
+        <div class="rolls__panel rolls__panel-js">
+          <div>{{Content 1.2}} <br> {{Content 1.2}}</div>
+          <!--(2) SECOND level - START-->
+          <div class="rolls__item rolls__item-js">
+            <div class="rolls__header rolls__header-js">
+              <a href="#">{{Title 1.2 - 2.1}}</a>
+              <a href="#" class="rolls__angle rolls__switcher-js">&nbsp;</a>
+            </div>
+            <div class="rolls__panel-wrap-js">
+              <div class="rolls__panel rolls__panel-js" id="hashExpl">
+                <div>{{Content 1.2 - 2.1}} <br> {{Content 1.2 - 2.1}}</div>
+                <!--roll next level-->
+              </div>
+            </div>
           </div>
-          <div class="rolls__panel rolls__panel-js" id="hashExpl">
-            <div>{{Content 1.2 - 2.1}} <br> {{Content 1.2 - 2.1}}</div>
-            <!--roll next level-->
-          </div>
+          <!--(2) SECOND level - END-->
         </div>
-        <!--(2) SECOND level - END-->
       </div>
     </div>
-
     <div class="rolls__item rolls__item-js">
       <div class="rolls__header rolls__header-js">
-        <a href="#">{{Title 1.3}}</a> <a href="#" class="rolls__angle rolls__hand-js">&nbsp;</a>
+        <a href="#">{{Title 1.3}}</a>
+        <a href="#" class="rolls__angle rolls__switcher-js">&nbsp;</a>
       </div>
-      <div class="rolls__panel rolls__panel-js">
-        <div>{{Content 1.3}} <br> {{Content 1.3}}</div>
-        <!--(2) SECOND level - START-->
-        <div class="rolls__item rolls__item-js">
-          <div class="rolls__header rolls__header-js">
-            <a href="#">{{Title 1.3 - 2.1}}</a> <a href="#" class="rolls__angle rolls__hand-js">&nbsp;</a>
+      <div class="rolls__panel-wrap-js">
+        <div class="rolls__panel rolls__panel-js">
+          <div>{{Content 1.3}} <br> {{Content 1.3}}</div>
+          <!--(2) SECOND level - START-->
+          <div class="rolls__item rolls__item-js">
+            <div class="rolls__header rolls__header-js">
+              <a href="#">{{Title 1.3 - 2.1}}</a>
+              <a href="#" class="rolls__angle rolls__switcher-js">&nbsp;</a>
+            </div>
+            <div class="rolls__panel-wrap-js">
+              <div class="rolls__panel rolls__panel-js">
+                <div>{{Content 1.3 - 2.1}} <br> {{Content 1.3 - 2.1}}</div>
+                <!--roll next level-->
+              </div>
+            </div>
           </div>
-          <div class="rolls__panel rolls__panel-js">
-            <div>{{Content 1.3 - 2.1}} <br> {{Content 1.3 - 2.1}}</div>
-            <!--roll next level-->
-          </div>
+          <!--(2) SECOND level - END-->
         </div>
-        <!--(2) SECOND level - END-->
       </div>
     </div>
     <!--(1) FIRST level - END-->
-    <!--rolls end-->
   </div>
+  <!--===== Rolls END ======-->
 
   <div>
     <button class="open-panel-js">Открыть панель #hashExpl</button>
