@@ -1,5 +1,5 @@
 /**! jquery.ms-rolls.js
- * Version: 2019.1.0
+ * Version: 2019.1.1
  * Author: Astronim*
  * Description: Rolls
  */
