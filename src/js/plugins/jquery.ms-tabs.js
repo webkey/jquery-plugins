@@ -36,8 +36,6 @@
           selectOpen: pluginClasses.selectOpen + ' ' + (config.compactView.openClass || '')
         };
 
-    console.log("compactView: ", config.compactView);
-
     var callbacks = function () {
       /** track events */
       $.each(config, function (key, value) {
@@ -60,10 +58,8 @@
       $select.on('click', function () {
         // $element.add($select).toggleClass(mixedClasses.selectOpen);
         if (isSelectOpen) {
-          console.log(1);
           closeSelect();
         } else {
-          console.log(2);
           openSelect();
         }
 
@@ -78,18 +74,14 @@
       $element.add($select).add($selectDrop).removeClass(mixedClasses.selectOpen);
       $element.trigger('msTabs.afterSelectClose');
     }, closeSelectByClickOutside = function () {
-      console.log("config.compactView.closeByClickOutside: ", config.compactView.closeByClickOutside);
       $html.on('click', function (event) {
         if (isSelectOpen && config.compactView.closeByClickOutside && !$(event.target).closest($selectDrop).length) {
-          console.log('closeSelectByClickOutside');
           closeSelect();
         }
       });
     }, closeSelectByClickEsc = function () {
-      console.log("config.compactView.removeEscClick: ", config.compactView.closeByClickEsc);
       $html.keyup(function (event) {
         if (isSelectOpen && config.compactView.closeByClickEsc && event.keyCode === 27) {
-          console.log('closeSelectByClickEsc');
           closeSelect();
         }
       });
