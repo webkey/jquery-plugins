@@ -1,6 +1,6 @@
 /**
  * ! jquery.ms-tabs.js
- * Version: 2019.1.0
+ * Version: 2019.1.1
  * Author: Astronim*
  * Description: Extended toggle class
  */
@@ -14,10 +14,25 @@
         $anchor = $element.find(config.anchor),
         $panels = $element.find(config.panels),
         $panel = $element.find(config.panel),
+        $select = $element.find(config.compactView.elem),
         isAnimated = false,
         activeId,
         isOpen = false,
-        collapsed = $element.data('tabs-collapsed') || config.collapsed;
+        isSelectOpen = false,
+        collapsible = $element.data('tabs-collapsible') || config.collapsible,
+        pref = 'ms-tabs',
+        pluginClasses = {
+          initialized: pref + '_initialized',
+          active: pref + '_active-tab',
+          collapsible: pref + '_is-collapsible',
+          selectOpen: pref + '_select-open'
+        },
+        mixedClasses = {
+          initialized: pluginClasses.initialized + ' ' + (config.modifiers.initClass || ''),
+          active: pluginClasses.active + ' ' + (config.modifiers.activeClass || ''),
+          collapsible: pluginClasses.collapsible + ' ' + (config.modifiers.collapsibleClass || ''),
+          selectOpen: pluginClasses.selectOpen + ' ' + (config.compactView.openClass || '')
+        };
 
     var callbacks = function () {
       /** track events */
@@ -28,6 +43,28 @@
           });
         }
       });
+    }, changeSelect = function () {
+      // Изменить контент селекта при изменении активного таба
+      $select.html($anchor.filter('[href="#' + activeId + '"]').html() + '<i>&#9660;</i>');
+      $element.trigger('msTabs.afterSelectValChange');
+    }, eventsSelect = function () {
+      // Открыть переключатели табов
+      $select.on('click', function () {
+        // $element.add($select).toggleClass(mixedClasses.selectOpen);
+        if (isSelectOpen) {
+          removeOpenSelectClass();
+        } else {
+          addOpenSelectClass();
+        }
+      })
+    }, addOpenSelectClass = function () {
+      isSelectOpen = true;
+      $element.add($select).addClass(mixedClasses.selectOpen);
+      $element.trigger('msTabs.afterSelectOpen');
+    }, removeOpenSelectClass = function () {
+      isSelectOpen = false;
+      $element.add($select).removeClass(mixedClasses.selectOpen);
+      $element.trigger('msTabs.afterSelectClose');
     }, show = function () {
       // Определяем текущий таб
       var $activePanel = $panel.filter('[id="' + activeId + '"]'),
@@ -39,10 +76,10 @@
         isAnimated = true;
 
         // Удалить активный класс со всех элементов
-        $panel.add($anchor).removeClass(config.modifiers.activeClass);
+        $panel.add($anchor).removeClass(mixedClasses.active);
 
         // Добавить класс на каждый активный элемент
-        $activePanel.add($activeAnchor).addClass(config.modifiers.activeClass);
+        $activePanel.add($activeAnchor).addClass(mixedClasses.active);
 
         // Анимирование высоты табов
         $panels
@@ -63,12 +100,14 @@
             .animate({
               'opacity': 1
             }, config.animationSpeed, function () {
-              $activePanel.css({
-                'position': 'relative',
-                'left': 'auto',
-                'top': 'auto',
-                'pointer-events': ''
-              }).attr('tabindex', 0);
+              $activePanel
+                  .css({
+                    'position': 'relative',
+                    'left': 'auto',
+                    'top': 'auto',
+                    'pointer-events': ''
+                  });
+                  // .attr('tabindex', 0);
 
               $panels.css({
                 'height': '',
@@ -82,7 +121,8 @@
       }
 
       // callback after showed tab
-      $element.trigger('msTabs.afterShowed');
+      $element.trigger('msTabs.afterOpen');
+      $element.trigger('msTabs.afterChange');
     }, hide = function () {
       // Определить текущий таб
       var $activePanel = $panel.filter('[id="' + activeId + '"]');
@@ -93,7 +133,7 @@
         isAnimated = true;
 
         // Удалить активный класс со всех элементов
-        $panel.add($anchor).removeClass(config.modifiers.activeClass);
+        $panel.add($anchor).removeClass(mixedClasses.active);
 
         // Анимирование высоты табов
         $panels
@@ -113,18 +153,19 @@
       }
 
       // callback after tab hidden
-      $element.trigger('msTabs.afterHidden');
-    }, hideTab = function (tab) {
+      $element.trigger('msTabs.afterClose');
+      $element.trigger('msTabs.afterChange');
+    }, hideTab = function ($_panel) {
       var callback = arguments[1];
-      tab
+      $_panel
           .css({
             'z-index': -1
           })
-          .attr('tabindex', -1)
+          // .attr('tabindex', -1)
           .animate({
             'opacity': 0
           }, config.animationSpeed, function () {
-            tab.css({
+            $_panel.css({
               'position': 'absolute',
               'left': 0,
               'top': 0,
@@ -144,47 +185,57 @@
         var curId = $(this).attr('href').substring(1);
         // console.log("Таб анимируется?: ", isAnimated);
         // console.log("Текущий таб открыт?: ", isOpen);
-        // console.log("Таб нужно закрывать, если открыт?: ", collapsed);
+        // console.log("Таб нужно закрывать, если открыт?: ", collapsible);
         // console.log("activeId (Предыдущий): ", activeId);
 
-        if (isAnimated || !collapsed && curId === activeId) {
+        if (isAnimated || !collapsible && curId === activeId) {
           return false;
         }
 
-        if (collapsed && isOpen && curId === activeId) {
+        if (collapsible && isOpen && curId === activeId) {
           hide();
         } else {
           activeId = curId;
           // console.log("activeId (Текущий): ", activeId);
           show();
         }
+
+        // Изменить контент селекта
+        if (config.compactView) {
+          changeSelect();
+          removeOpenSelectClass();
+        }
       });
     }, init = function () {
-      activeId = $anchor.filter('.' + config.modifiers.activeClass).length && $anchor.filter('.' + config.modifiers.activeClass).attr('href').substring(1);
+      activeId = $anchor.filter('.' + pluginClasses.active).length && $anchor.filter('.' + pluginClasses.active).attr('href').substring(1);
 
       // console.log("activeId (сразу после инициализации): ", !!activeId);
+
+      $anchor.filter('.' + pluginClasses.active).addClass(mixedClasses.active);
 
       $panels.css({
         'display': 'block',
         'position': 'relative'
       });
 
-      $panel.css({
-        'position': 'absolute',
-        'left': 0,
-        'top': 0,
-        'opacity': 0,
-        'width': '100%',
-        'visibility': 'hidden',
-        'pointer-events': 'none',
-        'z-index': -1
-      }).attr('tabindex', -1);
+      $panel
+          .css({
+            'position': 'absolute',
+            'left': 0,
+            'top': 0,
+            'opacity': 0,
+            'width': '100%',
+            'visibility': 'hidden',
+            'z-index': -1,
+            'pointer-events': 'none'
+          });
+          // .attr('tabindex', -1);
 
       if (activeId) {
         var $activePanel = $panel.filter('[id="' + activeId + '"]');
 
         // Добавить класс на каждый элемен
-        $activePanel.addClass(config.modifiers.activeClass);
+        $activePanel.addClass(mixedClasses.active);
 
         // Показать активный таб
         $activePanel
@@ -194,21 +245,35 @@
               'top': 'auto',
               'opacity': 1,
               'visibility': 'visible',
-              'pointer-events': '',
-              'z-index': 2
-            })
-            .attr('tabindex', 0);
+              'z-index': 2,
+              'pointer-events': ''
+            });
+            // .attr('tabindex', 0);
 
         isOpen = true;
       }
 
-      $element.addClass(config.modifiers.init);
+      // Изменить контент селекта
+      if (config.compactView) {
+        changeSelect();
+      }
+
+      // Добавить специальный класс, если включена возможность
+      // разворачивать/сворачивать активный таб
+      if (collapsible) {
+        $element.addClass(mixedClasses.collapsible);
+      }
+
+      // После инициализации плагина добавить внутренний класс и,
+      // если указан в опициях, пользовательский класс
+      $element.addClass(mixedClasses.initialized);
 
       $element.trigger('msTabs.afterInit');
     };
 
     self = {
       callbacks: callbacks,
+      eventsSelect: eventsSelect,
       events: events,
       init: init
     };
@@ -228,6 +293,7 @@
         _[i].msTabs = new MsTabs(_[i], $.extend(true, {}, $.fn.msTabs.defaultOptions, opt));
         _[i].msTabs.init();
         _[i].msTabs.callbacks();
+        _[i].msTabs.eventsSelect();
         _[i].msTabs.events();
       } else {
         ret = _[i].msTabs[opt].apply(_[i].msTabs, args);
@@ -244,10 +310,12 @@
     panels: '.tabs__panels-js',
     panel: '.tabs__panel-js',
     animationSpeed: 300,
-    collapsed: false,
+    collapsible: false,
+    compactView: false,
     modifiers: {
-      init: 'tabs-initialized',
-      activeClass: 'tabs-active'
+      initClass: null,
+      collapsibleClass: null,
+      activeClass: null
     }
   };
 

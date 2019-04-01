@@ -5,25 +5,38 @@
 'use strict';
 
 $(function () {
-	var $tabs = $('.tabs-js');
+  var $tabs = $('.tabs-js');
 
-	if ($tabs.length) {
-		$tabs.msTabs({
-			// collapsed: true
-			// , modifiers: {
-			// 	activeClass: 'tab-poookkhh'
-			// }
-		});
-	}
+  if ($tabs.length) {
+    $tabs.msTabs({
+      collapsible: true,
+      modifiers: {
+        initClass: 'MY--INITIALIZED-CLASS',
+        activeClass: 'MY--ACTIVE-TAB-CLASS',
+        collapsibleClass: 'MY--COLLAPSIBLE-CLASS'
+      }
+    });
+  }
 
-	var $cats = $('.cats-js');
+  var $cats = $('.cats-js');
 
-	if ($cats.length) {
-		$cats.msTabs({
-			// collapsed: true
-			// , modifiers: {
-			// 	activeClass: 'tab-poookkhh'
-			// }
-		});
-	}
+  if ($cats.length) {
+    $cats.msTabs({
+      // collapsible: true
+      // , modifiers: {
+      // 	activeClass: 'tab-poookkhh'
+      // }
+    });
+  }
+
+  var $compactView = $('.compact-view-true-js');
+
+  if ($compactView.length) {
+    $compactView.msTabs({
+      compactView: {
+        elem: '.tabs__select-js',
+        openClass: 'MY--SELECT-OPEN-CLASS'
+      }
+    });
+  }
 });
