@@ -340,10 +340,11 @@
     animationSpeed: 300,
     collapsible: false,
     compactView: {
-      elem: null,
-      drop: null, // Элемент который будет являтся выпадающим списком селекта
-      closeByClickOutside: true,
-      closeByClickEsc: true,
+      elem: null, // Элемент, который будет селектом
+      drop: null, // Элемент, который будет выпадающим списком селекта
+      closeByClickOutside: true, // Закрывать выпадающий список селекта по клику на "пустом" месте
+      closeByClickEsc: true, // Закрывать выпадающий список селекта по клавише Esc
+      openClass: null // Класс, который добавляется после открытия списка селекта
     },
     modifiers: {
       initClass: null,

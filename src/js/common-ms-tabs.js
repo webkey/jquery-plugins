@@ -50,9 +50,7 @@ $(function () {
       compactView: {
         elem: '.tabs__select-js',
         drop: '.tabs__select-drop-js',
-        openClass: 'MY--SELECT-OPEN-CLASS',
-        closeByClickOutside: false,
-        // closeByClickEsc: true,
+        openClass: 'MY--SELECT-OPEN-CLASS'
       }
     });
   }

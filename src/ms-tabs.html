@@ -125,7 +125,11 @@
     <div>Чтобы увидеть перестроение табов в селект, нужно сузить браузер до <strong>768 px</strong>.</div>
     <div>
       <pre class="snippet"><code class="js">$('.ms-tabs').msTabs({
-  compactView: true
+  compactView: {
+    elem: '.tabs__select-js',
+    drop: '.tabs__select-drop-js',
+    openClass: 'MY--SELECT-OPEN-CLASS'
+  }
 });</code></pre>
     </div>
     <br>
