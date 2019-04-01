@@ -15,6 +15,8 @@
         $panels = $element.find(config.panels),
         $panel = $element.find(config.panel),
         $select = $element.find(config.compactView.elem),
+        $selectDrop = $element.find(config.compactView.drop),
+        $html = $('html'),
         isAnimated = false,
         activeId,
         isOpen = false,
@@ -34,6 +36,8 @@
           selectOpen: pluginClasses.selectOpen + ' ' + (config.compactView.openClass || '')
         };
 
+    console.log("compactView: ", config.compactView);
+
     var callbacks = function () {
       /** track events */
       $.each(config, function (key, value) {
@@ -43,6 +47,10 @@
           });
         }
       });
+    }, prevent = function (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      return false;
     }, changeSelect = function () {
       // Изменить контент селекта при изменении активного таба
       $select.html($anchor.filter('[href="#' + activeId + '"]').html() + '<i>&#9660;</i>');
@@ -52,19 +60,39 @@
       $select.on('click', function () {
         // $element.add($select).toggleClass(mixedClasses.selectOpen);
         if (isSelectOpen) {
-          removeOpenSelectClass();
+          console.log(1);
+          closeSelect();
         } else {
-          addOpenSelectClass();
+          console.log(2);
+          openSelect();
         }
+
+        prevent(event);
       })
-    }, addOpenSelectClass = function () {
+    }, openSelect = function () {
       isSelectOpen = true;
-      $element.add($select).addClass(mixedClasses.selectOpen);
+      $element.add($select).add($selectDrop).addClass(mixedClasses.selectOpen);
       $element.trigger('msTabs.afterSelectOpen');
-    }, removeOpenSelectClass = function () {
+    }, closeSelect = function () {
       isSelectOpen = false;
-      $element.add($select).removeClass(mixedClasses.selectOpen);
+      $element.add($select).add($selectDrop).removeClass(mixedClasses.selectOpen);
       $element.trigger('msTabs.afterSelectClose');
+    }, closeSelectByClickOutside = function () {
+      console.log("config.compactView.closeByClickOutside: ", config.compactView.closeByClickOutside);
+      $html.on('click', function (event) {
+        if (isSelectOpen && config.compactView.closeByClickOutside && !$(event.target).closest($selectDrop).length) {
+          console.log('closeSelectByClickOutside');
+          closeSelect();
+        }
+      });
+    }, closeSelectByClickEsc = function () {
+      console.log("config.compactView.removeEscClick: ", config.compactView.closeByClickEsc);
+      $html.keyup(function (event) {
+        if (isSelectOpen && config.compactView.closeByClickEsc && event.keyCode === 27) {
+          console.log('closeSelectByClickEsc');
+          closeSelect();
+        }
+      });
     }, show = function () {
       // Определяем текущий таб
       var $activePanel = $panel.filter('[id="' + activeId + '"]'),
@@ -203,7 +231,7 @@
         // Изменить контент селекта
         if (config.compactView) {
           changeSelect();
-          removeOpenSelectClass();
+          closeSelect();
         }
       });
     }, init = function () {
@@ -254,8 +282,12 @@
       }
 
       // Изменить контент селекта
-      if (config.compactView) {
+      if (config.compactView.elem) {
         changeSelect();
+        // !Предупреждение, если не задан элемент, котрый будет выполнять роль опшинов
+        if (!config.compactView.drop) {
+          console.warn('You must choose a DOM element as select drop! Pun in a compactView.drop');
+        }
       }
 
       // Добавить специальный класс, если включена возможность
@@ -274,6 +306,8 @@
     self = {
       callbacks: callbacks,
       eventsSelect: eventsSelect,
+      closeSelectByClickOutside: closeSelectByClickOutside,
+      closeSelectByClickEsc: closeSelectByClickEsc,
       events: events,
       init: init
     };
@@ -294,6 +328,8 @@
         _[i].msTabs.init();
         _[i].msTabs.callbacks();
         _[i].msTabs.eventsSelect();
+        _[i].msTabs.closeSelectByClickOutside();
+        _[i].msTabs.closeSelectByClickEsc();
         _[i].msTabs.events();
       } else {
         ret = _[i].msTabs[opt].apply(_[i].msTabs, args);
@@ -311,7 +347,12 @@
     panel: '.tabs__panel-js',
     animationSpeed: 300,
     collapsible: false,
-    compactView: false,
+    compactView: {
+      elem: null,
+      drop: null, // Элемент который будет являтся выпадающим списком селекта
+      closeByClickOutside: true,
+      closeByClickEsc: true,
+    },
     modifiers: {
       initClass: null,
       collapsibleClass: null,

@@ -35,7 +35,24 @@ $(function () {
     $compactView.msTabs({
       compactView: {
         elem: '.tabs__select-js',
-        openClass: 'MY--SELECT-OPEN-CLASS'
+        drop: '.tabs__select-drop-js',
+        openClass: 'MY--SELECT-OPEN-CLASS',
+        // closeByClickOutside: true,
+        // closeByClickEsc: true,
+      }
+    });
+  }
+
+  var $compactViewOutsideFalse = $('.compact-view-true-outside-false-js');
+
+  if ($compactViewOutsideFalse.length) {
+    $compactViewOutsideFalse.msTabs({
+      compactView: {
+        elem: '.tabs__select-js',
+        drop: '.tabs__select-drop-js',
+        openClass: 'MY--SELECT-OPEN-CLASS',
+        closeByClickOutside: false,
+        // closeByClickEsc: true,
       }
     });
   }

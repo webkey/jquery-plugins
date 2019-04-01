@@ -92,5 +92,6 @@
 
   // Select opened
   &.ms-tabs_select-open
-    .expl-tabs__thumbs
-      display: block
+    +media('<tab-lg')
+      .expl-tabs__thumbs
+        display: block
