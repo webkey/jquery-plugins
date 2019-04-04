@@ -11,10 +11,10 @@ $rolls-angle-line-size: 2px 12px !default
 // h w
 
 // panel
-.rolls:not(.ms-rolls_initialized)
+// Важно! До инициализации скрипта, скрыть все панели, а после показать
+.js .rolls:not(.ms-rolls_initialized)
   .rolls__panel
     display: none
-// Важно! До инициализации скрипта, скрыть все панели, а после показать.
 
 /* rolls
 .rolls
