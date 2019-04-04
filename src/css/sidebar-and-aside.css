@@ -1,0 +1,46 @@
+.main {
+	position: relative;
+}
+
+.main__holder {
+	width: 100%;
+}
+
+.main__holder::after {
+	content: '';
+	display: table;
+	clear: both;
+}
+
+.content-wrap {
+	float: left;
+	width: 100%;
+}
+
+.content {
+	margin-right: 26rem;
+	margin-left: 34rem;
+	min-height: 5rem;
+	padding: 2rem;
+	background-color: whitesmoke;
+}
+
+.sidebar {
+	display: inline;
+	float: left;
+	margin: 0 0 0 -100%;
+	width: 32rem;
+	padding: 2rem;
+	background-color: lightblue;
+}
+
+.aside {
+	display: inline;
+	float: right;
+	margin: 0 0 0 -24rem;
+	width: 24rem;
+	padding: 2rem;
+	background-color: lightblue;
+}
+
+/*# sourceMappingURL=sidebar-and-aside.css.map */
