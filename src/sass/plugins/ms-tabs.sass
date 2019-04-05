@@ -70,11 +70,11 @@
   position: relative
 
   .tabs__select-js
-    +media('>=tab-lg')
+    +media('>=tab')
       display: none
 
   .expl-tabs__thumbs
-    +media('<tab-lg')
+    +media('<tab')
       display: none // Not flex
       position: absolute
       left: 0
@@ -86,12 +86,12 @@
       background-color: lightgoldenrodyellow
 
     & > a
-      +media('<tab-lg')
+      +media('<tab')
         display: block
         margin: 0 0 5px
 
   // Select opened
   &.ms-tabs_select-open
-    +media('<tab-lg')
+    +media('<tab')
       .expl-tabs__thumbs
         display: block

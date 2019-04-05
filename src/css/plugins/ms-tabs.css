@@ -29,6 +29,7 @@
 }
 
 .expl-tabs__thumbs {
+	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
 }
@@ -69,8 +70,9 @@
 }
 
 .tabs__select-js.ms-tabs_select-open > i {
-	-ms-transform: rotate(-180deg);
-	    transform: rotate(-180deg);
+	-webkit-transform: rotate(-180deg);
+	    -ms-transform: rotate(-180deg);
+	        transform: rotate(-180deg);
 }
 
 .compact-view-true-js {

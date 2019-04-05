@@ -1,0 +1,75 @@
+@import ../utils/variables
+@import ../utils/mixins
+@import ../../libs/include-media/dist/include-media
+
+body
+  padding: 0
+  margin: 0
+
+.main
+  padding: 30px 0 0
+  position: relative
+  clear: both
+  z-index: 4
+
+.user-content
+  padding: 60px 0
+
+.content
+  margin: 0 0 $bottom-space 0
+
+.header
+  position: relative
+  z-index: 5
+
+  background-color: $base-color
+  padding-top: 0.5rem
+  padding-bottom: 0.5rem
+
+.footer
+  margin: 0 auto
+  position: relative
+  clear: both
+  z-index: 5
+
+  background-color: lightgreen
+
+.max-wrap
+  max-width: $layout-width
+
+.layout
+  +padding-horizontal($layout-space-horizontal)
+  +push-auto
+
+  +media('<tab')
+    +padding-horizontal(0)
+
+.max-wrap-text
+  max-width: $layout-text-width
+
+.layout-text
+  max-width: $layout-text-width
+  +padding-horizontal($layout-text-space-horizontal)
+  +push-auto
+
+  +media('<tab')
+    +padding-horizontal($layout-text-space-horizontal-md)
+
+  +media('<tab-s')
+    +padding-horizontal($layout-text-space-horizontal-sm)
+
+.max-wrap-flood
+  max-width: $layout-flood-width
+
+.layout-flood
+  max-width: $layout-flood-width
+  +padding-horizontal($layout-flood-space-horizontal)
+  +push-auto
+
+  +media('<tab')
+    +padding-horizontal($layout-text-space-horizontal-md)
+
+  +media('<tab-s')
+    +padding-horizontal($layout-text-space-horizontal-sm)
+
+/*LAYOUT end*/

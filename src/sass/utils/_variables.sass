@@ -1,104 +1,172 @@
 @import ../utils/functions
 @import ../utils/placeholders
 
-// medium query
-$breakpoints: ('desk-hd': 1920px, 'desk-lg': 1600px, 'desk-ml': 1440px, 'desk-md': 1366px, 'desk-sm': 1200px, 'tab-lg': 992px, 'tab-sm': 768px, 'mob-lg': 640px, 'mob-md': 480px, 'mob-sm': 320px)
+// Medium query
+// ==========================================================================
 
-// base
+$breakpoints: ("desk": 1920px, "desk-s": 1600px, "lap-l": 1440px, "lap": 1366px, "lap-s": 1280px, "net": 1200px, "tab": 992px, "tab-s": 768px, "mob": 640px, "mob-s": 480px)
+
+
+// Fonts style
+// ==========================================================================
+
+$font-norm: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif !default
+$font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default
+
+=font-normal()
+  font-family: $font-norm
+
+=font-bold()
+  font-weight: bold
+
+=font-italic()
+  font-style: italic
+
+=font-bold-italic()
+  font-weight: bold
+  font-style: italic
+
+=font-title()
+  font-weight: 400
+
+=font-alt()
+  font-weight: 400
+
+=font-monospace()
+  font-family: $font-monospace
+
+
+// Base
+// ==========================================================================
+
 $font-size: 1.6rem !default
-$line-height: round-float(24/16, 2) !default
+$line-height: 2.4rem !default
+$letter-spacing: 0.025em !default
 
-// =======for mobile========
-$font-size--mob: 1.4rem !default
-$line-height--mob: round-float(2.4rem/$font-size--mob, 2) !default
 
-// ========small size=======
-$font-size--sm: 1.4rem !default
-$line-height--sm: round-float(2.4rem/$font-size--sm, 2) !default
-// ========smallest size=======
-$font-size--less: 1.2rem !default
-$line-height--less: round-float(2.0rem/$font-size--less, 2) !default
+// Spaces
+// ==========================================================================
 
-// =======h1========
-$font-size-h1: 4.2rem !default
-$line-height-h1: round-float(5.6rem/$font-size-h1, 2) !default
-// sm ===
-$font-size-h1--mob: 2.0rem !default
-$line-height-h1--mob: round-float(3.0rem/$font-size-h1--mob, 2) !default
+$bottom-space: $line-height !default
 
-// =======h2========
-$font-size-h2: 2.4rem !default
-$line-height-h2: round-float(3.0rem/$font-size-h2, 2) !default
-// sm ===
-$font-size-h2--mob: 1.8rem !default
-$line-height-h2--mob: round-float(2.8rem/$font-size-h2--mob, 2) !default
 
-// =======h3========
-$font-size-h3: 2.0rem !default
-$line-height-h3: round-float(2.4rem/$font-size-h3, 2) !default
-// sm ===
-$font-size-h3--mob: 1.6rem !default
-$line-height-h3--mob: round-float(2.4rem/$font-size-h3--mob, 2) !default
+// h1, h2, h3, h4, h5, h6
+// ==========================================================================
 
-// =======h4========
+// Heading h1
+$font-size-h1: 3.6rem !default
+$line-height-h1: 5.2rem !default
+$line-height-h1-kef: $line-height-h1 / $font-size-h1
+// ----------------------------------------------------
+$font-size-h1--tab: 3.4rem !default
+$line-height-h1--tab: round-float($font-size-h1--tab * $line-height-h1-kef, 1) !default // Использовать рассчетное значение, если нет в дизайне
+// ----------------------------------------------------
+$font-size-h1--mob: 3.0rem !default
+$line-height-h1--mob: round-float($font-size-h1--mob * $line-height-h1-kef, 1) !default // Использовать рассчетное значение, если нет в дизайне
+// ----------------------------------------------------
+=font-h1()
+  font-size: $font-size-h1
+  line-height: $line-height-h1
+
+  +media('<net')
+    font-size: $font-size-h1--tab
+    line-height: $line-height-h1--tab
+
+  +media('<tab-s')
+    font-size: $font-size-h1--mob
+    line-height: $line-height-h1--mob
+
+// Heading h2
+$font-size-h2: 3.0rem !default
+$line-height-h2: 4.2rem !default
+$line-height-h2-kef: $line-height-h2 / $font-size-h2
+// ----------------------------------------------------
+$font-size-h2--tab: 2.8rem !default
+$line-height-h2--tab: round-float($font-size-h2--tab * $line-height-h2-kef, 1) !default // Использовать рассчетное значение, если нет в дизайне
+// ----------------------------------------------------
+$font-size-h2--mob: 2.4rem !default
+$line-height-h2--mob: round-float($font-size-h2--mob * $line-height-h2-kef, 1) !default // Использовать рассчетное значение, если нет в дизайне
+// ----------------------------------------------------
+=font-h2()
+  font-size: $font-size-h2
+  line-height: $line-height-h2
+
+  +media('<net')
+    font-size: $font-size-h2--tab
+    line-height: $line-height-h2--tab
+
+  +media('<tab-s')
+    font-size: $font-size-h2--mob
+    line-height: $line-height-h2--mob
+
+// Heading h3
+$font-size-h3: 2.4rem !default
+$line-height-h3: 3.0rem !default
+$line-height-h3-kef: $line-height-h3 / $font-size-h3
+// ----------------------------------------------------
+$font-size-h3--tab: 2.2rem !default
+$line-height-h3--tab: round-float($font-size-h3--tab * $line-height-h3-kef, 1) !default // Использовать рассчетное значение, если нет в дизайне
+// ----------------------------------------------------
+$font-size-h3--mob: 1.8rem !default
+$line-height-h3--mob: round-float($font-size-h3--mob * $line-height-h3-kef, 1) !default // Использовать рассчетное значение, если нет в дизайне
+// ----------------------------------------------------
+=font-h3()
+  font-size: $font-size-h3
+  line-height: $line-height-h3
+
+  +media('<net')
+    font-size: $font-size-h3--tab
+    line-height: $line-height-h3--tab
+
+  +media('<tab-s')
+    font-size: $font-size-h3--mob
+    line-height: $line-height-h3--mob
+
+// Heading h4
 $font-size-h4: $font-size !default
 $line-height-h4: $line-height !default
 
-// =======h5========
-$font-size-h5: $font-size--sm !default
-$line-height-h5: $line-height--sm !default
+// Heading h5
+$font-size-h5: $font-size !default
+$line-height-h5: $line-height !default
 
-// =======h6========
-$font-size-h6: $font-size--sm !default
-$line-height-h6: $line-height--sm !default
+// Heading h6
+$font-size-h6: $font-size !default
+$line-height-h6: $line-height !default
 
-$bottom-space: round-float($font-size*$line-height, 1) !default
-$bottom-space-string: round-float($font-size*$line-height*0.5, 1) !default
-$bottom-space-article: round-float($font-size*$line-height*1.5, 1) !default
-$bottom-space-section: round-float($font-size*$line-height*2, 1) !default
 
-$base-color: tomato
-$base-color-alt: green
-// цвет фона страницы
-$bg-color: white !default
-$bg-color-base: white
-$text-color-base: black
-// цвет фона элементов выделяющихся на страницы
-$bg-color-alt: #f2f2f2 !default
-// цвет фона выделенных элементов
-$bg-color-selected: #f3f3f3 !default
-// цвет фона структурных элементов
-$bg-color-light: #f7f7f7 !default
-// цвет остовного текста
-$text-color: #262626 !default
-// цвет основных заголовков заголовков
-$title-color: #ee6e73 !default
-// цвет текста светлее основного
-$text-color-light: gray !default
-// цвет для выделения текста
-$text-color-alt: tomato !default
-// цвет ссылки
-$link-color: blue !default
-// цвет фокуса
-$focus-color: #0080ff !default
-// цвет линий и границ
-$border-color: lightgray !default
-// цвет специальных элементов
-$mark-color: tomato !default
-
-// user content class
-// class на контейнере, в котором будет использоваться стилизация
-// типографических элементов: списков, таблиц, цытат и т.д.
-$user-content: user-content !default
-
-// Список классов-исключений для тегов ul, ol
-// Добавляются к типографическим стилям списков ul, ol, чтобы не применять стили для указанных классов
-// Example: $not-list-classes: ':not(.class1):not(.class2)'
-// Enter: .user-content ul:not(.class1):not(.class1)
+// Colors
 // ==========================================================================
-$not-list-classes: ':not(.breadcrumbs-list):not(.clapNav__list):not(.sub-clapNav__list)'
 
-// layout
+// ----------------------------------------------------
+$base-color: #ee6e73 !default
+$base-color-alt: #6c757d !default
+// ----------------------------------------------------
+$bg-color: #fff !default
+$bg-color-alt: #f2f2f2 !default
+$bg-color-light: #f7f7f7 !default
+// ----------------------------------------------------
+$text-color: #262626 !default
+$text-color-light: #aaa !default
+$title-color: #ee6e73 !default
+// ----------------------------------------------------
+$link-color: blue !default
+$focus-color: #0080ff !default
+// ----------------------------------------------------
+$border-color: #aaa !default
+$mark-color: #ff0b4f !default
+// ----------------------------------------------------
+$success-color: #28a745 !default
+$error-color: #dc3545 !default
+$info-color: #17a2b8 !default
+$warning-color: #ffc107 !default
+$light-color: #f8f9fa !default
+$dark-color: #343a40 !default
+
+
+// Layout
+// ==========================================================================
+
 // отступы слева и справа для всего сайта
 $layout-space-horizontal: 20px !default
 // максимальная ширина сайта
@@ -118,57 +186,14 @@ $grid-space: 30px !default
 $grid-space--md: 20px !default
 $grid-space--sm: 10px !default
 
-// form
-$color-form-text: $text-color-light !default
-$color-form-placeholder: lightgray !default
-$color-form-bg: white !default
-$color-form-border: lightgray !default
-$color-form-border-focus: darken($color-form-border, 20%) !default
-$color-form-error: red !default
-$color-form-success: green !default
-$space-bottom-form: 3rem !default
 
-// btn
-$color-btn-bg: tomato !default
-$color-btn-bg-hover: darken($color-btn-bg, 20%) !default
-$color-btn-text: white !default
+// Article content class
+// ==========================================================================
 
-// table color
-$color-table-text: $text-color !default
-$color-table-border: tomato !default
-$color-table-bg: white !default
-$color-table-text-alt: white !default
-$color-table-bg-alt: tomato !default
+$article-content: article-content !default
 
-// product in table
-$table__img--size: 70, 70 // width, height (in px). В коде высота вычисляется с соотношения ширины к высоте, а размер изображение берется в зависимости от ширины
-$table__del--size: 40px // размер кнопки (с крестиком) для удаления товара с таблицы
 
-// animation
+// Animation
+// ==========================================================================
 $animation-speed: 0.2s !default
 $animation-speed-mouseleave: 0.35s !default
-
-// fonts style
-$font-norm: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif !default
-
-=font-normal()
-	font:
-		family: $font-norm
-		weight: normal
-		style: normal
-
-=font-bold()
-	font-weight: bold
-
-=font-italic()
-	font-style: italic
-
-=font-bold-italic()
-	font-weight: bold
-	font-style: italic
-
-=font-title()
-	font-weight: 400
-
-=font-alt()
-	font-weight: 400

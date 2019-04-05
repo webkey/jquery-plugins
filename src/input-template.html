@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Шаблон поля ввода</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="css/libs.min.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/plugins/input-tpl.css">
+  <script src="js/modernizr.min.js"></script>
+</head>
+
+<body class="">
+  <header class="header layout"><a href="index.html">На главную</a></header>
+  <div class="layout-flood user-content">
+    <h1>Шаблон поля ввода</h1>
+    <h2>Examples and demos</h2>
+    <p>Шаблон поля ввода для вставки на страницу через @@include()</p>
+    <h3>input-tpl 1</h3>
+    <!--Code example-->
+    <pre class="snippet"><code class="html">&lt;div class="input-tpl input-tpl-js"&gt;
+  {{input-tpl code}}
+&lt;/div&gt;</code></pre>
+    <!--Code example end-->
+    <div class="input-tpl input-tpl-js">
+      {{input-tpl code}}
+    </div>
+    <div class="separator"><br><br><br></div>
+    <!--==== API ====-->
+    <!--==================================================-->
+    <h2>API</h2>
+    <!--==== Options ====-->
+    <!--==================================================-->
+    <h3>Options</h3>
+    <ul>
+      <li>
+        <div><b>someProperty:</b></div>
+        <div><i class="gray">Defaults:</i> <code class="red">someValue</code></div>
+        <div><i class="gray">Type:</i> <code class="red">String</code></div>
+        <div><i class="gray">Values:</i> <code class="red">otherValue</code></div>
+        <div><i class="gray">Description:</i></div>
+        <div>Описание</div>
+      </li>
+    </ul>
+  </div>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/libs.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/plugins/jquery.input-tpl.js"></script>
+  <script src="js/common-input-tpl.js"></script>
+</body>
+
+</html>

@@ -56,16 +56,7 @@ gulp.task('htmlCompilation', function () {
 			.pipe(gulp.dest('./src/'));
 });
 
-/// Таск для переноса normalize.css и его минификации
-gulp.task('compressNormalizeCss', function () {
-	return gulp.src('src/libs/normalize-css/normalize.css')
-		.pipe(gulp.dest('src/sass/base/'))
-		.pipe(cssnano())
-		.pipe(rename({suffix: '.min'}))
-		.pipe(gulp.dest('src/sass/base/'));
-});
-
-gulp.task('sassCompilation', ['compressNormalizeCss'], function () { // Создаем таск для компиляции sass файлов
+gulp.task('sassCompilation', function () { // Создаем таск для компиляции sass файлов
 	return gulp.src('src/sass/**/*.+(scss|sass)') // Берем источник
 		.pipe(sourcemaps.init())
 		.pipe(sass({
@@ -105,14 +96,6 @@ gulp.task('mergeCssLibs', function () { // Таск для мержа css биб
 		.pipe(cssnano()) // Сжимаем
 		.pipe(rename({suffix: '.min'})) // Добавляем суффикс .min
 		.pipe(gulp.dest('./')); // Выгружаем в папку src/css сжатую версию
-});
-
-/// Таск для переноса normalize
-gulp.task('normalize', function () {
-	return gulp.src('src/libs/normalize-scss/sass/**/*.+(scss|sass)')
-		.pipe(stripCssComments())
-		// .pipe(removeEmptyLines())
-		.pipe(gulp.dest('src/_temp/'));
 });
 
 gulp.task('copyLibsScriptsToJs', ['copyJqueryToJs', 'copyJqueryUiJs', 'copyJqueryUiCss'], function () { // Таск для мераж js библиотек
@@ -177,7 +160,7 @@ gulp.task('browserSync', function (done) { // Таск browserSync
 	done();
 });
 
-gulp.task('watch', ['normalize', 'browserSync', 'htmlCompilation', 'sassCompilation', 'mergeCssLibs', 'copyLibsScriptsToJs'], function () {
+gulp.task('watch', ['browserSync', 'htmlCompilation', 'sassCompilation', 'mergeCssLibs', 'copyLibsScriptsToJs'], function () {
 	gulp.watch(['src/_tpl_*.html', 'src/__*.html', 'src/includes/**/*.json'], ['htmlCompilation']); // Наблюдение за tpl
 	// файлами в папке include
 	gulp.watch('src/sass/**/*.+(scss|sass)', ['sassCompilation']); // Наблюдение за sass файлами в папке sass
@@ -218,7 +201,7 @@ gulp.task('copyImgToDist', function () {
 		.pipe(gulp.dest('dist/img')); // Выгружаем на продакшен
 });
 
-gulp.task('build', ['cleanDistFolder', 'htmlCompilation', 'copyImgToDist', 'sassCompilation', 'mergeCssLibs', 'normalize', 'copyLibsScriptsToJs'], function () {
+gulp.task('build', ['cleanDistFolder', 'htmlCompilation', 'copyImgToDist', 'sassCompilation', 'mergeCssLibs', 'copyLibsScriptsToJs'], function () {
 
 	gulp.src('src/css/*.css')
 		.pipe(gulp.dest('dist/css'));

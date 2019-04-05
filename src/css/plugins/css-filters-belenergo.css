@@ -38,14 +38,14 @@
 
 .structure-hand {
 	position: relative;
-	background-color: white;
-	border: 2px solid green;
+	background-color: #fff;
+	border: 2px solid #ee6e73;
 	padding: 15px 73px 15px 30px;
 	cursor: pointer;
 	font-size: 16px;
 	line-height: 1.5;
 	letter-spacing: 0.05em;
-	color: green;
+	color: #ee6e73;
 	text-transform: uppercase;
 	-webkit-user-select: none;
 	   -moz-user-select: none;
@@ -61,8 +61,8 @@
 }
 
 .no-touchevents .structure-hand:hover, .structure-hand.is-open {
-	background-color: green;
-	color: white;
+	background-color: #ee6e73;
+	color: #fff;
 }
 
 .structure-hand .text {
@@ -73,7 +73,7 @@
 .structure-hand .counter {
 	display: inline-block;
 	vertical-align: top;
-	color: gray;
+	color: #aaa;
 	padding-left: 8px;
 }
 
@@ -112,8 +112,10 @@
 	        backface-visibility: hidden;
 	width: 13px;
 	height: 3px;
-	background-color: tomato;
+	background-color: #ee6e73;
+	transition-property: -webkit-transform;
 	transition-property: transform;
+	transition-property: transform, -webkit-transform;
 	transition-duration: 0.2s;
 }
 
@@ -123,19 +125,21 @@
 
 .structure-hand .angle::after {
 	top: 0;
-	transform: rotate(90deg) translateZ(0);
+	-webkit-transform: rotate(90deg) translateZ(0);
+	        transform: rotate(90deg) translateZ(0);
 }
 
 .no-touchevents .structure-hand:hover .angle::before, .no-touchevents .structure-hand:hover .angle::after, .structure-hand.is-open .angle::before, .structure-hand.is-open .angle::after {
-	background-color: white;
+	background-color: #fff;
 }
 
 .structure-hand.is-open .angle::after {
-	transform: rotate(0) translateZ(0);
+	-webkit-transform: rotate(0) translateZ(0);
+	        transform: rotate(0) translateZ(0);
 }
 
 .structure-panel {
-	background-color: white;
+	background-color: #fff;
 	display: none;
 }
 
@@ -152,16 +156,16 @@
 }
 
 .structure-panel__content {
-	border: solid green;
+	border: solid #ee6e73;
 	border-width: 0 2px 2px;
 	padding: 27px 30px;
 }
 
 .structure-panel-item {
 	padding: 15px 30px 15px;
-	border: solid green;
+	border: solid #ee6e73;
 	border-width: 0 2px 2px;
-	background-color: white;
+	background-color: #fff;
 	color: #262626;
 	font-size: 16px;
 	line-height: 1.5;
@@ -180,7 +184,7 @@
 	font-size: 10px;
 	line-height: 12px;
 	text-align: right;
-	color: gray;
+	color: #aaa;
 	text-transform: uppercase;
 	padding-left: 20px;
 	max-width: 200px;
@@ -216,12 +220,12 @@
 
 /* structure sub end */
 /* accordion end */
-.filters-list li, .user-content .filters-list li {
+.filters-list li, .article-content .filters-list li {
 	padding-left: 0;
 	margin-right: 20px;
 }
 
-.filters-list li::before, .user-content .filters-list li::before {
+.filters-list li::before, .article-content .filters-list li::before {
 	content: none;
 }
 

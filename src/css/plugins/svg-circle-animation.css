@@ -35,7 +35,9 @@ a.shutter-menu-switcher::before, a.shutter-menu-switcher::after {
 	border-radius: 2px;
 	will-change: opacity, transform;
 	opacity: 0;
+	transition-property: opacity, -webkit-transform;
 	transition-property: transform, opacity;
+	transition-property: transform, opacity, -webkit-transform;
 	transition-duration: 0.3s;
 	transition-delay: 0s;
 	transition-timing-function: cubic-bezier(0.65, 0.05, 0.36, 1);
@@ -87,7 +89,9 @@ a.shutter-menu-switcher > i::before, a.shutter-menu-switcher > i::after {
 	width: 41px;
 	background-color: currentColor;
 	border-radius: 2px;
+	transition-property: -webkit-transform;
 	transition-property: transform;
+	transition-property: transform, -webkit-transform;
 	transition-duration: 0.3s;
 	transition-delay: 0.15s;
 }
@@ -109,8 +113,9 @@ a.shutter-menu-switcher > svg {
 	height: 8rem;
 	margin-top: -4rem;
 	margin-left: -4rem;
-	-ms-transform: rotate(-90deg);
-	    transform: rotate(-90deg);
+	-webkit-transform: rotate(-90deg);
+	    -ms-transform: rotate(-90deg);
+	        transform: rotate(-90deg);
 	stroke-dasharray: 220;
 	stroke-dashoffset: 220;
 	will-change: stroke-dashoffset;
@@ -127,7 +132,7 @@ a.shutter-menu-switcher > svg circle {
 }
 
 a.shutter-menu-switcher:hover {
-	color: tomato;
+	color: #ff0b4f;
 }
 
 a.shutter-menu-switcher:hover > i::before, a.shutter-menu-switcher:hover > i::after {
@@ -135,11 +140,13 @@ a.shutter-menu-switcher:hover > i::before, a.shutter-menu-switcher:hover > i::af
 }
 
 a.shutter-menu-switcher:hover > i::before {
-	transform: translate(3px, 1px) translateZ(0);
+	-webkit-transform: translate(3px, 1px) translateZ(0);
+	        transform: translate(3px, 1px) translateZ(0);
 }
 
 a.shutter-menu-switcher:hover > i::after {
-	transform: translate(3px, -1px) translateZ(0);
+	-webkit-transform: translate(3px, -1px) translateZ(0);
+	        transform: translate(3px, -1px) translateZ(0);
 }
 
 a.shutter-menu-switcher:hover > svg {
@@ -156,11 +163,13 @@ a.shutter-menu-switcher.shutter-menu_is-open::before, a.shutter-menu-switcher.sh
 }
 
 a.shutter-menu-switcher.shutter-menu_is-open::before {
-	transform: rotate(45deg) translateZ(0);
+	-webkit-transform: rotate(45deg) translateZ(0);
+	        transform: rotate(45deg) translateZ(0);
 }
 
 a.shutter-menu-switcher.shutter-menu_is-open::after {
-	transform: rotate(-45deg) translateZ(0);
+	-webkit-transform: rotate(-45deg) translateZ(0);
+	        transform: rotate(-45deg) translateZ(0);
 }
 
 a.shutter-menu-switcher.shutter-menu_is-open > i {
@@ -173,11 +182,13 @@ a.shutter-menu-switcher.shutter-menu_is-open > i::before, a.shutter-menu-switche
 }
 
 a.shutter-menu-switcher.shutter-menu_is-open > i::before {
-	transform: translate(3px, 13px) translateZ(0);
+	-webkit-transform: translate(3px, 13px) translateZ(0);
+	        transform: translate(3px, 13px) translateZ(0);
 }
 
 a.shutter-menu-switcher.shutter-menu_is-open > i::after {
-	transform: translate(3px, -13px) translateZ(0);
+	-webkit-transform: translate(3px, -13px) translateZ(0);
+	        transform: translate(3px, -13px) translateZ(0);
 }
 
 /* shutter menu switcher end */
