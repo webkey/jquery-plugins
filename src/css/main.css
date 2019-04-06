@@ -244,11 +244,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
+	font-weight: 300;
 	font-size: 3.6rem;
 	line-height: 5.2rem;
 }
 
-@media (max-width: 639px) {
+@media (max-width: 1199px) {
+	h1 {
+		font-size: 3.4rem;
+		line-height: 4.9rem;
+	}
+}
+
+@media (max-width: 767px) {
 	h1 {
 		font-size: 3rem;
 		line-height: 4.3rem;
@@ -260,16 +268,23 @@ h2 {
 	line-height: 4.2rem;
 }
 
-h2::before {
-	content: '§ ';
-	display: inline;
+@media (max-width: 1199px) {
+	h2 {
+		font-size: 2.8rem;
+		line-height: 3.9rem;
+	}
 }
 
-@media (max-width: 639px) {
+@media (max-width: 767px) {
 	h2 {
 		font-size: 2.4rem;
 		line-height: 3.4rem;
 	}
+}
+
+h2::before {
+	content: '§ ';
+	display: inline;
 }
 
 h3 {
@@ -277,7 +292,14 @@ h3 {
 	line-height: 3rem;
 }
 
-@media (max-width: 639px) {
+@media (max-width: 1199px) {
+	h3 {
+		font-size: 2.2rem;
+		line-height: 2.8rem;
+	}
+}
+
+@media (max-width: 767px) {
 	h3 {
 		font-size: 1.8rem;
 		line-height: 2.3rem;
@@ -351,6 +373,12 @@ a[href^="tel"],
 
 a[href^="javascript:"] {
 	cursor: default;
+}
+
+.bd-lead {
+	font-size: 2.3rem;
+	line-height: 3.5rem;
+	font-weight: 300;
 }
 
 img {
@@ -663,9 +691,8 @@ code.l, code.red, code.green {
 .article-content blockquote q:after {
 	content: '';
 	margin: 20px 30% 0 auto;
-	-webkit-transform: rotate(180deg);
-	    -ms-transform: rotate(180deg);
-	        transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	    transform: rotate(180deg);
 }
 
 @media (max-width: 639px) {
@@ -740,9 +767,8 @@ code.l, code.red, code.green {
 }
 
 .view-print:active {
-	-webkit-transform: scale(0.98);
-	    -ms-transform: scale(0.98);
-	        transform: scale(0.98);
+	-ms-transform: scale(0.98);
+	    transform: scale(0.98);
 }
 
 .view-print svg {

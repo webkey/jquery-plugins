@@ -113,9 +113,7 @@
 	width: 13px;
 	height: 3px;
 	background-color: #ee6e73;
-	transition-property: -webkit-transform;
 	transition-property: transform;
-	transition-property: transform, -webkit-transform;
 	transition-duration: 0.2s;
 }
 
@@ -125,8 +123,7 @@
 
 .structure-hand .angle::after {
 	top: 0;
-	-webkit-transform: rotate(90deg) translateZ(0);
-	        transform: rotate(90deg) translateZ(0);
+	transform: rotate(90deg) translateZ(0);
 }
 
 .no-touchevents .structure-hand:hover .angle::before, .no-touchevents .structure-hand:hover .angle::after, .structure-hand.is-open .angle::before, .structure-hand.is-open .angle::after {
@@ -134,8 +131,7 @@
 }
 
 .structure-hand.is-open .angle::after {
-	-webkit-transform: rotate(0) translateZ(0);
-	        transform: rotate(0) translateZ(0);
+	transform: rotate(0) translateZ(0);
 }
 
 .structure-panel {
