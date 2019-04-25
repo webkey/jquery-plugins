@@ -1,45 +1,8 @@
-.order-calc__remove-cell-js {
-	display: none !important;
-}
-
-.order-calc__remove-warning-js {
-	position: relative;
-	display: table-row-group !important;
-}
-
-.order-calc__remove-warning-js > div {
-	padding: 2px 8px;
-	color: #dc3545;
-}
-
-.order-calc__remove-row-js {
-	box-shadow: inset 0 -1px 0 #aaa;
-}
-
-.order-calc__remove-row-js:first-child {
-	box-shadow: inset 0 -1px 0 #aaa, inset 0 1px 0 #aaa;
-}
-
-.order-calc__cancel-js {
-	cursor: pointer;
-}
-
-.order-calc__empty {
-	display: none;
-	padding: 8px;
-	font-weight: bold;
-	font-size: 14px;
-	line-height: 1.43;
-	letter-spacing: 0.2em;
-	text-transform: uppercase;
-	text-align: center;
-}
-
 .order-calc__hasnt-items .order-calc__empty {
 	display: block;
 }
 
-.order-calc__hasnt-items .c-table, .order-calc__hasnt-items .c-table-result {
+.order-calc__hasnt-items .c-table {
 	display: none;
 }
 

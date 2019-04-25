@@ -1,0 +1,34 @@
+<td class="c-td">
+  <a href="@@href" class="title">
+    <div>
+      <img src="@@if(context.src){@@src}@@if(!context.src){img/no-img-product.png}" alt="@@title" />
+    </div>
+    <strong>@@title</strong>
+  </a>
+</td>
+
+<td class="c-td">
+  <small class="order-calc__price-old-js" data-price="@@priceOld.val">Old: @@priceOld.unit @@priceOld.val</small>
+  <br>
+  <span class="order-calc__price-js" data-price="@@price.val">New: @@price.unit @@price.val</span>
+</td>
+
+<td class="c-td">
+  <label>
+    <input class="spinner spinner-js order-calc__number-js" type="text" name="value" value="@@length" data-id="@@title" data-only-number>
+  </label>
+</td>
+
+<td class="c-td">
+  <div>
+    <small>Old: @@price.unit <span class="order-calc__price-old-sum-js">0</span></small>
+    <br>
+    New: @@price.unit <span class="order-calc__price-sum-js">0</span>
+    <br>
+    <strong><small>Profit: @@price.unit <span class="order-calc__profit-sum-js">0</span></small></strong>
+  </div>
+</td>
+
+<td class="c-td">
+  <a href="#" class="order-calc__remove-js">x Remove</a>
+</td>
