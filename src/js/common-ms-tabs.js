@@ -10,6 +10,7 @@ $(function () {
   if ($tabs.length) {
     $tabs.msTabs({
       collapsible: true,
+      activeIndex: 2,
       modifiers: {
         initClass: 'MY--INITIALIZED-CLASS',
         activeClass: 'MY--ACTIVE-TAB-CLASS',
@@ -22,10 +23,7 @@ $(function () {
 
   if ($cats.length) {
     $cats.msTabs({
-      // collapsible: true
-      // , modifiers: {
-      // 	activeClass: 'tab-poookkhh'
-      // }
+      activeIndex: 2
     });
   }
 
