@@ -7,7 +7,7 @@
 $(function () {
   // Для адаптива
   // На примере навигации
-  var $nav = $('.nav-opener-js_____'),
+  var $nav = $('.nav-opener-js'),
       nav;
   if ($nav.length) {
     nav = $nav.switchClass({
@@ -65,12 +65,12 @@ $(function () {
     setTimeout(function () {
       // Добавить кнопку(и) динамически
       $('#add-switcher').html('<a href="#" class="tc__switcher-js"><span>Открыть попап 1 (switcher) (loaded)</span></a>');
-      tc1 = $switcher1.switchClass(options).css('border', '5px solid red');
+      tc1 = $switcher1.switchClass(options);
     }, 1500);
   }
 
   // Второй свитчер
-  var $switcher2 = $('.tc-2-js_____'),
+  var $switcher2 = $('.tc-2-js'),
       tc2;
   if ($switcher2.length) {
     tc2 = $switcher2.switchClass({
@@ -94,7 +94,7 @@ $(function () {
     $('#add-switcher-02').html('<a href="#" class="tc-3-js"><span>Открыть попап 3 (loaded)</span></a>');
 
     // Трений свитчер. Добавляется на страницу динамически
-    var $switcher3 = $('.tc-3-js_____');
+    var $switcher3 = $('.tc-3-js');
     var tc3 = $switcher3.switchClass({
       switcher: '.tc-3__switcher-js'
       , remover: '.tc-3__remover-js'
@@ -114,20 +114,20 @@ $(function () {
       }
     });
 
-    // tc2.on('switchClass.beforeAdded', function () {
-    // 	tc1.switchClass('remove');
-    // 	tc3.switchClass('remove');
-    // 	nav.switchClass('remove');
-    // });
-    // tc1.on('switchClass.beforeAdded', function () {
-    // 	tc2.switchClass('remove');
-    // 	tc3.switchClass('remove');
-    // 	nav.switchClass('remove');
-    // });
-    // nav.on('switchClass.beforeAdded', function () {
-    // 	tc1.switchClass('remove');
-    // 	tc2.switchClass('remove');
-    // 	tc3.switchClass('remove');
-    // });
+    tc2.on('switchClass.beforeAdded', function () {
+      tc1.switchClass('remove');
+      tc3.switchClass('remove');
+      nav.switchClass('remove');
+    });
+    tc1.on('switchClass.beforeAdded', function () {
+      tc2.switchClass('remove');
+      tc3.switchClass('remove');
+      nav.switchClass('remove');
+    });
+    nav.on('switchClass.beforeAdded', function () {
+      tc1.switchClass('remove');
+      tc2.switchClass('remove');
+      tc3.switchClass('remove');
+    });
   }, 1500);
 });
