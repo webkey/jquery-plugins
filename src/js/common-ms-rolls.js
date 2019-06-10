@@ -51,5 +51,32 @@ $(function () {
         console.log('Панель #hashExpl открыта!');
       });
     });
+
+    // Добавляем елемент роллов динамически
+    var tplNewRollsItem = '<div class="rolls__header rolls__header-js">\n' +
+        '        <a href="#">{{Title 1.4 added after initialized}}</a>\n' +
+        '        <a href="#" class="rolls__angle rolls__switcher-js">&nbsp;</a>\n' +
+        '      </div>\n' +
+        '      <div class="rolls__panel-wrap-js">\n' +
+        '        <div class="rolls__panel rolls__panel-js">\n' +
+        '          <div>{{Content 1.4}} <br> {{Content 1.4}} <br> {{Content 1.4}}</div>\n' +
+        '          <div class="rolls__item rolls__item-js">\n' +
+        '            <div class="rolls__header rolls__header-js">\n' +
+        '              <a href="#">{{Title 1.4 - 2.1}}</a>\n' +
+        '              <a href="#" class="rolls__angle rolls__switcher-js">&nbsp;</a>\n' +
+        '            </div>\n' +
+        '            <div class="rolls__panel-wrap-js">\n' +
+        '              <div class="rolls__panel rolls__panel-js">\n' +
+        '                <div>{{Content 1.4 - 2.1}} <br> {{Content 1.4 - 2.1}}</div>\n' +
+        '              </div>\n' +
+        '            </div>\n' +
+        '          </div>\n' +
+        '        </div>';
+    setTimeout(function () {
+      $('#add-rolls-item').html(tplNewRollsItem);
+      myRolls.msRolls('init', function () {
+        console.log('init!');
+      });
+    }, 1500);
   }
 });
