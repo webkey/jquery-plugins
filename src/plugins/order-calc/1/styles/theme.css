@@ -1,0 +1,195 @@
+.spinner {
+	position: relative;
+	display: inline-block;
+	vertical-align: top;
+	text-align: left;
+	background-color: transparent;
+}
+
+.spinner input {
+	margin-bottom: 0;
+	border: none;
+	box-shadow: none;
+	width: 20px;
+	height: 20px;
+	padding: 0;
+}
+
+.spinner.spinner-js {
+	opacity: 0;
+	visibility: hidden;
+}
+
+.ui-spinner .spinner.spinner-js {
+	opacity: 1;
+	visibility: visible;
+}
+
+.ui-widget.ui-widget-content {
+	border: none;
+}
+
+.ui-spinner {
+	padding-right: 30px;
+	padding-left: 30px;
+	box-shadow: inset 0 0 0 1px #aaa;
+	background-color: #fff;
+}
+
+.ui-spinner-input, .ui-spinner-input[type="text"] {
+	width: 54px;
+	border: none;
+	background: none;
+	color: inherit;
+	padding: 5px 5px;
+	height: 30px;
+	vertical-align: top;
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	font-size: 16px;
+	line-height: 20px;
+	text-align: center;
+	box-shadow: none;
+}
+
+.ui-spinner-input:focus, .ui-spinner-input:hover, .ui-spinner-input[type="text"]:focus, .ui-spinner-input[type="text"]:hover {
+	box-shadow: none !important;
+	border-color: transparent !important;
+}
+
+.ui-spinner-button {
+	position: absolute;
+	top: 0;
+	width: 30px;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	cursor: pointer;
+}
+
+.ui-spinner a.ui-spinner-button {
+	border: 1px solid #aaa;
+}
+
+.ui-spinner-up {
+	right: 0;
+}
+
+.ui-spinner-down {
+	left: 0;
+}
+
+.ui-button-icon-only .ui-icon {
+	width: 10px;
+	height: 2px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -1px;
+	margin-left: -5px;
+	overflow: visible;
+}
+
+.ui-button-icon-only .ui-icon::before, .ui-button-icon-only .ui-icon::after {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 10px;
+	height: 2px;
+	background-color: #262626;
+}
+
+.ui-spinner-up .ui-button-icon::before {
+	-ms-transform: rotate(0.25turn);
+	    transform: rotate(0.25turn);
+}
+
+[aria-valuenow="0"] ~ .ui-spinner-down {
+	cursor: default;
+}
+
+[aria-valuenow="0"] ~ .ui-spinner-down .ui-button-icon::before, [aria-valuenow="0"] ~ .ui-spinner-down .ui-button-icon::after {
+	background-color: #d0d0d0 !important;
+}
+
+.ui-spinner-button:hover .ui-button-icon::before, .ui-spinner-button:hover .ui-button-icon::after {
+	background-color: #ee6e73;
+}
+
+.btn-del {
+	position: relative;
+	display: inline-block;
+	vertical-align: top;
+	width: 20px;
+	height: 20px;
+	color: #262626;
+	text-decoration: none;
+}
+
+.btn-del svg {
+	position: absolute;
+	width: 12px;
+	height: 12px;
+	top: 50%;
+	left: 50%;
+	margin: -6px 0 0 -6px;
+}
+
+.btn-del path {
+	fill: currentColor;
+}
+
+.btn-del > span {
+	display: none;
+}
+
+.btn-del:hover {
+	color: blue;
+}
+
+.c-table {
+	border: 1px solid #aaa;
+}
+
+.c-th {
+	border: 1px solid #aaa;
+}
+
+.c-td {
+	border: 1px solid #aaa;
+}
+
+.c-td .title {
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-align: center;
+	    align-items: center;
+}
+
+.c-td .title > div {
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-align: center;
+	    align-items: center;
+	-ms-flex-pack: center;
+	    justify-content: center;
+	height: 4rem;
+	width: 6rem;
+	margin-right: 1rem;
+}
+
+.c-td .title > div img {
+	display: block;
+	max-height: 100%;
+	max-width: 100%;
+}
+
+.no-touchevents .c-tr:hover .c-td {
+	background-color: #f7f7f7;
+}
+
+/* stock tape end */
+
+/*# sourceMappingURL=theme.css.map */

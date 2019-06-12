@@ -36,9 +36,8 @@
 	padding: 20px;
 	background-color: lightgoldenrodyellow;
 	border: 2px solid lightcoral;
-	-webkit-transform: translate(-50%, -50%);
-	    -ms-transform: translate(-50%, -50%);
-	        transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	    transform: translate(-50%, -50%);
 }
 
 /*# sourceMappingURL=main.css.map */

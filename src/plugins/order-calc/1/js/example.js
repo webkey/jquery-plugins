@@ -86,7 +86,7 @@ $(function () {
   $(document).ready(function () {
     setTimeout(function () {
       $.ajax({
-        url: "ms-order-calc--ajax-temp.html",
+        url: "ajax-temp.html",
         cache: false,
         dataType: 'html',
         success: function (html) {

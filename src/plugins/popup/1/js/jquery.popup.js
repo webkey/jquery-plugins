@@ -1,4 +1,4 @@
-/*! jquery.ms-popup.js
+/*! jquery.popup.js
  * Version: 2018.1.0
  * Author: Astronim*
  * Description: Toggle a simple popup
