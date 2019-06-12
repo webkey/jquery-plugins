@@ -39,7 +39,7 @@ var path = {
  * @description Таск формирует ДОМ страниц
  */
 gulp.task('htmlCompilation', function () {
-	return gulp.src(['src/__*.html'])
+	return gulp.src(['src/**/__*.html'], {base: './'})
 			.pipe(fileinclude({
 				filters: {
 					markdown: markdown.parse
@@ -53,11 +53,16 @@ gulp.task('htmlCompilation', function () {
 				"indent_size": 2,
 				"max_preserve_newlines": 0
 			}))
-			.pipe(gulp.dest('./src/'));
+			// .pipe(gulp.dest('./src/'));
+			.pipe(gulp.dest('./'));
 });
 
 gulp.task('sassCompilation', function () { // Создаем таск для компиляции sass файлов
-	return gulp.src('src/sass/**/*.+(scss|sass)') // Берем источник
+	return gulp.src([
+		'!src/libs/**/*.+(scss|sass)',
+		'!src/sass/plugins/**/*.+(scss|sass)',
+		'src/**/*.+(scss|sass)'
+	], {base: './'}) // Берем источник
 		.pipe(sourcemaps.init())
 		.pipe(sass({
 			outputStyle: 'expanded', // nested (default), expanded, compact, compressed
@@ -73,7 +78,8 @@ gulp.task('sassCompilation', function () { // Создаем таск для к�
 			cascade: true
 		})) // Создаем префиксы
 		.pipe(sourcemaps.write('./'))
-		.pipe(gulp.dest('./src/css')) // Выгружаем результата в папку src/css
+		// .pipe(gulp.dest('./src/css')) // Выгружаем результата в папку src/css
+		.pipe(gulp.dest('./')) // Выгружаем результата в папку src/css
 		.pipe(browserSync.reload({
 			stream: true
 		})); // Обновляем CSS на странице при изменении
@@ -129,7 +135,7 @@ gulp.task('copyJqueryUiJs', function () {
 
 gulp.task('copyJqueryUiCss', function () {
 	return gulp.src([
-		, 'src/libs/jquery-ui/themes/base/base.css'
+		'src/libs/jquery-ui/themes/base/base.css'
 		, 'src/libs/jquery-ui/themes/base/spinner.css'
 	])
 		.pipe(concatCss("jquery-ui.css", {
@@ -141,7 +147,7 @@ gulp.task('copyJqueryUiCss', function () {
 
 // babel
 // gulp.task('babelJsConvert', function () {
-// 	gulp.src('src/js/common-ms-rolls.js')
+// 	gulp.src('src/js/example.js')
 // 		.pipe(babel({
 // 			presets: ['env']
 // 		}))
@@ -161,9 +167,13 @@ gulp.task('browserSync', function (done) { // Таск browserSync
 });
 
 gulp.task('watch', ['browserSync', 'htmlCompilation', 'sassCompilation', 'mergeCssLibs', 'copyLibsScriptsToJs'], function () {
-	gulp.watch(['src/_tpl_*.html', 'src/__*.html', 'src/includes/**/*.json'], ['htmlCompilation']); // Наблюдение за tpl
+	gulp.watch(['src/**/_tpl_*.html', 'src/**/__*.html', 'src/includes/**/*.json'], ['htmlCompilation']); // Наблюдение за tpl
 	// файлами в папке include
-	gulp.watch('src/sass/**/*.+(scss|sass)', ['sassCompilation']); // Наблюдение за sass файлами в папке sass
+	gulp.watch([
+		'!src/libs/**/*.+(scss|sass)',
+		'!src/sass/plugins/**/*.+(scss|sass)',
+		'src/**/*.+(scss|sass)'
+	], ['sassCompilation']); // Наблюдение за sass файлами в папке sass
 	// for babel
 	// gulp.watch('src/js/**/*.js', ['babelJsConvert']); // Наблюдение за sass файлами в папке sass
 });
@@ -175,7 +185,7 @@ gulp.task('default', ['watch']); // Назначаем таск watch дефол
  ************************************************************/
 
 gulp.task('minifyJsPlugins', function () {
-	return gulp.src('src/js/plugins/jquery.ms-clap.js')
+	return gulp.src('src/js/plugins/jquery.clap.js')
 		.pipe(rename({suffix: '.min'}))
 		.pipe(uglify({
 			output: {

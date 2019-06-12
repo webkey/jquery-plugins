@@ -1,0 +1,218 @@
+@@include('../../../_tpl_plugin_layout_head.html', {
+"pathCss": ["styles/main.css"]
+})
+
+<div class="wrapper">
+  <div class="layout-flood user-content">
+    <h1>ms-clap</h1>
+    <p class="warning">
+      <strong>Допольнительные плагины:</strong> <br>
+      <!-- - Для определения touch-устройств: <code class="red">modernizr.js</code>  <br>-->
+      - Для опраделения событий изменения размеров браузера: <code class="red">jquery.debouncedresize.js</code>
+    </p>
+
+    <!--<p>В плагине код определения touch-устройтва удалить, если уже есть в <code class="green">example.js</code>:</p>
+    <pre class="snippet"><code class="js">/**
+   * !Detected touchscreen devices
+   * */
+  var TOUCH = Modernizr.touchevents,
+    DESKTOP = !TOUCH;</code></pre>-->
+
+    <h2>Примеры использования</h2>
+
+    <h3>1. Навигация сайта</h3>
+    <p><em>0 - 992px</em> - аккордеон, <em>>992px</em> - меню с выпадающими подменю.</p>
+    <!--Code example-->
+    <p class="warning">В структуре Панель (<code class="red">[block]__panel-js</code>) всегда должна лежать <em>непосредственно</em> после Шапки (<code class="red">[block]__header-js</code>)</p>
+    <!--Code example end-->
+    <div class="clapNav">
+      @@include('../../../_tpl_nav-constructor-clap.html', {
+        "currentItem": "&sim;Item 1.1&sim;",
+        "bsKey": "clapNav"
+      })
+    </div>
+
+    <p>Открыть панель используя метод <code class="green">'open'</code> <br> <code class="red">myClap.msClap('open', $panel[, callback]);</code></p>
+    <!--<pre class="snippet"><code class="js">$('.open-panel-js').on('click', function () {
+    var id = $(this).attr('data-id') || $(this).attr('href')
+    myClap.msClap('open', $(id), function () {
+      console.log('Открылась панел ' + id);
+    });
+  });</code></pre>-->
+    <p>
+      <button class="open-panel-js" data-id="#hashTest">Открыть панель #hashTest</button>
+    </p>
+    <p>
+      <a href="#hashTest" class="open-panel-js">Открыть панель #hashTest</a>
+    </p>
+    <br>
+
+    <h3>2. Аккордеон</h3>
+    <div class="clap clap-js">
+      <!--clap-->
+      <!--(1) FIRST level - START-->
+      <div class="clap__item clap__item-js">
+        <div class="clap__header clap__header-js">
+          <a href="#">{{Title 1.1}}</a>
+          <a href="#" class="clap__angle clap__hand-js">&nbsp;</a>
+        </div>
+        <div class="clap__panel clap__panel-js is-open" id="hashExpl">
+          <div>{{Content 1.1}}</div>
+          <!--(2) SECOND level - START-->
+          <div class="clap__item clap__item-js">
+            <div class="clap__header clap__header-js">
+              <a href="#">{{Title 1.1 - 2.1}}</a>
+              <a href="#" class="clap__angle clap__hand-js">&nbsp;</a>
+            </div>
+            <div class="clap__panel clap__panel-js is-open">
+              <div>{{Content 1.1 - 2.1}}</div>
+              <!--(3) THIRD level - START-->
+              <div class="clap__item clap__item-js">
+                <div class="clap__header clap__header-js">
+                  <a href="#">{{Title 1.1 - 2.1 - 3.1}}</a>
+                  <a href="#" class="clap__angle clap__hand-js">&nbsp;</a>
+                </div>
+                <div class="clap__panel clap__panel-js is-open">
+                  <div>{{Content 1.1 - 2.1 - 3.1}}</div>
+                  <!--roll next level-->
+                </div>
+              </div>
+              <!--(3) THIRD level - END-->
+            </div>
+          </div>
+          <div class="clap__item clap__item-js">
+            <div class="clap__header clap__header-js">
+              <a href="#">{{Title 1.1 - 2.2}}</a>
+              <a href="#" class="clap__angle clap__hand-js">&nbsp;</a>
+            </div>
+            <div class="clap__panel clap__panel-js">
+              <div>{{Content 1.1 - 2.2}}</div>
+              <!--roll next level-->
+            </div>
+          </div>
+          <!--(2) SECOND level - END-->
+        </div>
+      </div>
+
+      <div class="clap__item clap__item-js">
+        <div class="clap__header clap__header-js">
+          <a href="#">{{Title 1.2}}</a>
+          <a href="#" class="clap__angle clap__hand-js">&nbsp;</a>
+        </div>
+        <div class="clap__panel clap__panel-js">
+          <div>{{Content 1.2}} <br> {{Content 1.2}}</div>
+          <!--(2) SECOND level - START-->
+          <div class="clap__item clap__item-js">
+            <div class="clap__header clap__header-js">
+              <a href="#">{{Title 1.2 - 2.1}}</a>
+              <a href="#" class="clap__angle clap__hand-js">&nbsp;</a>
+            </div>
+            <div class="clap__panel clap__panel-js">
+              <div>{{Content 1.2 - 2.1}} <br> {{Content 1.2 - 2.1}}</div>
+              <!--roll next level-->
+            </div>
+          </div>
+          <!--(2) SECOND level - END-->
+        </div>
+      </div>
+
+      <div class="clap__item clap__item-js">
+        <div class="clap__header clap__header-js">
+          <a href="#">{{Title 1.3}}</a>
+          <a href="#" class="clap__angle clap__hand-js">&nbsp;</a>
+        </div>
+        <div class="clap__panel clap__panel-js">
+          <div>{{Content 1.3}} <br> {{Content 1.3}}</div>
+          <!--(2) SECOND level - START-->
+          <div class="clap__item clap__item-js">
+            <div class="clap__header clap__header-js">
+              <a href="#">{{Title 1.3 - 2.1}}</a>
+              <a href="#" class="clap__angle clap__hand-js">&nbsp;</a>
+            </div>
+            <div class="clap__panel clap__panel-js">
+              <div>{{Content 1.3 - 2.1}} <br> {{Content 1.3 - 2.1}}</div>
+              <!--roll next level-->
+            </div>
+          </div>
+          <!--(2) SECOND level - END-->
+        </div>
+      </div>
+      <!--(1) FIRST level - END-->
+      <!--clap end-->
+    </div>
+
+    <div>
+      <button class="open-panel-js" data-id="#hashExpl">Открыть панель #hashExpl</button>
+    </div>
+
+    <br>
+    <br>
+
+    <h2>Документация</h2>
+    <h3>Used Files:</h3>
+    <ul>
+      <li>__ms-clap.html</li>
+      <li>jquery.clap.js</li>
+      <li>example.js</li>
+      <li>ms-clap.sass</li>
+    </ul>
+    <h3>Options</h3>
+    <ul>
+      <li>
+        <div><b>someProperty:</b></div>
+        <div><i class="gray">Default:</i> <code class="red">someValue</code></div>
+        <div><i class="gray">Type:</i> <code class="red">String</code></div>
+        <div><i class="gray">Values:</i> <code class="red">otherValue</code></div>
+        <div><i class="gray">Description:</i> <br> Описание</div>
+      </li>
+    </ul>
+
+    <h3>События</h3>
+    <ul>
+      <li>
+        <div><b>afterInit</b></div>
+        <div>
+          <pre class="snippet"><code class="javascript">afterInit: function (e, el) {}</code></pre>
+        </div>
+      </li>
+    </ul>
+
+    <h3>Методы</h3>
+    <ul>
+      <li>
+        <div><b>afterInit</b></div>
+        <div>
+          <pre class="snippet"><code class="javascript">afterInit: function (e, el) {}</code></pre>
+        </div>
+      </li>
+    </ul>
+
+    <h3>Глобальные настройки</h3>
+    <div>Переопределять настройки плагина глобально можно через</div>
+    <div><code class="red">$.fn.msclap.defaultOptions</code></div>
+    <div><b>Например:</b></div>
+    <div><code class="red">$.fn.msclap.defaultOptions.someProperty = false;</code></div>
+
+    <br>
+    <br>
+    <h2>Стили</h2>
+    <h3>Modifiers</h3>
+    <ul>
+      <li>
+        <div><b>[block]_has-branches</b></div>
+        <div>
+          <pre class="snippet"><code class="javascript">afterInit: function (e, el) {}</code></pre>
+        </div>
+        <div>
+          <i class="gray">Description:</i> <br>
+          Добавляет ветки струкуры
+        </div>
+      </li>
+    </ul>
+
+  </div>
+</div>
+
+@@include('../../../_tpl_plugin_layout_foot.html', {
+  "pathJs": ["../../../libs/jquery-smartresize/jquery.debouncedresize.js", "js/jquery.clap.js", "js/example.js"]
+})

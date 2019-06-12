@@ -31,7 +31,7 @@ gulp.task('buildTpl', ['cleanDistTplFolder', 'copyImgToDistTpl'], function () {
 	gulp.src('src/fonts/**/*')
 		.pipe(gulp.dest('gulp-project-template/src/fonts'));
 
-	gulp.src(['src/js/common-npoll.js'])
+	gulp.src(['src/js/example.js'])
 		.pipe(gulp.dest('gulp-project-template/src/js'));
 
 	gulp.src([

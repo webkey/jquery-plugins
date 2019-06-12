@@ -1,0 +1,47 @@
+@@include('../../../_tpl_plugin_layout_head.html', {
+"title": "Шаблон поля ввода",
+"pathCss": ["styles/main.css"]
+})
+
+
+<div class="layout-flood user-content">
+  <h1><code>&lt;input&gt;</code> template</h1>
+
+  <h2>Examples and demos</h2>
+
+  <p class="bd-lead">Шаблон поля ввода <code>&lt;input&gt;</code> для вставки на страницу через <a href="https://www.npmjs.com/package/gulp-file-include">@@include()</a></p>
+
+  <h3>input-tpl 1</h3>
+  <!--Code example-->
+  <pre class="snippet"><code class="html">&lt;div class="input-tpl input-tpl-js"&gt;
+  {{input-tpl code}}
+&lt;/div&gt;</code></pre>
+  <!--Code example end-->
+  <div class="input-tpl input-tpl-js">
+    {{input-tpl code}}
+  </div>
+
+  <div class="separator"><br><br><br></div>
+
+  <!--==== API ====-->
+  <!--==================================================-->
+
+  <h2>API</h2>
+
+  <!--==== Options ====-->
+  <!--==================================================-->
+
+  <h3>Options</h3>
+  <ul>
+    <li>
+      <div><b>someProperty:</b></div>
+      <div><i class="gray">Defaults:</i> <code class="red">someValue</code></div>
+      <div><i class="gray">Type:</i> <code class="red">String</code></div>
+      <div><i class="gray">Values:</i> <code class="red">otherValue</code></div>
+      <div><i class="gray">Description:</i></div>
+      <div>Описание</div>
+    </li>
+  </ul>
+</div>
+
+@@include('../../../_tpl_plugin_layout_foot.html')
