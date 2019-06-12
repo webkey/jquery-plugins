@@ -1,4 +1,4 @@
-@@include('../../../_tpl_plugin_layout_head.html', {
+@@include('../../../_tpl_layout_head.html', {
 "pathCss": ["styles/main.css"]
 })
 
@@ -27,9 +27,9 @@
         <!--===============-->
         <!--===============-->
         <div class="p-filters-item p-filters-item-js p-filters-is-open">
-          @@include('../../../_tpl_products-filters-item.html', {"itemLayout": "START", "title": "Чекбоксы. Текст тега берется с названия чекбокса", "group": "checkboxes-1", "modGroup": "" })
+          @@include('_tpl_products-filters-item.html', {"itemLayout": "START", "title": "Чекбоксы. Текст тега берется с названия чекбокса", "group": "checkboxes-1", "modGroup": "" })
 
-          @@include('../../../_tpl_products-filters-element.html', {
+          @@include('_tpl_products-filters-element.html', {
             "addClass": "",
             "hasImg": "",
             "hasIcon": "",
@@ -56,14 +56,14 @@
             }
           })
 
-          @@include('../../../_tpl_products-filters-item.html', {"itemLayout": "END"})
+          @@include('_tpl_products-filters-item.html', {"itemLayout": "END"})
         </div>
         <!--===============-->
         <!--===============-->
         <div class="p-filters-item p-filters-item-js p-filters-is-open">
-          @@include('../../../_tpl_products-filters-item.html', {"itemLayout": "START", "title": "Чекбоксы. Текст тега указан в отдельном атрибуте", "group": "checkboxes-2", "modGroup": "" })
+          @@include('_tpl_products-filters-item.html', {"itemLayout": "START", "title": "Чекбоксы. Текст тега указан в отдельном атрибуте", "group": "checkboxes-2", "modGroup": "" })
 
-          @@include('../../../_tpl_products-filters-element.html', {
+          @@include('_tpl_products-filters-element.html', {
             "addClass": "",
             "hasImg": "",
             "hasIcon": "",
@@ -84,12 +84,12 @@
             }
           })
 
-          @@include('../../../_tpl_products-filters-item.html', {"itemLayout": "END"})
+          @@include('_tpl_products-filters-item.html', {"itemLayout": "END"})
         </div>
         <!--===============-->
         <!--===============-->
         <div class="p-filters-item p-filters-item-js p-filters-is-open">
-          @@include('../../../_tpl_products-filters-item.html', {"itemLayout": "START", "title": "Цена", "group": "price", "modGroup": "" })
+          @@include('_tpl_products-filters-item.html', {"itemLayout": "START", "title": "Цена", "group": "price", "modGroup": "" })
             <li>
               <div class="form-row">
                 <div class="input-wrap">
@@ -129,12 +129,12 @@
                 </div>
               </div>
             </li>
-          @@include('../../../_tpl_products-filters-item.html', {"itemLayout": "END"})
+          @@include('_tpl_products-filters-item.html', {"itemLayout": "END"})
         </div>
         <!--===============-->
         <!--===============-->
         <div class="p-filters-item p-filters-item-js p-filters-is-open">
-          @@include('../../../_tpl_products-filters-item.html', {"itemLayout": "START", "title": "Цена2", "group": "price2", "modGroup": "" })
+          @@include('_tpl_products-filters-item.html', {"itemLayout": "START", "title": "Цена2", "group": "price2", "modGroup": "" })
             <li>
               <div class="form-row">
                 <div class="input-wrap">
@@ -145,7 +145,7 @@
                 </div>
               </div>
             </li>
-          @@include('../../../_tpl_products-filters-item.html', {"itemLayout": "END"})
+          @@include('_tpl_products-filters-item.html', {"itemLayout": "END"})
         </div>
         <!--===============-->
         <!--===============-->
@@ -168,9 +168,9 @@
         <!--===============-->
         <!--===============-->
         <div class="p-filters-item p-filters-item-js p-filters-is-open">
-          @@include('../../../_tpl_products-filters-item.html', {"itemLayout": "START", "title": "Чекбоксы. Текст тега берется с названия чекбокса", "group": "checkboxes-1", "modGroup": "" })
+          @@include('_tpl_products-filters-item.html', {"itemLayout": "START", "title": "Чекбоксы. Текст тега берется с названия чекбокса", "group": "checkboxes-1", "modGroup": "" })
 
-          @@include('../../../_tpl_products-filters-element.html', {
+          @@include('_tpl_products-filters-element.html', {
             "addClass": "",
             "hasImg": "",
             "hasIcon": "",
@@ -197,7 +197,7 @@
             }
           })
 
-          @@include('../../../_tpl_products-filters-item.html', {"itemLayout": "END"})
+          @@include('_tpl_products-filters-item.html', {"itemLayout": "END"})
         </div>
         <!--===============-->
         <!--===============-->
@@ -286,6 +286,6 @@
   <div><code class="red">$.fn.msExample.defaultOptions.someProperty = value;</code></div>
 </div>
 
-@@include('../../../_tpl_plugin_layout_foot.html', {
+@@include('../../../_tpl_layout_foot.html', {
 "pathJs": ["js/jquery.filters.js", "js/example.js"]
 })

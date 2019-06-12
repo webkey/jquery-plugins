@@ -1,0 +1,18 @@
+@@include('../../../_tpl_layout_head.html', {
+"title": "Превью карусель",
+"pathCss": ["styles/preview-carousel.css"]
+})
+
+<div class="layout-text">
+  <h1>Превью карусель (на чистом css)</h1>
+  <p>Источник: <a href="https://auto.ru/">https://auto.ru/</a></p>
+
+  <div class="products">
+    <div class="products__list">
+      @@loop("_tpl_preview-carousel__items.html", [ { "title": "Продукт 1", "price": "1 000", "unit": "$", "galleryFirst": "img_01.jpg", "gallery": [ "img_01.jpg", "img_02.jpg", "img_03.jpg", "img_04.jpg" ], "galleryLast": "img_05.jpg" }, { "title": "Продукт 2", "price": "1 500", "unit": "$", "galleryFirst": "img_06.jpg", "gallery": [ "img_06.jpg", "img_07.jpg", "img_08.jpg" ], "galleryLast": "img_09.jpg" }, { "title": "Продукт 3", "price": "250", "unit": "$", "galleryFirst": "img_03.jpg", "gallery": [ "img_03.jpg", "img_05.jpg", "img_06.jpg", "img_07.jpg" ], "galleryLast": "img_08.jpg" }, { "title": "Продукт 4", "price": "13 750", "unit": "$", "galleryFirst": "img_05.jpg", "gallery": [ "img_05.jpg", "img_06.jpg" ], "galleryLast": "img_07.jpg" } ])
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

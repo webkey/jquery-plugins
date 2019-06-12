@@ -1,0 +1,52 @@
+@@include('../../../_tpl_layout_head.html', {
+"title": "Попап-шторка: главное меню с бутерброда и т.д.",
+"pathCss": ["styles/main.css"]
+})
+
+<div class="layout-text">
+  <h1>Попап-шторка: главное меню с бутерброда и т.д.</h1>
+
+  <pre>// css
+// блокировать скролл
+.css-scroll-blocked
+	width: 100% !important
+	height: 100% !important
+	max-width: 100% !important
+	max-height: 100% !important
+	margin: 0 !important
+	padding: 0 !important
+	overflow: hidden !important
+
+// z-index должен быть выше, чем у футера
+.before-open .wrapper
+	z-index: 99
+
+// если попап-шторку необходмо скрыть до определенного разрешения
+@media only screen and (min-width: [example: 1280px])
+	.shutter{
+		transform: translate(0, 0) matrix(1, 0, 0, 1, 0, 0) !important
+
+	// если нужно обнулить трансформацию для дочерних элементов, например элементов списка навигации
+	.shutter > li
+		transform: translate(0, 0) matrix(1, 0, 0, 1, 0, 0) !important
+		opacity: 1 !important
+		visibility: visible !important</pre>
+
+  <h2>Options</h2>
+
+  <!--=================xxx======================-->
+  <hr>
+  <h3>1. Все значения установлены по умолчанию</h3>
+  <div>
+    <a href="#" class="ms-shutter__opener-js"> <span>Открыть попап-шторку</span> </a>
+  </div>
+  <div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias exercitationem necessitatibus nesciunt nulla quam quidem sed? Asperiores delectus dolores error expedita fugiat ipsam nesciunt sit suscipit tenetur voluptate! Modi, nesciunt!</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet asperiores, aut dicta enim est labore odit officiis, sunt totam vero voluptates voluptatibus. Autem commodi dolorum error eveniet non rem, totam.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque culpa explicabo facilis magni minus nam nobis numquam officia porro, qui quibusdam quo reiciendis, repellat reprehenderit saepe sapiente tempore ullam, voluptatem!</p>
+  </div>
+</div>
+
+@@include('../../../_tpl_layout_foot.html', {
+"pathJs": ["js/jquery.shutter.js", "js/example.js"]
+})

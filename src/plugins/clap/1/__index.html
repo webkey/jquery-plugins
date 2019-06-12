@@ -1,4 +1,4 @@
-@@include('../../../_tpl_plugin_layout_head.html', {
+@@include('../../../_tpl_layout_head.html', {
 "pathCss": ["styles/main.css"]
 })
 
@@ -26,7 +26,7 @@
     <p class="warning">В структуре Панель (<code class="red">[block]__panel-js</code>) всегда должна лежать <em>непосредственно</em> после Шапки (<code class="red">[block]__header-js</code>)</p>
     <!--Code example end-->
     <div class="clapNav">
-      @@include('../../../_tpl_nav-constructor-clap.html', {
+      @@include('_tpl_nav-constructor.html', {
         "currentItem": "&sim;Item 1.1&sim;",
         "bsKey": "clapNav"
       })
@@ -213,6 +213,6 @@
   </div>
 </div>
 
-@@include('../../../_tpl_plugin_layout_foot.html', {
+@@include('../../../_tpl_layout_foot.html', {
   "pathJs": ["../../../libs/jquery-smartresize/jquery.debouncedresize.js", "js/jquery.clap.js", "js/example.js"]
 })

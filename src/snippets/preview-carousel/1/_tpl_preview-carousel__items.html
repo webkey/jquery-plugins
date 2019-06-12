@@ -1,0 +1,35 @@
+<div class="products__item">
+	<a href="#?" class="products__inner">
+		<div class="products__img">
+			<img src="../../../img/temp/list/640/@@galleryFirst" alt="@@title">
+		</div>
+		<div class="products__content">
+			<div class="products__title">@@title</div>
+			<div class="products__price">@@price @@unit</div>
+		</div>
+		<div class="products__gallery">
+			<div class="tile-slider">
+				@@for (var i = 0; i < gallery.length; i++) {
+				<div class="tile-slider__item">
+					<div class="tile-slider__figure">
+						<img class="tile-slider__img" src="../../../img/temp/list/640/`+gallery[i]+`">
+					</div>
+					<div class="tile-slider__dots"></div>
+				</div>
+				}
+				<div class="tile-slider__item">
+					<div class="tile-slider__figure">
+						<img class="tile-slider__img" src="../../../img/temp/list/640/@@galleryLast">
+						<div class="tile-slider__more">
+							<div class="tile-slider__more-holder">
+								<div class="tile-slider__more-icon"></div>
+								<div class="tile-slider__more-text">Еще 7 фото</div>
+							</div>
+						</div>
+					</div>
+					<div class="tile-slider__dots"></div>
+				</div>
+			</div>
+		</div>
+	</a>
+</div>

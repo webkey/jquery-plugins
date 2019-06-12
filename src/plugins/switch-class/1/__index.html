@@ -1,4 +1,4 @@
-@@include('../../../_tpl_plugin_layout_head.html', {
+@@include('../../../_tpl_layout_head.html', {
   "pathCss": ["styles/main.css"]
 })
 
@@ -44,7 +44,7 @@
   <!--navigation-->
   <div class="nav-wrap shutter--nav-js stop-nav-remove-class">
     <nav class="nav">
-      @@include('../../../_tpl_nav-constructor.html', { "currentItem": "О компании", "bsKey": "nav" })
+      @@include('_tpl_nav-constructor.html', { "currentItem": "О компании", "bsKey": "nav" })
     </nav>
     <div class="nav-footer"></div>
   </div>
@@ -209,6 +209,6 @@
   <div><code class="red">$.fn.tClass.defaultOptions.removeOutsideClick = false;</code></div>
 </div>
 
-@@include('../../../_tpl_plugin_layout_foot.html', {
+@@include('../../../_tpl_layout_foot.html', {
   "pathJs": ["js/jquery.switch-class.js", "js/example.js"]
 })

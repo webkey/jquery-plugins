@@ -2,19 +2,22 @@
 <html class="no-js" lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>@@title</title>
+  <title>@@if(context.title){@@title}@@if(!context.title){Title}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
-  <link rel="shortcut icon" href="favicon.ico">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <link rel="stylesheet" href="css/libs.min.css">
-  <link rel="stylesheet" href="css/main.css">
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+  <link rel="stylesheet" href="../../../css/libs.min.css">
+  <link rel="stylesheet" href="../../../sass/main.css">
   @@if(context.pathCss){
     @@for (var i = 0; i < pathCss.length; i++) {
       <link rel="stylesheet" href="`+pathCss[i]+`">
     }
   }
-  <script src="js/modernizr.min.js"></script>
+  @@if(!context.pathCss){
+    <link rel="stylesheet" href="styles/main.css">
+  }
+  <script src="../../../js/modernizr.min.js"></script>
 </head>
 <body class="@@if(context.pageClass){@@pageClass}">
 
-@@if(!context.index){<header class="header layout"><a href="index.html">На главную</a></header>}
+@@if(!context.index){<header class="header layout"><a href="../../../index.html">На главную</a></header>}

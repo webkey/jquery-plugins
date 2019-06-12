@@ -1,1 +1,0 @@
-{"version":3,"sources":["ms-order-calc.css"],"names":[],"mappings":"AAAA;CACC,eAAe;CACf;;AAED;CACC,cAAc;CACd","file":"ms-order-calc.css","sourcesContent":[".order-calc__hasnt-items .order-calc__empty {\n\tdisplay: block;\n}\n\n.order-calc__hasnt-items .c-table {\n\tdisplay: none;\n}\n"]}

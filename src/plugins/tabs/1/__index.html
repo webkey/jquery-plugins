@@ -1,0 +1,323 @@
+@@include('../../../_tpl_layout_head.html', {
+  "title": "ms-tabs",
+  "pathCss": ["styles/main.css"]
+})
+
+<div class="layout-flood user-content">
+  <h1>Табы</h1>
+
+  <h2>Примеры использования</h2>
+
+  <h3>Табы</h3>
+  <p>Плагин вызван с пользовательскими классами + при инициализации установлен активным табом второй</p>
+  <div class="expl-tabs tabs-js">
+    <div class="expl-tabs__nav">
+      <div class="expl-tabs__thumbs">
+        <a href="#tab1" class="tabs__anchor-js"><span>Tab 1</span></a>
+        
+        <a href="#tab2" class="tabs__anchor-js MY--ACTIVE-TAB-CLASS"><span>Tab 2</span></a>
+        
+        <a href="#tab3" class="tabs__anchor-js"><span>Tab 3</span></a>
+      </div>
+    </div>
+
+    <div class="expl-tabs__panels tabs__panels-js">
+      <div class="expl-tabs__panel tabs__panel-js" id="tab1">
+        <div style="display: block; position: relative; overflow: visible; z-index: 99">
+          ============= Tab 1 ============ <br>
+          {{Content of Tab 1}} <br>
+          {{Content of Tab 1}} <br>
+          {{Content of Tab 1}} <br>
+          {{Content of Tab 1}} <br>
+          {{Content of Tab 1}} <br>
+          {{Content of Tab 1}} <br>
+          {{Content of Tab 1}} <br>
+          {{Content of Tab 1}} <br>
+          {{Content of Tab 1}} <br>
+        </div>
+      </div>
+      <div class="expl-tabs__panel tabs__panel-js" id="tab2">
+        ============= Tab 2 ============ <br>
+        {{Content of Tab 2}} <br>
+        {{Content of Tab 2}} <br>
+        {{Content of Tab 2}} <br>
+      </div>
+      <div class="expl-tabs__panel tabs__panel-js" id="tab3">
+        ============= Tab 3 ============ <br>
+        {{Content of Tab 3}} <br>
+        {{Content of Tab 3}} <br>
+        {{Content of Tab 3}} <br>
+        {{Content of Tab 3}} <br>
+        {{Content of Tab 3}} <br>
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <br>
+
+  <h3>Коты</h3>
+  <h4>data-tabs-collapsible=&quot;true&quot;</h4>
+  <div class="expl-tabs cats-js" data-tabs-collapsible="true">
+    <div class="expl-tabs__nav">
+      <div class="expl-tabs__thumbs">
+        <a href="#cat1" class="tabs__anchor-js"><span>Cat 1</span></a>
+        
+        <a href="#cat2" class="tabs__anchor-js"><span>Cat 2</span></a>
+        
+        <a href="#cat3" class="tabs__anchor-js"><span>Cat 3</span></a>
+      </div>
+    </div>
+
+    <div class="expl-tabs__panels tabs__panels-js">
+      <div class="expl-tabs__panel tabs__panel-js" id="cat1">
+        ============= Cat 1 ============ <br>
+        {{Content of Cat 1}} <br>
+        {{Content of Cat 1}} <br>
+        {{Content of Cat 1}} <br>
+        {{Content of Cat 1}} <br>
+        {{Content of Cat 1}} <br>
+        {{Content of Cat 1}} <br>
+        {{Content of Cat 1}} <br>
+        {{Content of Cat 1}} <br>
+        {{Content of Cat 1}} <br>
+      </div>
+      <div class="expl-tabs__panel tabs__panel-js" id="cat2">
+        ============= Cat 2 ============ <br>
+        {{Content of Cat 2}} <br>
+        {{Content of Cat 2}} <br>
+        {{Content of Cat 2}} <br>
+      </div>
+      <div class="expl-tabs__panel tabs__panel-js" id="cat3">
+        ============= Cat 3 ============ <br>
+        {{Content of Cat 3}} <br>
+        {{Content of Cat 3}} <br>
+        {{Content of Cat 3}} <br>
+        {{Content of Cat 3}} <br>
+        {{Content of Cat 3}} <br>
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <br>
+
+  <h3>Коты</h3>
+  <h4>data-tabs-collapsible=&quot;false&quot;</h4>
+  <div class="expl-tabs cats-js" data-tabs-collapsible="false">
+    <div class="expl-tabs__nav">
+      <div class="expl-tabs__thumbs">
+        <a href="#cat11" class="tabs__anchor-js"><span>Cat 1</span></a>
+        
+        <a href="#cat21" class="tabs__anchor-js"><span>Cat 2</span></a>
+        
+        <a href="#cat31" class="tabs__anchor-js"><span>Cat 3</span></a>
+      </div>
+    </div>
+
+    <div class="expl-tabs__panels tabs__panels-js">
+      <div class="expl-tabs__panel tabs__panel-js" id="cat11">
+        ============= Cat 1 ============ <br>
+        {{Content of Cat 1}} <br>
+        {{Content of Cat 1}} <br>
+        {{Content of Cat 1}} <br>
+        {{Content of Cat 1}} <br>
+        {{Content of Cat 1}} <br>
+        {{Content of Cat 1}} <br>
+        {{Content of Cat 1}} <br>
+        {{Content of Cat 1}} <br>
+        {{Content of Cat 1}} <br>
+      </div>
+      <div class="expl-tabs__panel tabs__panel-js" id="cat21">
+        ============= Cat 2 ============ <br>
+        {{Content of Cat 2}} <br>
+        {{Content of Cat 2}} <br>
+        {{Content of Cat 2}} <br>
+      </div>
+      <div class="expl-tabs__panel tabs__panel-js" id="cat31">
+        ============= Cat 3 ============ <br>
+        {{Content of Cat 3}} <br>
+        {{Content of Cat 3}} <br>
+        {{Content of Cat 3}} <br>
+        {{Content of Cat 3}} <br>
+        {{Content of Cat 3}} <br>
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <br>
+
+  <h3>Птицы</h3>
+  <div>Включена возможность перестилить <strong>табы в селект</strong> с помощью Медиа развилок.</div>
+  <div>Чтобы увидеть перестроение табов в селект, нужно сузить браузер до <strong>768 px</strong>.</div>
+  <div>
+    <pre class="snippet"><code class="js">$('.ms-tabs').msTabs({
+  compactView: {
+    elem: '.tabs__select-js',
+    drop: '.tabs__select-drop-js',
+    openClass: 'MY--SELECT-OPEN-CLASS'
+  }
+});</code></pre>
+  </div>
+  <br>
+  <div class="expl-tabs compact-view-true-js">
+    <div class="tabs__select-js"></div>
+
+    <div class="expl-tabs__thumbs tabs__select-drop-js">
+      <a href="#bird1" class="tabs__anchor-js"><span>Bird 1</span></a>
+      <a href="#bird2" class="tabs__anchor-js ms-tabs_active-tab"><span>Bird 2</span></a>
+      <a href="#bird3" class="tabs__anchor-js"><span>Bird 3</span></a>
+      <a href="#bird4" class="tabs__anchor-js"><span>Bird 4</span></a>
+      <a href="#bird5" class="tabs__anchor-js"><span>Bird 5</span></a>
+    </div>
+
+    <div class="expl-tabs__panels tabs__panels-js">
+      <div class="expl-tabs__panel tabs__panel-js" id="bird1">
+        ============= Bird 1 ============ <br>
+        {{Content of Bird 1}} <br>
+        {{Content of Bird 1}} <br>
+        {{Content of Bird 1}} <br>
+        {{Content of Bird 1}} <br>
+        {{Content of Bird 1}} <br>
+        {{Content of Bird 1}} <br>
+        {{Content of Bird 1}} <br>
+        {{Content of Bird 1}} <br>
+        {{Content of Bird 1}} <br>
+      </div>
+      <div class="expl-tabs__panel tabs__panel-js" id="bird2">
+        ============= Bird 2 ============ <br>
+        {{Content of Bird 2}} <br>
+        {{Content of Bird 2}} <br>
+        {{Content of Bird 2}} <br>
+      </div>
+      <div class="expl-tabs__panel tabs__panel-js" id="bird3">
+        ============= Bird 3 ============ <br>
+        {{Content of Bird 3}} <br>
+        {{Content of Bird 3}} <br>
+        {{Content of Bird 3}} <br>
+        {{Content of Bird 3}} <br>
+        {{Content of Bird 3}} <br>
+      </div>
+      <div class="expl-tabs__panel tabs__panel-js" id="bird4">
+        ============= Bird 4 ============ <br>
+        {{Content of Bird 4}} <br>
+        {{Content of Bird 4}} <br>
+        {{Content of Bird 4}} <br>
+        {{Content of Bird 4}} <br>
+        {{Content of Bird 4}} <br>
+        {{Content of Bird 4}} <br>
+        {{Content of Bird 4}} <br>
+      </div>
+      <div class="expl-tabs__panel tabs__panel-js" id="bird5">
+        ============= Bird 5 ============ <br>
+        {{Content of Bird 5}} <br>
+        {{Content of Bird 5}} <br>
+        {{Content of Bird 5}} <br>
+        {{Content of Bird 5}} <br>
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <br>
+  <h2>Документация</h2>
+  <h3>Files</h3>
+  <ul>
+    <li>__ms-tabs.html</li>
+    <li>jquery.tabs.js</li>
+    <li>example.js</li>
+    <li>ms-tabs.sass</li>
+  </ul>
+  <h3>Options</h3>
+  <ul>
+    <li>
+      <div><b>anchor:</b></div>
+      <div><i class="gray">Defaults:</i> <code class="red">'.tabs__anchor-js'</code></div>
+      <div><i class="gray">Type:</i> <code class="red">String</code></div>
+      <div><i class="gray">Example:</i> <code class="red">'.some-class'</code></div>
+      <div>Переключатель таба</div>
+    </li>
+    <li>
+      <div><b>panels:</b></div>
+      <div><i class="gray">Defaults:</i> <code class="red">'.tabs__panels-js'</code></div>
+      <div><i class="gray">Type:</i> <code class="red">String</code></div>
+      <div><i class="gray">Example:</i> <code class="red">'.some-class'</code></div>
+      <div>Обертка панелей</div>
+    </li>
+    <li>
+      <div><b>panel:</b></div>
+      <div><i class="gray">Defaults:</i> <code class="red">'.tabs__panel-js'</code></div>
+      <div><i class="gray">Type:</i> <code class="red">String</code></div>
+      <div><i class="gray">Example:</i> <code class="red">'.some-class'</code></div>
+      <div>Панель таба</div>
+    </li>
+    <li>
+      <div><b>animationSpeed:</b></div>
+      <div><i class="gray">Defaults:</i> <code class="red">80</code></div>
+      <div><i class="gray">Type:</i> <code class="red">Number</code></div>
+      <div><i class="gray">Example:</i> <code class="red">1000</code></div>
+      <div>Скорость анимации, в ms</div>
+    </li>
+    <li>
+      <div><b>collapsible:</b></div>
+      <div><i class="gray">Defaults:</i> <code class="red">false</code></div>
+      <div><i class="gray">Type:</i> <code class="red">Boolean</code></div>
+      <div><i class="gray">Example:</i> <code class="red">true</code></div>
+      <div>Скрывать открытый таб по второму клику, или нет</div>
+    </li>
+    <li>
+      <b>modifiers:</b>
+      <i>Defaults:</i> <br>
+      <div>
+<pre class="snippet"><code class="javascript">{
+  initClass: null,
+  collapsibleClass: null,
+  activeClass: null
+{</code></pre>
+      </div>
+    </li>
+  </ul>
+
+  <h3>События</h3>
+  <ul>
+    <li>
+      <div><b>afterInit</b></div>
+      <pre class="snippet"><code class="js">afterInit: function (e, el) {}</code></pre>
+    </li>
+    <li>
+      <div><b>afterClose</b></div>
+      <pre class="snippet"><code class="js">afterClose: function (e, el) {}</code></pre>
+    </li>
+    <li>
+      <div><b>afterOpen</b></div>
+      <pre class="snippet"><code class="js">afterOpen: function (e, el) {}</code></pre>
+    </li>
+    <li>
+      <div><b>afterChange</b></div>
+      <pre class="snippet"><code class="js">afterChange: function (e, el) {}</code></pre>
+    </li>
+    <li>
+      <div><b>afterSelectValChange</b></div>
+      <pre class="snippet"><code class="js">afterSelectChange: function (e, el) {}</code></pre>
+    </li>
+    <li>
+      <div><b>afterSelectOpen</b></div>
+      <pre class="snippet"><code class="js">afterSelectOpen: function (e, el) {}</code></pre>
+    </li>
+    <li>
+      <div><b>afterSelectClose</b></div>
+      <pre class="snippet"><code class="js">afterSelectOpen: function (e, el) {}</code></pre>
+    </li>
+  </ul>
+
+  <h3>Глобальные настройки</h3>
+  <div>Поменять настройки плагина глобально можно через</div>
+  <div><code class="red">$.fn.tClass.defaultOptions</code></div>
+  <div><b>Например:</b></div>
+  <div><code class="red">$.fn.tClass.defaultOptions.removeOutsideClick = false;</code></div>
+</div>
+
+@@include('../../../_tpl_layout_foot.html', {
+  "pathJs": ["js/jquery.tabs.js", "js/example.js"]
+})
