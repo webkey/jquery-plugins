@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <link rel="stylesheet" href="../../../sass/libs.min.css">
+  <link rel="stylesheet" href="../../../sass/main.css">
+  <link rel="stylesheet" href="styles/main.css">
+  <script src="../../../js/modernizr.min.js"></script>
+</head>
+
+<body class="">
+  <header class="header layout"><a href="../../../index.html">На главную</a></header>
+  <div class="layout-flood user-content">
+    <h1>Добавление класса на клик, или ховер</h1>
+    <h2>Примеры использования</h2>
+    <ul>
+      <li>
+        <a href="#" class="tc-js"><span>Открыть попап 1</span></a>
+      </li>
+      <li>
+        <a href="#" class="tc-js"><span>Открыть попап 1 (some class)</span></a>
+      </li>
+      <li>
+        <a href="#" class="tc-js"><span>Открыть попап 1 (some class) (2)</span></a>
+      </li>
+      <li>
+        <a href="#" class="tc__opener-js"><span>Открыть попап 1 (opener)</span></a>
+      </li>
+      <li id="add-switcher">
+        Добавляем кнопку динамически...
+      </li>
+      <li>=============================</li>
+      <li>
+        <a href="#" class="tc-2-js"><span>Открыть попап 2</span></a>
+      </li>
+      <li>=============================</li>
+      <li id="add-switcher-02">
+        Добавляем кнопку динамически...
+      </li>
+    </ul>
+    <!--nav-->
+    <div><b>Пример для адаптива</b></div>
+    <div>1. Сжать браузер до 960px.</div>
+    <div>2. Кликнуть по бутерброду. Откроется навигация.</div>
+    <div>3. Растянуть / сжать окно браузера. Навигация скрывается / отображается</div>
+    <br>
+    <div><b>Навигация:</b></div>
+    <div><a href="#" class="nav-opener nav-opener-js"><i>&nbsp;</i><span>Навигация</span></a></div>
+    <!--navigation-->
+    <div class="nav-wrap shutter--nav-js stop-nav-remove-class">
+      <nav class="nav">
+        {{navigation content}}
+      </nav>
+      <div class="nav-footer"></div>
+    </div>
+    <div class="nav-overlay nav-overlay-js">&nbsp;</div>
+    <!--navigation end-->
+    <!--****popups****-->
+    <!--example-popup1-->
+    <div class="popup-default tc__popup-js">
+      <div class="popup-default__holder">
+        <div class="popup-default__cell">
+          <div class="popup-default__layout stop-remove-class">
+            <a href="#" class="popup-default__close tc__remover-js" title="Закрыть">x close</a>
+            <div class="ms-popup-d__init-js">
+              <h2>Попап 1</h2>
+              Lorem sit amet,
+              <a href="#?">consectetur</a> adipisicing elit. Ab accusantium aliquid cum cupiditate esse exercitationem explicabo, illum in magnam, magni maiores nam nemo nihil non provident quaerat quod rem sapiente! <br>
+              <br> <a class="tc-2__opener-js"><span>Открыть попап 2</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--example-popup2-->
+    <div class="popup-default tc-2__popup-js">
+      <div class="popup-default__holder">
+        <div class="popup-default__cell">
+          <div class="popup-default__layout stop-remove-class">
+            <a href="#" class="popup-default__close tc-2__remover-js" title="Закрыть">x close</a>
+            <div class="ms-popup-d__init-js">
+              <h2>Попап 2</h2>
+              Lorem ipsum dolor sit amet,
+              <a href="#?">consectetur</a> adipisicing elit. Ab accusantium aliquid cum cupiditate esse exercitationem explicabo, illum in magnam, magni maiores nam nemo nihil non provident quaerat quod rem sapiente! Lorem ipsum dolor sit amet, consectetur
+              adipisicing elit. Deleniti itaque laborum modi provident repellat. Ab adipisci aliquam corporis dolore labore molestias odit recusandae unde ut vero? Excepturi optio sequi voluptatum?
+              <br> <br> <a class="tc__switcher-js"><span>Открыть попап 1</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--example-popup3-->
+    <div class="popup-default tc-3__popup-js">
+      <div class="popup-default__holder">
+        <div class="popup-default__cell">
+          <div class="popup-default__layout stop-remove-class">
+            <a href="#" class="popup-default__close tc-3__remover-js" title="Закрыть">x close</a>
+            <div class="ms-popup-d__init-js">
+              <h2>Попап 3</h2>
+              Lorem ipsum dolor sit amet,
+              <a href="#?">consectetur</a> adipisicing elit. Ab accusantium aliquid cum cupiditate esse exercitationem explicabo, illum in magnam, magni maiores nam nemo nihil non provident quaerat quod rem sapiente!
+              <br> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti itaque laborum modi provident repellat. Ab adipisci aliquam corporis dolore labore molestias odit recusandae unde ut vero? Excepturi optio sequi voluptatum?
+              <br> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti itaque laborum modi provident repellat. Ab adipisci aliquam corporis dolore labore molestias odit recusandae unde ut vero? Excepturi optio sequi voluptatum?
+              <br> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti itaque laborum modi provident repellat. Ab adipisci aliquam corporis dolore labore molestias odit recusandae unde ut vero? Excepturi optio sequi voluptatum?
+              <br> <br> <a class="tc__opener-js"><span>Открыть попап 1</span></a> <br> <a class="tc-2__opener-js"><span>Открыть попап 2</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="popup-overlay tc__overlay-js">&nbsp;</div>
+    <p>Чтобы при добавлении классов одним экземпляром плагина, удалялись классы добавленные другим экземпляром, нужно использовать <b>Events (События)</b>. См. пример в <i class="green">example.js</i></p>
+    <h2>Документация</h2>
+    <h3>Files</h3>
+    <ul>
+      <li>__ms-toggle-class.html</li>
+      <li>jquery.switch-class.js</li>
+      <li>example.js</li>
+      <li>ms-toggle-class.sass</li>
+    </ul>
+    <h3>Options</h3>
+    <ul>
+      <li>
+        <div><b>switcher:</b></div>
+        <div><i class="gray">Defaults:</i> <code class="red">null</code></div>
+        <div><i class="gray">Type:</i> <code class="red">String</code></div>
+        <div><i class="gray">Example:</i> <code class="red">'.some-class'</code></div>
+        <div>Элемент, которым можно <b>ПЕРЕКЛЮЧАТЬ класс</b></div>
+      </li>
+      <li>
+        <div><b>adder:</b></div>
+        <div><i class="gray">Defaults:</i> <code class="red">null</code></div>
+        <div><i class="gray">Type:</i> <code class="red">String</code></div>
+        <div><i class="gray">Example:</i> <code class="red">'.some-class'</code></div>
+        <div>Элемент, которым можно только <b>ДОБАВЛЯТЬ класс</b></div>
+      </li>
+      <li>
+        <div><b>remover:</b></div>
+        <div><i class="gray">Defaults:</i> <code class="red">null</code></div>
+        <div><i class="gray">Type:</i> <code class="red">String</code></div>
+        <div><i class="gray">Example:</i> <code class="red">'.some-class'</code></div>
+        <div>Элемент, которым можно только <b>УДАЛЯТЬ класс</b></div>
+      </li>
+      <li>
+        <div><b>switchClassTo:</b></div>
+        <div><i class="gray">Defaults:</i> <code class="red">null</code></div>
+        <div><i class="gray">Type:</i> <code class="red">Object</code></div>
+        <div><i class="gray">Example:</i></div>
+        <div>Все остальные элементы, на которые будет добавлен класс</div>
+      </li>
+      <li>
+        <div><b>removeOutsideClick:</b></div>
+        <div><i class="gray">Defaults:</i> <code class="red">true</code></div>
+        <div><i class="gray">Type:</i> <code class="red">Boolean</code></div>
+        <div>Удалить класс при клики вне этого элемента.</div>
+        <div><b>Примечания:</b></div>
+        <div>Если значение этого параметра равно <code class="green">true</code>, то при клике в ЛЮБОМ месте страницы все установленные ранее классы удаляются.</div>
+        <div>В случае, если при клике на определенный элемент удаление не желательно, то на этот элемент необходимо добавить класс
+          <code class="red">stop-remove-class</code>. Этот класс можно поменять в настройках плагина - <code class="red">modifiers.stopRemoveClass</code></div>
+      </li>
+      <li>
+        <div><b>removeEscClick:</b></div>
+        <div><i class="gray">Defaults:</i> <code class="red">true</code></div>
+        <div><i class="gray">Type:</i> <code class="red">Boolean</code></div>
+        <div>Удалить класс при клики на клавишу Esc.</div>
+      </li>
+      <li>
+        <div><b>cssScrollFixed:</b></div>
+        <div><i class="gray">Defaults:</i> <code class="red">false</code></div>
+        <div><i class="gray">Type:</i> <code class="red">Boolean or string (.class)</code></div>
+        <div><i class="gray">Example:</i> <code class="red">true</code></div>
+        <div>Блокировка скролла после добавления класса.</div>
+        <div><b>Примечания:</b></div>
+        <div>Если указать значение <code class="green">true</code>, то на <code class="green">html</code> будет добавляться дополнительный класс <code class="red">css-scroll-fixed</code></div>
+      </li>
+      <li>
+        <b>modifiers:</b> <i>Defaults:</i> <br> <code class="red" style="display: block;">{ <br>
+      &nbsp;&nbsp; initClass: null, <br>
+      &nbsp;&nbsp; activeClass: 'active', <br>
+      &nbsp;&nbsp; stopRemoveClass: 'stop-remove-class' <br> }</code>
+      </li>
+    </ul>
+    <h3>События</h3>
+    <ul>
+      <li>
+        <div><b>afterInit</b></div>
+        <div><code class="red">afterInit: function (e, el) {}</code></div>
+      </li>
+      <li>
+        <div><b>beforeAdded</b></div>
+        <div><code class="red">beforeAdded: function (e, el) {}</code></div>
+      </li>
+      <li>
+        <div><b>afterAdded</b></div>
+        <div><code class="red">afterAdded: function (e, el) {}</code></div>
+      </li>
+      <li>
+        <div><b>beforeRemoved</b></div>
+        <div><code class="red">beforeRemoved: function (e, el) {}</code></div>
+      </li>
+      <li>
+        <div><b>afterRemoved</b></div>
+        <div><code class="red">afterRemoved: function (e, el) {}</code></div>
+      </li>
+    </ul>
+    <h3>Глобальные настройки</h3>
+    <div>Поменять настройки плагина глобально можно через</div>
+    <div><code class="red">$.fn.tClass.defaultOptions</code></div>
+    <div><b>Например:</b></div>
+    <div><code class="red">$.fn.tClass.defaultOptions.removeOutsideClick = false;</code></div>
+  </div>
+  <script src="../../../js/jquery.min.js"></script>
+  <script src="../../../js/libs.min.js"></script>
+  <script src="../../../js/main.js"></script>
+  <script src="js/jquery.switch-class.js"></script>
+  <script src="js/example.js"></script>
+</body>
+
+</html>
