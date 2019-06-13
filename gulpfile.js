@@ -95,7 +95,7 @@ gulp.task('mergeCssLibs', function () { // Таск для мержа css биб
 		, 'src/libs/highlightjs/styles/github-gist.css'
 		// , 'src/lib/plugin/file.css'
 	]) // Выбираем файлы для конкатенации
-		.pipe(concatCss("src/css/libs.css", {
+		.pipe(concatCss("src/sass/libs.css", {
 			rebaseUrls: false
 		}))
 		.pipe(gulp.dest('./')) // Выгружаем в папку src/css несжатую версию

@@ -81,13 +81,15 @@
 }
 
 .popup-default__close:before {
-	-ms-transform: rotate(45deg);
-	    transform: rotate(45deg);
+	-webkit-transform: rotate(45deg);
+	    -ms-transform: rotate(45deg);
+	        transform: rotate(45deg);
 }
 
 .popup-default__close:after {
-	-ms-transform: rotate(-45deg);
-	    transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+	    -ms-transform: rotate(-45deg);
+	        transform: rotate(-45deg);
 }
 
 .popup-default__close:hover {

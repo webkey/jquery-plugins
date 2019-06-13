@@ -43,8 +43,9 @@
 }
 
 .example-class > a:active {
-	-ms-transform: translate(1px, 1px);
-	    transform: translate(1px, 1px);
+	-webkit-transform: translate(1px, 1px);
+	    -ms-transform: translate(1px, 1px);
+	        transform: translate(1px, 1px);
 	box-shadow: 0 0 0 #000;
 }
 
