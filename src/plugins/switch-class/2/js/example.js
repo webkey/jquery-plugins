@@ -5,6 +5,14 @@
 'use strict';
 
 $(function () {
+  // Для тестирования
+  $('.test-js').switchClass({
+    switchClassTo: $('body'),
+    modifiers: {
+      activeClass: 'testActiveClass'
+    }
+  });
+
   // Для адаптива
   // На примере навигации
   var $nav = $('.nav-opener-js'),

@@ -1,5 +1,5 @@
 /*! jquery.switch-class.js
- * Version: 2018.1.0
+ * Version: 2.0
  * Author: *
  * Description: Extended toggle class
  */
@@ -151,34 +151,30 @@
 
     return self;
   };
-
+  
   $.fn.switchClass = function () {
-    var _ = this,
+    var self = this,
         opt = arguments[0],
         args = Array.prototype.slice.call(arguments, 1),
-        l = _.length,
+        l = self.length,
         i,
         ret;
-    // console.log("this: ", _);
-    console.log("opt: ", opt);
-    // console.log("l: ", l);
-    // console.log("args: ", args);
     for (i = 0; i < l; i++) {
       if (typeof opt === 'object' || typeof opt === 'undefined') {
-        _[i].switchClass = new SwitchClass(_[i], $.extend(true, {}, $.fn.switchClass.defaultOptions, opt));
-        _[i].switchClass.callbacks();
-        _[i].switchClass.events();
-        _[i].switchClass.removeByClickOutside();
-        _[i].switchClass.removeByClickEsc();
-        _[i].switchClass.init();
+        self[i].switchClass = new SwitchClass(self[i], $.extend(true, {}, $.fn.switchClass.defaultOptions, opt));
+        self[i].switchClass.callbacks();
+        self[i].switchClass.events();
+        self[i].switchClass.removeByClickOutside();
+        self[i].switchClass.removeByClickEsc();
+        self[i].switchClass.init();
       } else {
-        ret = _[i].switchClass[opt].apply(_[i].switchClass, args);
+        ret = self[i].switchClass[opt].apply(self[i].switchClass, args);
       }
       if (typeof ret !== 'undefined') {
         return ret;
       }
     }
-    return _;
+    return self;
   };
 
   $.fn.switchClass.defaultOptions = {

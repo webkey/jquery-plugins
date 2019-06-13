@@ -193,4 +193,22 @@ li a[class*="tc__"]:hover {
 	margin-left: 0;
 }
 
+body.testActiveClass {
+	background-color: lightcyan;
+}
+
+button.test-js {
+	border: 2px solid #d9d9d9;
+	background: white;
+	cursor: pointer;
+}
+
+button.test-js:focus {
+	outline: none;
+}
+
+button.test-js.testActiveClass {
+	border-color: #737373;
+}
+
 /*# sourceMappingURL=main.css.map */

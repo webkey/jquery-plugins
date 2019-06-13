@@ -162,7 +162,7 @@ gulp.task('browserSync', function (done) { // Таск browserSync
 		open: false,
 		notify: false // Отключаем уведомления
 	});
-	browserSync.watch(['src/*.html', 'src/js/**/*.js', 'src/includes/**/*.json']).on("change", browserSync.reload);
+	browserSync.watch(['!src/libs/**', 'src/**/_*.html', 'src/**/*.js', 'src/**/*.css']).on("change", browserSync.reload);
 	done();
 });
 
@@ -173,9 +173,7 @@ gulp.task('watch', ['browserSync', 'htmlCompilation', 'sassCompilation', 'mergeC
 		'!src/libs/**/*.+(scss|sass)',
 		'!src/sass/plugins/**/*.+(scss|sass)',
 		'src/**/*.+(scss|sass)'
-	], ['sassCompilation']); // Наблюдение за sass файлами в папке sass
-	// for babel
-	// gulp.watch('src/js/**/*.js', ['babelJsConvert']); // Наблюдение за sass файлами в папке sass
+	], ['sassCompilation']);
 });
 
 gulp.task('default', ['watch']); // Назначаем таск watch дефолтным
