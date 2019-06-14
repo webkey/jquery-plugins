@@ -9,7 +9,12 @@ $(function () {
   $('.test-js').switchClass({
     switchClassTo: $('body'),
     modifiers: {
-      activeClass: 'testActiveClass'
+      activeClass: 'active testActiveClass'
+    },
+    afterChange: function (e, el) {
+      // console.log('afterChange');
+      // console.log("this.data('SwitchClass'): ", $(el).data('SwitchClass'));
+      // console.log("$(el).hasClass('active'): ", $(el).hasClass('active'));
     }
   });
 
@@ -25,7 +30,7 @@ $(function () {
         stopRemoveClass: 'stop-nav-remove-class'
       }
       , cssScrollFixed: true
-      , beforeAdded: function () {
+      , beforeAdd: function () {
         $('html').addClass('open-only-mob');
         // open-only-mob - используется для адаптива
 
@@ -42,7 +47,7 @@ $(function () {
           }
         });
       }
-      , beforeRemoved: function () {
+      , beforeRemove: function () {
         $('html').removeClass('open-only-mob');
         // open-only-mob - используется для адаптива
         $('.nav-js').stop().children().removeClass('show-nav-item')
@@ -89,11 +94,11 @@ $(function () {
         activeClass: 'is-open'
       }
       , cssScrollFixed: true
-      , beforeAdded: function () {
-        // console.log('beforeAdded 2');
+      , beforeAdd: function () {
+        // console.log('beforeAdd 2');
       }
-      , afterRemoved: function () {
-        // console.log('afterRemoved 2');
+      , afterRemove: function () {
+        // console.log('afterRemove 2');
       }
     });
   }
@@ -111,31 +116,31 @@ $(function () {
         activeClass: 'active'
       }
       , cssScrollFixed: true
-      , beforeAdded: function () {
-        // console.log('beforeAdded 3');
+      , beforeAdd: function () {
+        // console.log('beforeAdd 3');
         // Если нужно удалять уже добавленные классы одного экземпляра плагина, при добавлении другого
         tc1.switchClass('remove');
         tc2.switchClass('remove');
       }
-      , afterRemoved: function () {
-        // console.log('afterRemoved 3');
+      , afterRemove: function () {
+        // console.log('afterRemove 3');
       }
     });
 
-    tc2.on('switchClass.beforeAdded', function () {
-      tc1.switchClass('remove');
-      tc3.switchClass('remove');
-      nav.switchClass('remove');
-    });
-    tc1.on('switchClass.beforeAdded', function () {
-      tc2.switchClass('remove');
-      tc3.switchClass('remove');
-      nav.switchClass('remove');
-    });
-    nav.on('switchClass.beforeAdded', function () {
-      tc1.switchClass('remove');
-      tc2.switchClass('remove');
-      tc3.switchClass('remove');
-    });
   }, 1500);
+  // tc2.on('switchClass.beforeAdd', function () {
+  //   tc1.switchClass('remove');
+  //   tc3.switchClass('remove');
+  //   nav.switchClass('remove');
+  // });
+  // tc1.on('switchClass.beforeAdd', function () {
+  //   tc2.switchClass('remove');
+  //   tc3.switchClass('remove');
+  //   nav.switchClass('remove');
+  // });
+  // nav.on('switchClass.beforeAdd', function () {
+  //   tc1.switchClass('remove');
+  //   tc2.switchClass('remove');
+  //   tc3.switchClass('remove');
+  // });
 });

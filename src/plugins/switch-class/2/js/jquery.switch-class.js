@@ -1,17 +1,21 @@
-/*! jquery.switch-class.js
- * Version: 2.0
- * Author: *
- * Description: Extended toggle class
- */
+// ==================================================
+// jquery.switch-class.js
+// Version: 2.0
+// Description: Extended toggle class
+// ==================================================
 
 ;(function ($) {
   'use strict';
 
-  var countFixedScroll = 0;
   // Нужно для корректной работы с доп. классом фиксирования скролла
+  var countFixedScroll = 0;
+
+  // Class definition
+  // ================
 
   var SwitchClass = function (element, config) {
     var self,
+        rootThis = this,
         $element = $(element),
         $html = $('html'),
         pref = 'jq-switch-class',
@@ -46,13 +50,21 @@
           if (classIsAdded) return;
 
           // Callback before added class
-          $element.trigger('switchClass.beforeAdded');
+          $element
+              .trigger('switchClass.beforeAdd')
+              .trigger('switchClass.beforeChange');
+
+          if (config.removeExisting) {
+            $.switchClass.remove(true);
+          }
 
           // Добавить активный класс на:
           // 1) Основной элемент
           // 2) Дополнительный переключатель
           // 3) Элементы указанные в настройках экземпляра плагина
-          $switchClassTo.addClass(config.modifiers.activeClass);
+          $switchClassTo
+              .addClass(config.modifiers.activeClass)
+              .data('SwitchClass', rootThis);
 
           classIsAdded = true;
 
@@ -64,19 +76,25 @@
           }
 
           // callback after added class
-          $element.trigger('switchClass.afterAdded');
+          $element
+              .trigger('switchClass.afterAdd')
+              .trigger('switchClass.afterChange');
         },
         remove = function () {
           if (!classIsAdded) return;
 
-          // callback beforeRemoved
-          $element.trigger('switchClass.beforeRemoved');
+          // callback beforeRemove
+          $element
+              .trigger('switchClass.beforeRemove')
+              .trigger('switchClass.beforeChange');
 
           // Удалять активный класс с:
           // 1) Основной элемент
           // 2) Дополнительный переключатель
           // 3) Элементы указанные в настройках экземпляра плагина
-          $switchClassTo.removeClass(config.modifiers.activeClass);
+          $switchClassTo
+              .removeClass(config.modifiers.activeClass)
+              .removeData('SwitchClass');
 
           classIsAdded = false;
 
@@ -87,8 +105,10 @@
             toggleFixedScroll();
           }
 
-          // callback afterRemoved
-          $element.trigger('switchClass.afterRemoved');
+          // callback afterRemove
+          $element
+              .trigger('switchClass.afterRemove')
+              .trigger('switchClass.afterChange');
         },
         events = function () {
           $element.on('click', function (event) {
@@ -151,24 +171,68 @@
 
     return self;
   };
+
+  $.switchClass = {
+    version: "2.0",
+    // defaults: $.fn.switchClass.defaultOptions
+
+    getInstance: function (command) {
+      var instance = $('.active').data("SwitchClass"),
+          args = Array.prototype.slice.call(arguments, 1);
+
+      console.log("instance instanceof SwitchClass: ", instance instanceof SwitchClass);
+
+      if (instance instanceof SwitchClass) {
+        if ($.type(command) === "string") {
+          instance[command].apply(instance, args);
+        } else if ($.type(command) === "function") {
+          command.apply(instance, args);
+        }
+
+        return instance;
+      }
+
+      return false;
+    },
+
+    remove: function (all) {
+      // Получить текущий инстанс
+      var instance = this.getInstance();
+
+      // console.log("instance: ", instance);
+
+      // Если инстанс существует
+      if (instance) {
+        // 1) удалить классы с текущих элементов
+        instance.remove();
+
+        // Try to find and close next instance
+        // 2) Если на вход функуии передан true,
+        if (all === true) {
+          // то попитаться найти следующий инстанс и запустить метод .close для него
+          this.remove(all);
+        }
+      }
+    },
+  };
   
-  $.fn.switchClass = function () {
+  $.fn.switchClass = function (options) {
     var self = this,
-        opt = arguments[0],
         args = Array.prototype.slice.call(arguments, 1),
         l = self.length,
         i,
         ret;
+
     for (i = 0; i < l; i++) {
-      if (typeof opt === 'object' || typeof opt === 'undefined') {
-        self[i].switchClass = new SwitchClass(self[i], $.extend(true, {}, $.fn.switchClass.defaultOptions, opt));
+      if (typeof options === 'object' || typeof options === 'undefined') {
+        self[i].switchClass = new SwitchClass(self[i], $.extend(true, {}, $.fn.switchClass.defaultOptions, options));
         self[i].switchClass.callbacks();
         self[i].switchClass.events();
         self[i].switchClass.removeByClickOutside();
         self[i].switchClass.removeByClickEsc();
         self[i].switchClass.init();
       } else {
-        ret = self[i].switchClass[opt].apply(self[i].switchClass, args);
+        ret = self[i].switchClass[options].apply(self[i].switchClass, args);
       }
       if (typeof ret !== 'undefined') {
         return ret;
@@ -178,7 +242,6 @@
   };
 
   $.fn.switchClass.defaultOptions = {
-
     // Remove existing classes
     // Set this to false if you do not need to stack multiple instances
     removeExisting: true,
