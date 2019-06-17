@@ -193,21 +193,29 @@ li a[class*="tc__"]:hover {
 	margin-left: 0;
 }
 
-body.testActiveClass {
+body.testActiveClassBlue {
 	background-color: lightcyan;
 }
 
-button.test-js {
+body.testActiveClassRed {
+	background-color: lightpink;
+}
+
+button.test-js,
+button.test-2-js {
 	border: 2px solid #d9d9d9;
 	background: white;
 	cursor: pointer;
 }
 
-button.test-js:focus {
+button.test-js:focus,
+button.test-2-js:focus {
 	outline: none;
 }
 
-button.test-js.testActiveClass {
+button.test-js.testActiveClassBlue, button.test-js.testActiveClassRed,
+button.test-2-js.testActiveClassBlue,
+button.test-2-js.testActiveClassRed {
 	border-color: #737373;
 }
 

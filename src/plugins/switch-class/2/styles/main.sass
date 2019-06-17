@@ -180,10 +180,14 @@ li
 
 // Тестирование
 // Изменять фон при добавлении класса на body
-body.testActiveClass
+body.testActiveClassBlue
 	background-color: lightcyan
 
-button.test-js
+body.testActiveClassRed
+	background-color: lightpink
+
+button.test-js,
+button.test-2-js
 	border: 2px solid #d9d9d9
 	background: white
 	cursor: pointer
@@ -191,5 +195,6 @@ button.test-js
 	&:focus
 		outline: none
 
-	&.testActiveClass
+	&.testActiveClassBlue,
+	&.testActiveClassRed
 		border-color: #737373

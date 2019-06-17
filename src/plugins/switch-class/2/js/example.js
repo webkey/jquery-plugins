@@ -8,8 +8,10 @@ $(function () {
   // Для тестирования
   $('.test-js').switchClass({
     switchClassTo: $('body'),
+    removeOutsideClick: true,
+    removeExisting: true,
     modifiers: {
-      activeClass: 'active testActiveClass'
+      activeClass: 'testActiveClassBlue'
     },
     afterChange: function (e, el) {
       // console.log('afterChange');
@@ -18,9 +20,18 @@ $(function () {
     }
   });
 
+  $('.test-2-js').switchClass({
+    switchClassTo: $('body'),
+    removeOutsideClick: true,
+    removeExisting: true,
+    modifiers: {
+      activeClass: 'testActiveClassRed'
+    }
+  });
+
   // Для адаптива
   // На примере навигации
-  var $nav = $('.nav-opener-js'),
+  var $nav = $('.nav-opener-js__'),
       nav;
   if ($nav.length) {
     nav = $nav.switchClass({
@@ -56,7 +67,7 @@ $(function () {
   }
 
   // Первый свитчер
-  var $switcher1 = $('.tc-js'),
+  var $switcher1 = $('.tc-js__'),
       tc1;
   if ($switcher1.length) {
     var options = {
@@ -83,7 +94,7 @@ $(function () {
   }
 
   // Второй свитчер
-  var $switcher2 = $('.tc-2-js'),
+  var $switcher2 = $('.tc-2-js__'),
       tc2;
   if ($switcher2.length) {
     tc2 = $switcher2.switchClass({
@@ -107,7 +118,7 @@ $(function () {
     $('#add-switcher-02').html('<a href="#" class="tc-3-js"><span>Открыть попап 3 (loaded)</span></a>');
 
     // Трений свитчер. Добавляется на страницу динамически
-    var $switcher3 = $('.tc-3-js');
+    var $switcher3 = $('.tc-3-js__');
     var tc3 = $switcher3.switchClass({
       switcher: '.tc-3__switcher-js'
       , remover: '.tc-3__remover-js'
