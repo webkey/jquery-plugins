@@ -15,8 +15,9 @@
 
   // Inner Plugin Modifiers
   var CONST_MOD = {
-    initClass: 'SwitcherClasses_initialized',
-    activeClass: 'SwitcherClasses_active'
+    initClass: 'swc-initialized',
+    activeClass: 'swc-active',
+    preventRemoveClass: 'swc-prevent-remove'
   };
 
   // Class definition
@@ -95,9 +96,7 @@
     },
     remove: function () {
       var self = this;
-
       if (!self.classIsAdded) return;
-      console.log("rootSelf (REMOVE): ", self);
 
       // callback beforeRemove
       $(self.element)
@@ -166,9 +165,20 @@
       var self = this;
 
       $('html').on('click', function (event) {
-        console.log("self: ", self);
-        if (self.classIsAdded && self.config.removeOutsideClick && !$(event.target).closest('.' + self.config.modifiers.stopRemoveClass).length) {
-          console.log('ClickOutside');
+
+        console.log("self 1: ", self);
+        console.log("!!self.config.preventRemoveClass: ", !!self.config.preventRemoveClass);
+
+        if ($(event.target).closest('.' + CONST_MOD.preventRemoveClass).length) {
+          return;
+        }
+
+        if (self.config.preventRemoveClass && $(event.target).closest('.' + self.config.preventRemoveClass).length) {
+          return;
+        }
+
+        if (self.classIsAdded && self.config.removeOutsideClick) {
+          console.log("self 2: ", self);
           self.remove();
           // event.stopPropagation();
         }
@@ -273,6 +283,14 @@
     // {String}{JQ Object} null - '.adder-js', или $('.adder-js')
     remover: null,
 
+    // Бывает необходимо инициализировать плагин на динамически добавленном элемента.
+    // Чтобы повесить на этот елемент событие, нужно добавить его через совойство selector
+    // Пример:
+    // $().switchClass({
+    //     selector : '.box a.opener:visible'
+    // });
+    selector: null,
+
     // Дополнительный элемент, которым можно УДАЛЯТЬ класс
     // {String}{JQ Object} null - '.remover-js', или $('.remover-js')
     switchClassTo: null,
@@ -290,13 +308,15 @@
     // {boolean} true - или false
     cssScrollFixed: false,
 
+    // Если кликнуть по елементу с этим классoм, то событие удаления активного класса не будет вызвано
+    preventRemoveClass: null,
+
     // Добавлять на html дополнительный класс 'css-scroll-fixed'? Через этот класс можно фиксировать скролл методами css
     // _mixins.sass =scroll-blocked()
     // {boolean} true - или false.
     modifiers: {
       initClass: null,
-      activeClass: 'active',
-      stopRemoveClass: 'stop-remove-class' // Если кликнуть по елементу с этим классам, то событие удаления активного класса не будет вызвано
+      activeClass: 'active'
     },
 
     // Список классов-модификаторов

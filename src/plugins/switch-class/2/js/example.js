@@ -6,12 +6,13 @@
 
 $(function () {
   // Для тестирования
-  $('.test-js').switchClass({
-    switchClassTo: $('body'),
+  $('.switch-class-1-js').switchClass({
+    switchClassTo: $('.switch-class-target-1-js'),
     removeOutsideClick: true,
-    removeExisting: true,
+    removeExisting: false,
+    preventRemoveClass: 'switch-class-prevent-1',
     modifiers: {
-      activeClass: 'testActiveClassBlue'
+      activeClass: 'switch-class-target-1'
     },
     afterChange: function (e, el) {
       // console.log('afterChange');
@@ -20,12 +21,13 @@ $(function () {
     }
   });
 
-  $('.test-2-js').switchClass({
-    switchClassTo: $('body'),
+  $('.switch-class-2-js').switchClass({
+    switchClassTo: $('.switch-class-target-2-js'),
     removeOutsideClick: true,
-    removeExisting: true,
+    removeExisting: false,
+    preventRemoveClass: 'switch-class-prevent-2',
     modifiers: {
-      activeClass: 'testActiveClassRed'
+      activeClass: 'switch-class-target-2'
     }
   });
 

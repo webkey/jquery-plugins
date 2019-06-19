@@ -193,30 +193,58 @@ li a[class*="tc__"]:hover {
 	margin-left: 0;
 }
 
-body.testActiveClassBlue {
-	background-color: lightcyan;
+.boxes {
+	margin-bottom: 40px;
 }
 
-body.testActiveClassRed {
-	background-color: lightpink;
+.boxes .box {
+	display: inline-block;
+	vertical-align: top;
+	width: 160px;
+	margin: 0 10px 10px 0;
+	padding: 20px;
+	border: 1px solid #c4c4c4;
 }
 
-button.test-js,
-button.test-2-js {
-	border: 2px solid #d9d9d9;
-	background: white;
-	cursor: pointer;
+a.switch-class {
+	text-decoration: underline;
+	color: #ee6e73;
 }
 
-button.test-js:focus,
-button.test-2-js:focus {
+a.switch-class:hover {
+	text-decoration: none;
+}
+
+a.switch-class:focus {
 	outline: none;
 }
 
-button.test-js.testActiveClassBlue, button.test-js.testActiveClassRed,
-button.test-2-js.testActiveClassBlue,
-button.test-2-js.testActiveClassRed {
+a.switch-class.swc-active {
 	border-color: #737373;
+}
+
+.switch-class-target {
+	height: 120px;
+	width: 120px;
+	padding: 10px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	border: 2px solid #c4c4c4;
+}
+
+.box:nth-child(1) .switch-class-target.swc-active {
+	background-color: lightpink;
+}
+
+.box:nth-child(2) .switch-class-target.swc-active {
+	background-color: lightblue;
 }
 
 /*# sourceMappingURL=main.css.map */
