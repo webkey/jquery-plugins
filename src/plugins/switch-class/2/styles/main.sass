@@ -185,7 +185,7 @@ li
   .box
     display: inline-block
     vertical-align: top
-    width: 160px
+    width: 320px
     margin: 0 10px 10px 0
     padding: 20px
     border: 1px solid #c4c4c4
@@ -205,9 +205,8 @@ a.switch-class
 
 .switch-class-target
   $element: &
-  $size: 120px
-  height: $size
-  width: $size
+  height: 120px
+  width: 100%
   padding: 10px
   display: flex
   align-items: center
@@ -216,10 +215,41 @@ a.switch-class
 
   @at-root
     .box
-      &:nth-child(1) #{$element}.swc-active
-        background-color: lightpink
+      &:nth-child(1)
+        $color: lightpink
 
-      &:nth-child(2) #{$element}.swc-active
-        background-color: lightblue
+        #{$element}.swc-active
+          background-color: $color
+
+        h3 a.swc-active
+          color: darken($color, 50% )
+
+      &:nth-child(2)
+        $color: lightblue
+
+        #{$element}.swc-active
+          background-color: $color
+
+        h3 a.swc-active
+          color: darken($color, 50% )
+
+      &:nth-child(3)
+        $color: lightcyan
+
+        #{$element}.swc-active
+          background-color: $color
+
+        h3 a.swc-active
+          color: darken($color, 50% )
+
+      &:nth-child(4)
+        $color: lightcyan
+
+        #{$element}.swc-active
+          background-color: $color
+
+        h3, p
+          a.swc-active
+            color: darken($color, 50% )
 
 

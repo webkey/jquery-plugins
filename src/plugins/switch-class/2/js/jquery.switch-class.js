@@ -15,6 +15,7 @@
 
   // Inner Plugin Modifiers
   var CONST_MOD = {
+    instanceClass: 'swc-instance',
     initClass: 'swc-initialized',
     activeClass: 'swc-active',
     preventRemoveClass: 'swc-prevent-remove'
@@ -24,7 +25,7 @@
   // ================
 
   var SwitchClass = function (element, config) {
-    var self = this;
+    var self = this, elem;
     self.element = element;
     self.config = config;
     self.mixedClasses = {
@@ -32,8 +33,8 @@
       active: CONST_MOD.activeClass + ' ' + (config.modifiers.activeClass || ''),
       scrollFixedClass: 'css-scroll-fixed'
     };
-    self.$switchClassTo = $(self.element).add(config.switcher).add(config.adder).add(config.remover).add(config.switchClassTo);
-    self.classIsAdded = false;
+    self.$switchClassTo = $(config.toggleEl).add(config.addEl).add(config.removeEl).add(config.switchClassTo);
+    self._classIsAdded = false;
   };
 
   $.extend(SwitchClass.prototype, {
@@ -59,10 +60,13 @@
     },
     add: function () {
       var self = this;
-      if (self.classIsAdded) return;
+      var $currentEl = self.config.selector ? $(self.config.selector) : $(self.element);
+
+      if (self._classIsAdded) return;
 
       // Callback before added class
-      $(self.element)
+      // $(self.element)
+      $currentEl
           .trigger('switchClass.beforeAdd')
           .trigger('switchClass.beforeChange');
 
@@ -74,13 +78,14 @@
       // 1) Основной элемент
       // 2) Дополнительный переключатель
       // 3) Элементы указанные в настройках экземпляра плагина
-      self.$switchClassTo
+      $currentEl.add(self.$switchClassTo)
           .addClass(self.mixedClasses.active);
 
       // Сохранить в дата-атрибут текущий объект this
-      $(self.element).data('SwitchClass', self);
+      // $(self.element).data('SwitchClass', self);
+      $currentEl.addClass(CONST_MOD.instanceClass).data('SwitchClass', self);
 
-      self.classIsAdded = true;
+      self._classIsAdded = true;
 
       if (self.config.cssScrollFixed) {
         // Если в настойках указано, что нужно добавлять класс фиксации скролла,
@@ -90,16 +95,19 @@
       }
 
       // callback after added class
-      $(self.element)
+      // $(self.element)
+      $currentEl
           .trigger('switchClass.afterAdd')
           .trigger('switchClass.afterChange');
     },
     remove: function () {
       var self = this;
-      if (!self.classIsAdded) return;
+      var $currentEl = self.config.selector ? $(self.config.selector) : $(self.element);
+
+      if (!self._classIsAdded) return;
 
       // callback beforeRemove
-      $(self.element)
+      $currentEl
           .trigger('switchClass.beforeRemove')
           .trigger('switchClass.beforeChange');
 
@@ -107,13 +115,13 @@
       // 1) Основной элемент
       // 2) Дополнительный переключатель
       // 3) Элементы указанные в настройках экземпляра плагина
-      self.$switchClassTo
+      $currentEl.add(self.$switchClassTo)
           .removeClass(self.mixedClasses.active);
 
       // Удалить дата-атрибут, в котором хранится объект
-      $(self.element).removeData('SwitchClass');
+      $currentEl.removeClass(CONST_MOD.instanceClass).removeData('SwitchClass');
 
-      self.classIsAdded = false;
+      self._classIsAdded = false;
 
       if (self.config.cssScrollFixed) {
         // Если в настойках указано, что нужно добавлять класс фиксации скролла,
@@ -123,39 +131,44 @@
       }
 
       // callback afterRemove
-      $(self.element)
+      $currentEl
           .trigger('switchClass.afterRemove')
           .trigger('switchClass.afterChange');
     },
     events: function () {
       var self = this;
 
-      $(self.element).on('click', function (event) {
-        if (self.classIsAdded) {
+      function _toggleClass (e) {
+        if (self._classIsAdded) {
           self.remove();
 
-          event.preventDefault();
+          e.preventDefault();
           return false;
         }
 
         self.add();
 
-        self.prevent(event);
-      });
+        self.prevent(e);
+      }
 
-      $(self.config.switcher).on('click', function (event) {
-        var self = this;
+      if (self.config.selector) {
+        $(self.element)
+            .off('click', self.config.selector)
+            .on('click', self.config.selector, _toggleClass);
+      } else {
+        $(self.element)
+            .off('click')
+            .on('click', _toggleClass);
+      }
 
-        $(self.element).click();
-        self.prevent(event);
-      });
+      $(self.config.toggleEl).on('click', _toggleClass);
 
-      $(self.config.adder).on('click', function (event) {
+      $(self.config.addEl).on('click', function (event) {
         self.add();
         self.prevent(event);
       });
 
-      $(self.config.remover).on('click', function (event) {
+      $(self.config.removeEl).on('click', function (event) {
         self.remove();
         self.prevent(event);
       })
@@ -166,9 +179,6 @@
 
       $('html').on('click', function (event) {
 
-        console.log("self 1: ", self);
-        console.log("!!self.config.preventRemoveClass: ", !!self.config.preventRemoveClass);
-
         if ($(event.target).closest('.' + CONST_MOD.preventRemoveClass).length) {
           return;
         }
@@ -177,10 +187,8 @@
           return;
         }
 
-        if (self.classIsAdded && self.config.removeOutsideClick) {
-          console.log("self 2: ", self);
+        if (self._classIsAdded && self.config.removeOutsideClick) {
           self.remove();
-          // event.stopPropagation();
         }
       });
     },
@@ -188,7 +196,7 @@
       var self = this;
 
       $('html').keyup(function (event) {
-        if (self.classIsAdded && self.config.removeEscClick && event.keyCode === 27) {
+        if (self._classIsAdded && self.config.removeEscClick && event.keyCode === 27) {
           self.remove();
         }
       });
@@ -203,10 +211,9 @@
 
   $.switchClass = {
     version: "2.0",
-    // defaults: $.fn.switchClass.defaultOptions
 
     getInstance: function (command) {
-      var instance = $('.' + CONST_MOD.initClass + '.' + CONST_MOD.activeClass).data("SwitchClass"),
+      var instance = $('.' + CONST_MOD.instanceClass + '.' + CONST_MOD.activeClass + ':last').data("SwitchClass"),
           args = Array.prototype.slice.call(arguments, 1);
 
       if (instance instanceof SwitchClass) {
@@ -221,7 +228,6 @@
 
       return false;
     },
-
     remove: function (all) {
       // Получить текущий инстанс
       var instance = this.getInstance();
@@ -235,7 +241,7 @@
         // 2) Если на вход функуии передан true,
         if (all === true) {
           // то попитаться найти следующий инстанс и запустить метод .close для него
-          // this.remove(all);
+          this.remove(all);
         }
       }
     },
@@ -275,52 +281,57 @@
     // Set this to false if you do not need to stack multiple instances
     removeExisting: false,
 
-    // Дополнительный элемент, которым можно ДОБАВЛЯТЬ/УДАЛЯТЬ класс
-    // {String}{JQ Object} null - '.switcher-js', или $('.switcher-js')
-    adder: null,
-
-    // Дополнительный элемент, которым можно ДОБАВЛЯТЬ класс
-    // {String}{JQ Object} null - '.adder-js', или $('.adder-js')
-    remover: null,
-
     // Бывает необходимо инициализировать плагин на динамически добавленном элемента.
     // Чтобы повесить на этот елемент событие, нужно добавить его через совойство selector
-    // Пример:
-    // $().switchClass({
+    // Example:
+    // $('.parents-element').switchClass({
     //     selector : '.box a.opener:visible'
     // });
     selector: null,
 
+    // Дополнительный элемент, которым можно ДОБАВЛЯТЬ класс
+    // Example: '.some-class-js' or $('.some-class-js')
+    addEl: null,
+
     // Дополнительный элемент, которым можно УДАЛЯТЬ класс
-    // {String}{JQ Object} null - '.remover-js', или $('.remover-js')
-    switchClassTo: null,
+    // Example: '.some-class-js' or $('.some-class-js')
+    removeEl: null,
+
+    // Дополнительный элемент, которым можно ДОБАВЛЯТЬ/УДАЛЯТЬ класс
+    // Example: '.some-class-js' or $('.some-class-js')
+    toggleEl: null,
 
     // Один или несколько эелментов, на которые будет добавляться/удаляться активный класс (modifiers.activeClass)
-    // {JQ Object} null - 1) $('html, .popup-js, .overlay-js')
-    // {JQ Object} null - 2) $('html').add('.popup-js').add('.overlay-js')
+    // Example 1: $('html, .popup-js, .overlay-js')
+    // Example 2: $('html').add('.popup-js').add('.overlay-js')
+    switchClassTo: null,
+
+    // Удалать класс по клику по пустому месту на странице?
+    // Если по клику на определенный элемент удалять класс не нужно,
+    // то на этот элемент нужно добавить класс ".swc-prevent-remove",
+    // или класс указанный в параметре "preventRemoveClass"
+    // Example: true or false
     removeOutsideClick: true,
 
-    // Удалать класс по клику по пустому месту на странице? Если по клику на определенный элемент удалять класс не нужно, то на этот элемент нужно добавить дата-антрибут [data-tc-stop]
-    // {boolean} true - или false
-    removeEscClick: true,
-
-    // Удалять класс по клику на клавишу Esc?
-    // {boolean} true - или false
-    cssScrollFixed: false,
-
-    // Если кликнуть по елементу с этим классoм, то событие удаления активного класса не будет вызвано
+    // Если кликнуть по елементу с этим классом, то событие удаления активного класса не будет вызвано
+    // Example: class = "some-class"
     preventRemoveClass: null,
 
-    // Добавлять на html дополнительный класс 'css-scroll-fixed'? Через этот класс можно фиксировать скролл методами css
-    // _mixins.sass =scroll-blocked()
-    // {boolean} true - или false.
+    // Удалять класс по клику на клавишу Esc?
+    // Example: true or false
+    removeEscClick: true,
+
+    // Добавлять на html дополнительный класс 'css-scroll-fixed'?
+    // Через этот класс можно фиксировать скролл методами css
+    // _mixins.sass, scroll-blocked()
+    // Example: true or false
+    cssScrollFixed: false,
+
+    // Классы-модификаторы
     modifiers: {
       initClass: null,
       activeClass: 'active'
-    },
-
-    // Список классов-модификаторов
-    switcher: null
+    }
   };
 
 })(window, document, jQuery);

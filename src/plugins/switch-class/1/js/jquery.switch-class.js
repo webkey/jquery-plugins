@@ -43,7 +43,7 @@
           $html.toggleClass(mod.scrollFixedClass, !!countFixedScroll);
         },
         add = function () {
-          if (classIsAdded) return;
+          if (_classIsAdded) return;
 
           // Callback before added class
           $element.trigger('switchClass.beforeAdded');
@@ -67,7 +67,7 @@
           $element.trigger('switchClass.afterAdded');
         },
         remove = function () {
-          if (!classIsAdded) return;
+          if (!_classIsAdded) return;
 
           // callback beforeRemoved
           $element.trigger('switchClass.beforeRemoved');
@@ -92,7 +92,7 @@
         },
         events = function () {
           $element.on('click', function (event) {
-            if (classIsAdded) {
+            if (_classIsAdded) {
               remove();
 
               event.preventDefault();
@@ -122,7 +122,7 @@
         },
         removeByClickOutside = function () {
           $html.on('click', function (event) {
-            if (classIsAdded && config.removeOutsideClick && !$(event.target).closest('.' + config.modifiers.stopRemoveClass).length) {
+            if (_classIsAdded && config.removeOutsideClick && !$(event.target).closest('.' + config.modifiers.stopRemoveClass).length) {
               remove();
               // event.stopPropagation();
             }
@@ -130,7 +130,7 @@
         },
         removeByClickEsc = function () {
           $html.keyup(function (event) {
-            if (classIsAdded && config.removeEscClick && event.keyCode === 27) {
+            if (_classIsAdded && config.removeEscClick && event.keyCode === 27) {
               remove();
             }
           });

@@ -200,7 +200,7 @@ li a[class*="tc__"]:hover {
 .boxes .box {
 	display: inline-block;
 	vertical-align: top;
-	width: 160px;
+	width: 320px;
 	margin: 0 10px 10px 0;
 	padding: 20px;
 	border: 1px solid #c4c4c4;
@@ -225,7 +225,7 @@ a.switch-class.swc-active {
 
 .switch-class-target {
 	height: 120px;
-	width: 120px;
+	width: 100%;
 	padding: 10px;
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -243,8 +243,32 @@ a.switch-class.swc-active {
 	background-color: lightpink;
 }
 
+.box:nth-child(1) h3 a.swc-active {
+	color: #b6001b;
+}
+
 .box:nth-child(2) .switch-class-target.swc-active {
 	background-color: lightblue;
+}
+
+.box:nth-child(2) h3 a.swc-active {
+	color: #235e71;
+}
+
+.box:nth-child(3) .switch-class-target.swc-active {
+	background-color: lightcyan;
+}
+
+.box:nth-child(3) h3 a.swc-active {
+	color: #00e0e0;
+}
+
+.box:nth-child(4) .switch-class-target.swc-active {
+	background-color: lightcyan;
+}
+
+.box:nth-child(4) h3 a.swc-active, .box:nth-child(4) p a.swc-active {
+	color: #00e0e0;
 }
 
 /*# sourceMappingURL=main.css.map */

@@ -31,6 +31,34 @@ $(function () {
     }
   });
 
+  // Has selector
+  // Add dynamical element
+  setTimeout(function () {
+    // Добавить кнопку(и) динамически
+    $('#add-switch-class-3').html('<a href="#" class="switch-class switch-class-3-js">Инстанс 3</a>');
+  }, 1500);
+
+  $('body').switchClass({
+    selector: '.switch-class-3-js',
+    switchClassTo: $('.switch-class-target-3-js'),
+    removeOutsideClick: true,
+    removeExisting: true,
+    modifiers: {
+      activeClass: 'switch-class-target-3'
+    }
+  });
+
+  $('.switch-class-4-js').switchClass({
+    switchClassTo: $('.switch-class-target-4-js'),
+    removeOutsideClick: true,
+    removeExisting: true,
+    preventRemoveClass: 'switch-class-prevent-4',
+    toggleEl: '.switch-class-toggle-el-4-js',
+    modifiers: {
+      activeClass: 'switch-class-target-4'
+    }
+  });
+
   // Для адаптива
   // На примере навигации
   var $nav = $('.nav-opener-js__'),
