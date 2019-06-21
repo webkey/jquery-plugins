@@ -194,13 +194,21 @@ li a[class*="tc__"]:hover {
 }
 
 .boxes {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	    flex-wrap: wrap;
+	-webkit-box-align: stretch;
+	    -ms-flex-align: stretch;
+	        align-items: stretch;
 	margin-bottom: 40px;
 }
 
 .boxes .box {
 	display: inline-block;
 	vertical-align: top;
-	width: 320px;
+	width: 400px;
 	margin: 0 10px 10px 0;
 	padding: 20px;
 	border: 1px solid #c4c4c4;
@@ -239,36 +247,44 @@ a.switch-class.swc-active {
 	border: 2px solid #c4c4c4;
 }
 
-.box:nth-child(1) .switch-class-target.swc-active {
+.box:nth-child(5n-4) .switch-class-target.swc-active {
 	background-color: lightpink;
 }
 
-.box:nth-child(1) h3 a.swc-active {
+.box:nth-child(5n-4) h3 a.swc-active {
 	color: #b6001b;
 }
 
-.box:nth-child(2) .switch-class-target.swc-active {
+.box:nth-child(5n-3) .switch-class-target.swc-active {
 	background-color: lightblue;
 }
 
-.box:nth-child(2) h3 a.swc-active {
+.box:nth-child(5n-3) h3 a.swc-active {
 	color: #235e71;
 }
 
-.box:nth-child(3) .switch-class-target.swc-active {
+.box:nth-child(5n-2) .switch-class-target.swc-active {
 	background-color: lightcyan;
 }
 
-.box:nth-child(3) h3 a.swc-active {
+.box:nth-child(5n-2) h3 a.swc-active {
 	color: #00e0e0;
 }
 
-.box:nth-child(4) .switch-class-target.swc-active {
-	background-color: lightcyan;
+.box:nth-child(5n-1) .switch-class-target.swc-active {
+	background-color: lightyellow;
 }
 
-.box:nth-child(4) h3 a.swc-active, .box:nth-child(4) p a.swc-active {
-	color: #00e0e0;
+.box:nth-child(5n-1) h3 a.swc-active, .box:nth-child(5n-1) p a.swc-active {
+	color: #e0e000;
+}
+
+.box:nth-child(5n) .switch-class-target.swc-active {
+	background-color: lightgreen;
+}
+
+.box:nth-child(5n) h3 a.swc-active, .box:nth-child(5n) p a.swc-active {
+	color: #116e11;
 }
 
 /*# sourceMappingURL=main.css.map */

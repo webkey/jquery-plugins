@@ -180,12 +180,15 @@ li
 
 // Тестирование
 .boxes
+  display: flex
+  flex-wrap: wrap
+  align-items: stretch
   margin-bottom: 40px
 
   .box
     display: inline-block
     vertical-align: top
-    width: 320px
+    width: 400px
     margin: 0 10px 10px 0
     padding: 20px
     border: 1px solid #c4c4c4
@@ -215,7 +218,7 @@ a.switch-class
 
   @at-root
     .box
-      &:nth-child(1)
+      &:nth-child(5n-4)
         $color: lightpink
 
         #{$element}.swc-active
@@ -224,7 +227,7 @@ a.switch-class
         h3 a.swc-active
           color: darken($color, 50% )
 
-      &:nth-child(2)
+      &:nth-child(5n-3)
         $color: lightblue
 
         #{$element}.swc-active
@@ -233,7 +236,7 @@ a.switch-class
         h3 a.swc-active
           color: darken($color, 50% )
 
-      &:nth-child(3)
+      &:nth-child(5n-2)
         $color: lightcyan
 
         #{$element}.swc-active
@@ -242,8 +245,18 @@ a.switch-class
         h3 a.swc-active
           color: darken($color, 50% )
 
-      &:nth-child(4)
-        $color: lightcyan
+      &:nth-child(5n-1)
+        $color: lightyellow
+
+        #{$element}.swc-active
+          background-color: $color
+
+        h3, p
+          a.swc-active
+            color: darken($color, 50% )
+
+      &:nth-child(5n)
+        $color: lightgreen
 
         #{$element}.swc-active
           background-color: $color

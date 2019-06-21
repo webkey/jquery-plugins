@@ -211,7 +211,6 @@
 
   $.switchClass = {
     version: "2.0",
-
     getInstance: function (command) {
       var instance = $('.' + CONST_MOD.instanceClass + '.' + CONST_MOD.activeClass + ':last').data("SwitchClass"),
           args = Array.prototype.slice.call(arguments, 1);
@@ -282,7 +281,7 @@
     removeExisting: false,
 
     // Бывает необходимо инициализировать плагин на динамически добавленном элемента.
-    // Чтобы повесить на этот елемент событие, нужно добавить его через совойство selector
+    // Чтобы повесить на этот элемент событие, нужно добавить его через совойство selector
     // Example:
     // $('.parents-element').switchClass({
     //     selector : '.box a.opener:visible'
@@ -308,14 +307,10 @@
 
     // Удалать класс по клику по пустому месту на странице?
     // Если по клику на определенный элемент удалять класс не нужно,
-    // то на этот элемент нужно добавить класс ".swc-prevent-remove",
+    // то на этот элемент нужно добавить класс ".swc-prevent-remove" или дата-атрибудт "data-swc-prevent-remove",
     // или класс указанный в параметре "preventRemoveClass"
     // Example: true or false
     removeOutsideClick: true,
-
-    // Если кликнуть по елементу с этим классом, то событие удаления активного класса не будет вызвано
-    // Example: class = "some-class"
-    preventRemoveClass: null,
 
     // Удалять класс по клику на клавишу Esc?
     // Example: true or false
@@ -326,6 +321,11 @@
     // _mixins.sass, scroll-blocked()
     // Example: true or false
     cssScrollFixed: false,
+
+    // Если кликнуть по элементу с этим классом, то событие удаления активного класса не будет вызвано.
+    // По умолчанию можно использовать класс ".swc-prevent-remove" или дата-атрибудт "data-swc-prevent-remove".
+    // Example: class = "some-class"
+    preventRemoveClass: null,
 
     // Классы-модификаторы
     modifiers: {
