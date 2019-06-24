@@ -203,9 +203,14 @@
     },
     init: function () {
       var self = this;
+      var $currentEl = self.config.selector ? $(self.config.selector) : $(self.element);
 
-      $(self.element).addClass(self.mixedClasses.initialized);
-      $(self.element).trigger('switchClass.afterInit');
+      if ($currentEl.hasClass(self.config.modifiers.activeClass) || $currentEl.hasClass(CONST_MOD.activeClass)) {
+        self.add();
+      }
+
+      $currentEl.addClass(self.mixedClasses.initialized);
+      $currentEl.trigger('switchClass.afterInit');
     }
   });
 

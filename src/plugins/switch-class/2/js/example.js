@@ -51,8 +51,19 @@ $(function () {
     removeOutsideClick: true,
     removeExisting: true,
     preventRemoveClass: 'switch-class-prevent-4',
+    toggleEl: $('.switch-class-toggle-el-4-js'),
     modifiers: {
       activeClass: 'switch-class-target-4'
+    }
+  });
+
+  $('.switch-class-5-js').switchClass({
+    switchClassTo: $('.switch-class-target-5-js'),
+    removeOutsideClick: true,
+    removeExisting: true,
+    preventRemoveClass: 'switch-class-prevent-5',
+    modifiers: {
+      activeClass: 'switch-class-active-5'
     }
   });
 
