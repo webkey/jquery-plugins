@@ -183,6 +183,10 @@
           return;
         }
 
+        if ($(event.target).closest('[data-swc-prevent-remove]').length) {
+          return;
+        }
+
         if (self.config.preventRemoveClass && $(event.target).closest('.' + self.config.preventRemoveClass).length) {
           return;
         }
