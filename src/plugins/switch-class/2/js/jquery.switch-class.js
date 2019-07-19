@@ -1,17 +1,14 @@
-// ==================================================
-// jquery.switch-class.js
-// Version: 2.0
-// Description: Extended toggle class
-// ==================================================
+// !==================================================
+// !jquery.switch-class.js
+// !Version: 2.0
+// !Description: Extended toggle class
+// !==================================================
 
-;(function (window, document, $) {
+;(function ($) {
   'use strict';
 
-  // Нужно для корректной работы с доп. классом фиксирования скролла
+  // Нужно для корректной работы с доп. классом блокирования скролла
   var countFixedScroll = 0;
-
-  var $W = $(window);
-  var $D = $(document);
 
   // Inner Plugin Modifiers
   var CONST_MOD = {
@@ -343,4 +340,4 @@
     }
   };
 
-})(window, document, jQuery);
+})(jQuery);

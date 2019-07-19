@@ -1,8 +1,9 @@
-/**! jquery.plugin-name.js
- * Version: 2019.1.0
- * Author: ---
- * Description: ---
- */
+// !==================================================
+// !jquery.plugin-name.js
+// !Version: 1
+// !Author: ---
+// !Description: ---
+// !==================================================
 
 ;(function ($) {
   'use strict';

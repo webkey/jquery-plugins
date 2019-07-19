@@ -1,8 +1,9 @@
-/**! jquery.filters.js
- * Version: 2019.1.0
- * Author: ---
- * Description: ---
- */
+// !==================================================
+// !jquery.filters.js
+// !Version: 2019.1.0
+// !Author: ---
+// !Description: ---
+// !==================================================
 
 ;(function ($) {
   'use strict';
