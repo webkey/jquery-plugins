@@ -1,12 +1,12 @@
-// !==================================================
-// !jquery.plugin-name.js
-// !Version: 1
-// !Author: ---
-// !Description: ---
-// !==================================================
+/*!==================================================
+/*!jquery.plugin-name.js
+/*!Version: 1
+/*!Author: ---
+/*!Description: ---
+/*!================================================== */
 
 ;(function ($) {
-  'use strict';
+  /*'use strict';*/
 
   var MsExample = function (element, config) {
     var self,

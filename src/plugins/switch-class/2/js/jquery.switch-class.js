@@ -1,8 +1,8 @@
-// !==================================================
-// !jquery.switch-class.js
-// !Version: 2.0
-// !Description: Extended toggle class
-// !==================================================
+/*!==================================================
+/*!jquery.switch-class.js
+/*!Version: 2.0
+/*!Description: Extended toggle class
+/*!==================================================*/
 
 ;(function ($) {
   'use strict';

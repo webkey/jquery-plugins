@@ -1,9 +1,8 @@
-/**
- * ! jquery.tabs.js
- * Version: 2019.1.2 (2019.05.04)
- * Author: *
- * Description: Switch panels
- */
+/*!==================================================
+/*!jquery.tabs.js
+/*!Version: 1
+/*!Description: Switch panels
+/*!==================================================*/
 
 ;(function ($) {
   'use strict';

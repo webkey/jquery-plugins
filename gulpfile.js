@@ -22,7 +22,8 @@ var gulp = require('gulp'), // Подключаем Gulp
     modernizr = require('modernizr'), // For compiling modernizr.min.js
     config = require('./modernizr-config'), // Path to modernizr-config.json
     replace = require('gulp-string-replace'),
-    stripCssComments = require('gulp-strip-css-comments'), // Удалить комментарии (css)
+    strip = require('gulp-strip-comments'),
+    removeEmptyLines = require('gulp-remove-empty-lines'),
     babel = require('gulp-babel')
 ;
 
@@ -34,6 +35,7 @@ var path = {
   plugins: 'src/plugins',
   dist: 'dist',
   minPlugin: '_example-plugin/1', // Название и версия плагина, который нужно минифицировать. Например: 'drop/1'
+  clearComments: '_example-plugin/1', // Название и версия плагина, в который нужно удалить комменты. Например: 'drop/1'
 };
 
 /**
@@ -194,13 +196,39 @@ gulp.task('watch', ['browserSync', 'htmlCompilation', 'sassCompilation', 'mergeC
  */
 gulp.task('default', ['watch']);
 
+
+/************************************************************
+ * Clear comments
+ ************************************************************/
+/**
+ * @description Таск удаления комментов в js файлах
+ */
+gulp.task('clearComments:create', ['clearComments:remove'], function () {
+  return gulp.src(['src/plugins/' + path.clearComments + '/js/jquery.*.js'], {base: './'})
+      .pipe(rename({suffix: '.nocomments'}))
+      .pipe(strip({
+        safe: true,
+        // ignore: /^!/,
+        trim: true
+      }))
+      // .pipe(removeEmptyLines())
+      .pipe(gulp.dest('./'));
+});
+/**
+ * @description Таск удаления минифицированых версий js файлов
+ */
+gulp.task('clearComments:remove', function () {
+  return del.sync(['src/plugins/' + path.minPlugin + '/js/jquery.*.nocomments.js']);
+});
+
+
 /************************************************************
  * Minify js plugins
  ************************************************************/
 /**
  * @description Таск минификации js файлов
  */
-gulp.task('minifyJsPlugins', ['removeMinifyJsPlugins'], function () {
+gulp.task('minifyJsPlugins:create', ['minifyJsPlugins:remove'], function () {
   return gulp.src(['src/plugins/' + path.minPlugin + '/js/jquery.*.js'], {base: './'})
       .pipe(rename({suffix: '.min'}))
       .pipe(uglify({
@@ -213,7 +241,7 @@ gulp.task('minifyJsPlugins', ['removeMinifyJsPlugins'], function () {
 /**
  * @description Таск удаления минифицированых версий js файлов
  */
-gulp.task('removeMinifyJsPlugins', function () {
+gulp.task('minifyJsPlugins:remove', function () {
   return del.sync(['src/plugins/' + path.minPlugin + '/js/jquery.*.min.js']);
 });
 

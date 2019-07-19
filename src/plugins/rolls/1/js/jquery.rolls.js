@@ -1,8 +1,8 @@
-/**! jquery.rolls.js
- * Version: 2019.1.1
- * Author: Astronim*
- * Description: Rolls
- */
+/*!==================================================
+/*!jquery.rolls.js
+/*!Version: 1
+/*!Description: Rolls
+/*!==================================================*/
 
 ;(function ($) {
   'use strict';

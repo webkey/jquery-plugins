@@ -1,0 +1,215 @@
+@@include('../../../_tpl_layout_head.html', {
+"pathCss": ["styles/main.css"]
+})
+
+<div class="layout-flood user-content">
+  <h1>Простой попап</h1>
+  <h2>Если необходимо добавлять кнопки открытия динамически</h2>
+
+  <h2><span class="mark">Callback</span></h2>
+
+  <h3>Options</h3>
+  <ul>
+    <li>
+      <b>opener:</b> <br> <i>Defaults:</i>
+      <pre>null</pre>
+      <span>Класс элемента, по которому происходит открытие</span>
+      <p>Этот параметр необходимо указать, если кнопка открытия добавляется <b>динамически</b>.</p>
+      <p>Тогда плагин запускаем на статичной обертке, а в параметрах указываем <i>opener:</i> c классом кнопки</p>
+    </li>
+    <li>
+      <b>popup:</b> <br> <i>Defaults:</i>
+      <pre>'.ms-popup-d__popup-js'</pre>
+      <span>Каласс попапа</span>
+    </li>
+    <li>
+      <b>closeBtn:</b> <br> <i>Defaults:</i>
+      <pre>'.ms-popup-d__close-js'</pre>
+      <span>Класс элемента, по которому происходит закрытие</span>
+    </li>
+    <li>
+      <b>outsideClose:</b> <br> <i>Defaults:</i>
+      <pre>true</pre>
+      <span>Закрыть все попапы при клике вне попапа</span>
+    </li>
+    <li>
+      <b>escapeClose:</b> <i>Defaults:</i>
+      <pre>true</pre>
+      <span>Закрыть все попапы при клике на клавишу escape</span>
+    </li>
+    <li>
+      <b>modifiers:</b> <i>Defaults:</i> <br>
+      <pre>{
+	init: 'ms-popup-d--initialized',
+	isOpen: 'ms-popup-d--is-open',
+	cssScrollFixed: 'css-scroll-fixed'
+}</pre>
+      <br> <span>Классы-модификаторы</span> <br> <b>init</b> - класс, которые добавляется после инициализации плагина <br> <b>isOpen</b> - класс активного состояния элементов <br>
+      <b>cssScrollFixed</b> - класс добавляется на тег html при открытии. Предназначен для <b>блокировки скролла</b> методами <i>css</i> <br>
+    </li>
+  </ul>
+
+  <h3>События</h3>
+  <ul>
+    <li>
+      <b>afterInit</b> <br>
+      <p>Вызов вконце функции afterInit()</p>
+      <pre>afterInit: function (e, el) {}</pre>
+    </li>
+    <li>
+      <b>afterOpened</b> <br>
+      <p>После открытия попапа</p>
+      <pre>afterOpened: function (e, el) {}</pre>
+    </li>
+    <li>
+      <b>afterClosed</b> <br>
+      <p>После закрытия попапа</p>
+      <pre>afterClosed: function (e, el) {}</pre>
+    </li>
+  </ul>
+
+  <h3>Глобальные настройки</h3>
+  <p>Поменять настройки плагина глобально можно через</p>
+  <pre>$.fn.simplePopupDynamic.defaultOptions</pre>
+  <p>Например:</p>
+  <pre>$.fn.simplePopupDynamic.defaultOptions.escapeClose = false;</pre>
+
+  <h3 style="color: red;">Предупреждения !</h3>
+  <small>
+    <ul class="ms-popup-d__init-js">
+      <li>Нельзя вызвать плагин больше, чем с одного класса на одном элементе. Для примера: откройте <a href="#example-popup1" class="ms-popup-d__opener-js">"Попап 1"</a>. Кликните по ссылке
+        <i>Открыть попап 2</i> - откроется попап "Попап 1". Кликните по ссылке <i>Открыть попап 3 (новые классы)</i> - ничего не произойдет. Хотя
+        <pre>&lt;div class="ms-popup-d__init-js ms-popup-d__init-alt-js"&gt;
+		&lt;a href="#example-popup2" class="ms-popup-d__opener-js"&gt;&lt;span&gt;Открыть попап 2&lt;/span&gt;&lt;/a&gt;
+		&lt;a href="#example-popup3" class="ms-popup-d__opener-alt-js"&gt;&lt;span&gt;Открыть попап 3 (новые классы)&lt;/span&gt;&lt;/a&gt;
+	&lt;/div&gt;</pre>
+        но <i>ms-popup-d__init-alt-js</i> не инициализируется, потому что инициализация проходит по первому вызову, а в скрипте первым вызывается <i>ms-popup-d__init-js</i>
+      </li>
+    </ul>
+  </small>
+
+  <h2>Вызов плагина на кнопке открытия</h2>
+  <ul>
+    <li>
+      <a href="#example-popup1" class="ms-popup-d__opener--static-js"><span>Открыть попап 1 (Статика)</span></a>
+    </li>
+  </ul>
+
+  <h2>Примеры исспользования. Тестирование</h2>
+  <div class="ms-popup ms-popup-d__init-js">
+    <ul>
+      <li>
+        <a href="#example-popup1" class="ms-popup-d__opener-js"><span>Открыть попап 1</span></a>
+      </li>
+      <li>
+        <a href="#example-popup1" class="ms-popup-d__opener-js"><span>Открыть попап 1</span></a>
+      </li>
+      <li id="add-opener">
+        <div>Динамически добавляем кнопку...</div>
+      </li>
+      <hr>
+      <li>
+        <a href="#example-popup2" class="ms-popup-d__opener-js"><span>Открыть попап 2</span></a>
+      </li>
+      <li>
+        <a href="#example-popup2" class="ms-popup-d__opener-js"><span>Открыть попап 2</span></a>
+      </li>
+      <li id="add-opener2">
+        <div>Динамически добавляем кнопку...</div>
+      </li>
+    </ul>
+  </div>
+
+  <hr>
+  <hr>
+
+  <div class="ms-popup2 ms-popup-d__init-alt-js">
+    <h3>Вызов плагина с недефолтными классами</h3>
+    <ul>
+      <li>
+        <a href="#example-popup3" class="ms-popup-d__opener-alt-js"><span>Открыть попап 3 (Новые классы)</span></a>
+      </li>
+      <li>
+        <a href="#example-popup3" class="ms-popup-d__opener-alt-js"><span>Открыть попап 3 (Новые классы)</span></a>
+      </li>
+      <li id="add-opener3">
+        <div>Динамически добавляем кнопку...</div>
+      </li>
+    </ul>
+  </div>
+
+  <hr>
+  <hr>
+
+  <div class="ms-popup2 ms-popup-d__init-alt2-js">
+    <h3>Вызов плагина с недефолтными классами только кнопки</h3>
+    <ul>
+      <li>
+        <a href="#example-popup1" class="ms-popup-d__opener-alt2-js"><span>Открыть попап 1 (Но кнопка открытия инициализируется с недефолтным классом)</span></a>
+      </li>
+      <li>
+        <a href="#example-popup1" class="ms-popup-d__opener-alt2-js"><span>Открыть попап 1 (Но кнопка открытия инициализируется с недефолтным классом)</span></a>
+      </li>
+      <li id="add-opener4">
+        <div>Динамически добавляем кнопку...</div>
+      </li>
+    </ul>
+  </div>
+
+  <!--****popups****-->
+  <!--example-popup1-->
+  <div class="popup-default ms-popup-d__popup-js" id="example-popup1">
+    <div class="popup-default__holder">
+      <div class="popup-default__cell">
+        <div class="popup-default__layout ms-popup-d__no-close-js">
+          <a href="#" class="popup-default__close ms-popup-d__close-js" title="Закрыть">x close</a>
+
+          <div class="ms-popup-d__init-js ms-popup-d__init-alt-js">
+            <h2>Попап 1</h2>
+            Lorem sit amet,
+            <a href="#?">consectetur</a> adipisicing elit. Ab accusantium aliquid cum cupiditate esse exercitationem explicabo, illum in magnam, magni maiores nam nemo nihil non provident quaerat quod rem sapiente! <br>
+            <br> <a href="#example-popup2" class="ms-popup-d__opener-js"><span>Открыть попап 2</span></a> <br> <a href="#example-popup3" class="ms-popup-d__opener-alt-js"><span>Открыть попап 3 (новые классы)</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--example-popup2-->
+  <div class="popup-default ms-popup-d__popup-js" id="example-popup2">
+    <div class="popup-default__holder">
+      <div class="popup-default__cell">
+        <div class="popup-default__layout ms-popup-d__no-close-js">
+
+          <a href="#" class="popup-default__close ms-popup-d__close-js" title="Закрыть">x close</a>
+          <div class="ms-popup-d__init-js">
+            <h2>Попап 2</h2>
+            Lorem ipsum dolor sit amet,
+            <a href="#?">consectetur</a> adipisicing elit. Ab accusantium aliquid cum cupiditate esse exercitationem explicabo, illum in magnam, magni maiores nam nemo nihil non provident quaerat quod rem sapiente! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti itaque laborum modi provident repellat. Ab adipisci aliquam corporis dolore labore molestias odit recusandae unde ut vero? Excepturi optio sequi voluptatum?
+            <br> <br> <a href="#example-popup1" class="ms-popup-d__opener-js"><span>Открыть попап 1</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--example-popup3-->
+  <!--Новые классы-->
+  <div class="popup-default ms-popup-d__popup-alt-js" id="example-popup3">
+    <div class="popup-default__holder">
+      <div class="popup-default__cell">
+        <div class="popup-default__layout ms-popup-d__no-close-js">
+
+          <a href="#" class="popup-default__close ms-popup-d__close-js" title="Закрыть">x close</a>
+          <div>
+            <h2>Попап 3 (Новые классы)</h2>
+            Lorem ipsum
+            <a href="#?">consectetur</a> dolor sit amet, consectetur adipisicing elit. Eos, nemo? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusantium aliquid cum cupiditate esse exercitationem explicabo, illum in magnam, magni maiores nam nemo nihil non provident quaerat quod rem sapiente! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti itaque laborum modi provident repellat. Ab adipisci aliquam corporis dolore labore molestias odit recusandae unde ut vero? Excepturi optio sequi voluptatum?
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+@@include('../../../_tpl_layout_foot.html', {
+"pathJs": ["js/jquery.popup.js", "js/example.js"]
+})
