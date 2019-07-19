@@ -1,1 +1,1 @@
-{"version":3,"sources":["main.css"],"names":[],"mappings":"AAAA;CACC,eAAe;CACf;;AAED;CACC,cAAc;CACd","file":"main.css","sourcesContent":[".order-calc__hasnt-items .order-calc__empty {\n\tdisplay: block;\n}\n\n.order-calc__hasnt-items .c-table {\n\tdisplay: none;\n}\n"]}
+{"version":3,"sources":["main.css"],"names":[],"mappings":"AAAA;EACE,eAAe;CAChB;;AAED;EACE,cAAc;CACf","file":"main.css","sourcesContent":[".order-calc__hasnt-items .order-calc__empty {\n  display: block;\n}\n\n.order-calc__hasnt-items .c-table {\n  display: none;\n}\n"]}

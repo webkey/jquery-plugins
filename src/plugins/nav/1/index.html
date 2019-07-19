@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Navigation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <link rel="stylesheet" href="../../../sass/libs.min.css">
+  <link rel="stylesheet" href="../../../sass/main.css">
+  <link rel="stylesheet" href="styles/main.css">
+  <script src="../../../js/modernizr.min.js"></script>
+</head>
+
+<body class="">
+  <header class="header layout"><a href="../../../index.html">На главную</a></header>
+  <div class="layout-flood article-content">
+    <h1>Nav</h1>
+    <h2>Комплекс скриптов для работы главной навигации</h2>
+    <p class="accent">Добавление классов на hover, сворачивание в бутерброд для девайсов, преобразование в аккордеон и т.д.</p>
+    <p class="warning">{{Важная информация}}</p>
+    <h3>nav 1</h3>
+    <!--Code example-->
+    <pre class="snippet"><code class="html">&lt;div class="nav nav-js"&gt;
+	{{nav code}}
+&lt;/div&gt;</code></pre>
+    <!--Code example end-->
+    <!--navigation-->
+    <div class="nav-wrap">
+      <nav class="nav">
+        <ul class="nav__list nav-js">
+          <li class="has-sub l1">
+            <a href="#">О компании</a>
+            <em class="nav__angle nav__angle-js">&#9660;</em>
+            <!--submenu-->
+            <ul>
+              <li>
+                <a href="#">О компании 1</a>
+              </li>
+              <li class="has-sub l2">
+                <a href="#">О компании 2</a>
+                <em class="nav__angle nav__angle-js">&#9660;</em>
+                <!--submenu-->
+                <ul>
+                  <li>
+                    <a href="#">О компании 2.1</a>
+                  </li>
+                  <li class="has-sub l3">
+                    <a href="#"><span>О компании 2.2</span></a>
+                    <em class="nav__angle nav__angle-js">&#9660;</em>
+                    <!--submenu-->
+                    <ul>
+                      <li>
+                        <a href="#">О компании 2.2.1</a>
+                      </li>
+                      <li>
+                        <!--<a href="#"><span>О компании 2.2.2</span></a>-->
+                        <span>О компании 2.2.2</span>
+                      </li>
+                      <li>
+                        <a href="#">О компании 2.2.3</a>
+                      </li>
+                    </ul>
+                    <!--submenu end-->
+                  </li>
+                  <li>
+                    <a href="#">О компании 2.3</a>
+                  </li>
+                </ul>
+                <!--submenu end-->
+              </li>
+              <li>
+                <a href="#">О компании 3</a>
+              </li>
+            </ul>
+            <!--submenu end-->
+          </li>
+          <li class="has-sub l1">
+            <a href="#">Новости</a>
+            <em class="nav__angle nav__angle-js">&#9660;</em>
+            <!--submenu-->
+            <ul>
+              <li>
+                <a href="#">Новости 1</a>
+              </li>
+              <li class="has-sub l2">
+                <a href="#">Новости 2</a>
+                <em class="nav__angle nav__angle-js">&#9660;</em>
+                <!--submenu-->
+                <ul>
+                  <li>
+                    <a href="#">Новости 2.1</a>
+                  </li>
+                  <li class="has-sub l3">
+                    <a href="#"><span>Новости 2.2</span></a>
+                    <em class="nav__angle nav__angle-js">&#9660;</em>
+                    <!--submenu-->
+                    <ul>
+                      <li>
+                        <a href="#">Новости 2.2.1</a>
+                      </li>
+                      <li>
+                        <!--<a href="#"><span>Новости 2.2.2</span></a>-->
+                        <span>Новости 2.2.2</span>
+                      </li>
+                      <li>
+                        <a href="#">Новости 2.2.3</a>
+                      </li>
+                    </ul>
+                    <!--submenu end-->
+                  </li>
+                  <li>
+                    <a href="#">Новости 2.3</a>
+                  </li>
+                </ul>
+                <!--submenu end-->
+              </li>
+              <li>
+                <a href="#">Новости 3</a>
+              </li>
+            </ul>
+            <!--submenu end-->
+          </li>
+          <li class="l1">
+            <a href="#"><span>Нет подменю 1</span></a>
+          </li>
+          <li class="l1">
+            <a href="#"><span>Нет подменю 2</span></a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <!--navigation end-->
+    <div class="separator"><br><br><br></div>
+    <!--==== API ====-->
+    <!--==================================================-->
+    <h2>API</h2>
+    <!--==== Initialize ====-->
+    <!--==================================================-->
+    <h3>Initialize</h3>
+    <pre class="snippet"><code class="js">$('.element').nav(parameters);</code></pre>
+    <h4>For example:</h4>
+    <pre class="snippet"><code class="js">$('.nav').nav({
+  key: 'value'
+});</code></pre>
+    <br>
+    <!--==== Options ====-->
+    <!--==================================================-->
+    <h3>Options</h3>
+    <ul>
+      <li>
+        <div><b>someProperty:</b></div>
+        <div><i class="gray">Defaults:</i> <code class="red">someValue</code></div>
+        <div><i class="gray">Type:</i> <code class="red">String</code></div>
+        <div><i class="gray">Values:</i> <code class="red">otherValue</code></div>
+        <div><i class="gray">Description:</i></div>
+        <div>Описание</div>
+      </li>
+    </ul>
+    <!--==== Events ====-->
+    <!--==================================================-->
+    <h3>Events</h3>
+    <ul>
+      <li>
+        <div><b>afterInit</b></div>
+        <div><i class="gray">Description:</i></div>
+        <div>Описание</div>
+        <div>
+          <pre class="snippet"><code class="javascript">afterInit: function (e, el) {}</code></pre>
+        </div>
+      </li>
+    </ul>
+    <!--==== Methods ====-->
+    <!--==================================================-->
+    <h3>Methods</h3>
+    <ul>
+      <li>
+        <div><b>afterInit</b></div>
+        <div><i class="gray">Description:</i></div>
+        <div>Описание</div>
+        <div>
+          <pre class="snippet"><code class="javascript">afterInit: function (e, el) {}</code></pre>
+        </div>
+      </li>
+    </ul>
+    <h3>Global settings</h3>
+    <div>Переопределять настройки плагина глобально можно через</div>
+    <div><code class="red">$.fn.nav.defaultOptions</code></div>
+    <div><i class="gray">Example:</i></div>
+    <div><code class="red">$.fn.nav.defaultOptions.someProperty = value;</code></div>
+  </div>
+  <script src="../../../js/jquery.min.js"></script>
+  <script src="../../../js/libs.min.js"></script>
+  <script src="../../../js/main.js"></script>
+  <script src="js/jquery.nav.js"></script>
+  <script src="js/example.js"></script>
+</body>
+
+</html>

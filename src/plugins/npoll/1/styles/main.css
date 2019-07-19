@@ -1,44 +1,44 @@
 .jq-npoll {
-	position: relative;
-	display: inline-block;
-	vertical-align: top;
-	padding: 20px;
-	background-color: lightblue;
-	border: 1px solid #000;
-	margin-bottom: 20px;
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  padding: 20px;
+  background-color: lightblue;
+  border: 1px solid black;
+  margin-bottom: 20px;
 }
 
 .jq-npoll-form input, .jq-npoll-form label, .jq-npoll-form button {
-	float: left;
-	line-height: 1;
+  float: left;
+  line-height: 1;
 }
 
 .jq-npoll-form input, .jq-npoll-form label {
-	margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .jq-npoll-form input {
-	float: left;
-	clear: left;
-	margin-right: 10px;
+  float: left;
+  clear: left;
+  margin-right: 10px;
 }
 
 .jq-npoll-form button {
-	clear: both;
-	margin-top: 20px;
+  clear: both;
+  margin-top: 20px;
 }
 
 .npoll-error-message {
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	width: 80%;
-	padding: 20px;
-	background-color: lightgoldenrodyellow;
-	border: 2px solid lightcoral;
-	-webkit-transform: translate(-50%, -50%);
-	    -ms-transform: translate(-50%, -50%);
-	        transform: translate(-50%, -50%);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 80%;
+  padding: 20px;
+  background-color: lightgoldenrodyellow;
+  border: 2px solid lightcoral;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 
 /*# sourceMappingURL=main.css.map */

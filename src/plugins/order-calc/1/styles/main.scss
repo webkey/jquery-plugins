@@ -1,0 +1,15 @@
+@import "../../../../sass/utils/variables";
+@import "../../../../sass/utils/mixins";
+@import "../../../../libs/include-media/dist/include-media";
+
+// собщение, если коризна пуста или нет элементов
+// если корзина пуста
+.order-calc__hasnt-items {
+  .order-calc__empty {
+    display: block;
+  }
+
+  .c-table {
+    display: none;
+  }
+}

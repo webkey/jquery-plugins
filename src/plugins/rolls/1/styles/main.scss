@@ -1,0 +1,167 @@
+@import "../../../../sass/utils/variables";
+@import "../../../../sass/utils/mixins";
+@import "../../../../libs/include-media/dist/include-media";
+
+// rolls default / roll up list
+$rolls-space: 10px 10px !default;
+
+// v h
+$rolls-angle-size: 24px 24px !default;
+
+// h w
+$rolls-angle-line-size: 2px 12px !default;
+
+// h w
+
+// panel
+// Важно! До инициализации скрипта, скрыть все панели, а после показать
+.js .rolls:not(.ms-rolls_initialized) {
+  .rolls__panel {
+    display: none;
+  }
+}
+
+/* rolls */
+.rolls {
+  margin-bottom: 4rem;
+  -webkit-tap-highlight-color: transparent;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// item
+.rolls__item {
+  padding: 10px;
+  margin-bottom: 2rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// header
+.rolls__header {
+  position: relative;
+}
+
+// angle
+.rolls__angle {
+  display: block;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  text-decoration: none;
+  @include size(nth($rolls-angle-size, 1), nth($rolls-angle-size, 2));
+  border-radius: 50%;
+  margin-top: -#{round(nth($rolls-angle-size, 2) * 0.5)};
+  background-color: $base-color;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+
+  &::before, &::after {
+    @include pseudo;
+    left: 50%;
+    top: 50%;
+    margin: -#{round(nth($rolls-angle-line-size, 1) / 2)} 0 0 -#{round(nth($rolls-angle-line-size, 2) / 2)};
+    backface-visibility: hidden;
+    @include size(nth($rolls-angle-line-size, 2), nth($rolls-angle-line-size, 1));
+    background-color: white;
+    will-change: transform;
+    transition: {
+      property: transform;
+      duration: $animation-speed;
+    };
+  }
+
+  &::before {
+    transform: rotate(-0.25turn);
+    transform: rotate(-0.25turn) translateZ(0);
+  }
+}
+
+// :active
+.rolls__angle {
+  &:active {
+    top: calc(50% + 1px);
+  }
+}
+
+// active
+.rolls__angle.is-open {
+  &::before, &::after {
+    transform: rotate(0);
+    transform: rotate(0) translateZ(0);
+  }
+}
+
+// Fade panel
+.rolls__panel {
+  opacity: 0;
+  // transition
+  $prop: opacity;
+  will-change: $prop;
+  transition: {
+    property: $prop;
+    duration: 0.5s;
+    timing-function: ease-in-out;
+  };
+
+  &.is-open {
+    opacity: 1;
+  }
+}
+
+// только в примере, в реальном проекте не обязательно
+.rolls__header,
+.rolls__item,
+.rolls__panel {
+  //border: 2px solid $border-color
+  padding: 10px;
+  margin-bottom: 10px;
+  // transition
+  //$prop: background-color, opacity
+  //will-change: $prop
+  //transition:
+  // property: $prop
+  // duration: 0.7s
+  // timing-function: ease-in-out
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.rolls__item {
+  margin-bottom: 0;
+
+  & ~ & {
+    padding-top: 0;
+  }
+}
+
+.rolls__header {
+  background-color: #fffcc1;
+  // Визуализация при добавлении на элемент активного класса
+  &.is-open {
+    background-color: #fff278;
+  }
+}
+
+.rolls__item {
+  background-color: #ffdbd4;
+  // Визуализация при добавлении на элемент активного класса
+  &.is-open {
+    background-color: #ffbeac;
+  }
+}
+
+.rolls__panel {
+  background-color: #c6fdcf;
+  // Визуализация при добавлении на элемент активного класса
+  &.is-open {
+    background-color: #7efd85;
+  }
+}
+
+/* rolls end */

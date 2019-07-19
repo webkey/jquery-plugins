@@ -1,0 +1,173 @@
+@import "../../../../sass/utils/variables";
+@import "../../../../sass/utils/mixins";
+@import "../../../../libs/include-media/dist/include-media";
+
+/* preview-carousel */
+.products__list {
+  @include grid-parent($grid-space);
+}
+
+.products__item {
+  @include grid-item-float(3, $grid-space);
+  @include media("<tab") {
+    @include grid-item-float-responsive(2, 40px, 60px);
+  }
+}
+
+.products__inner {
+  position: relative;
+  display: block;
+}
+
+.products__img, .products__gallery {
+  position: relative;
+
+  &::before {
+    content: "";
+    display: block;
+    @include ratio(1, 1);
+  }
+
+  img {
+    @include object-fit(cover);
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+  }
+}
+
+.products__gallery {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 3;
+  width: 100%;
+  display: none;
+
+  .products__inner:hover & {
+    display: block;
+  }
+}
+
+// tile slider
+.tile-slider {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+}
+
+.tile-slider__item {
+  position: static;
+  display: flex;
+  align-items: flex-end;
+  flex: 1;
+  height: 100%;
+}
+
+.tile-slider__img, .tile-slider__figure {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: auto;
+  border: 0;
+}
+
+.tile-slider__figure {
+  z-index: -2;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+
+.tile-slider__item .tile-slider__figure {
+  opacity: 0;
+}
+
+.tile-slider:not(:hover) .tile-slider__item:first-child .tile-slider__figure, .tile-slider__item:hover .tile-slider__figure {
+  z-index: -1;
+  opacity: 1;
+}
+
+.tile-slider__more {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.tile-slider__more-holder {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+
+.tile-slider__more-icon {
+  width: 54px;
+  height: 46px;
+  margin: 0 auto;
+  background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTQiIGhlaWdodD0iNDYiIHZpZXdCb3g9IjAgMCA1NCA0NiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+UGFnZSAxPC90aXRsZT48ZyBmaWxsPSIjRkZGIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik01MS4xOTUgNDIuODg0QzUwLjUzNSA0My42MjQgNDkuNDYgNDQgNDggNDRINmMtMS40NiAwLTIuNTM1LS4zNzYtMy4xOTYtMS4xMTZDMS44MTcgNDEuNzc4IDIgNDAuMDExIDIgNDB2LTJsLS4wMDMtMjMuMDc4Yy0uMDAyLS4wMTctLjExMy0xLjcxOS45MzQtMi44NDRDMy41OTYgMTEuMzYzIDQuNjMgMTEgNi4wMDEgMTFoN2wuMS0uMDA2Yy4xMDUtLjAxIDIuNTg1LS4yODggMy43ODEtMi41MjMuOTI3LTEuNzMzIDIuOTMyLTQuODg4IDIuOTMtNC44ODhDMTkuODYgMy41MTggMjAuOTkgMiAyMyAyaDhjMi4wMSAwIDMuMTQgMS41MTggMy4xODggMS41ODMtLjAwMiAwIDIuMDAzIDMuMTU1IDIuOTMgNC44ODggMS4xOTYgMi4yMzUgMy42NzUgMi41MTMgMy43OCAyLjUyM0w0MSAxMWg3YzEuMzcxIDAgMi40MDMuMzYzIDMuMDcgMS4wNzggMS4wNDUgMS4xMjUuOTM0IDIuODI3LjkzMyAyLjg0NEw1MiAzOHYyYy4wMDEuMDExLjE4MyAxLjc3OC0uODA1IDIuODg0bTEuMzU1LTMyLjE0OUM1MS40OTEgOS41ODUgNDkuOTYgOSA0OCA5aC02LjkzNmMtLjI0Mi0uMDM3LTEuNTQ5LS4yODgtMi4xODItMS40NzItLjk2Ni0xLjgwNC0yLjk1NS00LjkzMy0zLjAzOS01LjA2NUMzNS43NDYgMi4zMjMgMzQuMDY1IDAgMzEgMGgtOGMtMy4wNjYgMC00Ljc0NiAyLjMyMy00Ljg0NCAyLjQ2My0uMDg0LjEzMi0yLjA3MyAzLjI2MS0zLjAzOCA1LjA2NS0uNjMzIDEuMTg0LTEuOTQgMS40MzUtMi4xODMgMS40NzJINmMtMS45NiAwLTMuNDkyLjU4NC00LjU1IDEuNzM1Qy0uMTkgMTIuNTE2LjAyNiAxNC43MDIgMCAxNXYyNC45NWMuMDQxLjYyLS4xNTQgMi42MDUgMS4yOTUgNC4yNDZDMi4zNTEgNDUuMzkzIDMuOTM1IDQ2IDYgNDZoNDJjMi4wNjUgMCAzLjY0OC0uNjA3IDQuNzA0LTEuODA0IDEuNDUtMS42NCAxLjI1NC0zLjYyNiAxLjI5Ni00LjI0N1YxNWMtLjAyOC0uMjk4LjE5LTIuNDg0LTEuNDUtNC4yNjUiLz48cGF0aCBkPSJNMjcgMTZjLTUuNTE0IDAtMTAgNC40ODYtMTAgMTBzNC40ODYgMTAgMTAgMTAgMTAtNC40ODYgMTAtMTAtNC40ODYtMTAtMTAtMTBtMCAyMmMtNi42MTcgMC0xMi01LjM4My0xMi0xMnM1LjM4My0xMiAxMi0xMiAxMiA1LjM4MyAxMiAxMi01LjM4MyAxMi0xMiAxMiIvPjwvZz48L3N2Zz4=);
+}
+
+.tile-slider__more-text {
+  font-size: 13px;
+  line-height: 17px;
+  margin-top: 13px;
+  color: white;
+}
+
+.tile-slider__dots {
+  position: relative;
+  z-index: 4;
+  bottom: 0;
+  flex: 1;
+  min-height: 7px;
+  opacity: 0;
+  will-change: opacity;
+  transition: {
+    property: opacity;
+    duration: $animation-speed;
+  };
+
+  .tile-slider:hover & {
+    opacity: 1;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    bottom: 2px;
+    left: 1px;
+    height: 3px;
+    background: hsla(0, 0%, 100%, 0.8);
+    transition: {
+      property: background-color;
+      duration: $animation-speed;
+    };
+  }
+}
+
+.tile-slider__item:hover {
+  .tile-slider__dots:after {
+    background-color: #db3727;
+  }
+}
+
+// tile slider end
+/* preview-carousel end */

@@ -1,0 +1,46 @@
+@import "../../../../sass/utils/variables";
+@import "../../../../sass/utils/mixins";
+@import "../../../../libs/include-media/dist/include-media";
+
+.jq-npoll {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  padding: 20px;
+  background-color: lightblue;
+  border: 1px solid black;
+  margin-bottom: 20px;
+}
+
+.jq-npoll-form {
+  input, label, button {
+    float: left;
+    line-height: 1;
+  }
+
+  input, label {
+    margin-bottom: 10px;
+  }
+
+  input {
+    float: left;
+    clear: left;
+    margin-right: 10px;
+  }
+
+  button {
+    clear: both;
+    margin-top: 20px;
+  }
+}
+
+.npoll-error-message {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 80%;
+  padding: 20px;
+  background-color: lightgoldenrodyellow;
+  border: 2px solid lightcoral;
+  transform: translate(-50%, -50%);
+}

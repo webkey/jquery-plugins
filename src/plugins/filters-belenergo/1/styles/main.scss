@@ -1,0 +1,229 @@
+@import "../../../../sass/utils/variables";
+@import "../../../../sass/utils/mixins";
+@import "../../../../libs/include-media/dist/include-media";
+
+/* accordion */
+/* structure */
+$structure-item-bottom-space: 40px;
+$structure-item-bottom-space--sm: 30px;
+$structure-branch-weight: 2px;
+$structure-branch-space-v: 27px;
+$structure-branch-space-v--sm: 21px;
+$structure-branch-space-h: 28px;
+$structure-branch-space-h--sm: 14px;
+
+.structure-item, .structure-hand {
+  &::before {
+    @include pseudo;
+    right: 100%;
+  }
+}
+
+.structure-item {
+  position: relative;
+  margin-bottom: $structure-item-bottom-space;
+  margin-left: $structure-branch-space-h;
+  &.filters--hide {
+    opacity: 0.3;
+  }
+  &:last-child {
+    margin-bottom: 0;
+  }
+  &::before {
+    @include size(#{$structure-branch-space-h}, calc(100% + #{$structure-item-bottom-space}));
+    border-width: 0 0 0 $structure-branch-weight;
+  }
+  &:first-child {
+    &::before {
+      top: $structure-branch-space-v;
+    }
+  }
+  &:last-child {
+    &::before {
+      top: 0;
+      height: #{$structure-branch-space-v + $structure-branch-weight};
+    }
+  }
+}
+
+.structure-hand {
+  $this-angle-lines-width: 13px;
+  $this-angle-lines-height: 3px;
+  position: relative;
+  background-color: $bg-color;
+  border: 2px solid $base-color;
+  padding: #{round($grid-space * 0.5)} #{round($grid-space * 2 + $this-angle-lines-width)} #{round($grid-space * 0.5)} #{$grid-space};
+  cursor: pointer;
+  @include font-size(16px, round-float(24 / 16, 2));
+  letter-spacing: 0.05em;
+  color: $base-color;
+  text-transform: uppercase;
+  user-select: none;
+  &::before {
+    top: #{$structure-branch-space-v - $structure-branch-weight};
+    @include size(#{$structure-branch-space-h}, 0);
+    border-width: $structure-branch-weight 0 0;
+  }
+  .no-touchevents &:hover, &.is-open {
+    background-color: $base-color;
+    color: $bg-color;
+  }
+  .text {
+    @include display-inline-block-top;
+  }
+  .counter {
+    $counter-space-h: 8px;
+    @include display-inline-block-top;
+    color: $text-color-light;
+    padding-left: $counter-space-h;
+    &::before {
+      @include display-inline-block-top;
+      padding-right: $counter-space-h;
+      content: "/";
+    }
+    &::after {
+      content: attr(data-text);
+    }
+    &[data-text*="0"] {
+      display: none;
+    }
+  }
+  .angle {
+    position: absolute;
+    right: $grid-space;
+    top: 50%;
+    @include size($this-angle-lines-width, $this-angle-lines-height);
+    margin-top: -#{round($this-angle-lines-height * 0.5)};
+    backface-visibility: hidden;
+    &::before, &::after {
+      @include pseudo;
+      left: 0;
+      backface-visibility: hidden;
+      @include size($this-angle-lines-width, $this-angle-lines-height);
+      background-color: $base-color;
+      transition: {
+        property: transform;
+        duration: $animation-speed;
+      };
+    }
+    &::before {
+      top: 0;
+    }
+    &::after {
+      top: 0;
+      transform: rotate(90deg) translateZ(0);
+    }
+  }
+  .no-touchevents &:hover, &.is-open {
+    .angle {
+      &::before, &::after {
+        background-color: $bg-color;
+      }
+    }
+  }
+  &.is-open {
+    .angle {
+      &::after {
+        transform: rotate(0) translateZ(0);
+      }
+    }
+  }
+}
+
+.structure-panel {
+  background-color: $bg-color;
+  display: none;
+}
+
+.structure-panel__frame {
+  position: relative;
+  opacity: 0;
+  transition: {
+    property: opacity;
+    duration: $animation-speed;
+  };
+  .is-open > & {
+    opacity: 1;
+    transition-delay: 0.08s;
+  }
+}
+
+.structure-panel__content {
+  border: solid $base-color;
+  border-width: 0 2px 2px;
+  padding: #{round($grid-space * 0.9)} #{$grid-space};
+}
+
+.structure-panel-item {
+  padding: #{round($grid-space * 0.5)} #{$grid-space} #{round($grid-space * 0.5)};
+  border: solid $base-color;
+  border-width: 0 2px 2px;
+  background-color: $bg-color;
+  color: $text-color;
+  @include font-size(16px, round-float(24 / 16, 2));
+  letter-spacing: 0.025em;
+  text-decoration: none;
+  display: table;
+  width: 100%;
+}
+
+.structure-panel-text, .structure-panel-label {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.structure-panel-label {
+  $width: 200px;
+  @include font-size(10px, 12px);
+  text-align: right;
+  color: $text-color-light;
+  text-transform: uppercase;
+  padding-left: 20px;
+  //flex-basis: 200px
+  max-width: $width;
+  min-width: $width;
+  width: $width;
+  &:empty {
+    display: none;
+  }
+}
+
+/* structure end */
+
+/* structure sub */
+.structure {
+  .structure {
+    margin-top: -2px;
+    .structure-item, .structure-hand {
+      margin: 0;
+      &::before, &::after {
+        content: none;
+      }
+    }
+    .structure-item {
+      margin-top: -2px;
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+/* structure sub end */
+/* accordion end */
+
+.filters-list {
+  &, .#{$article-content} & {
+    li {
+      padding-left: 0;
+      margin-right: 20px;
+      &::before {
+        content: none;
+      }
+    }
+  }
+  li {
+    display: inline-block;
+    vertical-align: top;
+  }
+}

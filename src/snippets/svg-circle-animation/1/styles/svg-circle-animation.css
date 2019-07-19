@@ -1,194 +1,194 @@
 /* shutter menu switcher */
 a.shutter-menu-switcher {
-	position: absolute;
-	right: 0;
-	top: 50%;
-	margin-top: -30px;
-	color: #262626;
-	text-decoration: none;
-	width: 60px;
-	height: 60px;
-	will-change: color, background-color;
-	transition-property: color, background-color;
-	transition-duration: 0.3s;
-	transition-timing-function: ease-in-out;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  margin-top: -30px;
+  color: #262626;
+  text-decoration: none;
+  width: 60px;
+  height: 60px;
+  will-change: color, background-color;
+  transition-property: color, background-color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
 }
 
 .touchevents a.shutter-menu-switcher {
-	-webkit-user-select: none;
-	   -moz-user-select: none;
-	    -ms-user-select: none;
-	        user-select: none;
-	-webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 a.shutter-menu-switcher::before, a.shutter-menu-switcher::after {
-	content: "";
-	display: block;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	width: 35px;
-	height: 5px;
-	background-color: currentColor;
-	margin: -3px 0 0 -18px;
-	border-radius: 2px;
-	will-change: opacity, transform;
-	opacity: 0;
-	transition-property: opacity, -webkit-transform;
-	transition-property: transform, opacity;
-	transition-property: transform, opacity, -webkit-transform;
-	transition-duration: 0.3s;
-	transition-delay: 0s;
-	transition-timing-function: cubic-bezier(0.65, 0.05, 0.36, 1);
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 35px;
+  height: 5px;
+  background-color: currentColor;
+  margin: -3px 0 0 -18px;
+  border-radius: 2px;
+  will-change: opacity, transform;
+  opacity: 0;
+  transition-property: opacity, -webkit-transform;
+  transition-property: transform, opacity;
+  transition-property: transform, opacity, -webkit-transform;
+  transition-duration: 0.3s;
+  transition-delay: 0s;
+  transition-timing-function: cubic-bezier(0.65, 0.05, 0.36, 1);
 }
 
 a.shutter-menu-switcher > span {
-	border: 0;
-	clip: rect(0 0 0 0);
-	height: 1px;
-	margin: -1px;
-	overflow: hidden;
-	padding: 0;
-	position: absolute;
-	width: 1px;
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
 }
 
 a.shutter-menu-switcher > span:active, a.shutter-menu-switcher > span:focus {
-	clip: auto;
-	height: auto;
-	margin: 0;
-	overflow: visible;
-	position: static;
-	width: auto;
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  width: auto;
 }
 
 a.shutter-menu-switcher > i {
-	font-size: 0;
-	line-height: 0;
-	letter-spacing: -4px;
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	width: 35px;
-	height: 5px;
-	background-color: currentColor;
-	margin: -3px 0 0 -18px;
-	border-radius: 2px;
-	transition-property: opacity;
-	transition-duration: 0.3s;
-	transition-delay: 0.15s;
+  font-size: 0;
+  line-height: 0;
+  letter-spacing: -4px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 35px;
+  height: 5px;
+  background-color: currentColor;
+  margin: -3px 0 0 -18px;
+  border-radius: 2px;
+  transition-property: opacity;
+  transition-duration: 0.3s;
+  transition-delay: 0.15s;
 }
 
 a.shutter-menu-switcher > i::before, a.shutter-menu-switcher > i::after {
-	content: '';
-	display: block;
-	position: absolute;
-	right: 0;
-	height: 5px;
-	width: 41px;
-	background-color: currentColor;
-	border-radius: 2px;
-	transition-property: -webkit-transform;
-	transition-property: transform;
-	transition-property: transform, -webkit-transform;
-	transition-duration: 0.3s;
-	transition-delay: 0.15s;
+  content: "";
+  display: block;
+  position: absolute;
+  right: 0;
+  height: 5px;
+  width: 41px;
+  background-color: currentColor;
+  border-radius: 2px;
+  transition-property: -webkit-transform;
+  transition-property: transform;
+  transition-property: transform, -webkit-transform;
+  transition-duration: 0.3s;
+  transition-delay: 0.15s;
 }
 
 a.shutter-menu-switcher > i::before {
-	top: -13px;
+  top: -13px;
 }
 
 a.shutter-menu-switcher > i::after {
-	top: 13px;
+  top: 13px;
 }
 
 a.shutter-menu-switcher > svg {
-	display: block;
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	width: 8rem;
-	height: 8rem;
-	margin-top: -4rem;
-	margin-left: -4rem;
-	-webkit-transform: rotate(-90deg);
-	    -ms-transform: rotate(-90deg);
-	        transform: rotate(-90deg);
-	stroke-dasharray: 220;
-	stroke-dashoffset: 220;
-	will-change: stroke-dashoffset;
-	transition-property: stroke-dashoffset;
-	transition-duration: 0.3s;
-	transition-timing-function: cubic-bezier(0.65, 0.05, 0.36, 1);
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 8rem;
+  height: 8rem;
+  margin-top: -4rem;
+  margin-left: -4rem;
+  -webkit-transform: rotate(-90deg);
+      -ms-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+  stroke-dasharray: 220;
+  stroke-dashoffset: 220;
+  will-change: stroke-dashoffset;
+  transition-property: stroke-dashoffset;
+  transition-duration: 0.3s;
+  transition-timing-function: cubic-bezier(0.65, 0.05, 0.36, 1);
 }
 
 a.shutter-menu-switcher > svg circle {
-	fill: none;
-	stroke: currentColor;
-	stroke-width: 5;
-	stroke-miterlimit: 10;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 5;
+  stroke-miterlimit: 10;
 }
 
 a.shutter-menu-switcher:hover {
-	color: #ff0b4f;
+  color: #ff0b4f;
 }
 
 a.shutter-menu-switcher:hover > i::before, a.shutter-menu-switcher:hover > i::after {
-	transition-delay: 0s;
+  transition-delay: 0s;
 }
 
 a.shutter-menu-switcher:hover > i::before {
-	-webkit-transform: translate(3px, 1px) translateZ(0);
-	        transform: translate(3px, 1px) translateZ(0);
+  -webkit-transform: translate(3px, 1px) translateZ(0);
+          transform: translate(3px, 1px) translateZ(0);
 }
 
 a.shutter-menu-switcher:hover > i::after {
-	-webkit-transform: translate(3px, -1px) translateZ(0);
-	        transform: translate(3px, -1px) translateZ(0);
+  -webkit-transform: translate(3px, -1px) translateZ(0);
+          transform: translate(3px, -1px) translateZ(0);
 }
 
 a.shutter-menu-switcher:hover > svg {
-	stroke-dashoffset: 0;
+  stroke-dashoffset: 0;
 }
 
 a.shutter-menu-switcher.shutter-menu_is-open > svg {
-	stroke-dashoffset: 0;
+  stroke-dashoffset: 0;
 }
 
 a.shutter-menu-switcher.shutter-menu_is-open::before, a.shutter-menu-switcher.shutter-menu_is-open::after {
-	transition-delay: 0.15s;
-	opacity: 1;
+  transition-delay: 0.15s;
+  opacity: 1;
 }
 
 a.shutter-menu-switcher.shutter-menu_is-open::before {
-	-webkit-transform: rotate(45deg) translateZ(0);
-	        transform: rotate(45deg) translateZ(0);
+  -webkit-transform: rotate(45deg) translateZ(0);
+          transform: rotate(45deg) translateZ(0);
 }
 
 a.shutter-menu-switcher.shutter-menu_is-open::after {
-	-webkit-transform: rotate(-45deg) translateZ(0);
-	        transform: rotate(-45deg) translateZ(0);
+  -webkit-transform: rotate(-45deg) translateZ(0);
+          transform: rotate(-45deg) translateZ(0);
 }
 
 a.shutter-menu-switcher.shutter-menu_is-open > i {
-	opacity: 0;
-	transition-delay: 0s;
+  opacity: 0;
+  transition-delay: 0s;
 }
 
 a.shutter-menu-switcher.shutter-menu_is-open > i::before, a.shutter-menu-switcher.shutter-menu_is-open > i::after {
-	transition-delay: 0s;
+  transition-delay: 0s;
 }
 
 a.shutter-menu-switcher.shutter-menu_is-open > i::before {
-	-webkit-transform: translate(3px, 13px) translateZ(0);
-	        transform: translate(3px, 13px) translateZ(0);
+  -webkit-transform: translate(3px, 13px) translateZ(0);
+          transform: translate(3px, 13px) translateZ(0);
 }
 
 a.shutter-menu-switcher.shutter-menu_is-open > i::after {
-	-webkit-transform: translate(3px, -13px) translateZ(0);
-	        transform: translate(3px, -13px) translateZ(0);
+  -webkit-transform: translate(3px, -13px) translateZ(0);
+          transform: translate(3px, -13px) translateZ(0);
 }
 
 /* shutter menu switcher end */

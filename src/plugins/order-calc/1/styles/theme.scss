@@ -1,0 +1,218 @@
+@import "../../../../sass/utils/variables";
+@import "../../../../sass/utils/mixins";
+@import "../../../../libs/include-media/dist/include-media";
+
+// =========================
+// === jquery-ui spinner ===
+// =========================
+
+$spinner-btn-size: 30px;
+
+// width
+$spinner-input-size: 54px;
+
+// width
+
+.spinner {
+  position: relative;
+  @include display-inline-block-top;
+  text-align: left;
+  background-color: transparent;
+
+  input {
+    margin-bottom: 0;
+    border: none;
+    box-shadow: none;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+  }
+
+  &.spinner-js {
+    opacity: 0;
+    visibility: hidden;
+
+    .ui-spinner & {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+.ui-widget.ui-widget-content {
+  border: none;
+}
+
+.ui-spinner {
+  @include padding-horizontal(nth($spinner-btn-size, 1));
+  box-shadow: inset 0 0 0 1px $border-color;
+  background-color: white;
+}
+
+.ui-spinner-input, .ui-spinner-input[type="text"] {
+  width: nth($spinner-input-size, 1);
+  border: none;
+  background: none;
+  color: inherit;
+  padding: 5px 5px;
+  height: 30px;
+  vertical-align: top;
+  margin: 0;
+  @include font-normal;
+  @include font-size(16px, 20px);
+  text-align: center;
+  box-shadow: none;
+
+  &:focus, &:hover {
+    box-shadow: none !important;
+    border-color: transparent !important;
+  }
+}
+
+.ui-spinner-button {
+  position: absolute;
+  top: 0;
+  @include size(nth($spinner-btn-size, 1), 100%);
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.ui-spinner a.ui-spinner-button {
+  border: 1px solid $border-color;
+}
+
+.ui-spinner-up {
+  right: 0;
+}
+
+.ui-spinner-down {
+  left: 0;
+}
+
+.ui-button-icon-only .ui-icon {
+  $this-icon-lines-size: 10px, 2px;
+  // width, height
+  $this-icon-lines-color: $text-color;
+  @include size(nth($this-icon-lines-size, 1), nth($this-icon-lines-size, 2));
+  position: absolute;
+  @include position(50%);
+  margin-top: -#{round(nth($this-icon-lines-size, 2) / 2)};
+  margin-left: -#{round(nth($this-icon-lines-size, 1) / 2)};
+  overflow: visible;
+
+  &::before, &::after {
+    @include pseudo;
+    @include position(0);
+    @include size(nth($this-icon-lines-size, 1), nth($this-icon-lines-size, 2));
+    background-color: $this-icon-lines-color;
+  }
+}
+
+.ui-spinner-up {
+  .ui-button-icon {
+    &::before {
+      transform: rotate(0.25turn);
+    }
+  }
+}
+
+.ui-spinner-down {
+  [aria-valuenow="0"] ~ & {
+    cursor: default;
+
+    .ui-button-icon {
+      &::before, &::after {
+        background-color: #d0d0d0 !important;
+      }
+    }
+  }
+}
+
+// hover
+.ui-spinner-button:hover .ui-button-icon {
+  &::before, &::after {
+    background-color: $base-color;
+  }
+}
+
+// =====================
+// === remove button ===
+// =====================
+.btn-del {
+  $btn-size: 20px;
+  $icon-size: 12px;
+  // ============
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  @include size($btn-size);
+  color: $text-color;
+  text-decoration: none;
+
+  svg {
+    position: absolute;
+    @include size($icon-size);
+    @include position(50%);
+    margin: -#{round($icon-size / 2)} 0 0 -#{round($icon-size / 2)};
+  }
+
+  path {
+    fill: currentColor;
+  }
+
+  & > span {
+    display: none;
+  }
+
+  // hover
+  &:hover {
+    color: $link-color;
+  }
+}
+
+// =====================
+// === custom table ===
+// =====================
+.c-table {
+  border: 1px solid $border-color;
+}
+
+.c-th {
+  border: 1px solid $border-color;
+}
+
+.c-td {
+  border: 1px solid $border-color;
+
+  .title {
+    display: flex;
+    align-items: center;
+
+    & > div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 4rem;
+      width: 6rem;
+      margin-right: 1rem;
+
+      img {
+        display: block;
+        max-height: 100%;
+        max-width: 100%;
+      }
+    }
+  }
+}
+
+// hover
+.c-tr {
+  .no-touchevents &:hover {
+    .c-td {
+      background-color: $bg-color-light;
+    }
+  }
+}
+
+/* stock tape end */

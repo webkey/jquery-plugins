@@ -1,0 +1,69 @@
+@import "../../../../sass/utils/variables";
+@import "../../../../sass/utils/mixins";
+@import "../../../../libs/include-media/dist/include-media";
+
+// =============================================================
+// ========== стили необходимые для работы плагина =============
+// =============================================================
+
+.ms-drop__drop-js {
+  opacity: 0;
+  visibility: hidden;
+
+  .is-open & {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  // для тестирования (не копировать)
+  .is-open-class-var-1 &, .is-open-class-var-2 & {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+// ==============================================================
+.example-class {
+  position: relative;
+  width: 100px;
+  margin-bottom: 1em;
+
+  .active-item {
+    background-color: black;
+    color: white;
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+  a {
+    display: block;
+    color: inherit;
+    text-align: center;
+  }
+
+  & > a {
+    padding: 2px;
+    border: 1px solid black;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.35);
+    border-radius: 4px;
+    text-decoration: none;
+
+    &:active {
+      transform: translate(1px, 1px);
+      box-shadow: 0 0 0 black;
+    }
+  }
+
+  ul {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 4px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.35);
+  }
+}

@@ -1,0 +1,459 @@
+@import "../../../../sass/utils/variables";
+@import "../../../../sass/utils/mixins";
+@import "../../../../libs/include-media/dist/include-media";
+
+.ms-example-js {
+  &::after {
+    display: block;
+    content: "(::after) Это контейнер, на котором инициилизирован плагин";
+    font-size: small;
+    font-style: italic;
+  }
+}
+
+
+/* ==================================== */
+/* ============ NAVIGATION ============ */
+/* ==================================== */
+$header-height: 6rem;
+
+/* navigation */
+.nav-wrap {
+
+  &::before {
+    position: absolute;
+    content: "";
+    display: none;
+    top: 0;
+    left: 20px;
+    right: 20px;
+    border: solid $border-color;
+    border-width: 0;
+
+    @include media("<tab") {
+      display: block;
+    }
+  }
+}
+
+.nav-wrap {
+  display: inline-block;
+  vertical-align: top;
+
+  @include media("<tab") {
+    //display: flex;
+    //flex-direction: column;
+    position: fixed;
+    display: block;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: calc(100% - #{$header-height});
+    padding: 0 0 5rem;
+    background-color: $base-color;
+    opacity: 0;
+    visibility: hidden;
+    transition: {
+      property: opacity, visibility;
+      duration: $animation-speed;
+    };
+  }
+
+  &.active {
+    @include media("<tab");
+    @include media("<tab") {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+  &::before {
+    border-bottom-width: 1px;
+  }
+}
+
+.nav {
+  position: relative;
+  width: 100%;
+
+  @include media("<tab") {
+    flex: 1 1;
+    padding: 0;
+    height: 100%;
+    //display: flex;
+    //justify-content: center;
+    //align-items: center;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+.nav__list {
+  $nav-inner-space: 1.5rem 3rem;
+  $nav-arrow-size: 4.2rem;
+  $nav-item-space: 0.5em 0;
+  $nav-item-indent: 0.4;
+
+  text-align: left;
+  cursor: default;
+  @include clear;
+
+  // Все ul
+  &, & ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 1.8rem;
+    line-height: 2.4rem;
+  }
+
+  // Для девайсов навигацию трансформировать в "бутерброд"
+  @include media("<tab") {
+    //width: 100%;
+    max-width: 100%;
+    width: 42rem;
+    margin: 0 auto;
+    padding: 4rem 0;
+  }
+
+  // Все li,
+  // кроме li первого уровня (для них стили ниже)
+  li {
+    position: relative;
+
+    // Для планшетных разрешений и ниже
+    @include media("<tab") {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      margin: #{nth($nav-item-space, 1)} 0 0;
+      padding: 0 0 0 #{nth($nav-inner-space, 2)};
+
+      &:first-child {
+        margin-top: #{nth($nav-item-space, 1) + $nav-item-indent};
+      }
+
+      &:last-child {
+        margin-bottom: #{0em + $nav-item-indent};
+      }
+    }
+  }
+
+  // Все "a"
+  a {
+    color: inherit;
+    text-decoration: none;
+    transition: color $animation-speed;
+  }
+
+  // Все "a" и "span"
+  // "a" заменять на "span" в пункте текущей страницы
+  a,
+  li > span {
+    display: block; // Для разрешений выше планшетных ссылка должна занимать всю ширину
+    padding-right: 1rem; // Для планшетных разрешений и ниже
+
+    // Для разрешений выше планшетных
+    // добавить внутренние отступы на ссылки
+    @include media(">=tab") {
+      padding: #{nth($nav-item-space, 1)} #{nth($nav-inner-space, 2)};
+    }
+  }
+
+  // Если в пункте есть стрелка,
+  // то нужно ограничить максимальную ширину "a"
+  li.has-sub {
+    & > a,
+    & > span {
+      max-width: calc(100% - #{$nav-arrow-size});
+
+      // Для разрешений выше планшетных
+      // Для пунктов со стрелками,
+      // убрать ограничение максимальной ширины для "a"
+      @include media(">=tab") {
+        max-width: none;
+      }
+    }
+  }
+
+  // Вложенные ul (sub menu)
+  ul {
+    flex-shrink: 1;
+    width: 100%;
+    flex-basis: 100%;
+    display: none;
+
+    // transition
+    will-change: opacity;
+    transition: opacity $animation-speed, visibility $animation-speed;
+
+    // Для разрешений выше планшетных
+    @include media(">=tab") {
+      display: block !important; // Важно! Перебить инлайновые стили установленные скпиптом
+      position: absolute;
+      left: 0;
+      top: 100%;
+      width: 28rem;
+      padding: 0.5rem 0;
+      background-color: #fff;
+      box-shadow: 0 5px 10px rgba(#000, 0.2);
+
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none; // Работает без анимации
+    }
+
+    // Позицирование подменю
+    // ВТОРОГО и глубже уровней
+    ul {
+      // Для разрешений выше планшетных
+      @include media(">=tab") {
+        left: 100%;
+        top: -0.5rem;
+      }
+    }
+
+    // Пункты ВТОРГО уровня и глубще
+    li {
+      // Для разрешений выше планшетных
+      @include media(">=tab") {
+        border-top: 1px solid $bg-color-light;
+
+        &:first-child {
+          border-top: none;
+        }
+      }
+    }
+
+    a,
+    li > span {
+      @include media(">=tab") {
+        padding-right: $nav-arrow-size;
+      }
+    }
+  }
+
+  // Показать подменю
+  // Класс .hover добавляется скриптом
+  // Если отключены скрипты,
+  // Показывать через :hover
+  li.hover > ul,
+  .no-js & li:hover > ul {
+    // Для разрешений выше планшетных
+    @include media(">=tab") {
+      display: block;
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+  }
+
+  // Стрелка для разворачивания подменю
+  .nav__angle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 1;
+    font-size: 0;
+    line-height: 0;
+    height: $nav-arrow-size;
+    width: $nav-arrow-size;
+    margin: -1rem 0;
+    padding: 0;
+    text-align: center;
+    cursor: pointer;
+    color: $text-color;
+    transition: color $animation-speed;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    outline: none;
+
+    &::before {
+      content: "";
+      position: absolute;
+      @include triangle(bottom, white, 6px, 1.2);
+      margin-top: 1px;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      $size: 2.4rem;
+      height: $size;
+      width: $size;
+      border-radius: $size;
+      background-color: $base-color;
+      @include linear-gradient(to bottom, $base-color 0%, lighten($base-color, 10%) 100%)
+    }
+
+    .no-touchevents &:hover {
+      &::after {
+        @include linear-gradient(to bottom, lighten($base-color, 10%) 0%, $base-color 100%)
+      }
+    }
+
+    @at-root {
+      li.is-open > .nav__angle {
+        transform: rotate(0.5turn);
+      }
+    }
+
+    // Для разрешений выше планшетных
+    @include media(">=tab") {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      margin-top: -#{round-float($nav-arrow-size / 2, 1)};
+      transform: rotate(-0.25turn);
+      pointer-events: none;
+    }
+  }
+
+  // Пункт для текущей страницы
+  // Current
+  li {
+    &.current {
+      & > ul {
+        display: block;
+      }
+
+      & > a, & > span {
+        @include font-bold;
+      }
+    }
+  }
+
+  // Hover
+  li {
+    // Класс .hover добавляется скриптом
+    &.hover {
+      & > a {
+        color: $base-color;
+      }
+    }
+  }
+
+  // li ПЕРВОГО уровня
+  // -----------------
+  & > li {
+    // Для разрешений выше планшетных
+    @include media(">=tab") {
+      float: left;
+      margin: 0;
+      padding: 0;
+
+      &:first-child,
+      &:last-child {
+        margin: 0;
+        padding: 0;
+      }
+    }
+
+    @include media("<tab") {
+      padding: 0.5em 0 0.6em;
+      border-top: 1px solid $border-color;
+      margin: 0;
+    }
+
+    &:first-child {
+      margin-top: 0;
+      border-top: none;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    // Все "a" и "span" первого уровня
+    // "a" заменять на "span" в пункте текущей страницы
+    & > a,
+    & > span {
+      // Для разрешений выше планшетных
+      @include media(">=tab") {
+        display: block;
+        display: flex;
+        align-items: center;
+        height: $header-height;
+        padding: 1rem 0.4rem;
+        font-size: 1.8rem;
+        line-height: round-float(30 / 24, 2);
+        color: $base-color;
+        text-decoration: none;
+        transition: box-shadow $animation-speed;
+
+        // Special for a home page
+        .home-page & {
+          color: $text-color;
+        }
+      }
+
+      @include media(">=net") {
+        padding: 1rem 1rem;
+      }
+
+      @include media(">=lap-s") {
+        padding: 1rem 1.2rem;
+        font-size: 2rem;
+      }
+
+      @include media(">=lap") {
+        padding: 1rem 1.5rem;
+        font-size: 2.4rem;
+      }
+
+      // Для планшетных разрешений и нижу
+      @include media("<tab") {
+        font-size: 2.8rem;
+        line-height: 3.6rem;
+      }
+    }
+
+    // Стрелка для разворачивания подменю
+    & > .nav__angle {
+      // Для разрешений выше планшетных
+      @include media(">=tab") {
+        display: none;
+      }
+    }
+
+    // Hover
+    // Класс .hover добавляется скриптом
+    &.hover > a {
+      // Для разрешений выше планшетных
+      @include media(">=tab") {
+        color: $base-color;
+        box-shadow: inset 0 -4px 0 $base-color;
+
+        // Special for a home page
+        .home-page & {
+          color: $text-color;
+        }
+      }
+    }
+
+    // Пункт для текущей страницы
+    // Current
+    // Для разрешений выше планшетных
+    &.current {
+      @include media(">=tab") {
+        & > a,
+        & > span {
+          @include font-normal;
+          color: white;
+          background-color: $base-color;
+        }
+
+
+        // Hover
+        // Если пункт для текущей страницы является ссылкой,
+        // то у него должен быть ховер
+        // Класс .hover добавляется скриптом
+        &.hover {
+          box-shadow: inset 0 -4px 0 $bg-color-alt;
+        }
+      }
+    }
+  }
+}
+/* navigation end */

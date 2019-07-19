@@ -1,0 +1,54 @@
+@import "../../../../../sass/utils/variables";
+@import "../../../../../sass/utils/mixins";
+@import "../../../../../libs/include-media/dist/include-media";
+
+// Sidebar
+// ==========================================================================
+$sidebar-width: 32rem !default;
+
+// Aside
+// ==========================================================================
+$aside-width: 24rem !default;
+
+.main {
+  position: relative;
+}
+
+.main__holder {
+  width: 100%;
+  @include clear;
+}
+
+.content-wrap {
+  float: left;
+  width: 100%;
+}
+
+.content {
+  margin-right: #{$aside-width + 2};
+  margin-left: #{$sidebar-width + 2};
+  min-height: 5rem;
+  // Don't use
+  padding: 2rem;
+  background-color: whitesmoke;
+}
+
+.sidebar {
+  display: inline;
+  float: left;
+  margin: 0 0 0 -100%;
+  width: $sidebar-width;
+  // Don't use
+  padding: 2rem;
+  background-color: lightblue;
+}
+
+.aside {
+  display: inline;
+  float: right;
+  margin: 0 0 0 -#{$aside-width};
+  width: $aside-width;
+  // Don't use
+  padding: 2rem;
+  background-color: lightblue;
+}

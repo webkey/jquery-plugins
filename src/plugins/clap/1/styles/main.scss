@@ -1,0 +1,497 @@
+@import "../../../../sass/utils/variables";
+@import "../../../../sass/utils/mixins";
+@import "../../../../libs/include-media/dist/include-media";
+
+/* clap default / roll up list */
+$clap-space: 10px 10px !default;
+$clap-angle-size: 24px 24px !default;
+$clap-angle-line-size: 2px 12px !default;
+
+/* clap */
+.clap {
+	margin-bottom: 4rem;
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+/* =============================== */
+/* !!! Списком !!! */
+
+/* === NAVIGATION === */
+// nav variables
+$nav-mob: 992px !default;
+$nav-width: 280px !default;
+$nav-space: 14px 30px !default;
+$nav-space--mob: 12px 15px !default;
+$nav-arrow-size: 40px !default;
+$nav-arrow-space: 5px !default;
+
+/* nav list */
+// Общие стили для пунктов навигации
+.clapNav {
+	position: relative;
+	margin-bottom: 4rem;
+	z-index: 5;
+	@include media(">=#{$nav-mob}") {
+		display: inline-block;
+		width: 100%;
+	}
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.clapNav__list {
+	&, & ul {
+		padding: 0;
+		margin: 0;
+		list-style: none;
+		li {
+			padding: 0;
+			margin: 0;
+		}
+	}
+	li {
+		position: relative;
+	}
+	.clapNav__tab {
+		position: relative;
+	}
+	a {
+		display: block;
+		position: relative;
+		padding: nth($nav-space, 1) nth($nav-space, 2);
+		color: inherit;
+		text-decoration: none;
+		outline: none;
+		// Убрать подсветку при клике на тачскринах
+		.touchevents & {
+			user-select: none;
+			-webkit-tap-highlight-color: transparent;
+		}
+		span {
+			display: block;
+		}
+		// Hover
+		.no-touchevents &:hover {
+			color: $link-color;
+			span {
+				background-color: rgba($link-color, 0.1);
+			}
+		}
+		// Focus
+		.no-touchevents &:focus {
+			span {
+				outline: $focus-color auto 5px;
+			}
+		}
+	}
+}
+
+// Стили для пунктов навигации, у которых ЕСТЬ ПОДМЕНЮ
+.clapNav__list li.has-drop > .clapNav__tab > a {
+	padding-right: round($nav-arrow-size + 10 + $nav-arrow-space * 2);
+}
+
+// Стили для пункта навигации ТЕКУЩЕЙ страницы
+.clapNav__list li.current > .clapNav__tab {
+	&, .no-touchevents & {
+		a, a:hover {
+			color: $base-color;
+			font-weight: bold;
+		}
+	}
+}
+
+// Стрелки навигации
+.clapNav__angle {
+	position: absolute;
+	right: $nav-arrow-space;
+	top: 50%;
+	width: $nav-arrow-size;
+	height: $nav-arrow-size;
+	margin-top: -(round($nav-arrow-size / 2));
+	background-color: rgba(black, 0.1);
+	z-index: 1;
+	cursor: pointer;
+	display: none;
+	// Удалить выделение при клике
+	user-select: none;
+	-webkit-tap-highlight-color: transparent;
+	// Стили для текстовой стрелки
+	font-size: 16px;
+	line-height: $nav-arrow-size;
+	letter-spacing: normal;
+	text-align: center;
+	// Показывать стрелку только, если есть подпункты
+	li.has-drop > .clapNav__tab > & {
+		display: block;
+	}
+	@include media(">=#{$nav-mob}") {
+		pointer-events: none;
+	}
+
+	i {
+		//display: block
+		pointer-events: none;
+		position: relative;
+		// transition
+		$prop: transform;
+		will-change: $prop;
+		transition: {
+			property: $prop;
+			duration: $animation-speed;
+			timing-function: ease-in-out;
+		};
+		// Стили для текстовой стрелки
+		display: inline-block;
+		line-height: 15px;
+		height: 15px;
+		width: 15px;
+	}
+	// Стили стрелок навигации для разных состояний
+	// Активное: подменю открыто
+	li.is-open > .clapNav__tab & {
+		i {
+			transform: rotate(0.5turn);
+			// для дескопа отменить изменение стрелки/крестика через класс .is-open
+			@include media(">=#{$nav-mob}") {
+				transform: rotate(0);
+			}
+		}
+	}
+	// Ховер
+	.no-touchevents &:hover {
+		background-color: rgba($link-color, 0.1);
+	}
+	// Нажатие, клик, тап
+	&:active {
+		transform: scale(0.95);
+	}
+	// Фокус
+	&:focus {
+		outline: $focus-color auto 5px;
+	}
+}
+
+// Стили для пунктов навигации 1-го уровня
+.clapNav__list > li {
+	@include media(">=#{$nav-mob}") {
+		float: left;
+	}
+
+	& > .clapNav__tab a, & > a {
+		text-transform: uppercase;
+	}
+}
+
+// Стили для ПОДМЕНЮ навигации
+.clapNav__drop {
+	position: relative;
+	display: none;
+	@include media(">=#{$nav-mob}") {
+		position: absolute;
+		left: 0;
+		top: 100%;
+		width: 400px;
+		height: auto !important;
+		opacity: 0;
+		pointer-events: none;
+		visibility: hidden;
+		z-index: 2;
+	}
+
+	// Для корректной работы скрипта стили нужно присвоить после инициализации скрипта
+	.msClap_initialized & {
+		@include media(">=#{$nav-mob}") {
+			display: block;
+		}
+
+		// !important только для элементов, которые открыты скриптом
+		// или скрыты инлайново
+		&[style*="display: none"] {
+			@include media(">=#{$nav-mob}") {
+				display: block !important;
+			}
+		}
+	}
+	.no-js & {
+		display: block;
+		@include media(">=#{$nav-mob}") {
+			display: none;
+		}
+	}
+	// Открытие подменю при наведении
+	li.hover > &, .no-js li:hover > & {
+		@include media(">=#{$nav-mob}") {
+			opacity: 1;
+			pointer-events: auto;
+			visibility: visible;
+		}
+	}
+	// Стили для пунктов ПОДМЕНЮ
+	// Стили для пунктов навигации 2-го уровня
+	a {
+		padding-left: round(nth($nav-space, 2) * 2);
+		@include media(">=#{$nav-mob}") {
+			padding-left: nth($nav-space, 2);
+		}
+	}
+	// Стили для пунктов навигации 3-го уровня
+	.clapNav__drop {
+		@include media(">=#{$nav-mob}") {
+			top: 0;
+			left: 100%;
+			margin: 10px -10px;
+		}
+
+		a {
+			padding-left: round(nth($nav-space, 2) * 3);
+			@include media(">=#{$nav-mob}") {
+				padding-left: nth($nav-space, 2);
+			}
+		}
+	}
+	// Стили для пунктов навигации 3-го уровня
+	.right .clapNav__drop {
+		@include media(">=#{$nav-mob}") {
+			left: auto;
+			right: 100%;
+		}
+	}
+	// Стили для пунктов навигации 4-го уровня
+	.clapNav__drop .clapNav__drop {
+		a {
+			padding-left: round(nth($nav-space, 2) * 4);
+			@include media(">=#{$nav-mob}") {
+				padding-left: nth($nav-space, 2);
+			}
+		}
+	}
+}
+
+////*========Добавить дерево структиры=========*/
+
+// .блок_has-branches
+.clapNav__drop {
+	.clapNav_has-branches & {
+		// Для пунктов навигации 2-го уровня
+		li {
+			$bdw: 2px;
+			$bdh: 30px;
+			&::before, &::after {
+				content: "";
+				display: block;
+				position: absolute;
+				left: round(nth($nav-space, 2) * 1.5);
+				top: 0;
+				margin: 0;
+				padding: 0;
+				background: none;
+				border-radius: 0;
+				width: round(nth($nav-space, 2) * 0.5 - 4);
+				border: 0 solid rgba(black, 0.2);
+				pointer-events: none;
+				z-index: 10;
+				@include media(">=#{$nav-mob}") {
+					display: none;
+				}
+			}
+			&::before {
+				border-width: 0 0 0 $bdw;
+				bottom: 0;
+			}
+			&::after {
+				height: $bdh;
+				border-width: 0 0 $bdw 0;
+			}
+			&:last-child {
+				&::before {
+					bottom: auto;
+					height: $bdh;
+				}
+			}
+			// Для пунктов навигации 3-го уровня
+			li {
+				&::before, &::after {
+					left: round(nth($nav-space, 2) * 2.5);
+				}
+				// Для пунктов навигации 4-го уровня
+				li {
+					&::before, &::after {
+						left: round(nth($nav-space, 2) * 3.5);
+					}
+				}
+			}
+		}
+	}
+}
+
+/* === NAVIGATION end === */
+
+
+/* ================ NOT USE =============== */
+
+// Не исспользовать в реальном проекте
+// Визуализация
+.clapNav__list {
+	li {
+		// Визуальное разделение пунктов
+		box-shadow: inset 0 1px 0 rgba(black, 0.1);
+		// Визуализация кастомного ховера
+		&.hover {
+			box-shadow: inset 0 0 2px 1px $link-color;
+			//z-index: 2
+
+		}
+	}
+	& > li {
+		@include media(">=#{$nav-mob}") {
+			box-shadow: inset 1px 0 0 rgba(black, 0.1);
+		}
+	}
+}
+
+.clapNav__drop {
+	@include media(">=#{$nav-mob}") {
+		border: 0 solid rgba(black, 0.1);
+		border-width: 0 1px 1px;
+	}
+}
+
+/* ================ NOT USE END =============== */
+
+
+/* =============================== */
+/* !!! div-ами !!! */
+/* div.clap div.clap__item */
+// item
+.clap__item {
+	padding: 10px;
+	margin-bottom: 2rem;
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+// header
+.clap__header {
+	position: relative;
+}
+
+// angle
+.clap__angle {
+	display: block;
+	position: absolute;
+	right: 10px;
+	top: 50%;
+	text-decoration: none;
+	@include size(nth($clap-angle-size, 1), nth($clap-angle-size, 2));
+	border-radius: 50%;
+	margin-top: -#{round(nth($clap-angle-size, 2) * 0.5)};
+	background-color: $base-color;
+	user-select: none;
+	-webkit-tap-highlight-color: transparent;
+	&::before, &::after {
+		@include pseudo;
+		left: 50%;
+		top: 50%;
+		margin: -#{round(nth($clap-angle-line-size, 1) / 2)} 0 0 -#{round(nth($clap-angle-line-size, 2) / 2)};
+		backface-visibility: hidden;
+		@include size(nth($clap-angle-line-size, 2), nth($clap-angle-line-size, 1));
+		background-color: white;
+		will-change: transform;
+		transition: {
+			property: transform;
+			duration: $animation-speed;
+		};
+	}
+	&::before {
+		transform: rotate(-0.25turn);
+		transform: rotate(-0.25turn) translateZ(0);
+	}
+}
+
+// :active
+.clap__angle {
+	&:active {
+		top: calc(50% + 1px);
+	}
+}
+
+// active
+.clap__angle.is-open {
+	&::before, &::after {
+		transform: rotate(0);
+		transform: rotate(0) translateZ(0);
+	}
+}
+
+// panel
+.clap__panel {
+	display: none;
+	&.is-open {
+		display: block;
+	}
+}
+
+// только в примере, в реальном проэкте не обязательно
+.clap__header,
+.clap__item,
+.clap__panel {
+	//border: 2px solid $border-color
+	padding: 10px;
+	margin-bottom: 10px;
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.clap__item {
+	margin-bottom: 0;
+	& ~ & {
+		padding-top: 0;
+	}
+}
+
+.clap__header {
+	background-color: #fffcc1;
+	// Визуализация при добавлении на элемент активного класса
+	&.is-open {
+		background-color: #fff278;
+	}
+}
+
+.clap__item, .clapNav__list li {
+	background-color: #fff6f4;
+	// Визуализация при добавлении на элемент активного класса
+	&.is-open {
+		background-color: #ffe3db;
+	}
+}
+
+.clap__panel, .clapNav__list li li {
+	background-color: #deffe3;
+	// Визуализация при добавлении на элемент активного класса
+	&.is-open {
+		background-color: #b3ffb7;
+	}
+}
+
+.clapNav__list li li li {
+	background-color: #d8f3ff;
+	// Визуализация при добавлении на элемент активного класса
+	&.is-open {
+		background-color: #c4e9ff;
+	}
+}
+
+.clapNav__list li li li li {
+	background-color: #eae0ff;
+	// Визуализация при добавлении на элемент активного класса
+	&.is-open {
+		background-color: #d7c5fd;
+	}
+}

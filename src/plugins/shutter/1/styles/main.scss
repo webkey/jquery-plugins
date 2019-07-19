@@ -1,0 +1,68 @@
+@import "../../../../sass/utils/mixins";
+
+// =====================
+// Не копировать
+.ms-shutter-page {
+  //.layout-text
+  // +margin-horizontal(0)
+}
+
+// =============================================================
+// ========== стили необходимые для работы плагина =============
+// =============================================================
+
+.ms-drop__drop-js {
+  opacity: 0;
+  visibility: hidden;
+
+  .is-open & {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+// ==============================================================
+.example-class {
+  position: relative;
+  width: 100px;
+  margin-bottom: 1em;
+
+  .active-item {
+    background-color: black;
+    color: white;
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+  a {
+    display: block;
+    color: inherit;
+    text-align: center;
+  }
+
+  & > a {
+    padding: 2px;
+    border: 1px solid black;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.35);
+    border-radius: 4px;
+    text-decoration: none;
+
+    &:active {
+      transform: translate(1px, 1px);
+      box-shadow: 0 0 0 black;
+    }
+  }
+
+  ul {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 4px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.35);
+  }
+}

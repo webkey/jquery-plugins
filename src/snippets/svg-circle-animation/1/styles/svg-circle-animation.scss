@@ -1,0 +1,206 @@
+@import "../../../../sass/utils/variables";
+@import "../../../../sass/utils/mixins";
+@import "../../../../libs/include-media/dist/include-media";
+
+/* shutter menu switcher */
+a.shutter-menu-switcher {
+  $btn-menu-size: 60px;
+  $btn-menu-lines-width: 35px;
+  $btn-menu-lines-height: 5px;
+  $btn-menu-lines-space: 8px;
+  $btn-menu-lines-color: currentColor;
+  $btn-menu-lines-color--mob: currentColor;
+  $btn-menu-animation-speed: 0.3s;
+  $btn-menu-animation-delay: round-float($btn-menu-animation-speed * 0.5, 2);
+  $user-options-cross-width: $btn-menu-lines-width;
+  $user-options-cross-height: $btn-menu-lines-height;
+  $user-options-cross-color: $btn-menu-lines-color;
+  $user-options-cross-color--mob: $btn-menu-lines-color--mob;
+  // =====================
+  position: absolute;
+  right: 0;
+  top: 50%;
+  margin-top: -#{round-float($btn-menu-size / 2, 1)};
+  color: $text-color;
+  text-decoration: none;
+  width: $btn-menu-size;
+  height: $btn-menu-size;
+  // transition
+  $prop: color, background-color;
+  will-change: $prop;
+  transition: {
+    property: $prop;
+    duration: $btn-menu-animation-speed;
+    timing-function: ease-in-out;
+  };
+  // убрать подсветку при клике на тачскринах
+  .touchevents & {
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  // крест
+  &::before, &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    @include size($user-options-cross-width, $user-options-cross-height);
+    background-color: $user-options-cross-color;
+    margin: -#{round($user-options-cross-height / 2)} 0 0 -#{round($user-options-cross-width / 2)};
+    border-radius: 2px;
+    will-change: opacity, transform;
+    opacity: 0;
+    transition: {
+      property: transform, opacity;
+      duration: $btn-menu-animation-speed;
+      delay: 0s;
+      timing-function: cubic-bezier(0.65, 0.05, 0.36, 1);
+    };
+  }
+
+  // текст
+  & > span {
+    @include hide-text;
+  }
+
+  // бутерброд
+  & > i {
+    font-size: 0;
+    line-height: 0;
+    letter-spacing: -4px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    @include size($btn-menu-lines-width, $btn-menu-lines-height);
+    background-color: $btn-menu-lines-color;
+    margin: -#{round($user-options-cross-height / 2)} 0 0 -#{round($user-options-cross-width / 2)};
+    border-radius: 2px;
+    transition: {
+      property: opacity;
+      duration: $btn-menu-animation-speed;
+      delay: $btn-menu-animation-delay;
+    };
+
+    &::before, &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      right: 0;
+      height: $btn-menu-lines-height;
+      width: $btn-menu-lines-width + 6;
+      background-color: $btn-menu-lines-color;
+      border-radius: 2px;
+      transition: {
+        property: transform;
+        duration: $btn-menu-animation-speed;
+        delay: $btn-menu-animation-delay;
+      };
+    }
+
+    //first line menu
+    &::before {
+      top: -#{$btn-menu-lines-height + $btn-menu-lines-space};
+    }
+
+    //third line menu
+    &::after {
+      top: #{$btn-menu-lines-height + $btn-menu-lines-space};
+    }
+  }
+
+  & > svg {
+    $size: 8rem;
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: $size;
+    height: $size;
+    margin-top: -#{round-float($size / 2, 1)};
+    margin-left: -#{round-float($size / 2, 1)};
+    transform: rotate(-90deg);
+    //transform: rotateY(0deg) rotateZ(-90deg)
+    stroke-dasharray: 220;
+    stroke-dashoffset: 220;
+    // transition
+    $prop: stroke-dashoffset;
+    will-change: $prop;
+    transition: {
+      property: $prop;
+      duration: $btn-menu-animation-speed;
+      timing-function: cubic-bezier(0.65, 0.05, 0.36, 1);
+    };
+
+    circle {
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 5;
+      stroke-miterlimit: 10;
+    }
+  }
+
+  // hover
+  &:hover {
+    color: $mark-color;
+
+    & > i {
+      &::before, &::after {
+        transition-delay: 0s;
+      }
+
+      &::before {
+        transform: translate(3px, 1px) translateZ(0);
+      }
+
+      &::after {
+        transform: translate(3px, -1px) translateZ(0);
+      }
+    }
+
+    & > svg {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  //transform: rotateY(180deg) rotateZ(-90deg)
+  // opened
+  &.shutter-menu_is-open {
+    & > svg {
+      stroke-dashoffset: 0;
+    }
+
+    &::before, &::after {
+      transition-delay: $btn-menu-animation-delay;
+      opacity: 1;
+    }
+
+    &::before {
+      transform: rotate(45deg) translateZ(0);
+    }
+
+    &::after {
+      transform: rotate(-45deg) translateZ(0);
+    }
+
+    & > i {
+      opacity: 0;
+      transition-delay: 0s;
+
+      &::before, &::after {
+        transition-delay: 0s;
+      }
+
+      &::before {
+        transform: translate(3px, #{$btn-menu-lines-height + $btn-menu-lines-space}) translateZ(0);
+      }
+
+      &::after {
+        transform: translate(3px, -#{$btn-menu-lines-height + $btn-menu-lines-space}) translateZ(0);
+      }
+    }
+  }
+}
+
+/* shutter menu switcher end */

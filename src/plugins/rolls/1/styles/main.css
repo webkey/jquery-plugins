@@ -1,142 +1,142 @@
 .js .rolls:not(.ms-rolls_initialized) .rolls__panel {
-	display: none;
+  display: none;
 }
 
 /* rolls */
 .rolls {
-	margin-bottom: 4rem;
-	-webkit-tap-highlight-color: transparent;
+  margin-bottom: 4rem;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .rolls:last-child {
-	margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .rolls__item {
-	padding: 10px;
-	margin-bottom: 2rem;
+  padding: 10px;
+  margin-bottom: 2rem;
 }
 
 .rolls__item:last-child {
-	margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .rolls__header {
-	position: relative;
+  position: relative;
 }
 
 .rolls__angle {
-	display: block;
-	position: absolute;
-	right: 10px;
-	top: 50%;
-	text-decoration: none;
-	width: 24px;
-	height: 24px;
-	border-radius: 50%;
-	margin-top: -12px;
-	background-color: #ee6e73;
-	-webkit-user-select: none;
-	   -moz-user-select: none;
-	    -ms-user-select: none;
-	        user-select: none;
-	-webkit-tap-highlight-color: transparent;
+  display: block;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  text-decoration: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  margin-top: -12px;
+  background-color: #ee6e73;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .rolls__angle::before, .rolls__angle::after {
-	content: "";
-	display: block;
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	margin: -1px 0 0 -6px;
-	-webkit-backface-visibility: hidden;
-	        backface-visibility: hidden;
-	width: 12px;
-	height: 2px;
-	background-color: white;
-	will-change: transform;
-	transition-property: -webkit-transform;
-	transition-property: transform;
-	transition-property: transform, -webkit-transform;
-	transition-duration: 0.2s;
+  content: "";
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -1px 0 0 -6px;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  width: 12px;
+  height: 2px;
+  background-color: white;
+  will-change: transform;
+  transition-property: -webkit-transform;
+  transition-property: transform;
+  transition-property: transform, -webkit-transform;
+  transition-duration: 0.2s;
 }
 
 .rolls__angle::before {
-	-webkit-transform: rotate(-0.25turn);
-	    -ms-transform: rotate(-0.25turn);
-	        transform: rotate(-0.25turn);
-	-webkit-transform: rotate(-0.25turn) translateZ(0);
-	        transform: rotate(-0.25turn) translateZ(0);
+  -webkit-transform: rotate(-0.25turn);
+      -ms-transform: rotate(-0.25turn);
+          transform: rotate(-0.25turn);
+  -webkit-transform: rotate(-0.25turn) translateZ(0);
+          transform: rotate(-0.25turn) translateZ(0);
 }
 
 .rolls__angle:active {
-	top: calc(50% + 1px);
+  top: calc(50% + 1px);
 }
 
 .rolls__angle.is-open::before, .rolls__angle.is-open::after {
-	-webkit-transform: rotate(0);
-	    -ms-transform: rotate(0);
-	        transform: rotate(0);
-	-webkit-transform: rotate(0) translateZ(0);
-	        transform: rotate(0) translateZ(0);
+  -webkit-transform: rotate(0);
+      -ms-transform: rotate(0);
+          transform: rotate(0);
+  -webkit-transform: rotate(0) translateZ(0);
+          transform: rotate(0) translateZ(0);
 }
 
 .rolls__panel {
-	opacity: 0;
-	will-change: opacity;
-	transition-property: opacity;
-	transition-duration: 0.5s;
-	transition-timing-function: ease-in-out;
+  opacity: 0;
+  will-change: opacity;
+  transition-property: opacity;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
 }
 
 .rolls__panel.is-open {
-	opacity: 1;
+  opacity: 1;
 }
 
 .rolls__header,
 .rolls__item,
 .rolls__panel {
-	padding: 10px;
-	margin-bottom: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
 }
 
 .rolls__header:last-child,
 .rolls__item:last-child,
 .rolls__panel:last-child {
-	margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .rolls__item {
-	margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .rolls__item ~ .rolls__item {
-	padding-top: 0;
+  padding-top: 0;
 }
 
 .rolls__header {
-	background-color: #fffcc1;
+  background-color: #fffcc1;
 }
 
 .rolls__header.is-open {
-	background-color: #fff278;
+  background-color: #fff278;
 }
 
 .rolls__item {
-	background-color: #ffdbd4;
+  background-color: #ffdbd4;
 }
 
 .rolls__item.is-open {
-	background-color: #ffbeac;
+  background-color: #ffbeac;
 }
 
 .rolls__panel {
-	background-color: #c6fdcf;
+  background-color: #c6fdcf;
 }
 
 .rolls__panel.is-open {
-	background-color: #7efd85;
+  background-color: #7efd85;
 }
 
 /* rolls end */

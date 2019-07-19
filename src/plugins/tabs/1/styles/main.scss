@@ -1,0 +1,117 @@
+@import "../../../../sass/utils/variables";
+@import "../../../../sass/utils/mixins";
+@import "../../../../libs/include-media/dist/include-media";
+
+// Thumbs
+.expl-tabs__thumbs {
+  cursor: default;
+  // Thumb
+  & > a {
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+// Panels
+.expl-tabs__panels {
+  z-index: 1;
+  // Panel
+  & > div {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+// Select
+.tabs__select-js {
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+// ====== NOT COPY. It used for examples =====
+.expl-tabs__thumbs {
+  display: flex;
+
+  & > a {
+    padding: 4px 8px;
+    margin-right: 2px;
+    background-color: lightpink;
+    color: white;
+
+    &.ms-tabs_active-tab {
+      padding: 4px 12px;
+      @include font-bold;
+      background-color: lightcoral;
+      box-shadow: 0 -3px 0 lightcoral;
+    }
+  }
+}
+
+.tabs__select-js {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  cursor: pointer;
+  padding: 4px 8px;
+  margin-bottom: 10px;
+  background-color: lightseagreen;
+  color: white;
+
+  & > i {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 5px;
+  }
+
+  &:active {
+    top: 1px;
+  }
+
+  &.ms-tabs_select-open {
+    & > i {
+      transform: rotate(-180deg);
+    }
+  }
+}
+
+// Compact view
+.compact-view-true-js {
+  position: relative;
+
+  .tabs__select-js {
+    @include media(">=tab") {
+      display: none;
+    }
+  }
+
+  .expl-tabs__thumbs {
+    @include media("<tab") {
+      display: none;
+      position: absolute;
+      left: 0;
+      top: 40px;
+      width: 240px;
+      padding: 10px 8px 5px;
+      box-shadow: 0 2px 5px rgba(black, 0.3);
+      z-index: 9;
+      background-color: lightgoldenrodyellow;
+    }
+
+    & > a {
+      @include media("<tab") {
+        display: block;
+        margin: 0 0 5px;
+      }
+    }
+  }
+
+  // Select opened
+  &.ms-tabs_select-open {
+    @include media("<tab") {
+      .expl-tabs__thumbs {
+        display: block;
+      }
+    }
+  }
+}

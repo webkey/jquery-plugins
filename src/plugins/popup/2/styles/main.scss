@@ -1,0 +1,128 @@
+@import "../../../../sass/utils/mixins";
+
+// Блокировка скролла
+.css-scroll-fixed {
+  @include scroll-blocked;
+}
+
+.popup-default {
+  display: none;
+  position: fixed;
+  width: 40%;
+  height: 100%;
+  right: 0;
+  top: 0;
+  z-index: 9999;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 20px 0;
+  background-color: rgba(0, 0, 0, 0.31);
+  border: 2px solid black;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+}
+
+@media only screen and (max-width: 479px) {
+  .popup-default {
+    padding: 0;
+    background-color: white;
+  }
+}
+
+.popup-default.ms-popup-d--is-open {
+  display: block;
+}
+
+.popup-default__holder {
+  display: table;
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.popup-default__cell {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.popup-default__layout {
+  position: relative;
+  max-width: 320px;
+  margin: 0 auto;
+  padding: 80px 20px 40px;
+  background-color: white;
+}
+
+.popup-default__close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 60px;
+  height: 60px;
+  z-index: 2;
+  cursor: pointer;
+  text-indent: -9999px;
+  overflow: hidden;
+  background-color: #c71217;
+}
+
+.popup-default__close:before,
+.popup-default__close:after {
+  content: "";
+  position: absolute;
+  left: 18px;
+  top: 28px;
+  height: 3px;
+  width: 24px;
+  border-radius: 3px;
+  background-color: white;
+}
+
+.popup-default__close:before {
+  transform: rotate(45deg);
+}
+
+.popup-default__close:after {
+  transform: rotate(-45deg);
+}
+
+.popup-default__close:hover {
+  background-color: #f29700;
+}
+
+@media only screen and (max-width: 479px) {
+  .popup-default__close {
+    position: fixed;
+  }
+}
+
+///*=================
+/*not use */
+///*=================
+.ms-popup-d--is-open, .ms-popup-d--active, .ms-popup-d--static--active {
+  &.ms-popup-d__opener-js,
+  &.ms-popup-d__opener-alt-js,
+  &.ms-popup-d__opener--static-js,
+  &.ms-popup-d__opener-alt2-js {
+    font-weight: bold;
+  }
+}
+
+.page-ms-popup-dynamic {
+  .layout-flood {
+    @include margin-horizontal(0);
+  }
+}
+
+.ms-popup-d--active {
+  &.popup-default {
+    display: block;
+    box-shadow: 0 0 20px rgba(0, 75, 255, 0.5);
+  }
+}
+
+.ms-popup-d--static--active {
+  &.popup-default {
+    display: block;
+    box-shadow: 0 0 20px rgba(255, 77, 23, 0.5);
+  }
+}
