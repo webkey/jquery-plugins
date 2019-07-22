@@ -50,6 +50,10 @@ $font-size: 1.6rem !default;
 $line-height: 2.4rem !default;
 $letter-spacing: 0.025em !default;
 
+// ----------------------------------------------------
+$font-size--mob: 1.4rem !default;
+$line-height--mob: 2.0rem !default;
+
 
 // Spaces
 // ==========================================================================
@@ -59,10 +63,6 @@ $bottom-space: $line-height !default;
 
 // h1, h2, h3, h4, h5, h6
 // ==========================================================================
-
-// ----------------------------------------------------
-$font-size--mob: 1.4rem !default;
-$line-height--mob: 2.0rem !default;
 
 // Heading h1
 $font-size-h1: 4.2rem !default;

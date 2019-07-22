@@ -2,9 +2,44 @@
 @import "../utils/mixins";
 @import "../../libs/include-media/dist/include-media";
 
+html {
+  font-size: 62.5%;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+
+  // Блокировать скролла
+  // ===================
+  &.css-scroll-fixed:not(.open-only-mob) {
+    @include scroll-blocked;
+  }
+
+  // Не блокировать скролл, если есть класс open-only-mob
+  // ====================================================
+  &.css-scroll-fixed.open-only-mob {
+    @include media("<tab") {
+      @include scroll-blocked;
+    }
+  }
+}
+
 body {
+  color: $text-color;
+  height: 100%;
+  min-width: 320px;
   padding: 0;
   margin: 0;
+
+  @include font-normal;
+  font-size: $font-size;
+  line-height: $line-height;
+
+  background: $bg-color url(../../img/empty.png) repeat fixed;
+  -webkit-font-smoothing: antialiased;
+
+  @include media("<mob") {
+    font-size: $font-size--mob;
+    line-height: $line-height--mob;
+  }
 }
 
 .main {
@@ -14,7 +49,7 @@ body {
   z-index: 4;
 }
 
-.user-content {
+.#{$article-content} {
   padding: 60px 0;
 }
 
@@ -83,5 +118,3 @@ body {
     @include padding-horizontal($layout-text-space-horizontal-sm);
   }
 }
-
-/*LAYOUT end*/

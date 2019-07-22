@@ -2,25 +2,6 @@
 @import "../utils/mixins";
 @import "../../libs/include-media/dist/include-media";
 
-/*base */
-html {
-  font-size: 62.5%;
-}
-
-body {
-  @include font-normal;
-  font-size: $font-size;
-  line-height: $line-height;
-  -webkit-font-smoothing: antialiased;
-  height: 100%;
-  color: $text-color;
-  background: $bg-color url(../../img/empty.png) repeat fixed;
-  min-width: 320px;
-  @include media("<mob") {
-    @include font-size($font-size, 1.7);
-  }
-}
-
 h1, h2, h3, h4, h5, h6 {
   padding: 0;
   @include font-title;
@@ -50,7 +31,7 @@ h3 {
 }
 
 h4 {
-  @include font-size($font-size-h4, $line-height-h4);
+  @include font-h4;
 }
 
 h5 {
@@ -102,13 +83,6 @@ a {
 
   .no-touchevents &:hover {
     text-decoration: none;
-  }
-
-  &[href^="tel"],
-  .no-touchevents &[href^="tel"]:hover {
-    text-decoration: none !important;
-    color: inherit;
-    cursor: default;
   }
 
   &[href^="javascript:"] {
@@ -173,14 +147,6 @@ i b, i strong, em b, em strong, b i, b em, strong i, strong em {
   @include font-bold-italic;
 }
 
-//code, pre
-// display: block
-// padding: 8px
-// color: $text-color-light
-// background-color: $bg-color-light
-// font-size: $font-size-small
-// margin: 0 0 $bottom-space
-
 .mark {
   color: $mark-color;
   font-style: inherit;
@@ -214,13 +180,11 @@ i b, i strong, em b, em strong, b i, b em, strong i, strong em {
   }
 }
 
-
 @include media("<desk-s") {
   .hide-lap {
     display: none !important;
   }
 }
-
 
 @include media("<lap") {
   .hide-net {
@@ -228,8 +192,9 @@ i b, i strong, em b, em strong, b i, b em, strong i, strong em {
   }
 }
 
-
-code.l, code.red, code.green {
+code.l,
+code.red,
+code.green {
   display: inline;
   padding: 0 2px;
   margin: 0;
@@ -262,23 +227,26 @@ code.l, code.red, code.green {
   font-size: 1.2em;
 }
 
+
+/* typography elements */
 .#{$article-content} {
-  @each $tags in h2, h3, h4, h5 {
+  // Title layouts
+  @each $tags in h2, h3, h4, h5, h6, ".h2", ".h3", ".h4", ".h5", ".h6" {
     p + #{$tags},
     ul + #{$tags},
-    ol + #{$tags} {
-      margin-top: $bottom-space;
+    ol + #{$tags},
+    hr + #{$tags},
+    table + #{$tags},
+    .table-auto + #{$tags} {
+      margin-top: 6.2rem;
+
       @include media("<mob") {
         margin-top: round-float($bottom-space * 0.85, 1);
       }
     }
   }
-}
 
-/*base end */
-
-/*table */
-.#{$article-content} {
+  // Tables
   table {
     margin-bottom: $bottom-space;
   }
@@ -337,329 +305,13 @@ code.l, code.red, code.green {
       border-top-width: 0;
     }
   }
-}
 
-/*table end */
+  // Lists
+  // =====
+  $list-space: 1.5em !default;
 
-/*blockquote */
-.#{$article-content} {
-  .blockquote {
-    margin: $bottom-space 0;
-  }
-
-  blockquote {
-    display: block;
-    margin: 0;
-    padding: 0;
-
-    q {
-      display: block;
-      position: relative;
-      margin: 0;
-      padding: 0;
-      @include font-normal;
-      @include font-size(2rem, 1.5);
-      color: $text-color;
-      z-index: 5;
-      @include media("<mob") {
-        @include font-size(1.6rem, 1.7);
-      }
-
-      &:before,
-      &:after {
-        @include pseudo($pos: relative);
-        //background: url(../../img/quote-left.svg) no-repeat
-        background-size: contain;
-        @include size(40px, 35px);
-        z-index: -1;
-      }
-
-      &:before {
-        //content: '«'
-        content: "";
-        margin: 0 0 20px 30%;
-        @include media("<mob") {
-          margin-bottom: 10px;
-          margin-left: -10px;
-        }
-      }
-
-      &:after {
-        //content: '»'
-        content: "";
-        margin: 20px 30% 0 auto;
-        transform: rotate(180deg);
-        @include media("<mob") {
-          content: none;
-          display: none;
-        }
-      }
-    }
-
-    cite {
-      text-align: right;
-      display: block;
-      margin-left: auto;
-      @include font-title;
-      font-size: $font-size;
-      line-height: $line-height;
-      color: $text-color;
-    }
-  }
-}
-
-/*blockquote end */
-
-/*content img */
-.imgc {
-  text-align: center;
-  padding-bottom: #{round-float($bottom-space * 3, 1)};
-  clear: both;
-}
-
-.imgl {
-  text-align: left;
-  float: left;
-  margin: $bottom-space * 0.3 #{round-float($bottom-space * 3, 1)} #{round-float($bottom-space * 3, 1)} 0;
-  max-width: 50%;
-}
-
-.imgr {
-  text-align: right;
-  float: right;
-  margin: $bottom-space * 0.3 0 #{round-float($bottom-space * 3, 1)} #{round-float($bottom-space * 3, 1)};
-  max-width: 50%;
-}
-
-@include media("<tab") {
-  .imgl, .imgr {
-    float: none;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: none;
-  }
-}
-
-
-/*content img end */
-
-/*view print */
-.view-print {
-  display: inline-block;
-  vertical-align: top;
-  padding: 4px 18px;
-  background: white;
-  font-size: 16px;
-  line-height: 30px;
-  color: $text-color-light;
-  border: 1px solid $text-color-light;
-  text-decoration: none;
-  margin-bottom: $bottom-space;
-  transition-property: background-color, color;
-  transition-duration: $animation-speed;
-
-  .no-touchevents &:hover {
-    background-color: $text-color-light;
-    color: white;
-  }
-
-  &:active {
-    transform: scale(0.98);
-  }
-
-  svg {
-    width: 21px;
-    height: 21px;
-    vertical-align: middle;
-    margin-right: 10px;
-
-    path {
-      fill: $text-color-light;
-      transition-property: fill;
-      transition-duration: $animation-speed;
-    }
-  }
-
-  .no-touchevents &:hover path {
-    fill: white;
-  }
-
-  span {
-    display: inline-block;
-    vertical-align: middle;
-  }
-
-  @include media("<tab") {
-    font-size: 14px;
-  }
-
-  @include media("<mob") {
-    & svg {
-      margin-right: 0;
-    }
-    & span {
-      display: none;
-    }
-  }
-}
-
-/*view print end */
-
-/*video */
-.video-holder {
-  position: relative;
-  padding-bottom: 62%;
-  padding-top: 25px;
-  height: 0;
-}
-
-.video-holder iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-/*video end */
-
-input[type="radio"], input[type="checkbox"] {
-  width: 15px;
-  height: 15px;
-}
-
-/* snippet */
-.btn {
-  position: relative;
-  display: inline-block;
-  padding: 6px 12px;
-  font-size: 13px;
-  font-weight: 700;
-  line-height: 20px;
-  color: #333333;
-  white-space: nowrap;
-  vertical-align: middle;
-  cursor: pointer;
-  background-color: #eeeeee;
-  background-image: linear-gradient(#fcfcfc, #eeeeee);
-  border: 1px solid #d5d5d5;
-  border-radius: 3px;
-  user-select: none;
-  -webkit-appearance: none;
-}
-
-.btn i {
-  font-style: normal;
-  font-weight: 500;
-  opacity: 0.6;
-}
-
-.btn .octicon {
-  vertical-align: text-top;
-}
-
-.btn .counter {
-  text-shadow: none;
-  background-color: #e5e5e5;
-}
-
-.btn:focus {
-  text-decoration: none;
-  border-color: #51a7e8;
-  outline: 0;
-  box-shadow: 0 0 5px rgba(81, 167, 232, 0.5);
-}
-
-.btn:focus:hover, .btn.selected:focus {
-  border-color: #51a7e8;
-}
-
-.btn:hover, .btn:active, .btn.zeroclipboard-is-hover, .btn.zeroclipboard-is-active {
-  text-decoration: none;
-  background-color: #dddddd;
-  background-image: linear-gradient(#eeeeee, #dddddd);
-  border-color: #cccccc;
-}
-
-.btn:active, .btn.selected, .btn.zeroclipboard-is-active {
-  background-color: gainsboro;
-  background-image: none;
-  border-color: #b5b5b5;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
-}
-
-.clippy {
-  margin-top: -3px;
-  position: relative;
-  top: 3px;
-  vertical-align: baseline;
-}
-
-.btn[disabled] .clippy {
-  opacity: 0.3;
-}
-
-.snippet {
-  position: relative;
-  overflow: visible;
-}
-
-.snippet code {
-  font-size: 14px;
-  line-height: 20px;
-}
-
-.snippet .btn {
-  transition: opacity 0.3s ease-in-out;
-  opacity: 0;
-  padding: 2px 6px;
-  position: absolute;
-  right: 4px;
-  top: 4px;
-}
-
-.snippet:hover .btn, .snippet .btn:focus {
-  opacity: 1;
-}
-
-@media screen and (max-width: 768px) {
-  .snippet .btn {
-    opacity: 1;
-  }
-}
-
-.example + .snippet .btn {
-  top: 22px;
-  right: 2px;
-}
-
-/* snippet end */
-
-/* hljs */
-.hljs {
-  background-color: #f0f0f0;
-}
-
-/* hljs end */
-
-/* separator */
-.separator {
-  background: url(../../img/icon-separator.svg) no-repeat center;
-}
-
-/* separator end */
-
-/* article elements */
-ul, ol {
-  margin: 0 0 $bottom-space;
-}
-
-.#{$article-content} {
-  // list
-  $list-space: 1.5rem !default;
-
-  ul, ol {
+  & > ul,
+  & > ol {
     margin: 0 0 $bottom-space;
     padding: 0;
     list-style: none;
@@ -673,7 +325,7 @@ ul, ol {
     }
   }
 
-  ul {
+  & > ul {
     & > li {
       &::before {
         content: "—";
@@ -685,7 +337,7 @@ ul, ol {
     }
   }
 
-  ol {
+  & > ol {
     $list-space: 1.5rem;
     counter-reset: section;
 
@@ -703,9 +355,70 @@ ul, ol {
     }
   }
 
-  ul, ol {
-    ul, ol {
+  & > ul,
+  & > ol {
+    ul,
+    ol {
       margin: round-float($bottom-space * 0.5, 1) 0;
     }
   }
+
+  // Images
+  & > img,
+  & > .layout-text img,
+  & > .layout-flood img {
+    display: block;
+    text-align: center;
+    margin: 3rem auto 4rem;
+
+    @include media("<tab") {
+      margin-top: 2.5rem;
+      margin-bottom: 3rem;
+    }
+
+    @include media("<mob") {
+      margin-top: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    &[align="left"], &.imgl {
+      float: left;
+      text-align: left;
+      max-width: 45%;
+      margin-top: 0;
+      margin-right: 3rem;
+
+      @include media("<tab") {
+        margin-right: 2rem;
+      }
+
+      @include media("<mob") {
+        float: none;
+        text-align: left;
+        max-width: none;
+        margin-right: auto;
+      }
+    }
+
+    &[align="right"], &.imgr {
+      float: right;
+      text-align: right;
+      max-width: 45%;
+      margin-top: 0;
+      margin-left: 3rem;
+
+      @include media("<tab") {
+        margin-left: 2rem;
+      }
+
+      @include media("<mob") {
+        float: none;
+        text-align: left;
+        max-width: none;
+        margin-left: auto;
+      }
+    }
+  }
 }
+
+/* typography elements end */

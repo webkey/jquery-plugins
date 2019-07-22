@@ -83,6 +83,11 @@ select {
   cursor: pointer;
 }
 
+input[type="radio"], input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+}
+
 // followed by an additional reset
 // for normalize
 // or
