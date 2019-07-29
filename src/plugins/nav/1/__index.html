@@ -20,36 +20,49 @@
   <!--Code example end-->
 
   <!--navigation-->
-  <div class="nav-wrap">
+  <div class="nav-wrap is-open">
     <nav class="nav">
       <ul class="nav__list nav-js">
-        <li class="has-sub l1">
-          <a href="#">О компании</a>
+        <li class="current has-sub l1 hover">
+          <a href="#">О компании (current)</a>
           <em class="nav__angle nav__angle-js">&#9660;</em>
           <!--submenu-->
-          <ul>
+          <ul style="display:block;">
             <li>
               <a href="#">О компании 1</a>
             </li>
-            <li class="has-sub l2">
-              <a href="#">О компании 2</a>
+            <li class="current has-sub l2 hover">
+              <a href="#">О компании 2 (current)</a>
               <em class="nav__angle nav__angle-js">&#9660;</em>
               <!--submenu-->
-              <ul>
-                <li>
-                  <a href="#">О компании 2.1</a>
-                </li>
-                <li class="has-sub l3">
-                  <a href="#"><span>О компании 2.2</span></a>
+              <ul style="display:block;">
+                <li class="has-sub">
+                  <a href="#">О компании 2.1 - Если в пункте будет сного текста, которы нужно перенести на другую строку</a>
                   <em class="nav__angle nav__angle-js">&#9660;</em>
                   <!--submenu-->
                   <ul>
                     <li>
-                      <a href="#">О компании 2.2.1</a>
+                      <a href="#">О компании 2.1.1</a>
                     </li>
                     <li>
-                      <!--<a href="#"><span>О компании 2.2.2</span></a>-->
-                      <span>О компании 2.2.2</span>
+                      <a href="#">О компании 2.1.2</a>
+                    </li>
+                    <li>
+                      <a href="#">О компании 2.1.3</a>
+                    </li>
+                  </ul>
+                  <!--submenu end-->
+                </li>
+                <li class="current has-sub l3 hover">
+                  <a href="#">О компании 2.2 (current)</a>
+                  <em class="nav__angle nav__angle-js">&#9660;</em>
+                  <!--submenu-->
+                  <ul style="display:block;">
+                    <li>
+                      <a href="#">О компании 2.2.1</a>
+                    </li>
+                    <li class="current">
+                      <span>О компании 2.2.2 (current)</span>
                     </li>
                     <li>
                       <a href="#">О компании 2.2.3</a>
@@ -86,7 +99,7 @@
                   <a href="#">Новости 2.1</a>
                 </li>
                 <li class="has-sub l3">
-                  <a href="#"><span>Новости 2.2</span></a>
+                  <a href="#">Новости 2.2</a>
                   <em class="nav__angle nav__angle-js">&#9660;</em>
                   <!--submenu-->
                   <ul>
@@ -94,8 +107,7 @@
                       <a href="#">Новости 2.2.1</a>
                     </li>
                     <li>
-                      <!--<a href="#"><span>Новости 2.2.2</span></a>-->
-                      <span>Новости 2.2.2</span>
+                      <a href="#">Новости 2.2.2</a>
                     </li>
                     <li>
                       <a href="#">Новости 2.2.3</a>
@@ -116,14 +128,15 @@
           <!--submenu end-->
         </li>
         <li class="l1">
-          <a href="#"><span>Нет подменю 1</span></a>
+          <a href="#">Нет подменю 1</a>
         </li>
         <li class="l1">
-          <a href="#"><span>Нет подменю 2</span></a>
+          <a href="#">Нет подменю 2</a>
         </li>
       </ul>
     </nav>
   </div>
+  <div class="nav-overlay"></div>
   <!--navigation end-->
 
   <div class="separator"><br><br><br></div>

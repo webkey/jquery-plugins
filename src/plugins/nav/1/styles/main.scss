@@ -15,88 +15,101 @@
 /* ==================================== */
 /* ============ NAVIGATION ============ */
 /* ==================================== */
-$header-height: 6rem;
 
 /* navigation */
+$nav-height: 6rem;
+
+// Nav wrapper
 .nav-wrap {
+  position: relative;
+  // Поднять над контентом
+  z-index: 5;
 
-  &::before {
-    position: absolute;
-    content: "";
-    display: none;
-    top: 0;
-    left: 20px;
-    right: 20px;
-    border: solid $border-color;
-    border-width: 0;
-
-    @include media("<tab") {
-      display: block;
-    }
-  }
-}
-
-.nav-wrap {
-  display: inline-block;
-  vertical-align: top;
-
+  // ------ бутерброд -----------------------------------------
   @include media("<tab") {
-    //display: flex;
-    //flex-direction: column;
     position: fixed;
     display: block;
     left: 0;
-    bottom: 0;
-    width: 100%;
-    height: calc(100% - #{$header-height});
-    padding: 0 0 5rem;
-    background-color: $base-color;
-    opacity: 0;
-    visibility: hidden;
+    top: 0;
+    width: 48rem;
+    max-width: 100%;
+    height: 100%;
+    background-color: $bg-color;
+    z-index: 999;
     transition: {
-      property: opacity, visibility;
+      property: opacity, visibility, trasform;
       duration: $animation-speed;
     };
+
+    opacity: 0;
+    $translate: -100%, 0;
+    transform: translate($translate);
+    transform: translate3d($translate, 0);
   }
 
-  &.active {
-    @include media("<tab");
+  &.is-open {
+    // ------ бутерброд -----------------------------------------
     @include media("<tab") {
       opacity: 1;
-      visibility: visible;
+      $translate: 0, 0;
+      transform: translate($translate);
+      transform: translate3d($translate, 0);
     }
-  }
-  &::before {
-    border-bottom-width: 1px;
   }
 }
 
+// Overlay
+.nav-overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(#000, 0.5);
+  z-index: 998;
+  transition: opacity $animation-speed;
+
+  opacity: 0;
+  pointer-events: none;
+
+  display: none;
+
+  // ------ бутерброд -----------------------------------------
+  @include media("<tab") {
+    display: block;
+  }
+}
+
+.nav-wrap.is-open ~ .nav-overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+// Navigation
 .nav {
   position: relative;
-  width: 100%;
 
+  // ------ бутерброд -----------------------------------------
   @include media("<tab") {
-    flex: 1 1;
     padding: 0;
     height: 100%;
-    //display: flex;
-    //justify-content: center;
-    //align-items: center;
     overflow-x: hidden;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
 }
 
+
+// Navigation list
 .nav__list {
-  $nav-inner-space: 1.5rem 3rem;
+  $nav-inner-space: 1.5rem 2rem;
   $nav-arrow-size: 4.2rem;
   $nav-item-space: 0.5em 0;
   $nav-item-indent: 0.4;
 
-  text-align: left;
+  display: flex;
+  flex-wrap: wrap;
   cursor: default;
-  @include clear;
 
   // Все ul
   &, & ul {
@@ -107,12 +120,9 @@ $header-height: 6rem;
     line-height: 2.4rem;
   }
 
-  // Для девайсов навигацию трансформировать в "бутерброд"
+  // ------ бутерброд -----------------------------------------
   @include media("<tab") {
-    //width: 100%;
-    max-width: 100%;
-    width: 42rem;
-    margin: 0 auto;
+    display: block;
     padding: 4rem 0;
   }
 
@@ -121,8 +131,9 @@ $header-height: 6rem;
   li {
     position: relative;
 
-    // Для планшетных разрешений и ниже
+    // ------ бутерброд -----------------------------------------
     @include media("<tab") {
+      // Слева текст, справа стрелка
       display: flex;
       flex-wrap: wrap;
       align-items: center;
@@ -152,42 +163,41 @@ $header-height: 6rem;
   a,
   li > span {
     display: block; // Для разрешений выше планшетных ссылка должна занимать всю ширину
-    padding-right: 1rem; // Для планшетных разрешений и ниже
+    padding: 0.5rem #{nth($nav-inner-space, 2)};
 
-    // Для разрешений выше планшетных
-    // добавить внутренние отступы на ссылки
-    @include media(">=tab") {
-      padding: #{nth($nav-item-space, 1)} #{nth($nav-inner-space, 2)};
+    // ------ бутерброд -----------------------------------------
+    @include media("<tab") {
+      padding: 0 1rem 0 0;
     }
   }
 
-  // Если в пункте есть стрелка,
-  // то нужно ограничить максимальную ширину "a"
   li.has-sub {
     & > a,
     & > span {
-      max-width: calc(100% - #{$nav-arrow-size});
+      padding-right: $nav-arrow-size;
 
-      // Для разрешений выше планшетных
-      // Для пунктов со стрелками,
-      // убрать ограничение максимальной ширины для "a"
-      @include media(">=tab") {
-        max-width: none;
+      // ------ бутерброд -----------------------------------------
+      @include media("<tab") {
+        padding-right: 1rem;
+
+        // Если в пункте есть стрелка,
+        // то нужно ограничить максимальную ширину "a"
+        max-width: calc(100% - #{$nav-arrow-size});
       }
     }
   }
 
   // Вложенные ul (sub menu)
   ul {
-    flex-shrink: 1;
+    flex-shrink: 0;
     width: 100%;
     flex-basis: 100%;
     display: none;
 
     // transition
-    will-change: opacity;
     transition: opacity $animation-speed, visibility $animation-speed;
 
+    // Important!
     // Для разрешений выше планшетных
     @include media(">=tab") {
       display: block !important; // Важно! Перебить инлайновые стили установленные скпиптом
@@ -201,35 +211,27 @@ $header-height: 6rem;
 
       opacity: 0;
       visibility: hidden;
-      pointer-events: none; // Работает без анимации
+      pointer-events: none; // На это ствойство не добавлять анимацию
     }
 
     // Позицирование подменю
     // ВТОРОГО и глубже уровней
     ul {
-      // Для разрешений выше планшетных
-      @include media(">=tab") {
-        left: 100%;
-        top: -0.5rem;
+      left: 100%;
+      top: -0.5rem;
+
+      // ------ бутерброд -----------------------------------------
+      @include media("<tab") {
+        left: auto;
+        top: auto;
       }
     }
 
     // Пункты ВТОРГО уровня и глубще
     li {
-      // Для разрешений выше планшетных
-      @include media(">=tab") {
-        border-top: 1px solid $bg-color-light;
-
-        &:first-child {
-          border-top: none;
-        }
-      }
-    }
-
-    a,
-    li > span {
-      @include media(">=tab") {
-        padding-right: $nav-arrow-size;
+      // ------ бутерброд -----------------------------------------
+      @include media("<tab") {
+        // Если нужно перебить стили
       }
     }
   }
@@ -242,7 +244,6 @@ $header-height: 6rem;
   .no-js & li:hover > ul {
     // Для разрешений выше планшетных
     @include media(">=tab") {
-      display: block;
       opacity: 1;
       visibility: visible;
       pointer-events: auto;
@@ -251,21 +252,26 @@ $header-height: 6rem;
 
   // Стрелка для разворачивания подменю
   .nav__angle {
+    position: absolute;
+    top: 50%;
+    right: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 1;
+    flex-shrink: 0;
     font-size: 0;
     line-height: 0;
     height: $nav-arrow-size;
     width: $nav-arrow-size;
-    margin: -1rem 0;
+    margin-top: -#{round-float($nav-arrow-size / 2, 1)};
     padding: 0;
     text-align: center;
     cursor: pointer;
     color: $text-color;
+    transform: rotate(-0.25turn);
     transition: color $animation-speed;
     -webkit-tap-highlight-color: transparent;
+    pointer-events: none;
     user-select: none;
     outline: none;
 
@@ -300,13 +306,13 @@ $header-height: 6rem;
     }
 
     // Для разрешений выше планшетных
-    @include media(">=tab") {
-      position: absolute;
-      top: 50%;
-      right: 0;
-      margin-top: -#{round-float($nav-arrow-size / 2, 1)};
-      transform: rotate(-0.25turn);
-      pointer-events: none;
+    @include media("<tab") {
+      position: relative;
+      top: auto;
+      right: auto;
+      margin-top: 0;
+      transform: rotate(0);
+      pointer-events: auto;
     }
   }
 
@@ -337,19 +343,7 @@ $header-height: 6rem;
   // li ПЕРВОГО уровня
   // -----------------
   & > li {
-    // Для разрешений выше планшетных
-    @include media(">=tab") {
-      float: left;
-      margin: 0;
-      padding: 0;
-
-      &:first-child,
-      &:last-child {
-        margin: 0;
-        padding: 0;
-      }
-    }
-
+    // ------ бутерброд -----------------------------------------
     @include media("<tab") {
       padding: 0.5em 0 0.6em;
       border-top: 1px solid $border-color;
@@ -357,12 +351,18 @@ $header-height: 6rem;
     }
 
     &:first-child {
-      margin-top: 0;
-      border-top: none;
+      // ------ бутерброд -----------------------------------------
+      @include media("<tab") {
+        margin-top: 0;
+        border-top: none;
+      }
     }
 
     &:last-child {
-      margin-bottom: 0;
+      // ------ бутерброд -----------------------------------------
+      @include media("<tab") {
+        margin-bottom: 0;
+      }
     }
 
     // Все "a" и "span" первого уровня
@@ -371,38 +371,20 @@ $header-height: 6rem;
     & > span {
       // Для разрешений выше планшетных
       @include media(">=tab") {
-        display: block;
         display: flex;
         align-items: center;
-        height: $header-height;
-        padding: 1rem 0.4rem;
-        font-size: 1.8rem;
+        height: $nav-height;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        font-size: 2.4rem;
         line-height: round-float(30 / 24, 2);
         color: $base-color;
         text-decoration: none;
         transition: box-shadow $animation-speed;
-
-        // Special for a home page
-        .home-page & {
-          color: $text-color;
-        }
-      }
-
-      @include media(">=net") {
-        padding: 1rem 1rem;
-      }
-
-      @include media(">=lap-s") {
-        padding: 1rem 1.2rem;
-        font-size: 2rem;
-      }
-
-      @include media(">=lap") {
-        padding: 1rem 1.5rem;
-        font-size: 2.4rem;
       }
 
       // Для планшетных разрешений и нижу
+      // ------ бутерброд -----------------------------------------
       @include media("<tab") {
         font-size: 2.8rem;
         line-height: 3.6rem;
@@ -411,10 +393,7 @@ $header-height: 6rem;
 
     // Стрелка для разворачивания подменю
     & > .nav__angle {
-      // Для разрешений выше планшетных
-      @include media(">=tab") {
-        display: none;
-      }
+      // Если стили стрелок первого уровня навигаци отличаются, от остальных
     }
 
     // Hover
@@ -424,11 +403,6 @@ $header-height: 6rem;
       @include media(">=tab") {
         color: $base-color;
         box-shadow: inset 0 -4px 0 $base-color;
-
-        // Special for a home page
-        .home-page & {
-          color: $text-color;
-        }
       }
     }
 
@@ -456,4 +430,5 @@ $header-height: 6rem;
     }
   }
 }
+
 /* navigation end */
