@@ -13,17 +13,19 @@
   <p class="warning">{{Важная информация}}</p>
 
   <h3>nav 1</h3>
+
   <!--Code example-->
-  <pre class="snippet"><code class="html">&lt;div class="nav nav-js"&gt;
+  <pre class="snippet"><code class="html">&lt;div class="nav nav-1-js"&gt;
 	{{nav code}}
 &lt;/div&gt;</code></pre>
   <!--Code example end-->
 
   <!--navigation-->
-  <div class="nav-wrap is-open">
+  <a href="#nav1" class="open-nav open-nav-1-js">Open menu</a>
+  <div class="nav-wrap" id="nav1">
     <nav class="nav">
-      <ul class="nav__list nav-js">
-        <li class="current has-sub l1 hover">
+      <ul class="nav__list nav-1-js">
+        <li class="current has-sub l1">
           <a href="#">О компании (current)</a>
           <em class="nav__angle nav__angle-js">&#9660;</em>
           <!--submenu-->
@@ -31,7 +33,7 @@
             <li>
               <a href="#">О компании 1</a>
             </li>
-            <li class="current has-sub l2 hover">
+            <li class="current has-sub l2">
               <a href="#">О компании 2 (current)</a>
               <em class="nav__angle nav__angle-js">&#9660;</em>
               <!--submenu-->
@@ -53,7 +55,7 @@
                   </ul>
                   <!--submenu end-->
                 </li>
-                <li class="current has-sub l3 hover">
+                <li class="current has-sub l3">
                   <a href="#">О компании 2.2 (current)</a>
                   <em class="nav__angle nav__angle-js">&#9660;</em>
                   <!--submenu-->
@@ -136,8 +138,147 @@
       </ul>
     </nav>
   </div>
+
+  <div>
+    <br><br><br><br><br><br><br><br><br><br><br><br>
+  </div>
+
+  <h3>nav 2</h3>
+
+  <!--Code example-->
+  <pre class="snippet"><code class="html">&lt;div class="nav nav-2-js"&gt;
+	{{nav code}}
+&lt;/div&gt;</code></pre>
+  <!--Code example end-->
+
+  <a href="#nav2" class="open-nav open-nav-2-js">Open menu</a>
+
+  <div class="nav-wrap" id="nav2">
+    <nav class="nav">
+      <ul class="nav__list nav-2-js">
+        <li class="current has-sub l1">
+          <a href="#">О компании (current)</a>
+          <em class="nav__angle nav__angle-js">&#9660;</em>
+          <!--submenu-->
+          <ul style="display:block;">
+            <li>
+              <a href="#">О компании 1</a>
+            </li>
+            <li class="current has-sub l2">
+              <a href="#">О компании 2 (current)</a>
+              <em class="nav__angle nav__angle-js">&#9660;</em>
+              <!--submenu-->
+              <ul style="display:block;">
+                <li class="has-sub">
+                  <a href="#">О компании 2.1 - Если в пункте будет сного текста, которы нужно перенести на другую строку</a>
+                  <em class="nav__angle nav__angle-js">&#9660;</em>
+                  <!--submenu-->
+                  <ul>
+                    <li>
+                      <a href="#">О компании 2.1.1</a>
+                    </li>
+                    <li>
+                      <a href="#">О компании 2.1.2</a>
+                    </li>
+                    <li>
+                      <a href="#">О компании 2.1.3</a>
+                    </li>
+                  </ul>
+                  <!--submenu end-->
+                </li>
+                <li class="current has-sub l3">
+                  <a href="#">О компании 2.2 (current)</a>
+                  <em class="nav__angle nav__angle-js">&#9660;</em>
+                  <!--submenu-->
+                  <ul style="display:block;">
+                    <li>
+                      <a href="#">О компании 2.2.1</a>
+                    </li>
+                    <li class="current">
+                      <span>О компании 2.2.2 (current)</span>
+                    </li>
+                    <li>
+                      <a href="#">О компании 2.2.3</a>
+                    </li>
+                  </ul>
+                  <!--submenu end-->
+                </li>
+                <li>
+                  <a href="#">О компании 2.3</a>
+                </li>
+              </ul>
+              <!--submenu end-->
+            </li>
+            <li>
+              <a href="#">О компании 3</a>
+            </li>
+          </ul>
+          <!--submenu end-->
+        </li>
+        <li class="has-sub l1">
+          <a href="#">Новости</a>
+          <em class="nav__angle nav__angle-js">&#9660;</em>
+          <!--submenu-->
+          <ul>
+            <li>
+              <a href="#">Новости 1</a>
+            </li>
+            <li class="has-sub l2">
+              <a href="#">Новости 2</a>
+              <em class="nav__angle nav__angle-js">&#9660;</em>
+              <!--submenu-->
+              <ul>
+                <li>
+                  <a href="#">Новости 2.1</a>
+                </li>
+                <li class="has-sub l3">
+                  <a href="#">Новости 2.2</a>
+                  <em class="nav__angle nav__angle-js">&#9660;</em>
+                  <!--submenu-->
+                  <ul>
+                    <li>
+                      <a href="#">Новости 2.2.1</a>
+                    </li>
+                    <li>
+                      <a href="#">Новости 2.2.2</a>
+                    </li>
+                    <li>
+                      <a href="#">Новости 2.2.3</a>
+                    </li>
+                  </ul>
+                  <!--submenu end-->
+                </li>
+                <li>
+                  <a href="#">Новости 2.3</a>
+                </li>
+              </ul>
+              <!--submenu end-->
+            </li>
+            <li>
+              <a href="#">Новости 3</a>
+            </li>
+          </ul>
+          <!--submenu end-->
+        </li>
+        <li class="l1">
+          <a href="#">Нет подменю 1</a>
+        </li>
+        <li class="l1">
+          <a href="#">Нет подменю 2</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <div>
+    <br><br><br><br><br><br><br><br><br><br>
+  </div>
+
+
   <div class="nav-overlay"></div>
   <!--navigation end-->
+  
+
 
   <div class="separator"><br><br><br></div>
 
