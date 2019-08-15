@@ -11,7 +11,7 @@ $(function () {
       drop: 'ul',
       siblings: false,
       onlyHasDrop: true,
-      condition: function () {
+      toggleClassCondition: function () {
         return window.innerWidth > 991; // Если ширина меньше 992 то классы не добавлять
       },
       timeout: {

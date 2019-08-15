@@ -23,7 +23,7 @@ $nav-height: 6rem;
 .nav-wrap {
   position: relative;
   // Поднять над контентом
-  z-index: 5;
+  //z-index: 5;
 
   // ------ бутерброд -----------------------------------------
   @include media("<tab") {
@@ -246,6 +246,7 @@ $nav-height: 6rem;
       opacity: 1;
       visibility: visible;
       pointer-events: auto;
+      z-index: 5;
     }
   }
 

@@ -120,8 +120,17 @@
           });
         },
         clearHoverClassOnResize = function () {
+          var resizeByWidth = true;
+
+          var prevWidth = -1;
           $(window).on('resize', function () {
-            removeClasses($(config.item, $element).filter('.' + config.modifiers.hover));
+            var currentWidth = $('body').outerWidth();
+            resizeByWidth = prevWidth !== currentWidth;
+            if (resizeByWidth) {
+              removeClasses($(config.item, $element).filter('.' + config.modifiers.hover));
+              // $(window).trigger('resizeByWidth');
+              prevWidth = currentWidth;
+            }
           });
         },
         removeByClickOutside = function () {
@@ -406,6 +415,11 @@
       hover: 'hover',
       hoverNext: 'hover_next',
       hoverPrev: 'hover_prev'
+    },
+
+    // Определение позиции подменю относительно родительского элеметна
+    position: {
+      
     }
   };
 
