@@ -144,6 +144,14 @@
   transition: color 0.2s;
 }
 
+.nav__list a:hover {
+  color: #ee6e73;
+}
+
+.nav__list a.focus, .nav__list a:focus {
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}
+
 .nav__list a,
 .nav__list li > span {
   display: block;
@@ -247,7 +255,6 @@
           transform: rotate(-0.25turn);
   transition: color 0.2s;
   -webkit-tap-highlight-color: transparent;
-  pointer-events: none;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -278,9 +285,13 @@
   background: linear-gradient(to bottom, #ee6e73 0%, #f39c9f 100%);
 }
 
-.no-touchevents .nav__list .nav__angle:hover::after {
+.nav__list .nav__angle:hover::after {
   background: #f39c9f;
   background: linear-gradient(to bottom, #f39c9f 0%, #ee6e73 100%);
+}
+
+.nav__list .nav__angle.focus::after, .nav__list .nav__angle:focus::after {
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
 }
 
 li.is-open > .nav__angle {
@@ -351,7 +362,6 @@ li.is-open > .nav__angle {
     line-height: 1.25;
     color: #ee6e73;
     text-decoration: none;
-    transition: box-shadow 0.2s;
   }
 }
 

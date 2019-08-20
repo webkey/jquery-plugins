@@ -79,7 +79,7 @@
 }
 
 .no-touchevents .clapNav__list a:focus span {
-  outline: #0080ff auto 5px;
+  outline: #268fff auto 5px;
 }
 
 .clapNav__list li.has-drop > .clapNav__tab > a {
@@ -163,7 +163,7 @@ li.is-open > .clapNav__tab .clapNav__angle i {
 }
 
 .clapNav__angle:focus {
-  outline: #0080ff auto 5px;
+  outline: #268fff auto 5px;
 }
 
 @media (min-width: 992px) {

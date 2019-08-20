@@ -196,7 +196,8 @@ $text-color-light: #aaa !default;
 $title-color: #ee6e73 !default;
 // ----------------------------------------------------
 $link-color: blue !default;
-$focus-color: #0080ff !default;
+$focus-color: #268fff !default;
+$focus-shadow: 0 0 0 0.2rem rgba(#268fff, 0.5) !default;
 // ----------------------------------------------------
 $border-color: #aaa !default;
 $mark-color: #ff0b4f !default;

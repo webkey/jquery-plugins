@@ -354,7 +354,23 @@
       <div><i class="gray">Description:</i></div>
       <div>Описание</div>
       <div>
-        <pre class="snippet"><code class="javascript">afterInit: function (e, el) {}</code></pre>
+        <pre class="snippet"><code class="javascript">afterInit: function (e, nav) {}</code></pre>
+      </div>
+    </li>
+    <li>
+      <div><b>afterHover</b></div>
+      <div><i class="gray">Description:</i></div>
+      <div>Вызов сразу после добавления класса hover:</div>
+      <div>
+        <pre class="snippet"><code class="javascript">afterHover: function (e, nav, currentItem) {}</code></pre>
+      </div>
+    </li>
+    <li>
+      <div><b>afterBlur</b></div>
+      <div><i class="gray">Description:</i></div>
+      <div>Вызов сразу после удаления класса hover:</div>
+      <div>
+        <pre class="snippet"><code class="javascript">afterBlur: function (e, nav, currentItem) {}</code></pre>
       </div>
     </li>
   </ul>
@@ -382,5 +398,5 @@
 </div>
 
 @@include('../../../_tpl_layout_foot.html', {
-  "pathJs": ["js/jquery.nav.js", "js/example.js"]
+  "pathJs": ["../../../js/jquery-ui/jquery-ui.min.js", "js/jquery.nav.js", "js/example.js"]
 })

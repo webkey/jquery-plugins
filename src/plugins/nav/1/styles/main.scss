@@ -155,6 +155,14 @@ $nav-height: 6rem;
     color: inherit;
     text-decoration: none;
     transition: color $animation-speed;
+
+    &:hover {
+      color: $base-color;
+    }
+
+    &.focus, &:focus {
+      box-shadow: #{$focus-shadow};
+    }
   }
 
   // Все "a" и "span"
@@ -209,7 +217,7 @@ $nav-height: 6rem;
       box-shadow: 0 5px 10px rgba(#000, 0.2);
 
       opacity: 0;
-      visibility: hidden;
+      visibility: hidden; // При переводе фокуса табом, элементы внутри скрытого дропа игнорируются
       pointer-events: none; // На это ствойство не добавлять анимацию
     }
 
@@ -271,7 +279,7 @@ $nav-height: 6rem;
     transform: rotate(-0.25turn);
     transition: color $animation-speed;
     -webkit-tap-highlight-color: transparent;
-    pointer-events: none;
+    //pointer-events: none;
     user-select: none;
     outline: none;
 
@@ -293,9 +301,16 @@ $nav-height: 6rem;
       @include linear-gradient(to bottom, $base-color 0%, lighten($base-color, 10%) 100%)
     }
 
-    .no-touchevents &:hover {
+    &:hover {
       &::after {
         @include linear-gradient(to bottom, lighten($base-color, 10%) 0%, $base-color 100%)
+      }
+    }
+
+    &.focus,
+    &:focus {
+      &::after {
+        box-shadow: #{$focus-shadow};
       }
     }
 
@@ -380,7 +395,7 @@ $nav-height: 6rem;
         line-height: round-float(30 / 24, 2);
         color: $base-color;
         text-decoration: none;
-        transition: box-shadow $animation-speed;
+        //transition: box-shadow $animation-speed;
       }
 
       // Для планшетных разрешений и нижу

@@ -11,24 +11,34 @@ $(function () {
       drop: 'ul',
       siblings: false,
       onlyHasDrop: true,
+      position: true,
+      observePosition: true,
       toggleClassCondition: function () {
         return window.innerWidth > 991; // Если ширина меньше 992 то классы не добавлять
       },
       timeout: {
-        add: 50,
-        remove: 200
+        add: 1000,
+        remove: 1000
       },
 
       afterInit: function (e, el, param) {
-        console.log("jQuery Plugin Created !!! It's fired afterInit event");
-      }
+        console.log("Nav 1 afterInit");
+      },
+
+      afterHover: function (e, nav, currentItem) {
+        // console.log("afterHover:currentItem: ", currentItem);
+      },
+
+      afterBlur: function (e, nav, currentItem) {
+        // console.log("afterBlur:currentItem: ", currentItem);
+      },
     });
   }
 
   setTimeout(function () {
     $('.nav-2-js').nav({
       afterInit: function (e, el, param) {
-        console.log("jQuery Plugin Created !!! It's fired afterInit event");
+        console.log("Nav 2 afterInit");
       }
     });
   }, 2000);
