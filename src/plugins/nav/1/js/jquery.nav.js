@@ -313,7 +313,7 @@
                 //    (для тачскринов)
                 // ====================================================
                 if (e.handleObj.origType === "touchend") {
-                  // console.log('Touchend to: ', $curItem);
+                  // console.log('>>>touchend<<<');
 
                   // Если пункт уже АКТИВЕН
                   // ====================================================
@@ -353,19 +353,25 @@
                 // События на ВВОД курсора
                 // ====================================================
                 if (e.handleObj.origType === "mouseenter") {
-                  // Удалить БЕЗ ЗАДЕРЖКИ все классы hover со всех активных пунктов,
-                  // кроме ТЕКУЩЕГО и РОДИТЕЛЬСКИХ
-                  console.log("mouseenter");
-                  // ====================================================
-                  var $activeItems = $item.filter('.' + config.modifiers.hover).not($curItem).not($curParentItems);
-                  console.log("$activeItems: ", $activeItems);
-                  forceRemoveClassFrom($activeItems, true);
+                  console.log('>>>mouseenter<<<');
 
                   // Перед добавлением класса нужно
-                  // ОТМЕНИТЬ УДАЛЕНИЯ класса С ЗАДЕРЖКОЙ c текущего пункта,
-                  // если функция удаления запущена.
+                  // ОТМЕНИТЬ УДАЛЕНИЯ класса С ЗАДЕРЖКОЙ c текущего пункта.
+                  // Так как событие всплывая отрабатывает и на РОДИТЕЛЬСКИХ пунктах,
+                  // то и на них будет отменено событие УДАЛЕНИЯ класса С ЗАДЕРЖКОЙ.
                   // ====================================================
                   clearTimeoutRemoveClassFrom($curItem);
+
+                  // Отлавливать событие нужно только на последнем пункте
+                  // Для этого добавим в объект "stopEventMouseenter" и будем проверять при всплытие события его наличие
+                  if (e.stopEventMouseenter) return;
+                  e.stopEventMouseenter = true;
+
+                  // Удалить БЕЗ ЗАДЕРЖКИ все классы hover со всех активных пунктов,
+                  // кроме ТЕКУЩЕГО и РОДИТЕЛЬСКИХ
+                  // ====================================================
+                  var $activeItems = $item.filter('.' + config.modifiers.hover).not($curItem).not($curParentItems);
+                  forceRemoveClassFrom($activeItems);
 
                   // Если пункт УЖЕ АКТИВЕН,
                   // то повторный ввод курсора в его область
@@ -380,6 +386,13 @@
                 }
 
                 if (e.handleObj.origType === "mouseleave") {
+                  console.log('>>>mouseleave<<<', $curItem);
+
+                  // Отлавливать событие нужно только на последнем пункте
+                  // Для этого добавим в объект "stopEventMouseleave" и будем проверять при всплытие события его наличие
+                  // if (e.stopEventMouseleave) return;
+                  // e.stopEventMouseleave = true;
+                  // console.log('>>>mouseenter after stop event<<<');
 
                   // Перед удалением класса нужно
                   // ОТМЕНИТЬ ДОБАВЛЕНИЕ класса С ЗАДЕРЖКОЙ c текущего пункта,
@@ -392,7 +405,6 @@
 
                   // createTimeoutRemoveClassFrom();
                   $curItem.prop('removeClassWithTimeout', setTimeout(function () {
-
                     // Удалить все классы hover
                     // ====================================================
                     removeClassesFrom($item.filter('.' + config.modifiers.hover).not($curParentItems));

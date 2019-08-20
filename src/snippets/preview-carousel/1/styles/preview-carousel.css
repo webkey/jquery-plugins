@@ -91,22 +91,18 @@
   right: 0;
   bottom: 0;
   left: 0;
-  display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
 .tile-slider__item {
   position: static;
-  display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  -ms-flex-align: end;
+      align-items: flex-end;
+  -ms-flex: 1;
+      flex: 1;
   height: 100%;
 }
 
@@ -151,9 +147,8 @@
   top: 50%;
   left: 50%;
   text-align: center;
-  -webkit-transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
 }
 
 .tile-slider__more-icon {
@@ -174,9 +169,8 @@
   position: relative;
   z-index: 4;
   bottom: 0;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  -ms-flex: 1;
+      flex: 1;
   min-height: 7px;
   opacity: 0;
   will-change: opacity;

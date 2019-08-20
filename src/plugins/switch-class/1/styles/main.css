@@ -73,24 +73,18 @@ html.css-scroll-fixed:not(.open-only-mob) {
   margin: 0 auto;
   padding: 80px 20px 40px;
   background-color: white;
-  -webkit-transform: scale(0.85);
-      -ms-transform: scale(0.85);
-          transform: scale(0.85);
-  -webkit-transform: scale3d(0.85, 0.85, 1);
-          transform: scale3d(0.85, 0.85, 1);
+  -ms-transform: scale(0.85);
+      transform: scale(0.85);
+  transform: scale3d(0.85, 0.85, 1);
   will-change: transform;
-  transition-property: -webkit-transform;
   transition-property: transform;
-  transition-property: transform, -webkit-transform;
   transition-duration: 0.2s;
 }
 
 .popup-default.active .popup-default__layout, .popup-default.is-open .popup-default__layout {
-  -webkit-transform: scale(1);
-      -ms-transform: scale(1);
-          transform: scale(1);
-  -webkit-transform: scale3d(1, 1, 1);
-          transform: scale3d(1, 1, 1);
+  -ms-transform: scale(1);
+      transform: scale(1);
+  transform: scale3d(1, 1, 1);
 }
 
 .popup-default__close {
@@ -119,15 +113,13 @@ html.css-scroll-fixed:not(.open-only-mob) {
 }
 
 .popup-default__close:before {
-  -webkit-transform: rotate(45deg);
-      -ms-transform: rotate(45deg);
-          transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
 }
 
 .popup-default__close:after {
-  -webkit-transform: rotate(-45deg);
-      -ms-transform: rotate(-45deg);
-          transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+      transform: rotate(-45deg);
 }
 
 .popup-default__close:hover {
