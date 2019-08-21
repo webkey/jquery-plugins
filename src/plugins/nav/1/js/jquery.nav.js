@@ -203,8 +203,9 @@
         forceRemoveClassFrom = function () {
           // Если на вход функции не передавать элемент,
           // то очистка будет производиться на всех пунктах
-          var item = arguments[0] || $(config.item, $element);
-          var $item = $(item);
+          var $item = arguments[0] || $(config.item, $element);
+          var arg1 = arguments[0];
+          console.log("arg1: ", arg1);
           // Если вторым параметром передать true,
           // классы будут удалены и с дочерних пунктов
           var cond = arguments[1];
@@ -264,8 +265,9 @@
           $html.on('click', function (event) {
 
             if (_classIsAdded && !config.removeOutsideClick) return;
+            if ($(event.target).closest($(config.item)).length) return;
 
-            // if ($(event.target).closest(self.$item.filter('.' + config.modifiers.hover)).length) return;
+            console.log('>>>click:outside<<<');
 
             forceRemoveClassFrom();
           });
@@ -314,21 +316,16 @@
                 // События на TOUCHEND (для тачскринов)
                 // ====================================================
                 if (e.handleObj.origType === "touchend") {
-                  console.log("$curItem.prop('isActive'): ", $curItem.prop('isActive'));
                   if (!$curItem.prop('isActive')) {
                     // Если пункт НЕАКТИВЕН
                     // ====================================================
 
                     // Удалить БЕЗ ЗАДЕРЖКИ все классы hover со всех активных пунктов,
-                    // кроме ТЕКУЩЕГО и РОДИТЕЛЬСКИХ.
+                    // кроме ТЕКУЩЕГО.
                     // ====================================================
-                    // var $targetItems = $item.filter('.' + config.modifiers.hover).not($curItem).not($curParentItems);
-                    var $targetItems = $item.filter('.' + config.modifiers.hover).not($curItem);
-                    console.log("$curItem: ", $curItem);
-                    console.log("$targetItems: ", $targetItems);
                     if (!e.stopEventTouchend) {
                       e.stopEventTouchend = true;
-                      removeClassesFrom($targetItems);
+                      removeClassesFrom($item.filter('.' + config.modifiers.hover).not($curItem));
                     }
 
                     // Если текущий пункт не содержит подменю,
@@ -381,8 +378,7 @@
                   // Удалить БЕЗ ЗАДЕРЖКИ все классы hover со всех активных пунктов,
                   // кроме ТЕКУЩЕГО и РОДИТЕЛЬСКИХ.
                   // ====================================================
-                  var $targetItems = $item.filter('.' + config.modifiers.hover).not($curItem).not($curParentItems);
-                  forceRemoveClassFrom($targetItems);
+                  forceRemoveClassFrom($item.filter('.' + config.modifiers.hover).not($curItem).not($curParentItems));
 
                   // ЗАПУСТИТЬ функцию ДОБАВЛЕНИЯ класса С ЗАДЕРЖКОЙ
                   // ====================================================
@@ -410,7 +406,10 @@
           // ====================================================
           $element.off('click', config.angle)
               .on('click', config.angle, function (e) {
-                var $curItem = $(this);
+                var $curItem = $(this).closest(config.item);
+
+                console.log('>>>click<<<');
+                // console.log("$curItem: ", $curItem);
 
                 // Опция toggleClassCondition должна иметь значение true,
                 // чтобы отрабатывало переключение классов.
@@ -426,31 +425,32 @@
                 // ====================================================
                 if (config.onlyHasDrop && !$curItem.has(config.drop).length) return;
 
-                if ($curItem.prop('isActive')) {
-                  // Если пункт уже АКТИВЕН
-                  // ====================================================
-                } else {
+                console.log("$curItem.prop('isActive'): ", $curItem.prop('isActive'));
+                if (!$curItem.prop('isActive')) {
                   // Если пункт НЕАКТИВЕН
                   // ====================================================
-
-                  // Если при выводе курсора из пункта, курсор попадает на другой пункт,
-                  // то удаление класса с активных пунктов нужно производить без задержки
-                  // ====================================================
-                  forceRemoveClassFrom($curItem.siblings(), true);
-
-                  // Перед добавлением класса
-                  // очистить очередь удаления класса
-                  // (отменить удаления класса) c текущего пункта,
-                  // если она запущена
-                  // ====================================================
-                  var hoverTimeoutAddFn = $curItem.prop('removeClassWithTimeout');
-                  if (hoverTimeoutAddFn) {
-                    $curItem.prop('removeClassWithTimeout', clearTimeout(hoverTimeoutAddFn));
-                  }
 
                   // Родительские пункты текущего пункта
                   // ====================================================
                   var $curParentItems = $curItem.parentsUntil($element, config.item);
+
+                  // Удалить БЕЗ ЗАДЕРЖКИ все классы hover со всех активных пунктов,
+                  // кроме ТЕКУЩЕГО и РОДИТЕЛЬСКИХ.
+                  // ====================================================
+                  forceRemoveClassFrom($item.filter('.' + config.modifiers.hover).not($curItem).not($curParentItems));
+
+                  // ОТМЕНИТЬ ДОБАВЛЕНИЕ класса С ЗАДЕРЖКОЙ c текущего пункта,
+                  // если функция добавления запущена.
+                  // ====================================================
+                  clearTimeoutAddClassTo($curItem);
+
+                  // Добавить классы hover на ТЕКУЩИЙ пункт
+                  // ====================================================
+                  addClassesTo($curItem);
+                } else {
+
+                  console.log("$curItem: ", $curItem);
+                  forceRemoveClassFrom($curItem);
                 }
 
                 e.preventDefault();
@@ -564,7 +564,7 @@
     toggleClassCondition: true,
 
     // Удалять классы по клику вне активного пункта
-    removeOutsideClick: false,
+    removeOutsideClick: true,
 
     // Удалять классы по клику на клавишу Esc
     removeEscClick: true,
