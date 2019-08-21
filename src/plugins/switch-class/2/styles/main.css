@@ -73,18 +73,24 @@ html.css-scroll-fixed:not(.open-only-mob) {
   margin: 0 auto;
   padding: 80px 20px 40px;
   background-color: white;
-  -ms-transform: scale(0.85);
-      transform: scale(0.85);
-  transform: scale3d(0.85, 0.85, 1);
+  -webkit-transform: scale(0.85);
+      -ms-transform: scale(0.85);
+          transform: scale(0.85);
+  -webkit-transform: scale3d(0.85, 0.85, 1);
+          transform: scale3d(0.85, 0.85, 1);
   will-change: transform;
+  transition-property: -webkit-transform;
   transition-property: transform;
+  transition-property: transform, -webkit-transform;
   transition-duration: 0.2s;
 }
 
 .popup-default.active .popup-default__layout, .popup-default.is-open .popup-default__layout {
-  -ms-transform: scale(1);
-      transform: scale(1);
-  transform: scale3d(1, 1, 1);
+  -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+          transform: scale(1);
+  -webkit-transform: scale3d(1, 1, 1);
+          transform: scale3d(1, 1, 1);
 }
 
 .popup-default__close {
@@ -113,13 +119,15 @@ html.css-scroll-fixed:not(.open-only-mob) {
 }
 
 .popup-default__close:before {
-  -ms-transform: rotate(45deg);
-      transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
 }
 
 .popup-default__close:after {
-  -ms-transform: rotate(-45deg);
-      transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+          transform: rotate(-45deg);
 }
 
 .popup-default__close:hover {
@@ -186,12 +194,14 @@ li a[class*="tc__"]:hover {
 }
 
 .boxes {
+  display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  -ms-flex-align: stretch;
-      align-items: stretch;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
   margin-bottom: 40px;
 }
 
@@ -225,12 +235,15 @@ a.switch-class.swc-active {
   height: 120px;
   width: 100%;
   padding: 10px;
+  display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-align: center;
-      align-items: center;
-  -ms-flex-pack: center;
-      justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   border: 2px solid #c4c4c4;
 }
 

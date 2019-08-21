@@ -6,6 +6,11 @@ $(function () {
 
   var $nav = $('.nav-1-js');
   if ($nav.length) {
+    var timeout = {
+      add: 1000,
+      remove: 1000
+    };
+
     $nav.nav({
       container: '.nav__list-js',
       drop: 'ul',
@@ -17,28 +22,31 @@ $(function () {
         return window.innerWidth > 991; // Если ширина меньше 992 то классы не добавлять
       },
       timeout: {
-        add: 1000,
-        remove: 1000
+        add: timeout.add,
+        remove: timeout.remove
       },
 
       afterInit: function (e, el, param) {
-        console.log("Nav 1 afterInit");
+        console.log("%c Nav 1: afterInit ", 'background: #009fff; color: #f9ff00');
       },
 
       afterHover: function (e, nav, currentItem) {
         // console.log("afterHover:currentItem: ", currentItem);
       },
 
-      afterBlur: function (e, nav, currentItem) {
-        // console.log("afterBlur:currentItem: ", currentItem);
+      afterLeave: function (e, nav, currentItem) {
+        // console.log("afterLeave:currentItem: ", currentItem);
       },
     });
+
+    $('a', $nav).attr('title', 'Задержка добавления: ' + timeout.add + ', задержка удаления:' + timeout.remove);
+
   }
 
   setTimeout(function () {
     $('.nav-2-js').nav({
       afterInit: function (e, el, param) {
-        console.log("Nav 2 afterInit");
+        console.log("%c Nav 2: afterInit ", 'background: #f9ff00; color: #009fff');
       }
     });
   }, 2000);

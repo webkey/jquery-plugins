@@ -118,6 +118,7 @@
             _classIsAdded = true;
 
             $element.trigger('nav.afterHover', item);
+            console.log("~~ item afterHover: ", item);
           }
         },
         removeClassesFrom = function () {
@@ -140,7 +141,8 @@
 
             _classIsAdded = false;
 
-            $element.trigger('nav.afterBlur', item);
+            $element.trigger('nav.afterLeave', $item);
+            console.log("~~ item afterLeave: ", $item);
           }
         },
         createTimeoutAddClassTo = function () {
@@ -286,6 +288,9 @@
           $element
               .off('touchend mouseenter mouseleave', config.item)
               .on('touchend mouseenter mouseleave', config.item, function (e) {
+
+                console.log('%c >>>' + e.handleObj.origType + '<<< ', 'background: #222; color: #bada55');
+
                 var $curItem = $(this);
 
                 // Опция toggleClassCondition должна иметь значение true,
@@ -296,87 +301,88 @@
                 var condition = (typeof config.toggleClassCondition === "function") ? config.toggleClassCondition() : config.toggleClassCondition;
                 if (!condition) return;
 
-                // Если:
-                // 1) в настройках указанно, что нужно проводить проверку на наличие подменю;
-                // 2) текущий пункт не содержит подменю;
-                // то выполнение функции прекратить
+                // Выполнение функции прекратить если:
+                // 1) в настройках указанно, что нужно проводить проверку на наличие подменю:
+                // 2) текущий пункт не содержит подменю.
                 // ====================================================
                 if (config.onlyHasDrop && !$curItem.has(config.drop).length) return;
-
-                // console.log("event.handleObj.origType: ", event.handleObj.origType);
 
                 // Родительские пункты текущего пункта
                 // ====================================================
                 var $curParentItems = $curItem.parentsUntil($element, config.item);
 
-                // События на TOUCHEND
-                //    (для тачскринов)
+                // События на TOUCHEND (для тачскринов)
                 // ====================================================
                 if (e.handleObj.origType === "touchend") {
-                  // console.log('>>>touchend<<<');
+                  console.log("$curItem.prop('isActive'): ", $curItem.prop('isActive'));
+                  if (!$curItem.prop('isActive')) {
+                    // Если пункт НЕАКТИВЕН
+                    // ====================================================
 
-                  // Если пункт уже АКТИВЕН
-                  // ====================================================
-                  if ($curItem.prop('isActive')) {
+                    // Удалить БЕЗ ЗАДЕРЖКИ все классы hover со всех активных пунктов,
+                    // кроме ТЕКУЩЕГО и РОДИТЕЛЬСКИХ.
+                    // ====================================================
+                    // var $targetItems = $item.filter('.' + config.modifiers.hover).not($curItem).not($curParentItems);
+                    var $targetItems = $item.filter('.' + config.modifiers.hover).not($curItem);
+                    console.log("$curItem: ", $curItem);
+                    console.log("$targetItems: ", $targetItems);
+                    if (!e.stopEventTouchend) {
+                      e.stopEventTouchend = true;
+                      removeClassesFrom($targetItems);
+                    }
+
+                    // Если текущий пункт не содержит подменю,
+                    // то выполнение функции прекратить
+                    // !!! Эта проверка проводится в самом конце,
+                    //     чтобы можно было удалять активные классы
+                    //     при клике на любой пункт, а не только
+                    //     содержащий в себе подменю.
+                    // ====================================================
+                    if (!$curItem.has(config.drop).length) return;
+
+                    // Добавить классы hover на ТЕКУЩИЙ пункт
+                    // ====================================================
+                    addClassesTo($curItem);
+
+                    e.preventDefault();
+                  } else {
+                    // Если пункт уже АКТИВЕН
+                    // ====================================================
+
                     // Прекратить дальнейшее выполнение функции
                     // ====================================================
 
                     return;
                   }
-
-                  // Если пункт НЕАКТИВЕН
-                  // ====================================================
-
-                  // Удалить все классы hover со всех активных пунктов,
-                  // кроме ТЕКУЩЕГО и РОДИТЕЛЬСКИХ
-                  // ====================================================
-                  removeClassesFrom($item.filter('.' + config.modifiers.hover).not($curItem).not($curParentItems));
-
-                  // Если текущий пункт не содержит подменю,
-                  // то выполнение функции прекратить
-                  // !!! Эта проверка проводится в самом конце,
-                  //     чтобы можно было удалять активные классы
-                  //     при клике на любой пункт, а не только
-                  //     содержащий в себе подменю.
-                  // ====================================================
-                  if (!$curItem.has(config.drop).length) return;
-
-                  // Добавить классы hover на ТЕКУЩИЙ пункт
-                  // ====================================================
-                  addClassesTo($curItem);
-
-                  e.preventDefault();
-
-                  return;
                 }
 
                 // События на ВВОД курсора
                 // ====================================================
                 if (e.handleObj.origType === "mouseenter") {
-                  console.log('>>>mouseenter<<<');
-
-                  // Перед добавлением класса нужно
-                  // ОТМЕНИТЬ УДАЛЕНИЯ класса С ЗАДЕРЖКОЙ c текущего пункта.
+                  // Перед добавлением класса
+                  // ОТМЕНЯЕМ УДАЛЕНИЕ класса С ЗАДЕРЖКОЙ c текущего пункта.
                   // Так как событие всплывая отрабатывает и на РОДИТЕЛЬСКИХ пунктах,
-                  // то и на них будет отменено событие УДАЛЕНИЯ класса С ЗАДЕРЖКОЙ.
+                  // то и на них будут отменены УДАЛЕНИЯ класса С ЗАДЕРЖКОЙ,
+                  // которые запускаются на событии "mouseleave".
                   // ====================================================
                   clearTimeoutRemoveClassFrom($curItem);
 
                   // Отлавливать событие нужно только на последнем пункте
-                  // Для этого добавим в объект "stopEventMouseenter" и будем проверять при всплытие события его наличие
+                  // Для этого добавим в объект "stopEventMouseenter"
+                  // и проверяем при всплытие события наличие этого свойства.
                   if (e.stopEventMouseenter) return;
                   e.stopEventMouseenter = true;
-
-                  // Удалить БЕЗ ЗАДЕРЖКИ все классы hover со всех активных пунктов,
-                  // кроме ТЕКУЩЕГО и РОДИТЕЛЬСКИХ
-                  // ====================================================
-                  var $activeItems = $item.filter('.' + config.modifiers.hover).not($curItem).not($curParentItems);
-                  forceRemoveClassFrom($activeItems);
 
                   // Если пункт УЖЕ АКТИВЕН,
                   // то повторный ввод курсора в его область
                   // останавливает дальнейшее выполнение функции
                   if ($curItem.prop('isActive')) return;
+
+                  // Удалить БЕЗ ЗАДЕРЖКИ все классы hover со всех активных пунктов,
+                  // кроме ТЕКУЩЕГО и РОДИТЕЛЬСКИХ.
+                  // ====================================================
+                  var $targetItems = $item.filter('.' + config.modifiers.hover).not($curItem).not($curParentItems);
+                  forceRemoveClassFrom($targetItems);
 
                   // ЗАПУСТИТЬ функцию ДОБАВЛЕНИЯ класса С ЗАДЕРЖКОЙ
                   // ====================================================
@@ -386,30 +392,17 @@
                 }
 
                 if (e.handleObj.origType === "mouseleave") {
-                  console.log('>>>mouseleave<<<', $curItem);
-
-                  // Отлавливать событие нужно только на последнем пункте
-                  // Для этого добавим в объект "stopEventMouseleave" и будем проверять при всплытие события его наличие
-                  // if (e.stopEventMouseleave) return;
-                  // e.stopEventMouseleave = true;
-                  // console.log('>>>mouseenter after stop event<<<');
-
                   // Перед удалением класса нужно
                   // ОТМЕНИТЬ ДОБАВЛЕНИЕ класса С ЗАДЕРЖКОЙ c текущего пункта,
                   // если функция добавления запущена.
                   // ====================================================
                   clearTimeoutAddClassTo($curItem);
 
+                  // Удалить классы hover
+                  // с ТЕКУЩЕГО и РОДИТЕЛЬСКИХ пунктов
                   // ЗАПУСТИТЬ функцию УДАЛЕНИЯ класса С ЗАДЕРЖКОЙ
                   // ====================================================
-
-                  // createTimeoutRemoveClassFrom();
-                  $curItem.prop('removeClassWithTimeout', setTimeout(function () {
-                    // Удалить все классы hover
-                    // ====================================================
-                    removeClassesFrom($item.filter('.' + config.modifiers.hover).not($curParentItems));
-
-                  }, timeoutRemove));
+                  createTimeoutRemoveClassFrom($curItem);
                 }
               });
 
@@ -427,10 +420,9 @@
                 var condition = (typeof config.toggleClassCondition === "function") ? config.toggleClassCondition() : config.toggleClassCondition;
                 if (!condition) return;
 
-                // Если:
-                // 1) в настройках указанно, что нужно проводить проверку на наличие подменю;
-                // 2) текущий пункт не содержит подменю;
-                // то выполнение функции прекратить
+                // Выполнение функции прекратить если:
+                // 1) в настройках указанно, что нужно проводить проверку на наличие подменю:
+                // 2) текущий пункт не содержит подменю.
                 // ====================================================
                 if (config.onlyHasDrop && !$curItem.has(config.drop).length) return;
 
@@ -572,7 +564,7 @@
     toggleClassCondition: true,
 
     // Удалять классы по клику вне активного пункта
-    removeOutsideClick: true,
+    removeOutsideClick: false,
 
     // Удалять классы по клику на клавишу Esc
     removeEscClick: true,
