@@ -37,25 +37,11 @@
     // Время задержки добавления/удаления классов
     // ====================================================
     timeoutAdd = timeoutRemove = config.timeout;
+
     if (typeof config.timeout === "object") {
       timeoutAdd = config.timeout.add;
       timeoutRemove = config.timeout.remove;
     }
-
-    // Resize, scroll with timeout
-    var timeoutEvent;
-    $window.on('resize scroll', function (e) {
-      clearTimeout(timeoutEvent);
-
-      timeoutEvent = setTimeout(function () {
-        if (e.handleObj.origType === "resize") {
-          $window.trigger('rangeResize');
-        }
-        if (e.handleObj.origType === "scroll") {
-          $window.trigger('rangeScroll');
-        }
-      }, 300);
-    });
 
     var callbacks = function () {
           /** track events */
@@ -67,13 +53,6 @@
             }
           });
         },
-        addPositionClasses = function (position, feedback, $elem) {
-          console.log("addClassPos: position: ", position);
-          console.log("addClassPos: feedback: ", feedback);
-          // console.log("addClassPos: $element: ", $elem);
-          $elem.addClass(feedback.horizontal + ' ' + feedback.vertical + ' ' + feedback.important)
-              .css(position);
-        },
         position = function (el, at) {
           $.each(el, function () {
             var el = $(this);
@@ -81,11 +60,8 @@
             el.position({
               my: "left top",
               at: at,
-              collision: "flip flip",
-              of: parent,
-              using: function (position, feedback) {
-                addPositionClasses(position, feedback, el);
-              }
+              collision: "flip",
+              of: parent
             })
           })
         },
@@ -112,13 +88,23 @@
         recalculateDropPosition = function () {
           if (config.observePosition) {
             // Recalculate on resize
-            $window.on('rangeResize', function () {
-              dropPosition();
+            var timeoutResize;
+            $window.on('resize', function () {
+              clearTimeout(timeoutResize);
+
+              timeoutResize = setTimeout(function () {
+                dropPosition();
+              }, 200);
             });
 
             // Recalculate on scroll
-            $window.on('rangeScroll', function () {
-              dropPosition();
+            var timeoutScroll;
+            $window.on('scroll', function () {
+              clearTimeout(timeoutScroll);
+
+              timeoutScroll = setTimeout(function () {
+                dropPosition();
+              }, 200);
             });
           }
         },
@@ -263,14 +249,15 @@
         },
         clearHoverClassOnResize = function () {
           var resizeByWidth = true;
+
           var prevWidth = -1;
-          $window.on('rangeResize', function () {
+          $(window).on('resize', function () {
             var currentWidth = $('body').outerWidth();
             resizeByWidth = prevWidth !== currentWidth;
             if (resizeByWidth) {
               removeClassesFrom($(config.item, $element).filter('.' + config.modifiers.hover));
 
-              console.log('%c >>>remove by WIDTH RESIZE<<<', 'background-color: #00f1ff; color: #ff1515');
+              console.log('%c >>>remove by RESIZE<<<', 'background-color: #00f1ff; color: #ff1515');
               // $(window).trigger('resizeByWidth');
               prevWidth = currentWidth;
             }
@@ -312,15 +299,17 @@
 
                 var $curItem = $(this);
 
-                // Если в настройках не отключена трансформация навигации с десктопного вида в мобильный (accordionView: false),
-                // то при ширине окна браузера ниже указанного в опции "accordionView.breakpoint"
-                // дальнейшее выполнение функции прервать.
+                // Опция toggleClassCondition должна иметь значение true,
+                // чтобы отрабатывало переключение классов.
+                // Если параметр toggleClassCondition возвращает false,
+                // то выполнение функции прекратить.
                 // ====================================================
-                if (config.accordionView && window.innerWidth < config.accordionView.breakpoint) return;
+                var condition = (typeof config.toggleClassCondition === "function") ? config.toggleClassCondition() : config.toggleClassCondition;
+                if (!condition) return;
 
-                // Также выполнение функции прекратить если:
-                // 1) в настройках указанно, что нужно проводить проверку на наличие подменю,
-                // 2) и текущий пункт не содержит подменю.
+                // Выполнение функции прекратить если:
+                // 1) в настройках указанно, что нужно проводить проверку на наличие подменю:
+                // 2) текущий пункт не содержит подменю.
                 // ====================================================
                 if (config.onlyHasDrop && !$curItem.has(config.drop).length) return;
 
@@ -424,21 +413,24 @@
           config.arrowEnable &&
           $element.off('click', config.arrow)
               .on('click', config.arrow, function (e) {
-                // Если в настройках не отключена трансформация навигации с десктопного вида в мобильный (accordionView: false),
-                // то при ширине окна браузера ниже указанного в опции "accordionView.breakpoint"
-                // дальнейшее выполнение функции прервать.
-                // ====================================================
-                if (config.accordionView && window.innerWidth < config.accordionView.breakpoint) return;
+                console.log('%c >>>arrow click<<< ', 'background: #222; color: #bada55');
 
                 var $curItem = $(this).closest(config.item);
 
-                // Также выполнение функции прекратить если:
-                // 1) в настройках указанно, что нужно проводить проверку на наличие подменю,
-                // 2) и текущий пункт не содержит подменю.
+                // Опция toggleClassCondition должна иметь значение true,
+                // чтобы отрабатывало переключение классов.
+                // Если параметр toggleClassCondition возвращает false,
+                // то выполнение функции прекратить.
+                // ====================================================
+                var condition = (typeof config.toggleClassCondition === "function") ? config.toggleClassCondition() : config.toggleClassCondition;
+                console.log("condition: ", condition);
+                if (!condition) return;
+
+                // Выполнение функции прекратить если:
+                // 1) в настройках указанно, что нужно проводить проверку на наличие подменю:
+                // 2) текущий пункт не содержит подменю.
                 // ====================================================
                 if (config.onlyHasDrop && !$curItem.has(config.drop).length) return;
-
-                console.log('%c >>>arrow click<<< ', 'background: #222; color: #bada55');
 
                 console.log("$curItem.prop('isActive'): ", $curItem.prop('isActive'));
                 if (!$curItem.prop('isActive')) {
@@ -567,6 +559,13 @@
     // }
     // timeout: 50
     timeout: 50,
+
+    // Условие, при котором нужно добавлять классы.
+    // Например, если классы нужно добавлять только в браузерах шире 1400px:
+    // toggleClassCondition: function () {
+    //   return window.innerWidth > 1400;
+    // }
+    toggleClassCondition: true,
 
     // Использовать jQuery UI Position
     // для смещения подменю, в случае выхода за прделы экрана
