@@ -67,14 +67,23 @@
             }
           });
         },
+        /*Position submenu*/
         addPositionClasses = function (position, feedback, $elem) {
-          console.log("addClassPos: position: ", position);
-          console.log("addClassPos: feedback: ", feedback);
-          // console.log("addClassPos: $element: ", $elem);
+          removePositionClasses($elem);
           $elem.addClass(feedback.horizontal + ' ' + feedback.vertical + ' ' + feedback.important)
               .css(position);
         },
-        position = function (el, at) {
+        removePositionClasses = function ($elem) {
+          $elem
+              .removeClass('top')
+              .removeClass('right')
+              .removeClass('bottom')
+              .removeClass('left')
+              .removeClass('center')
+              .removeClass('horizontal')
+              .removeClass('vertical');
+        },
+        uiPosition = function (el, at) {
           $.each(el, function () {
             var el = $(this);
             var parent = el.closest(config.item);
@@ -95,22 +104,22 @@
 
           if (config.accordionView && window.innerWidth < config.accordionView.breakpoint) {
             $childrenDrop.add($childrenDropDeeper).css({
-              'position': "",
-              'top': "",
-              'right': "",
-              'bottom': "",
-              'left': ""
-            })
+              'position': '',
+              'top': '',
+              'right': '',
+              'bottom': '',
+              'left': ''
+            });
+            removePositionClasses($childrenDrop.add($childrenDropDeeper));
           } else {
             // Подменю первого уровня
-            position($childrenDrop, "left bottom");
+            uiPosition($childrenDrop, config.submenuPosition.firstLevel);
             // Подменю второго уровня
-            position($childrenDropDeeper, "right top");
+            uiPosition($childrenDropDeeper, config.submenuPosition.deeperLevel);
           }
-
         },
         recalculateDropPosition = function () {
-          if (config.observePosition) {
+          if (config.submenuPosition && config.submenuPosition.observe) {
             // Recalculate on resize
             $window.on('rangeResize', function () {
               dropPosition();
@@ -122,11 +131,49 @@
             });
           }
         },
+        /*Timeout functions*/
+        createTimeoutAddClass = function () {
+          var $item = arguments[0] || $(config.item, $element);
+
+          // ЗАПУСТИТЬ функцию ДОБАВЛЕНИЯ класса С ЗАДЕРЖКОЙ
+          // (одновременно записав ее в аттрибут 'addClassWithTimeout')
+          // ====================================================
+          $item.prop('addClassWithTimeout', setTimeout(function () {
+            addClassesTo($item);
+          }, timeoutAdd));
+        },
+        clearTimeoutAddClass = function () {
+          var $item = arguments[0] || $(config.item, $element);
+
+          var addClassWTO = $item.prop('addClassWithTimeout');
+          if (addClassWTO) {
+            $item.prop('addClassWithTimeout', clearTimeout(addClassWTO));
+          }
+        },
+        createTimeoutRemoveClass = function () {
+          var $item = arguments[0] || $(config.item, $element);
+
+          // ЗАПУСТИТЬ функцию УДАЛЕНИЯ класса С ЗАДЕРЖКОЙ
+          // (одновременно записав ее в аттрибут 'removeClassWithTimeout')
+          // ====================================================
+          $item.prop('removeClassWithTimeout', setTimeout(function () {
+            removeClassesFrom($item);
+          }, timeoutRemove));
+        },
+        clearTimeoutRemoveClass = function () {
+          var $item = arguments[0] || $(config.item, $element);
+
+          var removeTimeoutWTO = $item.prop('removeClassWithTimeout');
+          if (removeTimeoutWTO) {
+            $item.prop('removeClassWithTimeout', clearTimeout(removeTimeoutWTO));
+          }
+        },
+        /*Add and remove classes*/
         addClassesTo = function () {
           var $item = arguments[0];
 
           if ($item.length) {
-            if (config.position) {
+            if (config.submenuPosition) {
               dropPosition();
             }
 
@@ -165,41 +212,25 @@
             console.log("~~ class hover removed: ", $item);
           }
         },
-        createTimeoutAddClass = function () {
+        /*Immediate add and remove classes*/
+        forceAddClassTo = function () {
           var $item = arguments[0] || $(config.item, $element);
 
-          // ЗАПУСТИТЬ функцию ДОБАВЛЕНИЯ класса С ЗАДЕРЖКОЙ
-          // (одновременно записав ее в аттрибут 'addClassWithTimeout')
+          // Перебрать все элементы
           // ====================================================
-          $item.prop('addClassWithTimeout', setTimeout(function () {
-            addClassesTo($item);
-          }, timeoutAdd));
-        },
-        clearTimeoutAddClass = function () {
-          var $item = arguments[0] || $(config.item, $element);
+          $.each($item, function () {
+            var $eachCurItem = $(this);
 
-          var addClassWTO = $item.prop('addClassWithTimeout');
-          if (addClassWTO) {
-            $item.prop('addClassWithTimeout', clearTimeout(addClassWTO));
-          }
-        },
-        createTimeoutRemoveClass = function () {
-          var $item = arguments[0] || $(config.item, $element);
+            // Отметить добавление класса с задержкой
+            // ====================================================
+            clearTimeoutAddClass($eachCurItem);
 
-          // ЗАПУСТИТЬ функцию УДАЛЕНИЯ класса С ЗАДЕРЖКОЙ
-          // (одновременно записав ее в аттрибут 'removeClassWithTimeout')
-          // ====================================================
-          $item.prop('removeClassWithTimeout', setTimeout(function () {
-            removeClassesFrom($item);
-          }, timeoutRemove));
-        },
-        clearTimeoutRemoveClass = function () {
-          var $item = arguments[0] || $(config.item, $element);
-
-          var removeTimeoutWTO = $item.prop('removeClassWithTimeout');
-          if (removeTimeoutWTO) {
-            $item.prop('removeClassWithTimeout', clearTimeout(removeTimeoutWTO));
-          }
+            // Добавить класс без задержки
+            // ====================================================
+            if (!$eachCurItem.prop('isActive')) {
+              addClassesTo($eachCurItem);
+            }
+          });
         },
         forceRemoveClassFrom = function () {
           var $item = arguments[0] || $(config.item, $element);
@@ -242,26 +273,8 @@
             }
           });
         },
-        forceAddClassTo = function () {
-          var $item = arguments[0] || $(config.item, $element);
-
-          // Перебрать все элементы
-          // ====================================================
-          $.each($item, function () {
-            var $eachCurItem = $(this);
-
-            // Отметить добавление класса с задержкой
-            // ====================================================
-            clearTimeoutAddClass($eachCurItem);
-
-            // Добавить класс без задержки
-            // ====================================================
-            if (!$eachCurItem.prop('isActive')) {
-              addClassesTo($eachCurItem);
-            }
-          });
-        },
-        clearHoverClassOnResize = function () {
+        /*Clear classes*/
+        removeOnResize = function () {
           var resizeByWidth = true;
           var prevWidth = -1;
           $window.on('rangeResize', function () {
@@ -298,6 +311,7 @@
 
           return false;
         },
+        /*Main events*/
         toggleActiveClass = function () {
           var $item = $(config.item, $element);
 
@@ -463,6 +477,7 @@
                 e.preventDefault();
               })
         },
+        /*Initialize*/
         init = function () {
           // Container
           $element.addClass(CONST_CLASSES.element);
@@ -477,7 +492,8 @@
             $arrow.addClass(CONST_CLASSES.arrowEnable).attr('tabindex', 0);
           }
           // Position
-          if (config.position) {
+          console.log("config.submenuPosition: ", config.submenuPosition);
+          if (config.submenuPosition) {
             dropPosition();
           }
 
@@ -489,7 +505,7 @@
       callbacks: callbacks,
       recalculateDropPosition: recalculateDropPosition,
       toggleActiveClass: toggleActiveClass,
-      clearHoverClassOnResize: clearHoverClassOnResize,
+      clearHoverClassOnResize: removeOnResize,
       removeByClickOutside: removeByClickOutside,
       removeByClickEsc: removeByClickEsc,
       init: init
@@ -571,11 +587,12 @@
     // Использовать jQuery UI Position
     // для смещения подменю, в случае выхода за прделы экрана
     // Необходимо подключать jQuery UI
-    position: false,
-
-    // Пересчитывать позицию подменю на ресайз и скролл.
-    // Параметр position должен быть в значении true
-    observePosition: false,
+    submenuPosition: {
+      firstLevel: 'left bottom',
+      deeperLevel: 'right top',
+      // Пересчитывать позицию подменю на ресайз и скролл
+      observe: false,
+    },
 
     // Активировать стрелки.
     // -----------------------------------------------------------------------------------

@@ -16,8 +16,7 @@ $(function () {
       drop: 'ul',
       siblings: false,
       onlyHasDrop: true,
-      position: true,
-      observePosition: true,
+      submenuPosition: false,
       arrowEnable: true,
       toggleClassCondition: function () {
         return window.innerWidth > 991; // Если ширина меньше 992 то классы не добавлять
