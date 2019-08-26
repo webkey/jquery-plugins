@@ -10,12 +10,7 @@
 
   var $window = $(window), $document = $(document);
 
-  // If there's no jQuery, nav plugin can't work
-  // ====================================================
-
-  if (!$) return;
-
-  // Inner Plugin Modifiers
+  // Inner Plugin Classes and Modifiers
   // ====================================================
   var CONST_CLASSES = {
     initClass: 'navJs_initialized',

@@ -5,16 +5,20 @@
 /*!Description: ---
 /*!================================================== */
 
-;(function ($) {
+;(function (window, document, $, undefined) {
   /*'use strict';*/
+
+  // Inner Plugin Classes and Modifiers
+  // ====================================================
+  var pref = 'msExample';
+  var CONST_CLASSES = {
+    initClass: pref + '_initialized',
+    element: pref + 'navJs',
+  };
 
   var MsExample = function (element, config) {
     var self,
-        $element = $(element),
-        pref = 'ms-example',
-        pluginClasses = {
-          initClass: pref + '_initialized'
-        };
+        $element = $(element);
 
     var callbacks = function () {
           /** track events */
@@ -33,7 +37,7 @@
           });
         },
         init = function () {
-          $element.addClass(pluginClasses.initClass);
+          $element.addClass(CONST_CLASSES.initClass);
           $element.trigger('msExample.afterInit');
         };
 
@@ -46,11 +50,17 @@
     return self;
   };
 
+  function _run (el) {
+    el.nav.callbacks();
+    el.nav.events();
+    el.nav.init();
+  }
+
   $.fn.msExample = function () {
-    var _ = this,
+    var self = this,
         opt = arguments[0],
         args = Array.prototype.slice.call(arguments, 1),
-        l = _.length,
+        l = self.length,
         i,
         ret;
 
@@ -62,18 +72,22 @@
     // следовательно условие i < l не выполнится
     for (i = 0; i < l; i++) {
       if (typeof opt === 'object' || typeof opt === 'undefined') {
-        _[i].msExample = new MsExample(_[i], $.extend(true, {}, $.fn.msExample.defaultOptions, opt));
-        _[i].msExample.callbacks();
-        _[i].msExample.init();
-        _[i].msExample.events();
+        if (self[i].nav) {
+          console.info("%c Warning! Plugin already has initialized! ", 'background: #bd0000; color: white');
+          return;
+        }
+
+        self[i].msExample = new MsExample(self[i], $.extend(true, {}, $.fn.msExample.defaultOptions, opt));
+
+        _run(self[i]);
       } else {
-        ret = _[i].msExample[opt].apply(_[i].msExample, args);
+        ret = self[i].msExample[opt].apply(self[i].msExample, args);
       }
       if (typeof ret !== 'undefined') {
         return ret;
       }
     }
-    return _;
+    return self;
   };
 
   $.fn.msExample.defaultOptions = {
@@ -82,4 +96,4 @@
     }
   };
 
-})(jQuery);
+})(window, document, jQuery);
