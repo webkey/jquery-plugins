@@ -1,0 +1,9 @@
+@charset "UTF-8";
+.ms-example-js::after {
+  display: block;
+  content: "(::after) Это контейнер, на котором инициилизирован плагин";
+  font-size: small;
+  font-style: italic;
+}
+
+/*# sourceMappingURL=main.css.map */

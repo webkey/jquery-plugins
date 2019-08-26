@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Простой аккордеон</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <link rel="stylesheet" href="../../../sass/libs.min.css">
+  <link rel="stylesheet" href="../../../sass/main.css">
+  <link rel="stylesheet" href="styles/main.css">
+  <script src="../../../js/modernizr.min.js"></script>
+</head>
+
+<body class="">
+  <header class="header layout"><a href="../../../index.html">На главную</a></header>
+  <div class="layout-flood user-content">
+    <h1>Простой аккордеон</h1>
+    <h2>Examples and demos</h2>
+    <p class="accent">{{Краткое описание}}</p>
+    <p class="warning">{{Важная информация}}</p>
+    <h3>Accordion-simple 1</h3>
+    <!--Code example-->
+    <pre class="snippet"><code class="html">&lt;div class="Accordion-simple Accordion-simple-js"&gt;
+	{{Accordion-simple code}}
+&lt;/div&gt;</code></pre>
+    <!--Code example end-->
+    <div class="Accordion-simple Accordion-simple-js">
+      {{Accordion-simple code}}
+    </div>
+    <div class="separator"><br><br><br></div>
+    <!--==== API ====-->
+    <!--==================================================-->
+    <h2>API</h2>
+    <!--==== Initialize ====-->
+    <!--==================================================-->
+    <h3>Initialize</h3>
+    <pre class="snippet"><code class="js">$('.element').accordionSimple(parameters);</code></pre>
+    <h4>For example:</h4>
+    <pre class="snippet"><code class="js">$('.Accordion-simple').accordionSimple({
+  key: 'value'
+});</code></pre>
+    <br>
+    <!--==== Options ====-->
+    <!--==================================================-->
+    <h3>Options</h3>
+    <ul>
+      <li>
+        <div><b>someProperty:</b></div>
+        <div><i class="gray">Defaults:</i> <code class="red">someValue</code></div>
+        <div><i class="gray">Type:</i> <code class="red">String</code></div>
+        <div><i class="gray">Values:</i> <code class="red">otherValue</code></div>
+        <div><i class="gray">Description:</i></div>
+        <div>Описание</div>
+      </li>
+    </ul>
+    <!--==== Events ====-->
+    <!--==================================================-->
+    <h3>Events</h3>
+    <ul>
+      <li>
+        <div><b>afterInit</b></div>
+        <div><i class="gray">Description:</i></div>
+        <div>Описание</div>
+        <div>
+          <pre class="snippet"><code class="javascript">afterInit: function (e, el) {}</code></pre>
+        </div>
+      </li>
+    </ul>
+    <!--==== Methods ====-->
+    <!--==================================================-->
+    <h3>Methods</h3>
+    <ul>
+      <li>
+        <div><b>afterInit</b></div>
+        <div><i class="gray">Description:</i></div>
+        <div>Описание</div>
+        <div>
+          <pre class="snippet"><code class="javascript">afterInit: function (e, el) {}</code></pre>
+        </div>
+      </li>
+    </ul>
+    <h3>Global settings</h3>
+    <div>Переопределять настройки плагина глобально можно через</div>
+    <div><code class="red">$.fn.accordionSimple.defaultOptions</code></div>
+    <div><i class="gray">Example:</i></div>
+    <div><code class="red">$.fn.accordionSimple.defaultOptions.someProperty = value;</code></div>
+  </div>
+  <script src="../../../js/jquery.min.js"></script>
+  <script src="../../../js/libs.min.js"></script>
+  <script src="../../../js/main.js"></script>
+  <script src="js/jquery.accordion-simple.js"></script>
+  <script src="js/example.js"></script>
+</body>
+
+</html>

@@ -1,5 +1,5 @@
 /*!==================================================
-/*!jquery.plugin-name.js
+/*!jquery.accordion-simple.js
 /*!Version: 1
 /*!Author: ---
 /*!Description: ---
@@ -10,13 +10,13 @@
 
   // Inner Plugin Classes and Modifiers
   // ====================================================
-  var pref = 'msExample';
+  var pref = 'accordionSimple';
   var CONST_CLASSES = {
     initClass: pref + '_initialized',
     element: pref,
   };
 
-  var MsExample = function (element, config) {
+  var AccordionSimple = function (element, config) {
     var self,
         $element = $(element);
 
@@ -24,7 +24,7 @@
           /** track events */
           $.each(config, function (key, value) {
             if (typeof value === 'function') {
-              $element.on('msExample.' + key, function (e, param) {
+              $element.on('accordionSimple.' + key, function (e, param) {
                 return value(e, $element, param);
               });
             }
@@ -38,7 +38,7 @@
         },
         init = function () {
           $element.addClass(CONST_CLASSES.initClass);
-          $element.trigger('msExample.afterInit');
+          $element.trigger('accordionSimple.afterInit');
         };
 
     self = {
@@ -56,7 +56,7 @@
     el.nav.init();
   }
 
-  $.fn.msExample = function () {
+  $.fn.accordionSimple = function () {
     var self = this,
         opt = arguments[0],
         args = Array.prototype.slice.call(arguments, 1),
@@ -77,11 +77,11 @@
           return;
         }
 
-        self[i].msExample = new MsExample(self[i], $.extend(true, {}, $.fn.msExample.defaultOptions, opt));
+        self[i].accordionSimple = new AccordionSimple(self[i], $.extend(true, {}, $.fn.accordionSimple.defaultOptions, opt));
 
         _run(self[i]);
       } else {
-        ret = self[i].msExample[opt].apply(self[i].msExample, args);
+        ret = self[i].accordionSimple[opt].apply(self[i].accordionSimple, args);
       }
       if (typeof ret !== 'undefined') {
         return ret;
@@ -90,7 +90,7 @@
     return self;
   };
 
-  $.fn.msExample.defaultOptions = {
+  $.fn.accordionSimple.defaultOptions = {
     modifiers: {
       activeClass: 'active' // Класс, который добавляется, на активный элементы
     }
