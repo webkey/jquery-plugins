@@ -21,13 +21,100 @@
     <p class="warning">{{Важная информация}}</p>
     <h3>Accordion-simple 1</h3>
     <!--Code example-->
-    <pre class="snippet"><code class="html">&lt;div class="Accordion-simple Accordion-simple-js"&gt;
+    <pre class="snippet"><code class="html">&lt;div class="accordion-simple accordion-simple-js"&gt;
 	{{Accordion-simple code}}
 &lt;/div&gt;</code></pre>
     <!--Code example end-->
-    <div class="Accordion-simple Accordion-simple-js">
-      {{Accordion-simple code}}
-    </div>
+    <ul class="accordion-simple accordion-simple_1-js">
+      <li>
+        <a href="#?1">Title 1</a>
+        <em>&#9660;</em>
+        <ul>
+          <li>
+            <a href="#?1.1">Title 1.1</a>
+            <em>&#9660;</em>
+            <ul>
+              <li>Content 1.1</li>
+            </ul>
+          </li>
+          <li>
+            <a href="#?1.2">Title 1.2</a>
+            <em>&#9660;</em>
+            <ul>
+              <li>
+                <a href="#?1.2.1">Title 1.2.1</a>
+                <em>&#9660;</em>
+                <ul>
+                  <li>Content 1.2.1</li>
+                </ul>
+              </li>
+              <li>
+                <a href="#?1.2.2">Title 1.2.2</a>
+                <em>&#9660;</em>
+                <ul>
+                  <li>
+                    <a href="#?1.2.2.1">Title 1.2.2.1</a>
+                    <em>&#9660;</em>
+                    <ul>
+                      <li>Content 1.2.2.1</li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#?1.2.2.2">Title 1.2.2.2</a>
+                    <em>&#9660;</em>
+                    <ul>
+                      <li>Content 1.2.2.2</li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#?1.2.2.3">Title 1.2.2.3</a>
+                    <em>&#9660;</em>
+                    <ul>
+                      <li>Content 1.2.2.3</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="#?1.2.3">Title 1.2.3</a>
+                <em>&#9660;</em>
+                <ul>
+                  <li>Content 1.2.3</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#?1.3">Title 1.3</a>
+            <em>&#9660;</em>
+            <ul>
+              <li>Content 1.3</li>
+            </ul>
+          </li>
+          <li>
+            <a href="#?1.4">Title 1.4</a>
+            <em>&#9660;</em>
+            <ul>
+              <li>Content 1.4</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#?2">Title 2</a>
+        <em>&#9660;</em>
+        <ul>
+          <li>Content 2</li>
+        </ul>
+      </li>
+      <li>
+        <a href="#?3">Title 3</a>
+        <em>&#9660;</em>
+        <ul>
+          <li>Content 2</li>
+        </ul>
+      </li>
+    </ul>
     <div class="separator"><br><br><br></div>
     <!--==== API ====-->
     <!--==================================================-->
@@ -37,7 +124,7 @@
     <h3>Initialize</h3>
     <pre class="snippet"><code class="js">$('.element').accordionSimple(parameters);</code></pre>
     <h4>For example:</h4>
-    <pre class="snippet"><code class="js">$('.Accordion-simple').accordionSimple({
+    <pre class="snippet"><code class="js">$('.accordion-simple').accordionSimple({
   key: 'value'
 });</code></pre>
     <br>

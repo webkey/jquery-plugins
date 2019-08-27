@@ -1,9 +1,145 @@
-@charset "UTF-8";
-.ms-example-js::after {
-  display: block;
-  content: "(::after) Это контейнер, на котором инициилизирован плагин";
-  font-size: small;
+.accordion-simple {
+  max-width: 60rem;
+}
+
+.accordion-simple, .accordion-simple ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 1.8rem;
+  line-height: 2.4rem;
+}
+
+.accordion-simple li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 0.5em 0 0;
+  padding: 0 2rem;
+}
+
+.accordion-simple li:first-child {
+  margin-top: 0.9em;
+}
+
+.accordion-simple li:last-child {
+  margin-bottom: 0.4em;
+}
+
+.accordion-simple a {
+  max-width: calc(100% - 4.2rem);
+  padding: 0 1rem 0 0;
   font-style: italic;
+  color: #aaa;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.accordion-simple a:hover {
+  color: #ee6e73;
+}
+
+.accordion-simple a.focus, .accordion-simple a:focus {
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}
+
+.accordion-simple a + em {
+  position: relative;
+  z-index: 5;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  font-size: 0;
+  line-height: 0;
+  height: 4.2rem;
+  width: 4.2rem;
+  padding: 0;
+  text-align: center;
+  color: #262626;
+  cursor: pointer;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  outline: none;
+}
+
+.accordion-simple a + em::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  z-index: 2;
+  border-top: 7px solid white;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  margin-top: 1px;
+}
+
+.accordion-simple a + em::after {
+  content: "";
+  position: absolute;
+  height: 2.4rem;
+  width: 2.4rem;
+  border-radius: 2.4rem;
+  background-color: #ee6e73;
+  background: #ee6e73;
+  background: linear-gradient(to bottom, #ee6e73 0%, #f39c9f 100%);
+}
+
+.accordion-simple a + em:hover::after {
+  background: #f39c9f;
+  background: linear-gradient(to bottom, #f39c9f 0%, #ee6e73 100%);
+}
+
+.accordion-simple a + em.focus::after, .accordion-simple a + em:focus::after {
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}
+
+li.is-open > a + em {
+  border-radius: 5px 5px 0 0;
+}
+
+li.is-open > a + em::before, li.is-open > a + em::after {
+  -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+li.is-open > a + em::before {
+  margin-top: -2px;
+}
+
+.accordion-simple ul {
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+  display: none;
+  margin-top: -1px;
+  border-radius: 5px 0 5px 5px;
+  border: 1px solid #aaa;
+}
+
+.no-js .accordion-simple ul {
+  display: block;
 }
 
 /*# sourceMappingURL=main.css.map */

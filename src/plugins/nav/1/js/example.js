@@ -13,7 +13,6 @@ $(function () {
 
     $nav.nav({
       container: '.nav__list-js',
-      drop: 'ul',
       siblings: false,
       onlyHasDrop: true,
       submenuPosition: false,

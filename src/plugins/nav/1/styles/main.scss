@@ -122,7 +122,6 @@ $nav-height: 6rem;
   // ------ бутерброд -----------------------------------------
   @include media("<tab") {
     display: block;
-    padding: 4rem 0;
   }
 
   // Все li,
