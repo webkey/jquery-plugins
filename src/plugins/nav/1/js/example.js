@@ -13,9 +13,8 @@ $(function () {
 
     $nav.nav({
       siblings: false,
-      onlyHasDrop: true,
-      submenuPosition: false,
-      arrowEnable: true,
+      onlyHasDrop: false,
+      arrowEnable: false,
       timeout: {
         add: timeout.add,
         remove: timeout.remove

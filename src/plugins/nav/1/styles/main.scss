@@ -429,6 +429,7 @@ $nav-height: 6rem;
       // Если стили стрелок первого уровня навигаци отличаются, от остальных
       transform: rotate(0deg);
     }
+
     &.hover > .nav__arrow {
       transform: rotate(-180deg);
     }

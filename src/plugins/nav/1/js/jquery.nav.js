@@ -390,6 +390,7 @@
           $.each(el, function () {
             var el = $(this);
             var parent = el.closest(config.item);
+            console.log("at: ", at);
             el.position({
               my: "left top",
               at: at,
@@ -625,7 +626,7 @@
               .off('touchend mouseenter mouseleave', config.item)
               .on('touchend mouseenter mouseleave', config.item, function (e) {
 
-                // console.log('%c ~~~' + e.handleObj.origType + '~~~ ', 'background: #222; color: #bada55');
+                console.log('%c ~~~' + e.handleObj.origType + '~~~ ', 'background: #222; color: #bada55');
 
                 var $curItem = $(this);
 
