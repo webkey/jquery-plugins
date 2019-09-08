@@ -12,7 +12,6 @@ $(function () {
     };
 
     $nav.nav({
-      container: '.nav__list-js',
       siblings: false,
       onlyHasDrop: true,
       submenuPosition: false,
