@@ -251,7 +251,7 @@
   outline: none;
 }
 
-.nav__list .nav__arrow.navJs__arrow_on {
+.nav__list .nav__arrow.jsNav__arrow_on {
   pointer-events: auto;
 }
 

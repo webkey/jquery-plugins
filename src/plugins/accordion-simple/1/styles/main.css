@@ -1,8 +1,8 @@
-.accordion-simple {
+.example-accordion {
   max-width: 60rem;
 }
 
-.accordion-simple, .accordion-simple ul {
+.example-accordion, .example-accordion ul {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -10,7 +10,7 @@
   line-height: 2.4rem;
 }
 
-.accordion-simple li {
+.example-accordion li {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -26,15 +26,15 @@
   padding: 0 2rem;
 }
 
-.accordion-simple li:first-child {
+.example-accordion li:first-child {
   margin-top: 0.9em;
 }
 
-.accordion-simple li:last-child {
+.example-accordion li:last-child {
   margin-bottom: 0.4em;
 }
 
-.accordion-simple a {
+.example-accordion a {
   max-width: calc(100% - 4.2rem);
   padding: 0 1rem 0 0;
   font-style: italic;
@@ -43,15 +43,15 @@
   transition: color 0.2s;
 }
 
-.accordion-simple a:hover {
+.example-accordion a:hover {
   color: #ee6e73;
 }
 
-.accordion-simple a.focus, .accordion-simple a:focus {
+.example-accordion a.focus, .example-accordion a:focus {
   box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
 }
 
-.accordion-simple a + em {
+.example-accordion a + em {
   position: relative;
   z-index: 5;
   display: -webkit-box;
@@ -83,7 +83,7 @@
   outline: none;
 }
 
-.accordion-simple a + em::before {
+.example-accordion a + em::before {
   content: "";
   position: absolute;
   width: 0;
@@ -95,7 +95,7 @@
   margin-top: 1px;
 }
 
-.accordion-simple a + em::after {
+.example-accordion a + em::after {
   content: "";
   position: absolute;
   height: 2.4rem;
@@ -106,12 +106,12 @@
   background: linear-gradient(to bottom, #ee6e73 0%, #f39c9f 100%);
 }
 
-.accordion-simple a + em:hover::after {
+.example-accordion a + em:hover::after {
   background: #f39c9f;
   background: linear-gradient(to bottom, #f39c9f 0%, #ee6e73 100%);
 }
 
-.accordion-simple a + em.focus::after, .accordion-simple a + em:focus::after {
+.example-accordion a + em.focus::after, .example-accordion a + em:focus::after {
   box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
 }
 
@@ -129,7 +129,7 @@ li.is-open > a + em::before {
   margin-top: -2px;
 }
 
-.accordion-simple ul {
+.example-accordion ul {
   -ms-flex-preferred-size: 100%;
       flex-basis: 100%;
   display: none;
@@ -138,7 +138,7 @@ li.is-open > a + em::before {
   border: 1px solid #aaa;
 }
 
-.no-js .accordion-simple ul {
+.no-js .example-accordion ul {
   display: block;
 }
 
