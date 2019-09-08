@@ -943,18 +943,18 @@
       breakpoint: 992,
     },
 
+    // Насторойки аккордеона
+    accordion: {
+      classOpen: 'is-open',
+      duration: 300,
+    },
+
     // Классы-модификаторы
     modifiers: {
       hover: 'hover',
       hoverNext: 'hover_next',
       hoverPrev: 'hover_prev',
     },
-
-    // Насторойки аккордеона
-    accordion: {
-      classOpen: 'is-open',
-      duration: 300,
-    }
   };
 
 })(window, document, jQuery);

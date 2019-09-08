@@ -17,9 +17,6 @@ $(function () {
       onlyHasDrop: true,
       submenuPosition: false,
       arrowEnable: true,
-      toggleClassCondition: function () {
-        return window.innerWidth > 991; // Если ширина меньше 992 то классы не добавлять
-      },
       timeout: {
         add: timeout.add,
         remove: timeout.remove
