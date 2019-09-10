@@ -198,9 +198,12 @@
         },
         init = function () {
           // Развернуть ВИДИМЫЕ ПАНЕЛИ без анимации
-          $(config.panel, $element).filter(':visible')
-              .show()
-              .data('active', true).attr('data-active', true).end()
+          var $visibleDrop = $(config.panel, $element);
+
+          $visibleDrop.filter(':visible')
+              .show().data('active', true).attr('data-active', true);
+
+          $visibleDrop.filter(':visible')
               .closest(config.block).addClass(config.modifiers.activeClass);
 
           // Добавить внутренние классы на:
