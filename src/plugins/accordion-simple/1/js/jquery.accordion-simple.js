@@ -196,6 +196,12 @@
           });
         },
         init = function () {
+          // Развернуть ВИДИМЫЕ ПАНЕЛИ без анимации
+          $(config.panel, $element).filter(':visible')
+              .show()
+              .data('active', true).attr('data-active', true).end()
+              .closest(config.block).addClass(config.modifiers.activeClass);
+
           // Добавить внутренние классы на:
           if (config.pluginClasses) {
             // Контейнер аккордеона
@@ -282,7 +288,7 @@
     //     <em>  - стрелка (switcher), или другой элемент переключающий панели - ПЕРЕКЛЮЧАТЕЛЬ
     //     <ul> - панель (panel) - ПАНЕЛЬ
     block: 'li',
-    switcher: 'li > a + em',
+    switcher: 'li > em',
     panel: 'ul',
 
     // Параметр, указывающий на необходимось сворачивать ранее открытые Панели
