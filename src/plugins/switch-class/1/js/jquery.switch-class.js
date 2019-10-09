@@ -22,7 +22,7 @@
           scrollFixedClass: 'css-scroll-fixed'
         },
         $switchClassTo = $element.add(config.switcher).add(config.adder).add(config.remover).add(config.switchClassTo),
-        classIsAdded = false; //Флаг отвечающий на вопрос: класс добавлен?
+        classIsAdded = false;
 
     var callbacks = function () {
           /** track events */
