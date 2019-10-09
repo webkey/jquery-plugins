@@ -51,9 +51,9 @@
   };
 
   function _run (el) {
-    el.nav.callbacks();
-    el.nav.events();
-    el.nav.init();
+    el.msExample.callbacks();
+    el.msExample.events();
+    el.msExample.init();
   }
 
   $.fn.msExample = function () {
@@ -72,7 +72,7 @@
     // следовательно условие i < l не выполнится
     for (i = 0; i < l; i++) {
       if (typeof opt === 'object' || typeof opt === 'undefined') {
-        if (self[i].nav) {
+        if (self[i].msExample) {
           console.info("%c Warning! Plugin already has initialized! ", 'background: #bd0000; color: white');
           return;
         }
