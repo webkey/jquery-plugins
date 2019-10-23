@@ -118,3 +118,8 @@ body {
     @include padding-horizontal($layout-text-space-horizontal-sm);
   }
 }
+
+.layout-section {
+  max-width: $layout-section-width;
+  @include push-auto;
+}

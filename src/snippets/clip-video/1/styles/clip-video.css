@@ -1,0 +1,136 @@
+body {
+  background-color: #101013;
+  color: white;
+}
+
+.section {
+  position: relative;
+  min-height: 100vh;
+}
+
+.btn-toggle {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  position: absolute;
+  left: 5rem;
+  top: 50%;
+  height: 400px;
+  width: 320px;
+  text-align: center;
+  line-height: 1.5;
+  margin-top: -200px;
+  background-color: rgba(135, 206, 250, 0.2);
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  z-index: 50;
+}
+
+.btn-toggle_active {
+  background-color: rgba(255, 160, 122, 0.5);
+}
+
+.btn-toggle__inner {
+  display: block;
+  padding: 0.5em 1em;
+  border: 2px solid currentColor;
+}
+
+.btn-close {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  padding: 0.5em 1em;
+  border: 2px solid currentColor;
+  color: white;
+  text-decoration: none;
+  z-index: 50;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.screen {
+  min-height: 100vh;
+  position: relative;
+}
+
+.screen__img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  max-width: none;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transition: opacity 1s;
+  will-change: opacity;
+}
+
+.show .screen__img {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.clip-video {
+  height: 300px;
+  width: 300px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 5;
+}
+
+.clip-video__holder {
+  height: inherit;
+  width: inherit;
+  position: absolute;
+  will-change: transform;
+  border-radius: 300px;
+  opacity: 0;
+  transform: scale3d(0.2, 0.2, 0.2);
+}
+
+.clip-video__overflow {
+  position: absolute;
+  overflow: hidden;
+  height: inherit;
+  width: inherit;
+  border-radius: inherit;
+}
+
+.clip-video__shadow {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: inherit;
+  width: inherit;
+  border-radius: inherit;
+  box-shadow: inset 0 0 20px 30px #101013, 0 0 15px 20px #101013;
+}
+
+.clip-video__frame {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.clip-video video {
+  position: absolute;
+  left: 0;
+  top: 0;
+  min-width: 100%;
+  min-height: 100%;
+  border: 5px solid #000;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  height: 100vh;
+}
+
+/*# sourceMappingURL=clip-video.css.map */

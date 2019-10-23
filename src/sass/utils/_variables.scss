@@ -227,6 +227,7 @@ $layout-text-width: 640px + $layout-text-space-horizontal*2 !default;
 $layout-flood-space-horizontal: 40px !default;
 // максимальная ширина текстового блока выходящего за пределы текста
 $layout-flood-width: 960px + $layout-text-space-horizontal*2 !default;
+$layout-section-width: 1280px !default;
 // отступы внутри блочных элементов
 $grid-space: 30px !default;
 $grid-space--md: 20px !default;

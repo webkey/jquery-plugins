@@ -117,6 +117,8 @@ gulp.task('copyLibsScriptsToJs', ['copyJqueryToJs', 'copyJqueryUiJs', 'copyJquer
     , 'src/libs/jquery-smartresize/jquery.debouncedresize.js' // "умный" ресайз
     , 'src/libs/highlightjs/highlight.pack.min.js' // подсветка кода
     , 'src/libs/clipboard/dist/clipboard.min.js' // копирование в буфер
+    , 'node_modules/gsap/src/minified/easing/EasePack.min.js'
+    , 'node_modules/gsap/src/minified/TweenMax.min.js'
   ])
       .pipe(concat('libs.js'))
       .pipe(gulp.dest('src/js'))

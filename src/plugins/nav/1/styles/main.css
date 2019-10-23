@@ -28,11 +28,9 @@
 @media (max-width: 991px) {
   .nav-wrap.is-open {
     opacity: 1;
-    -webkit-transform: translate(0, 0);
-        -ms-transform: translate(0, 0);
-            transform: translate(0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0);
+    -ms-transform: translate(0, 0);
+        transform: translate(0, 0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
@@ -76,7 +74,6 @@
 }
 
 .nav__list {
-  display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
@@ -104,17 +101,14 @@
 
 @media (max-width: 991px) {
   .nav__list li {
-    display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
+    -ms-flex-align: center;
+        align-items: center;
+    -ms-flex-pack: justify;
+        justify-content: space-between;
     margin: 0.5em 0 0;
     padding: 0 0 0 2rem;
   }
@@ -218,15 +212,12 @@
   position: absolute;
   top: 50%;
   right: 0;
-  display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
   -ms-flex-negative: 0;
       flex-shrink: 0;
   font-size: 0;
@@ -238,9 +229,8 @@
   text-align: center;
   cursor: pointer;
   color: #262626;
-  -webkit-transform: rotate(-90deg);
-      -ms-transform: rotate(-90deg);
-          transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+      transform: rotate(-90deg);
   transition: color 0.2s;
   -webkit-tap-highlight-color: transparent;
   pointer-events: none;
@@ -289,9 +279,8 @@
 
 @media (max-width: 991px) {
   li.is-open > .nav__arrow {
-    -webkit-transform: rotate(180deg);
-        -ms-transform: rotate(180deg);
-            transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+        transform: rotate(180deg);
   }
 }
 
@@ -301,24 +290,21 @@
     top: auto;
     right: auto;
     margin-top: 0;
-    -webkit-transform: rotate(0);
-        -ms-transform: rotate(0);
-            transform: rotate(0);
+    -ms-transform: rotate(0);
+        transform: rotate(0);
     pointer-events: auto;
   }
 }
 
 li.hover > .nav__arrow {
-  -webkit-transform: rotate(90deg);
-      -ms-transform: rotate(90deg);
-          transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+      transform: rotate(90deg);
 }
 
 @media (max-width: 991px) {
   li.is-open > .nav__arrow {
-    -webkit-transform: rotate(180deg);
-        -ms-transform: rotate(180deg);
-            transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+        transform: rotate(180deg);
   }
 }
 
@@ -358,12 +344,10 @@ li.hover > .nav__arrow {
 @media (min-width: 992px) {
   .nav__list > li > a,
   .nav__list > li > span {
-    display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    -ms-flex-align: center;
+        align-items: center;
     height: 6rem;
     padding-top: 1rem;
     padding-bottom: 1rem;
@@ -383,15 +367,13 @@ li.hover > .nav__arrow {
 }
 
 .nav__list > li > .nav__arrow {
-  -webkit-transform: rotate(0deg);
-      -ms-transform: rotate(0deg);
-          transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+      transform: rotate(0deg);
 }
 
 .nav__list > li.hover > .nav__arrow {
-  -webkit-transform: rotate(-180deg);
-      -ms-transform: rotate(-180deg);
-          transform: rotate(-180deg);
+  -ms-transform: rotate(-180deg);
+      transform: rotate(-180deg);
 }
 
 @media (min-width: 992px) {
@@ -430,9 +412,8 @@ li.hover > .nav__arrow {
   position: absolute;
   left: 50%;
   top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
   background-repeat: no-repeat;
   background-position: 50%;
 }
