@@ -7,13 +7,17 @@ $(function () {
 	var $clipElShadow = $('.js-clip-shadow');
 	var $clipElVideoFrame = $('.js-clip-video-frame');
 	var $video = $('video', $container);
+	var animationDuration = {
+		show: 0.65,
+		expand: 0.5
+	};
 	var leftPos = 0;
 	var topPos = 0;
 	var isExpanded = false;
 	var isShow = false;
 	var saveParams = false;
 	var bindEvents = 'mousemove mouseenter mouseleave click';
-	var unbindEvents = 'mousemove mouseenter mouseleave';
+	var unbindEvents = 'mousemove mouseenter mouseleave click';
 
 	/* Auxiliary elements */
 	var rulerLeft = $('<div>', {
@@ -44,18 +48,31 @@ $(function () {
 	$closeEl.off('click').on('click', function (e) {
 		var $curContainer = $(this).closest($container);
 		collapseVideo($curContainer);
+		hideVideo($curContainer);
 		e.preventDefault();
+	});
+
+	$('html').keyup(function (event) {
+		if (isExpanded && event.keyCode === 27) {
+			collapseVideo($container);
+			hideVideo($container);
+		}
 	});
 
 	function eventsClipVideo() {
 		return function (e) {
 			var $curToggleEl = $(this);
 			var $curContainer = $curToggleEl.closest($container);
+			/* Position on document */
 			var x = e.pageX;
 			var y = e.pageY;
 			// console.log("e: ", e);
 			// console.log("e.handleObj.origType: ", e.handleObj.origType);
 			// console.log("mouse offset (left, top): ", x + ', ' + y);
+			/* Position inside toggle button */
+			var offsetX = e.offsetX;
+			var offsetY = e.offsetY;
+			console.log("mouse offset inner (left, top): ", offsetX + ', ' + offsetY);
 
 			var containerOffset = $curContainer.offset();
 			// console.log("container offset (left, top): ", containerOffset.left + ', ' + containerOffset.top);
@@ -63,7 +80,7 @@ $(function () {
 			var containerHeight = $curContainer.innerHeight();
 			var containerWidth = $curContainer.innerWidth();
 
-			leftPos = x - containerOffset.left + containerWidth / 10;
+			leftPos = x - containerOffset.left + containerWidth / 10 + offsetX / 2;
 			topPos = y - containerOffset.top - $clipEl.innerHeight() / 2;
 			// console.log("real position (left, top): ", leftPos + ', ' + topPos);
 
@@ -110,6 +127,7 @@ $(function () {
 
 				if (isExpanded) {
 					collapseVideo($curContainer);
+					// TweenMax.pauseAll();
 				} else {
 					expandVideo($curContainer);
 				}
@@ -121,8 +139,8 @@ $(function () {
 
 	/* Show video */
 	function showVideo($container) {
-		$container.addClass('show');
-		TweenMax.to($clipElHolder, 1, {
+		$container.addClass('video-show');
+		TweenMax.to($clipElHolder, animationDuration.show, {
 			opacity: 1,
 			scale: 1,
 		});
@@ -135,8 +153,8 @@ $(function () {
 
 	/* Hide video */
 	function hideVideo($container) {
-		$container.removeClass('show');
-		TweenMax.to($clipElHolder, 1, {
+		$container.removeClass('video-show');
+		TweenMax.to($clipElHolder, animationDuration.show, {
 			opacity: 0,
 			scale: 0.2,
 		});
@@ -151,7 +169,7 @@ $(function () {
 
 	/* Expand video */
 	function expandVideo($container) {
-		$container.addClass('expand');
+		$container.addClass('video-expand');
 
 		/* Save the initial parameters */
 		if (!saveParams) {
@@ -161,38 +179,39 @@ $(function () {
 			$clipEl.data('topPos', topPos);
 			$clipEl.data('height', $clipEl.innerHeight());
 			$clipEl.data('width', $clipEl.innerWidth());
-			$clipEl.data('borderRadius', $clipElHolder.css('borderRadius'));
+			$clipEl.data('borderRadius', $clipEl.css('borderRadius'));
 			$clipEl.data('boxShadow', $clipElShadow.css('boxShadow'));
 		}
 
 		/* Position and size clip box */
-		TweenMax.to($clipEl, 0.35, {
+		TweenMax.to($clipEl, animationDuration.expand, {
 			x: 0,
 			y: 0,
 			height: $container.innerHeight(),
 			width: $container.innerWidth(),
+			borderRadius: 0,
+			// ease: Circ.easeOut,
+			ease: Power3.easeOut,
 			onComplete: function () {
-				TweenMax.to($closeEl, 0.35, {
+				TweenMax.to($closeEl, animationDuration.expand, {
 					autoAlpha: 1
 				});
 			},
 		});
 
-		/* Clear border-radius */
-		TweenMax.to($clipElHolder, 0.35, {
+		/* Opacity and scale */
+		TweenMax.to($clipElHolder, animationDuration.expand, {
 			opacity: 1,
-			scale: 1,
-			borderRadius: 0,
-			boxShadow: 'inset 0 0 0 0 transparent',
+			scale: 1
 		});
 
 		/* Clear box-shadow */
-		TweenMax.to($clipElShadow, 0.35, {
-			boxShadow: 'inset 0px 0px 0px 0px #101013',
+		TweenMax.to($clipElShadow, animationDuration.expand, {
+			boxShadow: 'inset 0px 0px 0px 0px transparent',
 		});
 
 		/* Position video frame */
-		TweenMax.to($clipElVideoFrame, 0.35, {
+		TweenMax.to($clipElVideoFrame, animationDuration.expand, {
 			x: 0,
 			y: 0,
 		});
@@ -202,37 +221,33 @@ $(function () {
 
 	/* Collapse video */
 	function collapseVideo($container) {
-		$container.removeClass('expand');
+		$container.removeClass('video-expand');
 
 		// console.log("$clipEl.data('leftPos'): ", $clipEl.data('leftPos'));
 		// console.log("$clipEl.data('topPos'): ", $clipEl.data('topPos'));
 
 		/* Hide close button */
-		TweenMax.to($closeEl, 0.35, {
+		TweenMax.to($closeEl, animationDuration.expand, {
 			autoAlpha: 0
 		});
 
-		/* Size clip box */
-		TweenMax.to($clipEl, 0.35, {
+		/* Restore size, position and border-radius clip box */
+		TweenMax.to($clipEl, animationDuration.expand, {
 			x: $clipEl.data('leftPos'),
 			y: $clipEl.data('topPos'),
 			height: $clipEl.data('height'),
 			width: $clipEl.data('width'),
+			borderRadius: $clipEl.data('borderRadius'),
 			onComplete: function () {
 				/* Bind unbinded events on current toggle element */
 				$($toggleEl, $container).on(unbindEvents, eventsClipVideo());
 			},
 		});
-
-		/* Set border-radius */
-		TweenMax.to($clipElHolder, 0.35, {
-			borderRadius: $clipEl.data('borderRadius'),
-		});
 		
 		// console.log("$clipEl.data('boxShadow'): ", $clipEl.data('boxShadow'));
 
-		/* Set box-shadow */
-		TweenMax.to($clipElShadow, 0.35, {
+		/* Restore box-shadow */
+		TweenMax.to($clipElShadow, animationDuration.expand, {
 			boxShadow: $clipEl.data('boxShadow'),
 		});
 

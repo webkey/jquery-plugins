@@ -10,6 +10,7 @@ body {
 }
 
 .section {
+  overflow: hidden; // !!!
   position: relative;
   min-height: 100vh;
 }
@@ -32,10 +33,13 @@ body {
   color: #fff;
   text-decoration: none;
   cursor: pointer;
+  transition: opacity 0.35s;
+  will-change: opacity;
   z-index: 50;
 
-  &_active {
-    background-color: rgba(lightsalmon, 0.5);
+  .video-expand & {
+    opacity: 0;
+    pointer-events: none;
   }
 
   &__inner {
@@ -46,16 +50,49 @@ body {
 }
 
 .btn-close {
+  $size: 46px;
+
   position: absolute;
   right: 20px;
   top: 20px;
-  padding: 0.5em 1em;
-  border: 2px solid currentColor;
+  height: $size;
+  width: $size;
   color: white;
   text-decoration: none;
   z-index: 50;
   opacity: 0;
   visibility: hidden;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTIzLjk1NCAyMS4wM2wtOS4xODQtOS4wOTUgOS4wOTItOS4xNzQtMi44MzItMi44MDctOS4wOSA5LjE3OS05LjE3Ni05LjA4OC0yLjgxIDIuODEgOS4xODYgOS4xMDUtOS4wOTUgOS4xODQgMi44MSAyLjgxIDkuMTEyLTkuMTkyIDkuMTggOS4xeiIvPjwvc3ZnPg==);
+  background-size: 16px;
+
+  &__inner {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: $size;
+    width: $size;
+    font-size: 0;
+    line-height: 0;
+    pointer-events: none;
+    border: 3px solid transparent;
+    box-shadow: 0 0 20px transparent;
+    transition: all 0.2s;
+    border-radius: $size;
+  }
+
+  &:hover {
+    .btn-close__inner {
+      backface-visibility: visible;
+      border-color: currentColor;
+      box-shadow: 0 0 20px currentColor;
+    }
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
 }
 
 .screen {
@@ -73,7 +110,7 @@ body {
     transition: opacity 1s;
     will-change: opacity;
 
-    .show & {
+    .video-show & {
       opacity: 0;
       pointer-events: none;
     }
@@ -82,10 +119,12 @@ body {
 
 .clip-video {
   $size: 300px;
+
+  position: absolute;
   height: $size;
   width: $size;
   //outline: solid red;
-  position: absolute;
+  border-radius: $size;
   left: 0;
   top: 0;
   z-index: 5;
@@ -93,11 +132,11 @@ body {
   &__holder {
     $scale: 0.2;
 
+    position: absolute;
     height: inherit;
     width: inherit;
-    position: absolute;
+    border-radius: inherit;
     will-change: transform;
-    border-radius: $size;
     opacity: 0;
     transform: scale3d($scale, $scale, $scale);
   }
@@ -117,7 +156,22 @@ body {
     height: inherit;
     width: inherit;
     border-radius: inherit;
-    box-shadow: inset 0 0 20px 30px $bg-color, 0 0 15px 20px $bg-color;
+    box-shadow: inset 0 0 20px 30px $bg-color;
+
+    &::before {
+      $intend: 2px;
+
+      content: "";
+      display: block;
+      position: absolute;
+      left: -#{$intend};
+      top: -#{$intend};
+      width: calc(100% + #{$intend * 2});
+      height: calc(100% + #{$intend * 2});
+      z-index: 5;
+      border: #{$intend * 2} solid $bg-color;
+      border-radius: inherit;
+    }
   }
 
   &__frame {
@@ -135,7 +189,6 @@ body {
     top: 0;
     min-width: 100%;
     min-height: 100%;
-    border: 5px solid #000;
     backface-visibility: hidden;
 
     height: 100vh;
