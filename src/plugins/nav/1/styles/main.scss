@@ -278,7 +278,7 @@ $nav-height: 6rem;
     transform: rotate(-90deg);
     transition: color $animation-speed;
     -webkit-tap-highlight-color: transparent;
-    pointer-events: none;
+    pointer-events: auto; // If arrowEnable: true in plugin setting you must set value "auto"
     user-select: none;
     outline: none;
 
@@ -428,6 +428,12 @@ $nav-height: 6rem;
     & > .nav__arrow {
       // Если стили стрелок первого уровня навигаци отличаются, от остальных
       transform: rotate(0deg);
+    }
+
+    @include media("<tab") {
+      &.is-open > .nav__arrow {
+        transform: rotate(180deg);
+      }
     }
 
     &.hover > .nav__arrow {

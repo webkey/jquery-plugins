@@ -43,7 +43,7 @@
         open = function ($panel) {
           if (!$panel.length) return;
 
-          console.log('>>>open<<<');
+          // console.log('>>>open<<<');
 
           // Вторым аргументо передать функцию обратного вызова
           var callback = arguments[1];
@@ -126,7 +126,7 @@
           });
         },
         closePanel = function ($panel) {
-          console.log('>>>close<<<');
+          // console.log('>>>close<<<');
           var callback = arguments[1];
 
           // Удалить активный класс со всех элементов
@@ -266,7 +266,7 @@
     for (i = 0; i < l; i++) {
       if (typeof opt === 'object' || typeof opt === 'undefined') {
         if (self[i].accordionSimple) {
-          console.info("%c Warning! Plugin already has initialized! ", 'background: #bd0000; color: white');
+          // console.info("%c Warning! Plugin already has initialized! ", 'background: #bd0000; color: white');
           return;
         }
 
@@ -398,7 +398,7 @@
           $.each(el, function () {
             var el = $(this);
             var parent = el.closest(config.item);
-            console.log("at: ", at);
+            // console.log("at: ", at);
             el.position({
               my: "left top",
               at: at,
@@ -501,7 +501,7 @@
             _classIsAdded = true;
 
             $element.trigger('nav.afterHover', $item);
-            console.log("~~ class hover added: ", $item);
+            // console.log("~~ class hover added: ", $item);
           }
         },
         removeClassesFrom = function () {
@@ -521,7 +521,7 @@
             _classIsAdded = false;
 
             $element.trigger('nav.afterLeave', $item);
-            console.log("~~ class hover removed: ", $item);
+            // console.log("~~ class hover removed: ", $item);
           }
         },
         /*Immediate add and remove classes*/
@@ -595,7 +595,7 @@
             if (resizeByWidth) {
               removeClassesFrom($(config.item, $element).filter('.' + config.modifiers.hover));
 
-              console.log('%c >>>remove by WIDTH RESIZE<<<', 'background-color: #00f1ff; color: #ff1515');
+              // console.log('%c >>>remove by WIDTH RESIZE<<<', 'background-color: #00f1ff; color: #ff1515');
               // $(window).trigger('resizeByWidth');
               prevWidth = currentWidth;
             }
@@ -606,7 +606,7 @@
 
             if (!_classIsAdded || $(event.target).closest($(config.item)).length) return;
 
-            console.log('%c >>>remove by click OUTSIDE<<<', 'background-color: #00f1ff; color: #ff1515');
+            // console.log('%c >>>remove by click OUTSIDE<<<', 'background-color: #00f1ff; color: #ff1515');
 
             forceRemoveClassFrom();
           });
@@ -615,7 +615,7 @@
           $html.keyup(function (event) {
             if (_classIsAdded && event.keyCode === 27) {
 
-              console.log('%c >>>remove by click ESC<<< ', 'background-color: #00f1ff; color: #ff1515');
+              // console.log('%c >>>remove by click ESC<<< ', 'background-color: #00f1ff; color: #ff1515');
 
               forceRemoveClassFrom();
             }
@@ -634,7 +634,7 @@
               .off('touchend mouseenter mouseleave', config.item)
               .on('touchend mouseenter mouseleave', config.item, function (e) {
 
-                console.log('%c ~~~' + e.handleObj.origType + '~~~ ', 'background: #222; color: #bada55');
+                // console.log('%c ~~~' + e.handleObj.origType + '~~~ ', 'background: #222; color: #bada55');
 
                 var $curItem = $(this);
 
@@ -657,7 +657,7 @@
                 // События на TOUCHEND (для тачскринов)
                 // ====================================================
                 if (e.handleObj.origType === "touchend" && !config.arrowEnable) {
-                  console.log('%c >>>touchend<<< ', 'background: #222; color: #bada55');
+                  // console.log('%c >>>touchend<<< ', 'background: #222; color: #bada55');
 
                   if (!$curItem.prop('isActive')) {
                     // Если пункт НЕАКТИВЕН
@@ -693,7 +693,7 @@
                 // События на ВВОД курсора
                 // ====================================================
                 if (e.handleObj.origType === "mouseenter") {
-                  console.log('%c >>>mouseenter<<< ', 'background: #222; color: #bada55');
+                  // console.log('%c >>>mouseenter<<< ', 'background: #222; color: #bada55');
 
                   // Перед добавлением класса
                   // ОТМЕНЯЕМ УДАЛЕНИЕ класса С ЗАДЕРЖКОЙ c текущего пункта.
@@ -729,7 +729,7 @@
                 // События на ВЫВОД курсора
                 // ====================================================
                 if (e.handleObj.origType === "mouseleave") {
-                  console.log('%c >>>mouseleave<<< ', 'background: #222; color: #bada55');
+                  // console.log('%c >>>mouseleave<<< ', 'background: #222; color: #bada55');
 
                   // Перед удалением класса нужно
                   // ОТМЕНИТЬ ДОБАВЛЕНИЕ класса С ЗАДЕРЖКОЙ c текущего пункта,
@@ -748,13 +748,17 @@
           // Обработка события клика по стрелке
           // ====================================================
           config.arrowEnable &&
-          $element.off('click', config.arrow)
-              .on('click', config.arrow, function (e) {
+          $element.off('click keydown', config.arrow)
+              .on('click keydown', config.arrow, function (e) {
+                // console.log('click keydown');
                 // Если в настройках не отключена трансформация навигации с десктопного вида в мобильный (accordionView: false),
                 // то при ширине окна браузера ниже указанного в опции "accordionView.breakpoint"
                 // дальнейшее выполнение функции прервать.
                 // ====================================================
                 if (config.accordionView && window.innerWidth < config.accordionView.breakpoint) return;
+
+                // console.log('e.which: ', e.which);
+                if( e.which !== 1 && e.which !== 13 && e.which !== 37 && e.which !== 38 && e.which !== 39 && e.which !== 40 ) return;
 
                 var $curItem = $(this).closest(config.item);
 
@@ -764,9 +768,10 @@
                 // ====================================================
                 if (config.onlyHasDrop && !$curItem.has(config.drop).length) return;
 
-                console.log('%c >>>arrow click<<< ', 'background: #222; color: #bada55');
+                // console.log('%c >>>arrow click<<< ', 'background: #222; color: #bada55');
 
-                console.log("$curItem.prop('isActive'): ", $curItem.prop('isActive'));
+                // console.log("$curItem.prop('isActive'): ", $curItem.prop('isActive'));
+
                 if (!$curItem.prop('isActive')) {
                   // Если пункт НЕАКТИВЕН
                   // ====================================================
@@ -874,7 +879,7 @@
     for (i = 0; i < l; i++) {
       if (typeof opt === 'object' || typeof opt === 'undefined') {
         if (self[i].nav) {
-          console.info("%c Warning! Plugin already has initialized! ", 'background: #bd0000; color: white');
+          // console.info("%c Warning! Plugin already has initialized! ", 'background: #bd0000; color: white');
           return;
         }
         self[i].nav = new Nav(self[i], $.extend(true, {}, $.fn.nav.defaultOptions, opt));

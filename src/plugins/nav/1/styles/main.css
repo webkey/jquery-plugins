@@ -233,7 +233,7 @@
       transform: rotate(-90deg);
   transition: color 0.2s;
   -webkit-tap-highlight-color: transparent;
-  pointer-events: none;
+  pointer-events: auto;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -369,6 +369,13 @@ li.hover > .nav__arrow {
 .nav__list > li > .nav__arrow {
   -ms-transform: rotate(0deg);
       transform: rotate(0deg);
+}
+
+@media (max-width: 991px) {
+  .nav__list > li.is-open > .nav__arrow {
+    -ms-transform: rotate(180deg);
+        transform: rotate(180deg);
+  }
 }
 
 .nav__list > li.hover > .nav__arrow {

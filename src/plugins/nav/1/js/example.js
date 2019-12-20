@@ -14,11 +14,13 @@ $(function () {
     $nav.nav({
       siblings: false,
       onlyHasDrop: false,
-      arrowEnable: false,
-      timeout: {
-        add: timeout.add,
-        remove: timeout.remove
-      },
+      arrowEnable: true,
+      // timeout: {
+      //   add: timeout.add,
+      //   remove: timeout.remove
+      // },
+
+      submenuPosition: false,
 
       afterInit: function (e, el, param) {
         console.log("%c Nav 1: afterInit ", 'background: #009fff; color: #f9ff00');
