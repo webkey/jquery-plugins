@@ -54,7 +54,7 @@
 
         changeSelect = function () {
           // Изменить контент селекта при изменении активного таба
-          $select.html($anchor.filter('[href="#' + activeId + '"]').html() + '<i>&#9660;</i>');
+          $select.html($anchor.filter('[href="#' + activeId + '"]').text() + '<i>&#9660;</i>');
           $element.trigger('msTabs.afterSelectValChange');
         },
 
