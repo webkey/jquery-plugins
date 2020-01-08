@@ -216,12 +216,12 @@
 
 /* structure sub end */
 /* accordion end */
-.filters-list li, .article-content .filters-list li {
+.filters-list li, .user-content .filters-list li {
   padding-left: 0;
   margin-right: 20px;
 }
 
-.filters-list li::before, .article-content .filters-list li::before {
+.filters-list li::before, .user-content .filters-list li::before {
   content: none;
 }
 

@@ -27,6 +27,14 @@ $(function () {
     });
   }
 
+  var $dogs = $('.dogs-js');
+
+  if ($dogs.length) {
+    $dogs.msTabs({
+      activeIndex: 1
+    });
+  }
+
   var $compactView = $('.compact-view-true-js');
 
   if ($compactView.length) {

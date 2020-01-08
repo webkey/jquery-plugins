@@ -44,7 +44,7 @@
     </div>
     <br>
     <br>
-    <h3>Коты</h3>
+    <h3>Cats</h3>
     <h4>data-tabs-collapsible=&quot;true&quot;</h4>
     <div class="expl-tabs cats-js" data-tabs-collapsible="true">
       <div class="expl-tabs__nav">
@@ -69,26 +69,26 @@
     </div>
     <br>
     <br>
-    <h3>Коты</h3>
+    <h3>Dogs</h3>
     <h4>data-tabs-collapsible=&quot;false&quot;</h4>
-    <div class="expl-tabs cats-js" data-tabs-collapsible="false">
+    <div class="expl-tabs dogs-js" data-tabs-collapsible="false">
       <div class="expl-tabs__nav">
         <div class="expl-tabs__thumbs">
-          <a href="#cat11" class="tabs__anchor-js"><span>Cat 1</span></a>
-          <a href="#cat21" class="tabs__anchor-js"><span>Cat 2</span></a>
-          <a href="#cat31" class="tabs__anchor-js"><span>Cat 3</span></a>
+          <a href="#dog11" class="tabs__anchor-js"><span>Dog 1</span></a>
+          <a href="#dog21" class="tabs__anchor-js"><span>Dog 2</span></a>
+          <a href="#dog31" class="tabs__anchor-js"><span>Dog 3</span></a>
         </div>
       </div>
       <div class="expl-tabs__panels tabs__panels-js">
-        <div class="expl-tabs__panel tabs__panel-js" id="cat11">
-          ============= Cat 1 ============ <br> {{Content of Cat 1}} <br> {{Content of Cat 1}} <br> {{Content of Cat 1}} <br> {{Content of Cat 1}} <br> {{Content of Cat 1}} <br> {{Content of Cat 1}} <br> {{Content of Cat 1}} <br> {{Content of Cat 1}}
-          <br> {{Content of Cat 1}} <br>
+        <div class="expl-tabs__panel tabs__panel-js" id="dog11">
+          ============= Dog 1 ============ <br> {{Content of Dog 1}} <br> {{Content of Dog 1}} <br> {{Content of Dog 1}} <br> {{Content of Dog 1}} <br> {{Content of Dog 1}} <br> {{Content of Dog 1}} <br> {{Content of Dog 1}} <br> {{Content of Dog 1}}
+          <br> {{Content of Dog 1}} <br>
         </div>
-        <div class="expl-tabs__panel tabs__panel-js" id="cat21">
-          ============= Cat 2 ============ <br> {{Content of Cat 2}} <br> {{Content of Cat 2}} <br> {{Content of Cat 2}} <br>
+        <div class="expl-tabs__panel tabs__panel-js" id="dog21">
+          ============= Dog 2 ============ <br> {{Content of Dog 2}} <br> {{Content of Dog 2}} <br> {{Content of Dog 2}} <br>
         </div>
-        <div class="expl-tabs__panel tabs__panel-js" id="cat31">
-          ============= Cat 3 ============ <br> {{Content of Cat 3}} <br> {{Content of Cat 3}} <br> {{Content of Cat 3}} <br> {{Content of Cat 3}} <br> {{Content of Cat 3}} <br>
+        <div class="expl-tabs__panel tabs__panel-js" id="dog31">
+          ============= Dog 3 ============ <br> {{Content of Dog 3}} <br> {{Content of Dog 3}} <br> {{Content of Dog 3}} <br> {{Content of Dog 3}} <br> {{Content of Dog 3}} <br>
         </div>
       </div>
     </div>
@@ -138,59 +138,62 @@
     <br>
     <br>
     <h2>Документация</h2>
-    <h3>Files</h3>
-    <ul>
-      <li>__ms-tabs.html</li>
-      <li>jquery.tabs.js</li>
-      <li>example.js</li>
-      <li>ms-tabs.sass</li>
-    </ul>
     <h3>Options</h3>
     <ul>
       <li>
-        <div><b>anchor:</b></div>
-        <div><i class="gray">Defaults:</i> <code class="red">'.tabs__anchor-js'</code></div>
-        <div><i class="gray">Type:</i> <code class="red">String</code></div>
-        <div><i class="gray">Example:</i> <code class="red">'.some-class'</code></div>
-        <div>Переключатель таба</div>
+        <div class="prop-el">
+          <div><b>anchor:</b></div>
+          <div><i class="gray">Defaults:</i> <code class="red">'.tabs__anchor-js'</code></div>
+          <div><i class="gray">Type:</i> <code class="red">css selector</code></div>
+          <div><i class="gray">Example:</i> <code class="red">'.js-tabs-anchor'</code></div>
+          <div>Переключатель таба</div>
+        </div>
       </li>
       <li>
-        <div><b>panels:</b></div>
-        <div><i class="gray">Defaults:</i> <code class="red">'.tabs__panels-js'</code></div>
-        <div><i class="gray">Type:</i> <code class="red">String</code></div>
-        <div><i class="gray">Example:</i> <code class="red">'.some-class'</code></div>
-        <div>Обертка панелей</div>
+        <div class="prop-el">
+          <div><b>panels:</b></div>
+          <div><i class="gray">Defaults:</i> <code class="red">'.tabs__panels-js'</code></div>
+          <div><i class="gray">Type:</i> <code class="red">css selector</code></div>
+          <div><i class="gray">Example:</i> <code class="red">'.js-tabs-panels'</code></div>
+          <div>Обертка панелей табов</div>
+        </div>
       </li>
       <li>
-        <div><b>panel:</b></div>
-        <div><i class="gray">Defaults:</i> <code class="red">'.tabs__panel-js'</code></div>
-        <div><i class="gray">Type:</i> <code class="red">String</code></div>
-        <div><i class="gray">Example:</i> <code class="red">'.some-class'</code></div>
-        <div>Панель таба</div>
+        <div class="prop-el">
+          <div><b>panel:</b></div>
+          <div><i class="gray">Defaults:</i> <code class="red">'.tabs__panel-js'</code></div>
+          <div><i class="gray">Type:</i> <code class="red">css selector</code></div>
+          <div><i class="gray">Example:</i> <code class="red">'.js-tabs-panel'</code></div>
+          <div>Панель табов</div>
+        </div>
       </li>
       <li>
-        <div><b>animationSpeed:</b></div>
-        <div><i class="gray">Defaults:</i> <code class="red">80</code></div>
-        <div><i class="gray">Type:</i> <code class="red">Number</code></div>
-        <div><i class="gray">Example:</i> <code class="red">1000</code></div>
-        <div>Скорость анимации, в ms</div>
+        <div class="prop-el">
+          <div><b>animationSpeed:</b></div>
+          <div><i class="gray">Defaults:</i> <code class="red">80</code></div>
+          <div><i class="gray">Type:</i> <code class="red">Number in ms</code></div>
+          <div><i class="gray">Example:</i> <code class="red">1000 (this is 1s)</code></div>
+          <div>Скорость анимации, в ms</div>
+        </div>
       </li>
       <li>
-        <div><b>collapsible:</b></div>
-        <div><i class="gray">Defaults:</i> <code class="red">false</code></div>
-        <div><i class="gray">Type:</i> <code class="red">Boolean</code></div>
-        <div><i class="gray">Example:</i> <code class="red">true</code></div>
-        <div>Скрывать открытый таб по второму клику, или нет</div>
+        <div class="prop-el">
+          <div><b>collapsible:</b></div>
+          <div><i class="gray">Defaults:</i> <code class="red">false</code></div>
+          <div><i class="gray">Type:</i> <code class="red">Boolean</code></div>
+          <div><i class="gray">Example:</i> <code class="red">true or false</code></div>
+          <div>Скрывать открытый таб по второму клику</div>
+        </div>
       </li>
       <li>
-        <b>modifiers:</b>
-        <i>Defaults:</i> <br>
-        <div>
-          <pre class="snippet"><code class="javascript">{
-  initClass: null,
-  collapsibleClass: null,
-  activeClass: null
-{</code></pre>
+        <div class="prop-el">
+          <div><b>modifiers:</b></div>
+          <div><i class="gray">Defaults:</i> <code class="red">Object</code></div>
+          <div><i class="gray">Type:</i> <code class="red">Object</code></div>
+          <div><i class="gray">Example:</i> <code class="red"><pre class='snippet'><code class='javascript'>{ initClass: null, collapsibleClass: null, activeClass: null }</code></pre>
+            </code>
+          </div>
+          <div>Классы-модификаторы</div>
         </div>
       </li>
     </ul>
@@ -227,9 +230,9 @@
     </ul>
     <h3>Глобальные настройки</h3>
     <div>Поменять настройки плагина глобально можно через</div>
-    <div><code class="red">$.fn.tClass.defaultOptions</code></div>
+    <div><code class="red">$.fn.msTabs.defaultOptions</code></div>
     <div><b>Например:</b></div>
-    <div><code class="red">$.fn.tClass.defaultOptions.removeOutsideClick = false;</code></div>
+    <div><code class="red">$.fn.msTabs.defaultOptions.activeIndex = 1;</code></div>
   </div>
   <script src="../../../js/jquery.min.js"></script>
   <script src="../../../js/libs.min.js"></script>
