@@ -42,7 +42,7 @@
         open = function ($panel) {
           if (!$panel.length) return;
 
-          console.log('>>>open<<<');
+          // console.log('>>>open<<<');
 
           // Вторым аргументо передать функцию обратного вызова
           var callback = arguments[1];
@@ -125,7 +125,7 @@
           });
         },
         closePanel = function ($panel) {
-          console.log('>>>close<<<');
+          // console.log('>>>close<<<');
           var callback = arguments[1];
 
           // Удалить активный класс со всех элементов
@@ -236,6 +236,8 @@
     self = {
       callbacks: callbacks,
       togglePanel: togglePanel,
+      open: open,
+      close: close,
       init: init
     };
 
