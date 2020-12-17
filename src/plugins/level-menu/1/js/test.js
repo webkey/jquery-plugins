@@ -1,23 +1,15 @@
 $(function () {
   var $levelMenu = $('.js-level-menu');
   if ($levelMenu.length) {
-    var timeout = {
-      show: 0,
-      hide: 0
-    };
 
     $levelMenu.levelMenu({
       siblings: true,
       onlyHasDrop: false,
       arrowEnable: false,
       accordionView: false,
-      mouseleavePrevent: false,
+      mouseleavePrevent: true,
       collapsible: false,
-      animationSpeed: 700,
-      timeout: {
-        show: timeout.show,
-        hide: timeout.hide
-      },
+      animationSpeed: 1000,
       // modifiers: {
       //   selected: 'booooo'
       // },
@@ -34,8 +26,6 @@ $(function () {
         // console.log("afterLeave:currentItem: ", currentItem);
       },
     });
-
-    $('a', $levelMenu).attr('title', 'Задержка добавления: ' + timeout.show + ', задержка удаления:' + timeout.hide);
 
     // Mob menu switcher
     const $mobMenuControl = $('.js-mob-menu-control');

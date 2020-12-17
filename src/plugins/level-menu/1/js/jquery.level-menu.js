@@ -97,9 +97,15 @@
           // Определяем текущий таб
           var $activePanel = $panel.filter('[id="' + activeId + '"]');
           var $otherPanel = $panel.not('[id="' + activeId + '"]');
-          var $activeAnchor = $thumb.filter('[href="#' + activeId + '"]');
+          var $activeAnchor = $thumb.filter('[data-for="' + activeId + '"]');
 
-          if (!isAnimated) {
+          console.log('$activePanel: ', $activePanel);
+          if (!$activePanel.length) {
+            console.error('Element with id="' + activeId + '" not exist');
+            return;
+          }
+
+          if (!isAnimated && $activePanel.length) {
             // console.log('Показать таб:', activeId);
             isAnimated = true;
 
@@ -148,11 +154,11 @@
                   isOpen = true;
                   isAnimated = false;
                 });
-          }
 
-          // callback after showed tab
-          $element.trigger('msTabs.afterOpen');
-          $element.trigger('msTabs.afterChange');
+            // callback after showed tab
+            $element.trigger('msTabs.afterOpen');
+            $element.trigger('msTabs.afterChange');
+          }
         },
 
         hidePanel = function () {
@@ -290,6 +296,7 @@
         addClassesTo = function () {
           var $item = arguments[0];
 
+          console.log('$item a: ', $item);
           if ($item.length) {
             $item
                 .addClass(pluginClasses.selected)
@@ -302,7 +309,7 @@
 
             _classIsAdded = true;
 
-            $element.trigger('levelMenu.afterSelected', $item);
+            $element.trigger('levelMenu.afterAddedClass', $item);
             // console.log("~~ class selected added: ", $item);
           }
         },
@@ -311,6 +318,7 @@
         removeClassesFrom = function () {
           var $item = arguments[0] || $thumb;
 
+          console.log('$item r: ', $item);
           if ($item.length) {
             $item
                 .removeClass(pluginClasses.selected)
@@ -323,7 +331,7 @@
 
             _classIsAdded = false;
 
-            $element.trigger('levelMenu.afterLeave', $item);
+            $element.trigger('levelMenu.afterRemovedClass', $item);
             // console.log("~~ class selected removed: ", $item);
           }
         },
@@ -504,25 +512,25 @@
                 if (e.handleObj.origType === "mouseenter") {
                   // console.log('%c >>>mouseenter<<< ', 'background: #222; color: #bada55');
 
-                  // Перед добавлением класса
-                  // ОТМЕНЯЕМ УДАЛЕНИЕ класса С ЗАДЕРЖКОЙ c текущего пункта.
-                  clearTimeoutHidePanel($curItem);
-
                   // Отлавливать событие нужно только на целевом пункте, не затрагивая родителей.
                   // Для этого добавляем в объект события параметр "handled"
                   // и проверяем при всплытие события наличие этого параметра.
                   if (e.handled) return;
                   e.handled = true;
 
+                  var curId = $curItem.attr('data-for');
+
                   // При повторном наведении на активный пункт ничего не должно происходить
-                  if ($curItem.prop('isActive')) return;
+                  if (isAnimated || !collapsible && curId === activeId) {
+                    return;
+                  }
 
-                  // Удалить БЕЗ ЗАДЕРЖКИ все классы selected со всех активных пунктов,
-                  // кроме ТЕКУЩЕГО и РОДИТЕЛЬСКИХ.
-                  forceRemoveClassFrom($item.filter('.' + CONST_CLASSES.selected).not($curItem).not($curParentItems));
-
-                  // ЗАПУСТИТЬ функцию ДОБАВЛЕНИЯ класса С ЗАДЕРЖКОЙ
-                  createTimeoutShowPanel($curItem);
+                  if (collapsible && isOpen && curId === activeId) {
+                    hidePanel();
+                  } else {
+                    activeId = curId;
+                    showPanel();
+                  }
 
                   return;
                 }
@@ -781,7 +789,7 @@
     //   show: 50,
     //   hide: 500
     // }
-    timeout: 50,
+    timeout: 0,
 
     // Активировать стрелки.
     // -----------------------------------------------------------------------------------
