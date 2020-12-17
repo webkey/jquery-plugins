@@ -1,0 +1,13 @@
+@mixin clearfix() {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin below($width, $orientation: 'width') {
+  @media screen and (max-#{$orientation}: $width - 1) {
+    @content;
+  }
+}

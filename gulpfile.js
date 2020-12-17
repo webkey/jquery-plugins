@@ -174,6 +174,7 @@ gulp.task('browserSync', function (done) {
     server: {
       baseDir: "./src"
     },
+    port: 9090,
     open: false,
     notify: false
   });

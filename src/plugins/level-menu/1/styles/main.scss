@@ -1,0 +1,70 @@
+@import "../../../../sass/utils/variables";
+@import "../../../../sass/utils/mixins";
+@import "../../../../libs/include-media/dist/include-media";
+@import "new-header";
+@import "quick-menu";
+
+
+.LEVEL-MENU-PAGE {
+  position: relative;
+  min-height: 900px;
+  background-color: #54a7e7;
+  background-image: url(../images/image.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  .new-header {
+    position: absolute;
+  }
+}
+
+.LEVEL-MENU-PAGE ol:not(.list-unstyled),
+.LEVEL-MENU-PAGE ul:not(.list-unstyled) {
+  list-style: none;
+  padding-left: 0;
+}
+
+.LEVEL-MENU-PAGE ol:not(.list-reset),
+.LEVEL-MENU-PAGE ul:not(.list-reset) {
+  position: relative;
+  margin: 31px 0 41px;
+  padding: 0 5em 0 .2em;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.LEVEL-MENU-PAGE ol:not(.list-reset) li, .LEVEL-MENU-PAGE ul:not(.list-reset) li {
+  display: table;
+  margin-bottom: 24px;
+  border-collapse: separate;
+}
+
+.LEVEL-MENU-PAGE ul:not(.list-reset) > li {
+  position: relative;
+  padding-left: 30px;
+}
+
+.LEVEL-MENU-PAGE ol:not(.list-reset) li:before,
+.LEVEL-MENU-PAGE ul:not(.list-reset) li:before {
+  display: table-cell;
+  padding-right: 19px;
+}
+
+.LEVEL-MENU-PAGE ul:not(.list-reset) > li:before {
+  position: absolute;
+  left: 0;
+  top: 7px;
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  padding: 0;
+  content: "";
+  background-color: #f7a600;
+}
+
+
+/* ============================================================== */
+/* ============ Стили необходимые для работы скрипта ============ */
+/* ============================================================== */
