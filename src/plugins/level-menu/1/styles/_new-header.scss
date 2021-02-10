@@ -272,6 +272,7 @@ $layout-page-space_horizontal_md: 16px;
       property: opacity, transform;
       duration: $animation-speed;
     };
+    backface-visibility: hidden;
   }
 
   &::before {
@@ -280,6 +281,7 @@ $layout-page-space_horizontal_md: 16px;
     margin: -1.2rem -1.2rem;
     background-image: url("data:image/svg+xml,%3Csvg width='24' height='19' viewBox='0 0 24 19' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='24' height='1' fill='white'/%3E%3Crect y='9' width='24' height='1' fill='white'/%3E%3Crect y='18' width='24' height='1' fill='white'/%3E%3C/svg%3E%0A");
     transform: rotate(0);
+    transition-delay: 0.1s;
   }
 
   &::after {
@@ -287,19 +289,21 @@ $layout-page-space_horizontal_md: 16px;
     width: 18px;
     margin: -0.9rem -0.9rem;
     background-image: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.0017 0L18.0001 17.2512L17.2918 17.97L0.293434 0.718802L1.0017 0Z' fill='white'/%3E%3Cpath d='M0 17.2812L16.9984 0.0299469L17.7066 0.748749L9.20745 9.37437L0.708265 18L0 17.2812Z' fill='white'/%3E%3C/svg%3E%0A");
-    transform: rotate(45deg);
+    transform: rotate(-45deg);
     opacity: 0;
   }
 
   &.mob-menu-is-open {
     &::before {
       opacity: 0;
-      transform: rotate(-45deg);
+      transform: rotate(+45deg);
+      transition-delay: 0s;
     }
 
     &::after {
       opacity: 1;
       transform: rotate(0);
+      transition-delay: 0.1s;
     }
   }
 }
@@ -945,16 +949,13 @@ $layout-page-space_horizontal_md: 16px;
   &__left {
     display: flex;
     align-items: center;
-    flex: 1 0 auto;
-
-    @include below($lg) {
-      flex: 0 1 auto;
-    }
+    flex: 1 0;
   }
 
   &__right {
     display: flex;
     align-items: center;
+    flex-shrink: 0;
 
     @include below($lg) {
       display: none;
@@ -963,11 +964,10 @@ $layout-page-space_horizontal_md: 16px;
 
   &__drop {
     margin-right: 15px;
-    flex: 1 0 auto;
+    flex: 1 0;
 
     @include below($lg) {
       margin-right: 0;
-      flex: 0 1 auto;
     }
   }
 
@@ -992,7 +992,6 @@ $layout-page-space_horizontal_md: 16px;
     left: 0;
     top: 100%;
     z-index: 604;
-    padding: 20px 24px;
     width: 100%;
 
     @include below($lg) {
@@ -1002,11 +1001,47 @@ $layout-page-space_horizontal_md: 16px;
       padding: 0;
       border-top: 1px solid #c7dcee;
     }
+
+    &-tabs {
+      @include below($lg) {
+        // Важно! Нужно обрезать табы, чтобы не появлялась панель прокрутки,
+        // когда активный там меньше по высте, чем неактивные
+        overflow: hidden;
+      }
+    }
+
+    &-tab {
+      padding: 20px 24px;
+
+      @include below($lg) {
+        padding: 0;
+      }
+
+      &:nth-child(1) {
+        background-color: rgba(lightsalmon, 0.5);
+      }
+
+      &:nth-child(2) {
+        background-color: rgba(lightpink, 0.5);
+      }
+
+      &:nth-child(3) {
+        background-color: rgba(lightgreen, 0.5);
+      }
+    }
   }
 }
 // Header panel end
 
-// Drop of the navigation
+// Drops of the navigation
+.new-header-drops {
+  @include below($lg) {
+    // Важно! Нужно обрезать табы, чтобы не появлялась панель прокрутки,
+    // когда активный там меньше по высте, чем неактивные
+    overflow: hidden;
+  }
+}
+
 .new-header-drop {
   $space-h: 56px;
   $space-h_md: 30px;
@@ -1103,7 +1138,7 @@ $layout-page-space_horizontal_md: 16px;
     }
   }
 }
-// Drop of the navigation end
+// Drops of the navigation end
 
 // Banking
 .btn-premium {
@@ -1153,24 +1188,26 @@ $layout-page-space_horizontal_md: 16px;
 // Banking end
 
 // js
-.js-level-menu-panels {
+.js-level-menu-panels,
+.js-level-menu-panels-2,
+.js-level-menu-panels-3 {
   // Не обязательно
   position: relative;
-}
 
-.js-level-menu-panel {
-  opacity: 0;
-  visibility: hidden;
-  // Не обязательно
-  position: absolute;
-  left: 0;
-  top: 0;
+  & > div {
+    opacity: 0;
+    visibility: hidden;
+    // Не обязательно
+    position: absolute;
+    left: 0;
+    top: 0;
 
-  &:first-child {
-    opacity: 1;
-    visibility: visible;
-    position: relative;
-    left: auto;
-    top: auto;
+    //&:first-child {
+    //  opacity: 1;
+    //  visibility: visible;
+    //  position: relative;
+    //  left: auto;
+    //  top: auto;
+    //}
   }
 }

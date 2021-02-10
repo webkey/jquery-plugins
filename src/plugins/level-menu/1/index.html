@@ -33,28 +33,18 @@
             <nav class="new-header-nav js-show-current">
               <div class="new-header-nav__frame js-show-current-scroll">
                 <div class="new-header-nav__holder">
-                  <ul class="new-header-nav__list list-reset">
-                    <li class="new-header-nav__li js-show-current-item" data-for="chastnym-litsam">
-                      <a class="new-header-nav__li-el" href="#">Частным лицам</a>
+                  <ul class="new-header-nav__list list-reset js-level-menu-thumbs">
+                    <li class="new-header-nav__li js-show-current-item">
+                      <a class="new-header-nav__li-el" href="#" data-for="chastnym-litsam">Частным лицам</a>
                     </li>
-                    <li class="new-header-nav__li js-show-current-item" data-for="dlya-biz">
-                      <a class="new-header-nav__li-el" href="#">Для бизнеса</a>
+                    <li class="new-header-nav__li js-show-current-item">
+                      <a class="new-header-nav__li-el" href="#" data-for="dlya-biz">Для бизнеса</a>
                     </li>
-                    <li class="new-header-nav__li js-show-current-item current" data-for="kilentam">
-                      <span class="new-header-nav__li-el">Клиентам</span>
+                    <li class="new-header-nav__li js-show-current-item current">
+                      <span class="new-header-nav__li-el" data-for="kilentam">Клиентам</span>
                     </li>
-                    <li class="new-header-nav__li js-show-current-item" data-for="fin-org">
-                      <a class="new-header-nav__li-el" href="#">Фин организациям</a>
-                      <ul class="list-reset">
-                        <li data-for="boooo">
-                          <a href="#">boooo</a>
-                          <ul class="list-reset">
-                            <li data-for="woooo">
-                              <a href="#">woooo</a>
-                            </li>
-                          </ul>
-                        </li>
-                      </ul>
+                    <li class="new-header-nav__li js-show-current-item">
+                      <a class="new-header-nav__li-el" href="#" data-for="fin-org">Фин организациям</a>
                     </li>
                   </ul>
                 </div>
@@ -70,6 +60,40 @@
                 <div class="banking-switcher__drop-list">
                   <div class="banking-switcher__drop-item outside-lnks">
                     <a class="js_outside-lnks" href="#ib">Интернет-банк</a>
+                    <div class="outside-lnks-dropdown wrap">
+                      <div class="submenu js_scroll">
+                        <ul class="list-reset">
+                          <li>
+                            <a href="#" target="_blank">3D платежи</a>
+                            <div class="submenu__info">Оплата с карточки любого банка Беларуси</div>
+                          </li>
+                          <li><a href="#" target="_blank">Мой портфель</a>
+                            <div class="submenu__info">Карты, Счета, Кредиты, Вклады</div>
+                          </li>
+                          <li><a href="#" target="_blank">Мои платежи</a>
+                            <div class="submenu__info">Быстрые платежи, автооплата и настройки</div>
+                          </li>
+                          <li><a href="#" target="_blank">Финансовый помощник</a>
+                            <div class="submenu__info">Больше, чем домашняя бухгалтерия</div>
+                          </li>
+                          <li><a href="#" target="_blank">Переводы</a>
+                            <div class="submenu__info">Переводы по картам банков РБ</div>
+                          </li>
+                          <li><a href="#" target="_blank">Интернет-банк «Бизнес»</a>
+                            <div class="submenu__info">интернет-банк<br> для юридических лиц</div>
+                          </li>
+                          <li><a href="#" target="_blank">Онлайн заявки</a>
+                            <div class="submenu__info">Банковские продукты без посещения офиса</div>
+                          </li>
+                          <li><a href="#" target="_blank">Выставление счетов</a>
+                            <div class="submenu__info">Перевод денег по запросу между физ. лицами.</div>
+                          </li>
+                          <li><a href="#" target="_blank">Мобильное приложение</a>
+                            <div class="submenu__info">BGPB mobile в <a target="_blank" href="https://itunes.apple.com/us/app/bgpb/id890500911?l=ru&amp;ls=1&amp;mt=8">AppStore</a> и <a target="_blank" href="https://play.google.com/store/apps/details?id=by.bgpb.mbanking">GooglePlay</a></div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
                   </div>
                   <div class="banking-switcher__drop-item"><a href="#pb">Premium Banking</a></div>
                 </div>
@@ -107,18 +131,18 @@
           </div>
         </div>
       </div>
-      <div class="new-header-panel js-mob-menu js-mob-menu-prevent-hide">
+      <div class="new-header-panel js-mob-menu js-mob-menu-prevent-hide js-level-menu-2">
         <div class="new-header-panel__common">
           <div class="new-header-panel__left hide-print">
             <div class="new-header-panel__drop">
               <div class="new-header-drops js-level-menu-panels">
                 <div class="new-header-drop js-level-menu-panel" id="chastnym-litsam" style="background-color: #00AAAA">
-                  <ul class="new-header-drop__list list-reset">
+                  <ul class="new-header-drop__list list-reset js-level-menu-thumbs-2">
                     <li class="new-header-drop__li">
-                      <a class="new-header-drop__li-el" href="#">Вклады</a>
+                      <a class="new-header-drop__li-el" href="#" data-for="vklady">Вклады (+)</a>
                     </li>
                     <li class="new-header-drop__li">
-                      <a class="new-header-drop__li-el" href="#">Карточки</a>
+                      <a class="new-header-drop__li-el" href="#" data-for="kartochka">Карточки (+)</a>
                     </li>
                     <li class="new-header-drop__li">
                       <a class="new-header-drop__li-el" href="#">Кредиты</a>
@@ -130,7 +154,7 @@
                       <a class="new-header-drop__li-el" href="#">Страхование</a>
                     </li>
                     <li class="new-header-drop__li current">
-                      <span class="new-header-drop__li-el">Услуги</span>
+                      <span class="new-header-drop__li-el" data-for="cervices">Услуги (+)</span>
                     </li>
                     <li class="new-header-drop__li">
                       <a class="new-header-drop__li-el" href="#">BGPB mobile</a>
@@ -138,7 +162,28 @@
                   </ul>
                 </div>
                 <div class="new-header-drop js-level-menu-panel" id="dlya-biz" style="background-color: #0E9A00">
-                  <ul class="new-header-drop__list list-reset">
+                  <ul class="new-header-drop__list list-reset js-level-menu-thumbs-2">
+                    <li class="new-header-drop__li">
+                      <a class="new-header-drop__li-el" href="#">Для бизнеса</a>
+                    </li>
+                    <li class="new-header-drop__li">
+                      <a class="new-header-drop__li-el" href="#">Для бизнеса 2</a>
+                    </li>
+                    <li class="new-header-drop__li">
+                      <a class="new-header-drop__li-el" href="#">Для бизнеса 3</a>
+                    </li>
+                    <li class="new-header-drop__li">
+                      <a class="new-header-drop__li-el" href="#">Для бизнеса 4</a>
+                    </li>
+                    <li class="new-header-drop__li">
+                      <a class="new-header-drop__li-el" href="#">Для би би би знеса 5</a>
+                    </li>
+                    <li class="new-header-drop__li">
+                      <a class="new-header-drop__li-el" href="#">Для биз биз биз биз неса 6</a>
+                    </li>
+                    <li class="new-header-drop__li">
+                      <a class="new-header-drop__li-el" href="#">Для бизн еса 7</a>
+                    </li>
                     <li class="new-header-drop__li">
                       <a class="new-header-drop__li-el" href="#">Для бизнеса</a>
                     </li>
@@ -163,7 +208,7 @@
                   </ul>
                 </div>
                 <div class="new-header-drop js-level-menu-panel" id="kilentam" style="background-color: #f0c674">
-                  <ul class="new-header-drop__list list-reset">
+                  <ul class="new-header-drop__list list-reset js-level-menu-thumbs-2">
                     <li class="new-header-drop__li">
                       <a class="new-header-drop__li-el" href="#">Клиентам</a>
                     </li>
@@ -176,7 +221,7 @@
                   </ul>
                 </div>
                 <div class="new-header-drop js-level-menu-panel" id="fin-org" style="background-color: #A082BD">
-                  <ul class="new-header-drop__list list-reset">
+                  <ul class="new-header-drop__list list-reset js-level-menu-thumbs-2">
                     <li class="new-header-drop__li">
                       <a class="new-header-drop__li-el" href="#">Фин организациям</a>
                     </li>
@@ -203,131 +248,619 @@
                 <div class="btn-wrap">
                   <a class="btn-banking js_outside-lnks" href="#">Интернет-банк</a>
                 </div>
+                <div class="outside-lnks-dropdown wrap">
+                  <div class="submenu js_scroll">
+                    <ul class="list-reset">
+                      <li>
+                        <a href="#" target="_blank">3D платежи</a>
+                        <div class="submenu__info">Оплата с карточки любого банка Беларуси</div>
+                      </li>
+                      <li><a href="#" target="_blank">Мой портфель</a>
+                        <div class="submenu__info">Карты, Счета, Кредиты, Вклады</div>
+                      </li>
+                      <li><a href="#" target="_blank">Мои платежи</a>
+                        <div class="submenu__info">Быстрые платежи, автооплата и настройки</div>
+                      </li>
+                      <li><a href="#" target="_blank">Финансовый помощник</a>
+                        <div class="submenu__info">Больше, чем домашняя бухгалтерия</div>
+                      </li>
+                      <li><a href="#" target="_blank">Переводы</a>
+                        <div class="submenu__info">Переводы по картам банков РБ</div>
+                      </li>
+                      <li><a href="#" target="_blank">Интернет-банк «Бизнес»</a>
+                        <div class="submenu__info">интернет-банк<br> для юридических лиц</div>
+                      </li>
+                      <li><a href="#" target="_blank">Онлайн заявки</a>
+                        <div class="submenu__info">Банковские продукты без посещения офиса</div>
+                      </li>
+                      <li><a href="#" target="_blank">Выставление счетов</a>
+                        <div class="submenu__info">Перевод денег по запросу между физ. лицами.</div>
+                      </li>
+                      <li><a href="#" target="_blank">Мобильное приложение</a>
+                        <div class="submenu__info">BGPB mobile в <a target="_blank" href="https://itunes.apple.com/us/app/bgpb/id890500911?l=ru&amp;ls=1&amp;mt=8">AppStore</a> и <a target="_blank" href="https://play.google.com/store/apps/details?id=by.bgpb.mbanking">GooglePlay</a></div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
         <div class="new-header-panel__quick-menu">
-          <div class="quick-menu">
-            <div class="quick-menu__layout">
-              <div class="quick-menu__left">
-                <div class="quick-menu-nav js-show-current">
-                  <div class="quick-menu-nav__frame js-show-current-scroll">
-                    <div class="quick-menu-nav__holder">
-                      <ul class="quick-menu-nav__list list-reset">
-                        <li class="quick-menu-nav__li js-show-current-item">
-                          <a class="quick-menu-nav__li-el" href="#">Расчетные карты</a>
-                        </li>
-                        <li class="quick-menu-nav__li js-show-current-item">
-                          <a class="quick-menu-nav__li-el" href="#">Зарплатные карты</a>
-                        </li>
-                        <li class="quick-menu-nav__li js-show-current-item">
-                          <a class="quick-menu-nav__li-el" href="#">Кредитные карты</a>
-                        </li>
-                        <li class="quick-menu-nav__li js-show-current-item">
-                          <a class="quick-menu-nav__li-el" href="#">Корпоративные карты</a>
-                        </li>
-                        <li class="quick-menu-nav__li js-show-current-item current">
-                          <span class="quick-menu-nav__li-el">Премиальные карты</span>
-                        </li>
-                      </ul>
+          <div class="new-header-panel__quick-menu-tabs js-level-menu-panels-2">
+            <div class="new-header-panel__quick-menu-tab js-level-menu-panel-2" id="vklady">
+              <div class="quick-menu js-level-menu-3">
+                <div class="quick-menu__layout">
+                  <div class="quick-menu__left">
+                    <div class="quick-menu-nav js-show-current">
+                      <div class="quick-menu-nav__frame js-show-current-scroll">
+                        <div class="quick-menu-nav__holder">
+                          <ul class="quick-menu-nav__list list-reset js-level-menu-thumbs-3">
+                            <li class="quick-menu-nav__li js-show-current-item">
+                              <a class="quick-menu-nav__li-el" href="#" data-for="raschetnye-karty">Расчетные карты (+)</a>
+                            </li>
+                            <li class="quick-menu-nav__li js-show-current-item">
+                              <a class="quick-menu-nav__li-el" href="#" data-for="zarplatnye-karty">Зарплатные карты (+)</a>
+                            </li>
+                            <li class="quick-menu-nav__li js-show-current-item">
+                              <a class="quick-menu-nav__li-el" href="#">Кредитные карты</a>
+                            </li>
+                            <li class="quick-menu-nav__li js-show-current-item">
+                              <a class="quick-menu-nav__li-el" href="#">Корпоративные карты</a>
+                            </li>
+                            <li class="quick-menu-nav__li js-show-current-item current">
+                              <span class="quick-menu-nav__li-el">Премиальные карты</span>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div class="quick-menu__main">
-                <div class="quick-menu-container">
-                  <div class="quick-menu-products">
-                    <div class="quick-menu-products__content">
-                      <div class="b-card-list">
-                        <div class="b-card-list__ul">
-                          <div class="b-card-list__li">
-                            <a class="b-card-list__el" href="#">
-                              <div class="b-card-list__figure">
-                                <img src="images/quick-menu/b-card-01.png" alt="image description" />
+                  <div class="quick-menu__main">
+                    <div class="quick-menu__main-tabs js-level-menu-panels-3">
+                      <div class="quick-menu__main-tab js-level-menu-panel-3" id="raschetnye-karty">
+                        <div class="quick-menu-container">
+                          <div class="quick-menu-products">
+                            <div class="quick-menu-products__content">
+                              <div class="b-card-list">
+                                <div class="b-card-list__ul">
+                                  <div class="b-card-list__li">
+                                    <a class="b-card-list__el" href="#">
+                                      <div class="b-card-list__figure">
+                                        <img src="images/quick-menu/b-card-01.png" alt="image description" />
+                                      </div>
+                                      <div class="b-card-list__title">Visa Classic</div>
+                                    </a>
+                                  </div>
+                                  <div class="b-card-list__li">
+                                    <a class="b-card-list__el" href="#">
+                                      <div class="b-card-list__figure">
+                                        <img src="images/quick-menu/b-card-02.png" alt="image description" />
+                                      </div>
+                                      <div class="b-card-list__title">Mastercard Standard</div>
+                                    </a>
+                                  </div>
+                                  <div class="b-card-list__li">
+                                    <a class="b-card-list__el" href="#">
+                                      <div class="b-card-list__figure">
+                                        <img src="images/quick-menu/b-card-03.png" alt="image description" />
+                                      </div>
+                                      <div class="b-card-list__title">UnionPay Classic</div>
+                                    </a>
+                                  </div>
+                                  <div class="b-card-list__li">
+                                    <a class="b-card-list__el" href="#">
+                                      <div class="b-card-list__figure">
+                                        <img src="images/quick-menu/b-card-04.png" alt="image description" />
+                                      </div>
+                                      <div class="b-card-list__title">Cashalot</div>
+                                    </a>
+                                  </div>
+                                  <div class="b-card-list__li">
+                                    <a class="b-card-list__el" href="#">
+                                      <div class="b-card-list__figure">
+                                        <img src="images/quick-menu/b-card-01.png" alt="image description" />
+                                      </div>
+                                      <div class="b-card-list__title">Visa Classic</div>
+                                    </a>
+                                  </div>
+                                  <div class="b-card-list__li">
+                                    <a class="b-card-list__el" href="#">
+                                      <div class="b-card-list__figure">
+                                        <img src="images/quick-menu/b-card-02.png" alt="image description" />
+                                      </div>
+                                      <div class="b-card-list__title">Mastercard Standard</div>
+                                    </a>
+                                  </div>
+                                </div>
                               </div>
-                              <div class="b-card-list__title">Visa Classic</div>
-                            </a>
+                            </div>
+                            <div class="quick-menu-products__footer">
+                              <a class="quick-menu-products__btn" href="#">Все карты (12)</a>
+                            </div>
                           </div>
-                          <div class="b-card-list__li">
-                            <a class="b-card-list__el" href="#">
-                              <div class="b-card-list__figure">
-                                <img src="images/quick-menu/b-card-02.png" alt="image description" />
+                          <div class="quick-menu-services">
+                            <div class="quick-menu-services__content">
+                              <div class="quick-menu-services-list">
+                                <ul class="list-reset">
+                                  <li><a href="#">Активация карты</a></li>
+                                  <li><a href="#">Блокировка карты</a></li>
+                                  <li><a href="#">Переводы</a></li>
+                                  <li><a href="#">Безопасность</a></li>
+                                  <li><a href="#">Дополнительные услуги</a></li>
+                                  <li><a href="#">Держателям карт</a></li>
+                                </ul>
                               </div>
-                              <div class="b-card-list__title">Mastercard Standard</div>
-                            </a>
+                            </div>
+                            <div class="quick-menu-services__footer">
+                              <div class="quick-menu-services-support">
+                                <div class="quick-menu-services-support__label">Поддержка 24/7</div>
+                                <div class="quick-menu-services-support__value"><a href="tel:3210000">321-00-00</a></div>
+                              </div>
+                            </div>
                           </div>
-                          <div class="b-card-list__li">
-                            <a class="b-card-list__el" href="#">
-                              <div class="b-card-list__figure">
-                                <img src="images/quick-menu/b-card-03.png" alt="image description" />
+                          <div class="quick-menu-accent">
+                            <div class="quick-menu-accent__content">
+                              <a class="quick-menu-accent__figure" href="#">
+																				<img src="images/quick-menu/b-card-lg.png" alt="image description" />
+																			</a>
+                              <div class="quick-menu-accent__descr">
+                                <div class="quick-menu-accent__title"><a href="#">Премиальная карточка <span class="nobr">Masterсard Gold</span></a></div>
+                                <div class="quick-menu-accent__text">Акция: выпуск карточки в белорусских рублях – 14 BYN!<br> Золотой уровень Ваших привилегий в разных странах!</div>
                               </div>
-                              <div class="b-card-list__title">UnionPay Classic</div>
-                            </a>
+                            </div>
+                            <div class="quick-menu-accent__footer">
+                              <a class="quick-menu-accent__btn" href="#">Заказать</a>
+                            </div>
                           </div>
-                          <div class="b-card-list__li">
-                            <a class="b-card-list__el" href="#">
-                              <div class="b-card-list__figure">
-                                <img src="images/quick-menu/b-card-04.png" alt="image description" />
+                        </div>
+                      </div>
+                      <div class="quick-menu__main-tab js-level-menu-panel-3" id="zarplatnye-karty">
+                        <div class="quick-menu-container">
+                          <div class="quick-menu-products">
+                            <div class="quick-menu-products__content">
+                              <div class="b-card-list">
+                                <div class="b-card-list__ul">
+                                  <div class="b-card-list__li">
+                                    <a class="b-card-list__el" href="#">
+                                      <div class="b-card-list__figure">
+                                        <img src="images/quick-menu/b-card-02.png" alt="image description" />
+                                      </div>
+                                      <div class="b-card-list__title">Mastercard Standard</div>
+                                    </a>
+                                  </div>
+                                  <div class="b-card-list__li">
+                                    <a class="b-card-list__el" href="#">
+                                      <div class="b-card-list__figure">
+                                        <img src="images/quick-menu/b-card-03.png" alt="image description" />
+                                      </div>
+                                      <div class="b-card-list__title">UnionPay Classic</div>
+                                    </a>
+                                  </div>
+                                  <div class="b-card-list__li">
+                                    <a class="b-card-list__el" href="#">
+                                      <div class="b-card-list__figure">
+                                        <img src="images/quick-menu/b-card-01.png" alt="image description" />
+                                      </div>
+                                      <div class="b-card-list__title">Visa Classic</div>
+                                    </a>
+                                  </div>
+                                  <div class="b-card-list__li">
+                                    <a class="b-card-list__el" href="#">
+                                      <div class="b-card-list__figure">
+                                        <img src="images/quick-menu/b-card-02.png" alt="image description" />
+                                      </div>
+                                      <div class="b-card-list__title">Mastercard Standard</div>
+                                    </a>
+                                  </div>
+                                </div>
                               </div>
-                              <div class="b-card-list__title">Cashalot</div>
-                            </a>
+                            </div>
+                            <div class="quick-menu-products__footer">
+                              <a class="quick-menu-products__btn" href="#">Все карты (12)</a>
+                            </div>
                           </div>
-                          <div class="b-card-list__li">
-                            <a class="b-card-list__el" href="#">
-                              <div class="b-card-list__figure">
-                                <img src="images/quick-menu/b-card-01.png" alt="image description" />
+                          <div class="quick-menu-services">
+                            <div class="quick-menu-services__content">
+                              <div class="quick-menu-services-list">
+                                <ul class="list-reset">
+                                  <li><a href="#">Активация карты</a></li>
+                                  <li><a href="#">Блокировка карты</a></li>
+                                  <li><a href="#">Переводы</a></li>
+                                  <li><a href="#">Безопасность</a></li>
+                                  <li><a href="#">Дополнительные услуги</a></li>
+                                  <li><a href="#">Держателям карт</a></li>
+                                </ul>
                               </div>
-                              <div class="b-card-list__title">Visa Classic</div>
-                            </a>
+                            </div>
+                            <div class="quick-menu-services__footer">
+                              <div class="quick-menu-services-support">
+                                <div class="quick-menu-services-support__label">Поддержка 24/7</div>
+                                <div class="quick-menu-services-support__value"><a href="tel:3210000">321-00-00</a></div>
+                              </div>
+                            </div>
                           </div>
-                          <div class="b-card-list__li">
-                            <a class="b-card-list__el" href="#">
-                              <div class="b-card-list__figure">
-                                <img src="images/quick-menu/b-card-02.png" alt="image description" />
+                          <div class="quick-menu-accent">
+                            <div class="quick-menu-accent__content">
+                              <a class="quick-menu-accent__figure" href="#">
+																				<img src="images/quick-menu/b-card-lg.png" alt="image description" />
+																			</a>
+                              <div class="quick-menu-accent__descr">
+                                <div class="quick-menu-accent__title"><a href="#">Премиальная карточка <span class="nobr">Masterсard Gold</span></a></div>
+                                <div class="quick-menu-accent__text">Акция: выпуск карточки в белорусских рублях – 14 BYN!<br> Золотой уровень Ваших привилегий в разных странах!</div>
                               </div>
-                              <div class="b-card-list__title">Mastercard Standard</div>
-                            </a>
+                            </div>
+                            <div class="quick-menu-accent__footer">
+                              <a class="quick-menu-accent__btn" href="#">Заказать</a>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div class="quick-menu-products__footer">
-                      <a class="quick-menu-products__btn" href="#">Все карты (12)</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="new-header-panel__quick-menu-tab js-level-menu-panel-2" id="kartochka">
+              <div class="quick-menu js-level-menu-3">
+                <div class="quick-menu__layout">
+                  <div class="quick-menu__left">
+                    <div class="quick-menu-nav js-show-current">
+                      <div class="quick-menu-nav__frame js-show-current-scroll">
+                        <div class="quick-menu-nav__holder">
+                          <ul class="quick-menu-nav__list list-reset js-level-menu-thumbs-3">
+                            <li class="quick-menu-nav__li js-show-current-item">
+                              <a class="quick-menu-nav__li-el" href="#">Пункт меню 1</a>
+                            </li>
+                            <li class="quick-menu-nav__li js-show-current-item">
+                              <a class="quick-menu-nav__li-el" href="#" data-for="punkt-menu-2">Пункт меню 2 (+)</a>
+                            </li>
+                            <li class="quick-menu-nav__li js-show-current-item">
+                              <a class="quick-menu-nav__li-el" href="#" data-for="punkt-menu-3">Пункт меню 3 (+)</a>
+                            </li>
+                            <li class="quick-menu-nav__li js-show-current-item">
+                              <a class="quick-menu-nav__li-el" href="#">Корпоративные карты</a>
+                            </li>
+                            <li class="quick-menu-nav__li js-show-current-item">
+                              <span class="quick-menu-nav__li-el">Премиальные карты</span>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div class="quick-menu-services">
-                    <div class="quick-menu-services__content">
-                      <div class="quick-menu-services-list">
-                        <ul class="list-reset">
-                          <li><a href="#">Активация карты</a></li>
-                          <li><a href="#">Блокировка карты</a></li>
-                          <li><a href="#">Переводы</a></li>
-                          <li><a href="#">Безопасность</a></li>
-                          <li><a href="#">Дополнительные услуги</a></li>
-                          <li><a href="#">Держателям карт</a></li>
-                        </ul>
+                  <div class="quick-menu__main">
+                    <div class="quick-menu__main-tabs js-level-menu-panels-3">
+                      <div class="quick-menu__main-tab js-level-menu-panel-3" id="punkt-menu-2">
+                        <div class="quick-menu-container">
+                          <div class="quick-menu-products">
+                            <div class="quick-menu-products__content">
+                              <div class="b-card-list">
+                                <div class="b-card-list__ul">
+                                  <div class="b-card-list__li">
+                                    <a class="b-card-list__el" href="#">
+                                      <div class="b-card-list__figure">
+                                        <img src="images/quick-menu/b-card-01.png" alt="image description" />
+                                      </div>
+                                      <div class="b-card-list__title">Visa Classic</div>
+                                    </a>
+                                  </div>
+                                  <div class="b-card-list__li">
+                                    <a class="b-card-list__el" href="#">
+                                      <div class="b-card-list__figure">
+                                        <img src="images/quick-menu/b-card-02.png" alt="image description" />
+                                      </div>
+                                      <div class="b-card-list__title">Mastercard Standard</div>
+                                    </a>
+                                  </div>
+                                  <div class="b-card-list__li">
+                                    <a class="b-card-list__el" href="#">
+                                      <div class="b-card-list__figure">
+                                        <img src="images/quick-menu/b-card-03.png" alt="image description" />
+                                      </div>
+                                      <div class="b-card-list__title">UnionPay Classic</div>
+                                    </a>
+                                  </div>
+                                  <div class="b-card-list__li">
+                                    <a class="b-card-list__el" href="#">
+                                      <div class="b-card-list__figure">
+                                        <img src="images/quick-menu/b-card-02.png" alt="image description" />
+                                      </div>
+                                      <div class="b-card-list__title">Mastercard Standard</div>
+                                    </a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="quick-menu-products__footer">
+                              <a class="quick-menu-products__btn" href="#">Все карты (12)</a>
+                            </div>
+                          </div>
+                          <div class="quick-menu-services">
+                            <div class="quick-menu-services__content">
+                              <div class="quick-menu-services-list">
+                                <ul class="list-reset">
+                                  <li><a href="#">Активация карты</a></li>
+                                  <li><a href="#">Блокировка карты</a></li>
+                                  <li><a href="#">Переводы</a></li>
+                                  <li><a href="#">Безопасность</a></li>
+                                  <li><a href="#">Дополнительные услуги</a></li>
+                                  <li><a href="#">Держателям карт</a></li>
+                                </ul>
+                              </div>
+                            </div>
+                            <div class="quick-menu-services__footer">
+                              <div class="quick-menu-services-support">
+                                <div class="quick-menu-services-support__label">Поддержка 24/7</div>
+                                <div class="quick-menu-services-support__value"><a href="tel:3210000">321-00-00</a></div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="quick-menu-accent">
+                            <div class="quick-menu-accent__content">
+                              <a class="quick-menu-accent__figure" href="#">
+																				<img src="images/quick-menu/b-card-lg.png" alt="image description" />
+																			</a>
+                              <div class="quick-menu-accent__descr">
+                                <div class="quick-menu-accent__title"><a href="#">Премиальная карточка <span class="nobr">Masterсard Gold</span></a></div>
+                                <div class="quick-menu-accent__text">Акция: выпуск карточки в белорусских рублях – 14 BYN!<br> Золотой уровень Ваших привилегий в разных странах!</div>
+                              </div>
+                            </div>
+                            <div class="quick-menu-accent__footer">
+                              <a class="quick-menu-accent__btn" href="#">Заказать</a>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                    <div class="quick-menu-services__footer">
-                      <div class="quick-menu-services-support">
-                        <div class="quick-menu-services-support__label">Поддержка 24/7</div>
-                        <div class="quick-menu-services-support__value"><a href="tel:3210000">321-00-00</a></div>
+                      <div class="quick-menu__main-tab js-level-menu-panel-3" id="punkt-menu-3">
+                        <div class="quick-menu-container">
+                          <div class="quick-menu-products">
+                            <div class="quick-menu-products__content">
+                              <div class="b-card-list">
+                                <div class="b-card-list__ul">
+                                  <div class="b-card-list__li">
+                                    <a class="b-card-list__el" href="#">
+                                      <div class="b-card-list__figure">
+                                        <img src="images/quick-menu/b-card-01.png" alt="image description" />
+                                      </div>
+                                      <div class="b-card-list__title">Visa Classic</div>
+                                    </a>
+                                  </div>
+                                  <div class="b-card-list__li">
+                                    <a class="b-card-list__el" href="#">
+                                      <div class="b-card-list__figure">
+                                        <img src="images/quick-menu/b-card-03.png" alt="image description" />
+                                      </div>
+                                      <div class="b-card-list__title">UnionPay Classic</div>
+                                    </a>
+                                  </div>
+                                  <div class="b-card-list__li">
+                                    <a class="b-card-list__el" href="#">
+                                      <div class="b-card-list__figure">
+                                        <img src="images/quick-menu/b-card-02.png" alt="image description" />
+                                      </div>
+                                      <div class="b-card-list__title">Mastercard Standard</div>
+                                    </a>
+                                  </div>
+                                  <div class="b-card-list__li">
+                                    <a class="b-card-list__el" href="#">
+                                      <div class="b-card-list__figure">
+                                        <img src="images/quick-menu/b-card-03.png" alt="image description" />
+                                      </div>
+                                      <div class="b-card-list__title">UnionPay Classic</div>
+                                    </a>
+                                  </div>
+                                  <div class="b-card-list__li">
+                                    <a class="b-card-list__el" href="#">
+                                      <div class="b-card-list__figure">
+                                        <img src="images/quick-menu/b-card-02.png" alt="image description" />
+                                      </div>
+                                      <div class="b-card-list__title">Mastercard Standard</div>
+                                    </a>
+                                  </div>
+                                  <div class="b-card-list__li">
+                                    <a class="b-card-list__el" href="#">
+                                      <div class="b-card-list__figure">
+                                        <img src="images/quick-menu/b-card-03.png" alt="image description" />
+                                      </div>
+                                      <div class="b-card-list__title">UnionPay Classic</div>
+                                    </a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="quick-menu-products__footer">
+                              <a class="quick-menu-products__btn" href="#">Все карты (12)</a>
+                            </div>
+                          </div>
+                          <div class="quick-menu-services">
+                            <div class="quick-menu-services__content">
+                              <div class="quick-menu-services-list">
+                                <ul class="list-reset">
+                                  <li><a href="#">Активация карты</a></li>
+                                  <li><a href="#">Блокировка карты</a></li>
+                                  <li><a href="#">Переводы</a></li>
+                                  <li><a href="#">Безопасность</a></li>
+                                  <li><a href="#">Дополнительные услуги</a></li>
+                                  <li><a href="#">Держателям карт</a></li>
+                                </ul>
+                              </div>
+                            </div>
+                            <div class="quick-menu-services__footer">
+                              <div class="quick-menu-services-support">
+                                <div class="quick-menu-services-support__label">Поддержка 24/7</div>
+                                <div class="quick-menu-services-support__value"><a href="tel:3210000">321-00-00</a></div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="quick-menu-accent">
+                            <div class="quick-menu-accent__content">
+                              <a class="quick-menu-accent__figure" href="#">
+																				<img src="images/quick-menu/b-card-lg.png" alt="image description" />
+																			</a>
+                              <div class="quick-menu-accent__descr">
+                                <div class="quick-menu-accent__title"><a href="#">Премиальная карточка <span class="nobr">Masterсard Gold</span></a></div>
+                                <div class="quick-menu-accent__text">Акция: выпуск карточки в белорусских рублях – 14 BYN!<br> Золотой уровень Ваших привилегий в разных странах!</div>
+                              </div>
+                            </div>
+                            <div class="quick-menu-accent__footer">
+                              <a class="quick-menu-accent__btn" href="#">Заказать</a>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <div class="quick-menu-accent">
-                    <div class="quick-menu-accent__content">
-                      <a class="quick-menu-accent__figure" href="#">
-                      <img src="images/quick-menu/b-card-lg.png" alt="image description" />
-                    </a>
-                      <div class="quick-menu-accent__descr">
-                        <div class="quick-menu-accent__title"><a href="#">Премиальная карточка <span class="nobr">Masterсard Gold</span></a></div>
-                        <div class="quick-menu-accent__text">Акция: выпуск карточки в белорусских рублях – 14 BYN!<br> Золотой уровень Ваших привилегий в разных странах!</div>
+                </div>
+              </div>
+            </div>
+            <div class="new-header-panel__quick-menu-tab js-level-menu-panel-2" id="cervices">
+              <div class="quick-menu">
+                <div class="quick-menu__layout">
+                  <div class="quick-menu__left">
+                    <div class="quick-menu-nav js-show-current">
+                      <div class="quick-menu-nav__frame js-show-current-scroll">
+                        <div class="quick-menu-nav__holder">
+                          <ul class="quick-menu-nav__list list-reset">
+                            <li class="quick-menu-nav__li js-show-current-item">
+                              <a class="quick-menu-nav__li-el" href="#">Расчетные карты</a>
+                            </li>
+                            <li class="quick-menu-nav__li js-show-current-item">
+                              <a class="quick-menu-nav__li-el" href="#">Зарплатные карты</a>
+                            </li>
+                            <li class="quick-menu-nav__li js-show-current-item">
+                              <a class="quick-menu-nav__li-el" href="#">Кредитные карты</a>
+                            </li>
+                            <li class="quick-menu-nav__li js-show-current-item">
+                              <a class="quick-menu-nav__li-el" href="#">Корпоративные карты</a>
+                            </li>
+                            <li class="quick-menu-nav__li js-show-current-item">
+                              <a class="quick-menu-nav__li-el" href="#">Расчетные карты</a>
+                            </li>
+                            <li class="quick-menu-nav__li js-show-current-item">
+                              <a class="quick-menu-nav__li-el" href="#">Зарплатные карты</a>
+                            </li>
+                            <li class="quick-menu-nav__li js-show-current-item">
+                              <a class="quick-menu-nav__li-el" href="#">Кредитные карты</a>
+                            </li>
+                            <li class="quick-menu-nav__li js-show-current-item">
+                              <a class="quick-menu-nav__li-el" href="#">Корпоративные карты</a>
+                            </li>
+                            <li class="quick-menu-nav__li js-show-current-item">
+                              <a class="quick-menu-nav__li-el" href="#">Расчетные карты</a>
+                            </li>
+                            <li class="quick-menu-nav__li js-show-current-item">
+                              <a class="quick-menu-nav__li-el" href="#">Зарплатные карты</a>
+                            </li>
+                            <li class="quick-menu-nav__li js-show-current-item">
+                              <a class="quick-menu-nav__li-el" href="#">Кредитные карты</a>
+                            </li>
+                            <li class="quick-menu-nav__li js-show-current-item">
+                              <a class="quick-menu-nav__li-el" href="#">Корпоративные карты</a>
+                            </li>
+                            <li class="quick-menu-nav__li js-show-current-item">
+                              <span class="quick-menu-nav__li-el">Премиальные карты</span>
+                            </li>
+                          </ul>
+                        </div>
                       </div>
                     </div>
-                    <div class="quick-menu-accent__footer">
-                      <a class="quick-menu-accent__btn" href="#">Заказать</a>
+                  </div>
+                  <div class="quick-menu__main">
+                    <div class="quick-menu-container">
+                      <div class="quick-menu-products">
+                        <div class="quick-menu-products__content">
+                          <div class="b-card-list">
+                            <div class="b-card-list__ul">
+                              <div class="b-card-list__li">
+                                <a class="b-card-list__el" href="#">
+                                  <div class="b-card-list__figure">
+                                    <img src="images/quick-menu/b-card-01.png" alt="image description" />
+                                  </div>
+                                  <div class="b-card-list__title">Visa Classic</div>
+                                </a>
+                              </div>
+                              <div class="b-card-list__li">
+                                <a class="b-card-list__el" href="#">
+                                  <div class="b-card-list__figure">
+                                    <img src="images/quick-menu/b-card-02.png" alt="image description" />
+                                  </div>
+                                  <div class="b-card-list__title">Mastercard Standard</div>
+                                </a>
+                              </div>
+                              <div class="b-card-list__li">
+                                <a class="b-card-list__el" href="#">
+                                  <div class="b-card-list__figure">
+                                    <img src="images/quick-menu/b-card-03.png" alt="image description" />
+                                  </div>
+                                  <div class="b-card-list__title">UnionPay Classic</div>
+                                </a>
+                              </div>
+                              <div class="b-card-list__li">
+                                <a class="b-card-list__el" href="#">
+                                  <div class="b-card-list__figure">
+                                    <img src="images/quick-menu/b-card-04.png" alt="image description" />
+                                  </div>
+                                  <div class="b-card-list__title">Cashalot</div>
+                                </a>
+                              </div>
+                              <div class="b-card-list__li">
+                                <a class="b-card-list__el" href="#">
+                                  <div class="b-card-list__figure">
+                                    <img src="images/quick-menu/b-card-01.png" alt="image description" />
+                                  </div>
+                                  <div class="b-card-list__title">Visa Classic</div>
+                                </a>
+                              </div>
+                              <div class="b-card-list__li">
+                                <a class="b-card-list__el" href="#">
+                                  <div class="b-card-list__figure">
+                                    <img src="images/quick-menu/b-card-02.png" alt="image description" />
+                                  </div>
+                                  <div class="b-card-list__title">Mastercard Standard</div>
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="quick-menu-products__footer">
+                          <a class="quick-menu-products__btn" href="#">Все карты (12)</a>
+                        </div>
+                      </div>
+                      <div class="quick-menu-services">
+                        <div class="quick-menu-services__content">
+                          <div class="quick-menu-services-list">
+                            <ul class="list-reset">
+                              <li><a href="#">Активация карты</a></li>
+                              <li><a href="#">Блокировка карты</a></li>
+                              <li><a href="#">Переводы</a></li>
+                              <li><a href="#">Безопасность</a></li>
+                              <li><a href="#">Дополнительные услуги</a></li>
+                              <li><a href="#">Держателям карт</a></li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div class="quick-menu-services__footer">
+                          <div class="quick-menu-services-support">
+                            <div class="quick-menu-services-support__label">Поддержка 24/7</div>
+                            <div class="quick-menu-services-support__value"><a href="tel:3210000">321-00-00</a></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="quick-menu-accent">
+                        <div class="quick-menu-accent__content">
+                          <a class="quick-menu-accent__figure" href="#">
+																		<img src="images/quick-menu/b-card-lg.png" alt="image description" />
+																	</a>
+                          <div class="quick-menu-accent__descr">
+                            <div class="quick-menu-accent__title"><a href="#">Премиальная карточка <span class="nobr">Masterсard Gold</span></a></div>
+                            <div class="quick-menu-accent__text">Акция: выпуск карточки в белорусских рублях – 14 BYN!<br> Золотой уровень Ваших привилегий в разных странах!</div>
+                          </div>
+                        </div>
+                        <div class="quick-menu-accent__footer">
+                          <a class="quick-menu-accent__btn" href="#">Заказать</a>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
