@@ -1,0 +1,226 @@
+@import "../../../../sass/utils/variables";
+@import "../../../../sass/utils/mixins";
+@import "../../../../libs/include-media/dist/include-media";
+
+.oracle-theme {
+  background-color: #1e0202;
+}
+
+.r-counter {
+  position: relative;
+  width: 26.8rem;
+
+  &::before {
+    content: "";
+    display: block;
+
+    @include ratio(268, 350);
+  }
+
+  &__holder {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__figure {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 171.43%; // 600px / 350px * 100%
+    width: 223.88%; // 600px / 268px * 100%
+    transform: translate(-50%, -50%);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+
+  &__path {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+
+    &-all {
+      fill: #1e0202;
+      stroke: #eebf86;
+      stroke-width: 0.3rem;
+    }
+
+    &-part {
+      transition: fill $animation-speed;
+      fill: #1e0202;
+      stroke: #eebf86;
+      stroke-width: 0.2rem;
+
+      &:hover {
+        fill: red;
+      }
+    }
+  }
+
+  &__numbers {
+    position: absolute;
+    left: 0.4rem;
+    top: 0.5rem;
+    height: calc(100% - 0.5rem * 2);
+    width: calc(100% - 0.4rem * 2);
+    font-family: Georgia, serif;
+    font-size: 2.6rem;
+    line-height: 4rem;
+    color: white;
+    pointer-events: none;
+
+    &-item {
+      position: absolute;
+      height: 20%;
+      width: 20%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      // ===== 1 ряд =====
+      &:nth-child(1) {
+        left: calc(50% - 10% * 1);
+        top: calc(0 * 10%);
+      }
+
+      // ===== 2 ряд =====
+      &:nth-child(2) {
+        left: calc(50% - 10% * 2);
+        top: calc(1 * 10%);
+      }
+
+      &:nth-child(3) {
+        left: calc(50% - 10% * 0);
+        top: calc(1 * 10%);
+      }
+
+      // ===== 3 ряд =====
+      &:nth-child(4) {
+        left: calc(50% - 10% * 3);
+        top: calc(2 * 10%);
+      }
+
+      &:nth-child(5) {
+        left: calc(50% - 10% * 1);
+        top: calc(2 * 10%);
+      }
+
+      &:nth-child(6) {
+        left: calc(50% - 10% * -1);
+        top: calc(2 * 10%);
+      }
+
+      // ===== 4 ряд =====
+      &:nth-child(7) {
+        left: calc(50% - 10% * 4);
+        top: calc(3 * 10%);
+      }
+
+      &:nth-child(8) {
+        left: calc(50% - 10% * 2);
+        top: calc(3 * 10%);
+      }
+
+      &:nth-child(9) {
+        left: calc(50% - 10% * 0);
+        top: calc(3 * 10%);
+      }
+
+      &:nth-child(10) {
+        left: calc(50% - 10% * -2);
+        top: calc(3 * 10%);
+      }
+
+      // ===== 5 ряд =====
+      &:nth-child(11) {
+        left: calc(50% - 10% * 5);
+        top: calc(4 * 10%);
+      }
+
+      &:nth-child(12) {
+        left: calc(50% - 10% * 3);
+        top: calc(4 * 10%);
+      }
+
+      &:nth-child(13) {
+        left: calc(50% - 10% * 1);
+        top: calc(4 * 10%);
+      }
+
+      &:nth-child(14) {
+        left: calc(50% - 10% * -1);
+        top: calc(4 * 10%);
+      }
+
+      &:nth-child(15) {
+        left: calc(50% - 10% * -3);
+        top: calc(4 * 10%);
+      }
+
+      // ===== 6 ряд =====
+      &:nth-child(16) {
+        left: calc(50% - 10% * 4);
+        top: calc(5 * 10%);
+      }
+
+      &:nth-child(17) {
+        left: calc(50% - 10% * 2);
+        top: calc(5 * 10%);
+      }
+
+      &:nth-child(18) {
+        left: calc(50% - 10% * 0);
+        top: calc(5 * 10%);
+      }
+
+      &:nth-child(19) {
+        left: calc(50% - 10% * -2);
+        top: calc(5 * 10%);
+      }
+
+      // ===== 7 ряд =====
+      &:nth-child(20) {
+        left: calc(50% - 10% * 3);
+        top: calc(6 * 10%);
+      }
+
+      &:nth-child(21) {
+        left: calc(50% - 10% * 1);
+        top: calc(6 * 10%);
+      }
+
+      &:nth-child(22) {
+        left: calc(50% - 10% * -1);
+        top: calc(6 * 10%);
+      }
+
+      // ===== 8 ряд =====
+      &:nth-child(23) {
+        left: calc(50% - 10% * 2);
+        top: calc(7 * 10%);
+      }
+
+      &:nth-child(24) {
+        left: calc(50% - 10% * 0);
+        top: calc(7 * 10%);
+      }
+
+      // ===== 9 ряд =====
+      &:nth-child(25) {
+        left: calc(50% - 10% * 1);
+        top: calc(8 * 10%);
+      }
+    }
+
+    &-el {
+      display: block;
+      margin-top: -0.4rem;
+    }
+  }
+}

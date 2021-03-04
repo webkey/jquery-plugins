@@ -1,0 +1,16 @@
+@@include('../../../_tpl_layout_head.html', {
+"title": "pdf viewer",
+"pathCss": ["styles/pdf-viewer.css"],
+"pageClass": "pdf-viewer"
+})
+
+<div class="wrapper">
+	<!--<iframe src="http://docs.google.com/viewer?url=http://bitrix.imediasolutions.ru/pdf-file/example1.pdf&embedded=true" style="width: 1000px; height: 1200px;" frameborder="0">
+		Ваш браузер не поддерживает фреймы
+	</iframe>-->
+	<embed src="pdf/example.pdf" type="application/pdf"   height="300px" width="100%">
+</div>
+
+@@include('../../../_tpl_layout_foot.html', {
+"pathJs": ["js/pdf-viewer.js"]
+})

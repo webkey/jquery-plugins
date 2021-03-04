@@ -1,0 +1,1 @@
+{"version":3,"sources":["pdf-viewer.css"],"names":[],"mappings":"AAAA;EACE,kCAAkC;EAClC,eAAe;CAChB;;AAED;EACE,uBAAuB;EACvB,cAAc;CACf","file":"pdf-viewer.css","sourcesContent":["body {\n  font: 16px/1.4 \"Lato\", sans-serif;\n  color: #fefeff;\n}\n\n.wrapper {\n  background-color: blue;\n  padding: 20px;\n}\n"]}
