@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Обрезка текста</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <link rel="stylesheet" href="../../../sass/libs.min.css">
+  <link rel="stylesheet" href="../../../sass/main.css">
+  <link rel="stylesheet" href="styles/main.css">
+  <script src="../../../js/modernizr.min.js"></script>
+</head>
+
+<body class="">
+  <header class="header layout"><a href="../../../index.html">На главную</a></header>
+  <div class="layout-flood user-content">
+    <h1>Обрезка текста</h1>
+    <!--js cut text container-->
+    <div class="cut js-cut">
+      <!--important! js marker of cut height-->
+      <div class="cut__marker js-cut__marker"></div>
+      <div class="cut__overflow js-cut__overflow">
+        <!--js wrap-->
+        <div class="cut__content js-cut__content">
+          <h3>Heading</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus itaque natus praesentium quasi. Accusantium aperiam autem illo omnis pariatur quas quidem, similique sunt totam voluptas. Eum itaque laborum saepe?</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto consequatur deleniti eius eveniet iste nostrum, optio perspiciatis possimus voluptates. At aut blanditiis illum nulla placeat possimus sunt tempore voluptas. Provident.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab est, laborum. Ad debitis ducimus error et expedita laborum natus odio qui quis, repellendus reprehenderit sint voluptatem. Dignissimos fuga necessitatibus repellat!</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci culpa cupiditate debitis dicta est id ipsum iste laborum, nam nulla odit, officiis quod rem repellat reprehenderit rerum, velit! Reiciendis!</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem dolor harum incidunt ipsa, neque nulla officia perspiciatis porro quidem recusandae sit vitae! Dolores ea illum praesentium ratione repudiandae sint vel.</p>
+        </div>
+        <!--shadow with css transition-->
+        <div class="cut__shadow"></div>
+      </div>
+      <div class="cut__control">
+        <!--js switcher-->
+        <a href="#" class="btn js-cut__btn" data-btn-show-text="Показать" data-btn-hide-text="Скрыть">Показать</a>
+      </div>
+    </div>
+  </div>
+  <script src="../../../js/jquery.min.js"></script>
+  <script src="../../../js/libs.min.js"></script>
+  <script src="../../../js/main.js"></script>
+  <script src="js/common.js"></script>
+</body>
+
+</html>

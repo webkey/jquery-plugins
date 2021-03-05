@@ -1,0 +1,97 @@
+@import "../../../../sass/utils/variables";
+@import "../../../../sass/utils/mixins";
+@import "../../../../libs/include-media/dist/include-media";
+
+.cut {
+  $block: &;
+
+  /*Не важно*/
+  position: relative;
+  font-size: 1.8rem;
+  line-height: 2.4rem;
+
+  &__overflow {
+    /*Не важно*/
+    border-radius: 6px;
+    border: 1px solid lightgrey;
+    /*Важно*/
+    position: relative;
+    overflow: hidden;
+  }
+
+  &__marker {
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    background-color: red;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+  }
+
+  &__content {
+    /*Не важано*/
+    padding: 2.4rem 1.6rem;
+    /*Важно. Очистить лэяут контента*/
+    &::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    /*Не важано, но желательно. Иначе будет учитываться последний нижний отступ*/
+    p {
+      margin-bottom: 0;
+    }
+  }
+
+  /*Тень внизу обрезанного текста*/
+  &__shadow {
+    $color: lightgrey;
+
+    position: absolute;
+    bottom: -4px;
+    left: -4px;
+    right: -4px;
+    height: 4rem;
+    background: linear-gradient(to top, $color 0%, $color 20%, rgba($color, 0.5) 60%, rgba($color, 0) 100%);
+    transition: opacity 0.3s;
+    /*disabled a user interaction*/
+    user-select: none;
+    pointer-events: none;
+    -webkit-tap-highlight-color: transparent;
+    z-index: 10;
+    /*Важно. По умолчанию тень на переходе скрываем*/
+    opacity: 0;
+
+    @at-root {
+      #{$block}.is-cut & {
+        opacity: 1;
+      }
+    }
+  }
+
+  /*Блок в котором лежит кнопка*/
+  &__control {
+    margin-top: 2.4rem;
+    display: none;
+
+    @at-root {
+      #{$block}.is-cut &,
+      #{$block}.is-full & {
+        display: block;
+      }
+    }
+  }
+}
+
+/*Важно. Ограничить высоту через max-height, если подключен скрипт
+Высота ограничивается только свойством max-height.
+В скрипте никакие ограничения не указываются.*/
+.js-cut__overflow,
+.js-cut__marker {
+  max-height: 18rem;
+  /*Если не подключен js, высоту не ограничивать*/
+  .no-js & {
+    max-height: none;
+  }
+}

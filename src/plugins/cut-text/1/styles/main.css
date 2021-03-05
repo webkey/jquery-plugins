@@ -1,0 +1,95 @@
+@charset "UTF-8";
+.cut {
+  /*Не важно*/
+  position: relative;
+  font-size: 1.8rem;
+  line-height: 2.4rem;
+  /*Тень внизу обрезанного текста*/
+  /*Блок в котором лежит кнопка*/
+}
+
+.cut__overflow {
+  /*Не важно*/
+  border-radius: 6px;
+  border: 1px solid lightgrey;
+  /*Важно*/
+  position: relative;
+  overflow: hidden;
+}
+
+.cut__marker {
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  background-color: red;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.cut__content {
+  /*Не важано*/
+  padding: 2.4rem 1.6rem;
+  /*Важно. Очистить лэяут контента*/
+  /*Не важано, но желательно. Иначе будет учитываться последний нижний отступ*/
+}
+
+.cut__content::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.cut__content p {
+  margin-bottom: 0;
+}
+
+.cut__shadow {
+  position: absolute;
+  bottom: -4px;
+  left: -4px;
+  right: -4px;
+  height: 4rem;
+  background: linear-gradient(to top, lightgrey 0%, lightgrey 20%, rgba(211, 211, 211, 0.5) 60%, rgba(211, 211, 211, 0) 100%);
+  transition: opacity 0.3s;
+  /*disabled a user interaction*/
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  pointer-events: none;
+  -webkit-tap-highlight-color: transparent;
+  z-index: 10;
+  /*Важно. По умолчанию тень на переходе скрываем*/
+  opacity: 0;
+}
+
+.cut.is-cut .cut__shadow {
+  opacity: 1;
+}
+
+.cut__control {
+  margin-top: 2.4rem;
+  display: none;
+}
+
+.cut.is-cut .cut__control,
+.cut.is-full .cut__control {
+  display: block;
+}
+
+/*Важно. Ограничить высоту через max-height, если подключен скрипт
+Высота ограничивается только свойством max-height.
+В скрипте никакие ограничения не указываются.*/
+.js-cut__overflow,
+.js-cut__marker {
+  max-height: 18rem;
+  /*Если не подключен js, высоту не ограничивать*/
+}
+
+.no-js .js-cut__overflow, .no-js
+.js-cut__marker {
+  max-height: none;
+}
+
+/*# sourceMappingURL=main.css.map */
