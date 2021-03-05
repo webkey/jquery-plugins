@@ -196,11 +196,7 @@
     removeByClickEsc: function () {
       var self = this;
 
-      $('html').keyup(function (event) {
-        if (self._classIsAdded && self.config.removeEscClick && event.keyCode === 27) {
-          self.remove();
-        }
-      });
+      У
     },
     init: function () {
       var self = this;
