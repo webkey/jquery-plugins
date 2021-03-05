@@ -117,6 +117,4 @@ app.cut = {
 $(function () {
   window.app = app;
   app.cut.init();
-
-  // cut();
 })
